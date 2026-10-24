@@ -109,6 +109,9 @@ When two judges sit on the same cage-side panel, how frequently do their picks d
 
 ```
 ufc-judging-analysis/
+├── .github/
+│   └── workflows/
+│       └── weekly_update.yml        # Automated Monday cron to ingest UFC events & redeploy Pages
 ├── data/
 │   ├── ufc_round_scores.csv         # 31,881 individual 5-minute round scores (10-9, 10-8, 10-10)
 │   ├── ufc_scorecards.csv           # 4,010 UFC fights with full scores and dissenter flags
@@ -129,6 +132,7 @@ ufc-judging-analysis/
 │   ├── scatter_fights_vs_dissent.png# Fight volume vs dissent rate scatter plot
 │   └── split_decision_trend.png     # Historical split decision rate over time
 ├── src/
+│   ├── weekly_update.py             # Incremental weekly ingestion & recompile pipeline
 │   ├── download_decisions.py        # Asynchronous parallel scraper for 4,010 decision pages
 │   ├── round_parser.py              # Round-level scorecard table parser & SQLite loader
 │   ├── parser.py                    # Fight-level HTML parser converting scorecards to CSV/SQLite
@@ -137,8 +141,8 @@ ufc-judging-analysis/
 │   ├── export_web_data.py           # Web data enrichment pipeline & JSON compiler
 │   ├── build_dashboard.py           # Standalone interactive dashboard compiler
 │   └── security.py                  # Strict path resolution, SQL validation & XSS protection
-├── tests/                           # 62 comprehensive unit tests with branch coverage
-├── index.html                       # Standalone interactive HTML dashboard
+├── tests/                           # 65 comprehensive unit tests with branch coverage
+├── index.html                       # Standalone interactive HTML dashboard (GitHub Pages)
 ├── requirements.txt                 # Project dependencies
 └── README.md                        # Project documentation & analysis report
 ```
@@ -164,15 +168,31 @@ The dashboard (`index.html`) is engineered according to the principles articulat
 
 ## How to Run & Explore
 
-### 1. View the Interactive Dashboard
-Double-click `index.html` or open it in any modern browser. It is 100% self-contained with no external server required. You can toggle between **Round Scoring Disagreements** (primary) and **Fight Decision Splits** (secondary), filter by volume thresholds, search judges in real time, sort columns, view judge dossiers, and export filtered data to CSV.
+### 1. View the Live Web Dashboard
+* **Live Website**: [https://martindavies-code.github.io/ufc-judging-analysis/](https://martindavies-code.github.io/ufc-judging-analysis/)
+* **Offline Local**: Double-click `index.html` or open it in any modern browser. It is 100% self-contained with no external server required. You can toggle between **Round Scoring Disagreements** (primary) and **Fight Decision Splits** (secondary), filter by volume thresholds, search judges in real time, sort columns, view judge dossiers, and export filtered data to CSV.
 
-### 2. Query the SQLite Database
+### 2. Automated Weekly Updates (Every Monday)
+The repository automatically checks for new weekend UFC events every Monday at 10:00 UTC via GitHub Actions:
+* **Workflow**: [`.github/workflows/weekly_update.yml`](.github/workflows/weekly_update.yml)
+* **Schedule**: Runs on cron `0 10 * * 1` (Mondays) and on manual `workflow_dispatch`.
+* **Execution**:
+  1. Checks mmadecisions.com for newly completed events.
+  2. Ingests new fight and round scorecards into `data/ufc_judging.db` and CSV files.
+  3. Re-runs statistical models, re-generates visualizations, and recompiles `index.html`.
+  4. Automatically commits and pushes to `main`, instantly updating the live GitHub Pages site!
+
+To run the weekly update pipeline locally:
+```bash
+python src/weekly_update.py
+```
+
+### 3. Query the SQLite Database
 ```bash
 sqlite3 data/ufc_judging.db "SELECT judge_name, COUNT(*) as rounds, SUM(is_dissent) as dissents, ROUND(CAST(SUM(is_dissent) AS FLOAT) / COUNT(*) * 100, 2) as dissent_pct FROM round_scores WHERE consensus_winner != 'SPLIT_3WAY' GROUP BY judge_name HAVING rounds >= 250 ORDER BY dissent_pct DESC LIMIT 10;"
 ```
 
-### 3. Run the Test Suite
+### 4. Run the Test Suite
 ```bash
 pytest --cov=src
 ```
