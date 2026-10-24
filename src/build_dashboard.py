@@ -25,7 +25,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.security import escape_html, safe_resolve_path
+from src.security import escape_html, safe_resolve_path, safe_json_embed
 
 logger = logging.getLogger(__name__)
 
@@ -1632,13 +1632,13 @@ def build_dashboard_html() -> Path:
     img_scatter = encode_image_base64("scatter_fights_vs_dissent.png")
     img_trend = encode_image_base64("split_decision_trend.png")
 
-    # Safe JSON stringification preventing </script> injection
-    safe_round_judges_json = json.dumps(judging_data.get('round_judges', [])).replace("<", "\\u003c").replace(">", "\\u003e")
-    safe_fight_judges_json = json.dumps(judging_data.get('judges', [])).replace("<", "\\u003c").replace(">", "\\u003e")
-    safe_round_pairs_json = json.dumps(judging_data.get('round_pairs', [])).replace("<", "\\u003c").replace(">", "\\u003e")
-    safe_fight_pairs_json = json.dumps(judging_data.get('pairs', [])).replace("<", "\\u003c").replace(">", "\\u003e")
-    safe_summary_json = json.dumps(judging_data.get('summary', {})).replace("<", "\\u003c").replace(">", "\\u003e")
-    safe_round_summary_json = json.dumps(judging_data.get('summary', {}).get('rounds', {})).replace("<", "\\u003c").replace(">", "\\u003e")
+    # Safe JSON stringification preventing </script> injection and line separator breakout
+    safe_round_judges_json = safe_json_embed(judging_data.get('round_judges', []))
+    safe_fight_judges_json = safe_json_embed(judging_data.get('judges', []))
+    safe_round_pairs_json = safe_json_embed(judging_data.get('round_pairs', []))
+    safe_fight_pairs_json = safe_json_embed(judging_data.get('pairs', []))
+    safe_summary_json = safe_json_embed(judging_data.get('summary', {}))
+    safe_round_summary_json = safe_json_embed(judging_data.get('summary', {}).get('rounds', {}))
 
     html_content = DASHBOARD_TEMPLATE
     replacements = {

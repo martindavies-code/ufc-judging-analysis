@@ -22,7 +22,7 @@ import requests
 from tqdm import tqdm
 
 from src.scraper import atomic_write_text, get_thread_session, DEFAULT_TIMEOUT, MAX_RETRIES
-from src.security import safe_resolve_path, validate_numeric_id
+from src.security import safe_resolve_path, validate_numeric_id, validate_safe_url
 
 logger = logging.getLogger(__name__)
 
@@ -42,14 +42,14 @@ def download_single_decision(item: Tuple[int, str]) -> Tuple[int, bool, str]:
         if file_path.exists() and file_path.stat().st_size > 800:
             return val_id, True, "cached"
 
-        if not decision_url or not isinstance(decision_url, str) or not decision_url.startswith("http"):
-            return val_id, False, "Invalid URL"
+        # Validate URL against SSRF and protocol manipulation
+        safe_url = validate_safe_url(decision_url)
 
         session = get_thread_session()
 
         for attempt in range(MAX_RETRIES):
             try:
-                resp = session.get(decision_url, timeout=DEFAULT_TIMEOUT)
+                resp = session.get(safe_url, timeout=DEFAULT_TIMEOUT)
                 if resp.status_code == 200 and len(resp.text) > 800:
                     atomic_write_text(file_path, resp.text)
                     return val_id, True, "downloaded"

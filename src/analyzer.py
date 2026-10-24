@@ -212,6 +212,7 @@ def run_deep_analysis(db_path: Path = DB_PATH) -> Dict[str, Any]:
 
     conn = sqlite3.connect(db_path)
     try:
+        conn.execute("PRAGMA busy_timeout = 5000")
         # Load tables using indexed queries
         df_fights = pd.read_sql("SELECT * FROM fights", conn)
         df_judges = pd.read_sql("SELECT * FROM judge_appearances", conn)

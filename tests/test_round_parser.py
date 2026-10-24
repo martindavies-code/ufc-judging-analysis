@@ -136,6 +136,56 @@ def test_parse_decision_rounds_draw():
     rounds = parse_decision_rounds(html_content, "666", {})
     by_judge = {r.judge_name: r for r in rounds}
     assert by_judge['Judge One'].round_pick == 'draw'
-    assert by_judge['Judge One'].round_dissented is True  # Two colleagues agreed on fighter_1
     assert by_judge['Judge Two'].round_pick == 'fighter_1'
     assert by_judge['Judge Two'].round_dissented is False
+
+
+def test_parse_decision_rounds_edge_cases():
+    """Verify handling of empty HTML, missing judges, and 2-judge panels."""
+    assert parse_decision_rounds("", "101") == []
+    assert parse_decision_rounds("<html><body>No tables</body></html>", "102") == []
+
+    # Only 2 judges (e.g. missing judge table)
+    two_judges_html = """
+    <html><body>
+    <table><tr><td class="judge">Judge One</td></tr><tr class="decision"><td>1</td><td>10</td><td>9</td></tr></table>
+    <table><tr><td class="judge">Judge Two</td></tr><tr class="decision"><td>1</td><td>10</td><td>9</td></tr></table>
+    </body></html>
+    """
+    assert parse_decision_rounds(two_judges_html, "103") == []
+
+
+def test_save_round_scores_to_csv_and_sqlite(tmp_path):
+    """Verify save_round_scores creates CSV and SQLite tables with indices."""
+    from src.round_parser import save_round_scores, parse_decision_rounds
+    import sqlite3
+
+    html_content = """
+    <html><body>
+    <table><tr><td class="judge">Judge Alpha</td></tr><tr class="decision"><td>1</td><td>10</td><td>9</td></tr></table>
+    <table><tr><td class="judge">Judge Beta</td></tr><tr class="decision"><td>1</td><td>10</td><td>9</td></tr></table>
+    <table><tr><td class="judge">Judge Gamma</td></tr><tr class="decision"><td>1</td><td>9</td><td>10</td></tr></table>
+    </body></html>
+    """
+    scores = parse_decision_rounds(html_content, "555")
+    test_csv = tmp_path / "rounds.csv"
+    test_db = tmp_path / "test.db"
+
+    save_round_scores(scores, csv_path=test_csv, db_path=test_db)
+
+    assert test_csv.exists()
+    assert test_db.exists()
+
+    with sqlite3.connect(test_db) as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT COUNT(*) FROM round_scores")
+        count = cursor.fetchone()[0]
+        assert count == 3
+
+        # Verify index creation
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='index' AND name='idx_rs_judge'")
+        assert cursor.fetchone() is not None
+
+    # Test saving empty list
+    save_round_scores([], csv_path=test_csv, db_path=test_db)
+

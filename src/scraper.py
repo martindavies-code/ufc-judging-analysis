@@ -23,7 +23,7 @@ import requests
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
-from src.security import safe_resolve_path, sanitize_filename, validate_numeric_id
+from src.security import safe_resolve_path, sanitize_filename, validate_numeric_id, validate_safe_url
 
 logger = logging.getLogger(__name__)
 
@@ -204,11 +204,12 @@ def download_single_event(event: Dict[str, str]) -> Tuple[str, bool, str]:
     if file_path.exists() and file_path.stat().st_size > 1000:
         return event_id, True, "cached"
         
+    safe_url = validate_safe_url(event['url'])
     session = get_thread_session()
     
     for attempt in range(MAX_RETRIES):
         try:
-            resp = session.get(event['url'], timeout=DEFAULT_TIMEOUT)
+            resp = session.get(safe_url, timeout=DEFAULT_TIMEOUT)
             if resp.status_code == 200 and len(resp.text) > 1000:
                 atomic_write_text(file_path, resp.text)
                 return event_id, True, "downloaded"

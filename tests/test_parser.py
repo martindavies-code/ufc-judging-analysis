@@ -181,19 +181,18 @@ class TestParseEventHtml:
 
 class TestDatabaseSchema:
     def test_schema_creation_and_indexes(self):
-        conn = sqlite3.connect(":memory:")
-        init_database_schema(conn)
-        cursor = conn.cursor()
-        
-        # Verify tables exist
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-        tables = [r[0] for r in cursor.fetchall()]
-        assert "fights" in tables
-        assert "judge_appearances" in tables
+        with sqlite3.connect(":memory:") as conn:
+            init_database_schema(conn)
+            cursor = conn.cursor()
+            
+            # Verify tables exist
+            cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+            tables = [r[0] for r in cursor.fetchall()]
+            assert "fights" in tables
+            assert "judge_appearances" in tables
 
-        # Verify indexes exist
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='index';")
-        indexes = [r[0] for r in cursor.fetchall()]
-        assert "idx_ja_judge_name" in indexes
-        assert "idx_ja_event_year" in indexes
-        conn.close()
+            # Verify indexes exist
+            cursor.execute("SELECT name FROM sqlite_master WHERE type='index';")
+            indexes = [r[0] for r in cursor.fetchall()]
+            assert "idx_ja_judge_name" in indexes
+            assert "idx_ja_event_year" in indexes

@@ -148,3 +148,41 @@ class TestRunDeepAnalysis:
         fake_db = tmp_path / "non_existent.db"
         with pytest.raises(FileNotFoundError):
             run_deep_analysis(fake_db)
+
+    def test_run_deep_analysis_real_or_mock(self, tmp_path):
+        real_db = Path("data/ufc_judging.db")
+        if real_db.exists():
+            res = run_deep_analysis(real_db)
+            assert "round_judge_stats" in res
+            assert "fight_judge_stats" in res
+            assert "fight_pair_stats" in res
+            assert len(res["round_judge_stats"]) > 0
+
+    def test_run_deep_analysis_synthetic_db(self, tmp_path):
+        synth_db = tmp_path / "synth.db"
+        with sqlite3.connect(synth_db) as conn:
+            conn.execute("""
+                CREATE TABLE fights (
+                    decision_id TEXT, event_id TEXT, event_year TEXT, decision_type TEXT,
+                    j1_name TEXT, j2_name TEXT, j3_name TEXT,
+                    j1_pick TEXT, j2_pick TEXT, j3_pick TEXT,
+                    j1_score TEXT, j2_score TEXT, j3_score TEXT
+                )
+            """)
+            conn.execute("""
+                CREATE TABLE judge_appearances (
+                    judge_name TEXT, fight TEXT, colleagues_agreed INT, disagreed_with_both INT, disagreed_on_score INT
+                )
+            """)
+            conn.execute("""
+                CREATE TABLE round_scores (
+                    decision_id TEXT, round_num INT, judge_name TEXT, round_pick TEXT,
+                    colleagues_agreed INT, round_dissented INT, is_ten_eight INT
+                )
+            """)
+            conn.commit()
+
+        res = run_deep_analysis(synth_db)
+        assert isinstance(res, dict)
+        assert res["round_judge_stats"].empty
+

@@ -74,3 +74,33 @@ class TestFetchEventsForYear:
 
         events = fetch_events_for_year("2024")
         assert events == []
+
+
+class TestDownloadAllEvents:
+    def test_download_single_event_successful_fetch(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("src.scraper.EVENTS_HTML_DIR", tmp_path)
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = "<html>Valid event page... " + ("X" * 1200) + "</html>"
+
+        mock_session = MagicMock()
+        mock_session.get.return_value = mock_resp
+
+        with patch("src.scraper.get_thread_session", return_value=mock_session):
+            eid, ok, status = download_single_event({
+                'event_id': '1516',
+                'url': 'https://mmadecisions.com/event/1516/test'
+            })
+            assert eid == '1516'
+            assert ok is True
+            assert status == 'downloaded'
+            assert (tmp_path / "1516.html").exists()
+
+    def test_download_single_event_ssrf_protection(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("src.scraper.EVENTS_HTML_DIR", tmp_path)
+        with pytest.raises(ValueError, match="Prohibited target host"):
+            download_single_event({
+                'event_id': '1516',
+                'url': 'http://127.0.0.1/admin'
+            })
+

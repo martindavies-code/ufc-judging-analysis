@@ -144,16 +144,16 @@ def parse_decision_rounds(html_text: str, decision_id: str, metadata: Optional[D
         p2 = j2_round['pick']
 
         # Judge 0 consensus check
-        j0_colleagues_agreed = (p1 == p2)
-        j0_dissented = bool(j0_colleagues_agreed and (p0 != p1))
+        j0_colleagues_agreed = bool(p1 == p2 and p1 != 'unknown')
+        j0_dissented = bool(j0_colleagues_agreed and (p0 != p1) and p0 != 'unknown')
 
         # Judge 1 consensus check
-        j1_colleagues_agreed = (p0 == p2)
-        j1_dissented = bool(j1_colleagues_agreed and (p1 != p0))
+        j1_colleagues_agreed = bool(p0 == p2 and p0 != 'unknown')
+        j1_dissented = bool(j1_colleagues_agreed and (p1 != p0) and p1 != 'unknown')
 
         # Judge 2 consensus check
-        j2_colleagues_agreed = (p0 == p1)
-        j2_dissented = bool(j2_colleagues_agreed and (p2 != p0))
+        j2_colleagues_agreed = bool(p0 == p1 and p0 != 'unknown')
+        j2_dissented = bool(j2_colleagues_agreed and (p2 != p0) and p2 != 'unknown')
 
         # Build RoundScore records
         results.append(RoundScore(
@@ -287,6 +287,7 @@ def save_round_scores(
     # Save to SQLite database
     conn = sqlite3.connect(str(db_path))
     try:
+        conn.execute("PRAGMA busy_timeout = 5000")
         cursor = conn.cursor()
         cursor.execute("DROP TABLE IF EXISTS round_scores")
         df.to_sql("round_scores", conn, index=False)

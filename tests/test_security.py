@@ -5,10 +5,13 @@ import pytest
 
 from src.security import (
     escape_html,
+    safe_json_embed,
     safe_resolve_path,
     sanitize_filename,
+    sanitize_judge_name,
     sanitize_text,
     validate_numeric_id,
+    validate_safe_url,
 )
 
 
@@ -123,3 +126,78 @@ class TestEscapeHtml:
 
     def test_numeric_value(self):
         assert escape_html(42) == "42"
+
+
+class TestValidateSafeUrl:
+    def test_valid_mmadecisions_https(self):
+        url = "https://mmadecisions.com/decision/1516/Jon-Jones-def-Mauricio-Rua"
+        assert validate_safe_url(url) == url
+
+    def test_valid_mmadecisions_http_with_allowed_flag(self):
+        url = "http://www.mmadecisions.com/event/751/UFC-310"
+        assert validate_safe_url(url, allow_http=True) == url
+
+    def test_ssrf_localhost_rejected(self):
+        with pytest.raises(ValueError, match="Prohibited target host"):
+            validate_safe_url("http://localhost:8080/admin")
+        with pytest.raises(ValueError, match="Prohibited target host"):
+            validate_safe_url("http://127.0.0.1/secrets")
+
+    def test_ssrf_cloud_metadata_rejected(self):
+        with pytest.raises(ValueError, match="Prohibited target host"):
+            validate_safe_url("http://169.254.169.254/latest/meta-data/")
+
+    def test_untrusted_domain_rejected(self):
+        with pytest.raises(ValueError, match="Untrusted host"):
+            validate_safe_url("https://malicious-site.com/payload")
+
+    def test_disallowed_schemes_rejected(self):
+        with pytest.raises(ValueError, match="Disallowed URL scheme"):
+            validate_safe_url("file:///etc/passwd")
+        with pytest.raises(ValueError, match="Disallowed URL scheme"):
+            validate_safe_url("ftp://mmadecisions.com/data")
+
+    def test_empty_or_invalid_type_rejected(self):
+        with pytest.raises(ValueError):
+            validate_safe_url("")
+        with pytest.raises(ValueError):
+            validate_safe_url(None)  # type: ignore
+
+
+class TestSafeJsonEmbed:
+    def test_prevents_script_breakout(self):
+        data = {"comment": "</script><script>alert('pwned')</script>"}
+        embedded = safe_json_embed(data)
+        assert "</script>" not in embedded
+        assert "\\u003c/script\\u003e" in embedded
+
+    def test_escapes_html_and_line_separators(self):
+        data = {"text": "A & B < C > D \u2028 \u2029"}
+        embedded = safe_json_embed(data)
+        assert "<" not in embedded
+        assert ">" not in embedded
+        assert "&" not in embedded
+        assert "\\u0026" in embedded
+        assert "\\u2028" in embedded
+        assert "\\u2029" in embedded
+
+
+class TestSanitizeJudgeName:
+    def test_clean_name(self):
+        assert sanitize_judge_name("Sal D'Amato") == "Sal D'Amato"
+
+    def test_strips_html_tags(self):
+        assert sanitize_judge_name("<script>alert(1)</script>Derek Cleary") == "alert(1)Derek Cleary"
+
+    def test_strips_control_characters(self):
+        assert sanitize_judge_name("Chris\x00Lee\x07") == "ChrisLee"
+
+    def test_empty_name_defaults(self):
+        assert sanitize_judge_name("") == "Unknown Judge"
+        assert sanitize_judge_name(None) == "Unknown Judge"
+
+    def test_truncates_oversized_name(self):
+        long_name = "Judge " * 50
+        sanitized = sanitize_judge_name(long_name, max_length=30)
+        assert len(sanitized) <= 30
+

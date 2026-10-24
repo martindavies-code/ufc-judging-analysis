@@ -39,6 +39,7 @@ def generate_visualizations(db_path: Path = DB_PATH) -> None:
 
     conn = sqlite3.connect(db_path)
     try:
+        conn.execute("PRAGMA busy_timeout = 5000")
         df_fights = pd.read_sql("SELECT * FROM fights", conn)
         df_judges = pd.read_sql("SELECT * FROM judge_appearances", conn)
         cursor = conn.cursor()

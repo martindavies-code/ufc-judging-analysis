@@ -40,3 +40,30 @@ class TestWeeklyUpdate:
         fights, rounds = ingest_new_decisions_and_rounds([], force=False)
         assert fights == 0
         assert rounds == 0
+
+    def test_fetch_new_events_discovery(self, tmp_path, monkeypatch):
+        fake_events_json = tmp_path / "ufc_events.json"
+        fake_events_json.write_text(json.dumps([{"event_id": "100", "title": "UFC 100"}]), encoding="utf-8")
+        (tmp_path / "100.html").write_text("X" * 600, encoding="utf-8")
+        monkeypatch.setattr("src.weekly_update.EVENTS_JSON_PATH", fake_events_json)
+        monkeypatch.setattr("src.weekly_update.EVENTS_HTML_DIR", tmp_path)
+
+        scraped_mock = [
+            {"event_id": "100", "title": "UFC 100", "url": "https://mmadecisions.com/event/100/test"},
+            {"event_id": "101", "title": "UFC 101", "url": "https://mmadecisions.com/event/101/test"}
+        ]
+
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = "<html>Event 101 details</html>"
+
+        mock_session = MagicMock()
+        mock_session.get.return_value = mock_resp
+
+        with patch("src.weekly_update.fetch_events_for_year", return_value=scraped_mock), \
+             patch("src.weekly_update.get_thread_session", return_value=mock_session):
+            new_events = fetch_new_events(target_years=[2024])
+            assert len(new_events) == 1
+            assert new_events[0]["event_id"] == "101"
+            assert (tmp_path / "101.html").exists()
+
