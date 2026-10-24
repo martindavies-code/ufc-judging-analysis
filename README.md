@@ -81,12 +81,51 @@ A **Round Dissent** occurs when two cage-side colleagues agree on who won an ind
 | **Majority Decisions** | 101 fights | 2.52% |
 | **Draw Decisions** | 3 fights | 0.07% |
 | **Unique Judges in History** | 491 judges | — |
+| **Unique UFC Fighters Analyzed** | 2,093 fighters | — |
+
+---
+
+## Fighter Controversy & Disagreement Index
+
+Which UFC fighters find themselves in razor-thin, split-call contests most frequently? Who has been historically "unlucky" on the wrong side of split decisions, and who has been the most fortunate?
+
+Across 4,010 UFC decisions, exactly **20.05% (1 in 5 bouts)** ended in a split decision.
+
+### 1. Highest Split Decision Rate (Min 6 Decision Bouts)
+1. 🥇 **Zubaira Tukhugov**: **83.33%** (5 split decisions in 6 bouts) — **#1 All-Time Most Contested Fighter**
+2. 🥈 **Paul Felder**: **66.67%** (6 splits in 9 bouts; 48.39% of scored rounds had a judge dissent)
+3. 🥉 **Joshua Culibao**: **66.67%** (4 splits in 6 bouts)
+4. 4️⃣ **Brad Pickett**: **66.67%** (4 splits in 6 bouts)
+5. 5️⃣ **Gian Villante**: **62.50%** (5 splits in 8 bouts)
+6. 6️⃣ **Sean Woodson**: **57.14%** (4 splits in 7 bouts, 3W-0L in splits) — **#1 Active Split Rate**
+
+### 2. The UFC "Luck Differential" (Net Split Wins vs Losses)
+* **Most Unlucky (Worst Split Decision Records)**:
+  * 💔 **Jorge Masvidal**: **0W – 4L** (net **-4** luck differential; 0% win rate in split decisions)
+  * 💔 **Andrea Lee**: **0W – 4L** (net **-4**)
+  * 💔 **Angela Hill**: **1W – 4L** (net **-3**; 4 split losses — #1 among active UFC fighters)
+  * 💔 **Cortney Casey**: **1W – 4L** (net **-3**)
+  * 💔 **Pedro Munhoz / Santiago Ponzinibbio / Gerald Meerschaert**: **0W – 3L** (net **-3**)
+* **Most Fortunate (Best Split Decision Records)**:
+  * 🍀 **Sean Strickland**: **5W – 2L** (net **+3**; 5 career split wins — tied for #1 all-time)
+  * 🍀 **Andre Fili**: **5W – 2L** (net **+3**; 5 career split wins)
+  * 🍀 **Gleison Tibau**: **5W – 2L** (net **+3**; 5 career split wins)
+  * 🍀 **Neil Magny**: **4W – 0L** (net **+4**; undefeated in career split decisions)
+  * 🍀 **Benson Henderson**: **4W – 0L** (net **+4**; undefeated in career split decisions)
+
+### 3. Most Contested Scored Rounds (Min 25 Scored Rounds)
+* 🥇 **Paul Felder**: **48.39%** of rounds contested (15 of 31 rounds produced a lone dissenting judge)
+* 🥈 **Dominick Cruz**: **41.38%** (12 of 29 rounds contested)
+* 🥉 **Alexander Hernandez**: **40.74%** (11 of 27 rounds contested) — **#1 Active**
+* 4️⃣ **Ross Pearson / Benson Henderson**: **40.48%** (17 of 42 rounds contested)
+* 5️⃣ **Cory Sandhagen**: **38.46%** (15 of 39 rounds contested)
 
 ---
 
 ## Top Disagreement Tables
 
 ### Tier 1: Veterans (Min 100 Fights)
+
 | Rank | Judge Name | Total Fights | Dissents | Disagreement % | Unanimous % | Era |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 1 | **Rick Winter** | 122 | 15 | **12.30%** | 77.0% | 2011–2026 |
@@ -128,7 +167,7 @@ When two judges sit on the same cage-side panel, how frequently do their picks d
 
 ## Project Structure
 
-```
+```text
 ufc-judging-analysis/
 ├── .github/
 │   └── workflows/
@@ -153,6 +192,7 @@ ufc-judging-analysis/
 │   ├── scatter_fights_vs_dissent.png# Fight volume vs dissent rate scatter plot
 │   └── split_decision_trend.png     # Historical split decision rate over time
 ├── src/
+│   ├── fighter_analysis.py          # Fighter controversy metrics, luck index & split rates
 │   ├── weekly_update.py             # Incremental weekly ingestion & recompile pipeline
 │   ├── download_decisions.py        # Asynchronous parallel scraper for 4,010 decision pages
 │   ├── round_parser.py              # Round-level scorecard table parser & SQLite loader
@@ -162,7 +202,7 @@ ufc-judging-analysis/
 │   ├── export_web_data.py           # Web data enrichment pipeline & JSON compiler
 │   ├── build_dashboard.py           # Standalone interactive dashboard compiler
 │   └── security.py                  # Strict path resolution, SQL validation & XSS protection
-├── tests/                           # 65 comprehensive unit tests with branch coverage
+├── tests/                           # 96 comprehensive unit tests with branch coverage
 ├── index.html                       # Standalone interactive HTML dashboard (GitHub Pages)
 ├── requirements.txt                 # Project dependencies
 └── README.md                        # Project documentation & analysis report
@@ -174,27 +214,33 @@ ufc-judging-analysis/
 
 The dashboard (`index.html`) is engineered according to the principles articulated in Adam Kucharski's critique [*Ten reasons your vibe-coded dashboard looks terrible*](https://kucharski.substack.com/p/ten-reasons-your-vibe-coded-dashboard):
 
-1. **Clear Editorial User Journey**: Numbered chapters starting directly with the core question (*"When two cage-side judges agree on a round, which third judge breaks away most often?"*) and immediately delivering the answer before deeper exploration.
-2. **Intentional Visual Hierarchy**: Primary lead cards, secondary comparative gauges, and tertiary supporting charts.
-3. **Zero Wasted Hero Space**: Interactive **Benchmark Deviation Gauge** visualizing how each veteran compares to the 7.41% historical UFC baseline.
-4. **Curated Table with Interactive Row Expansion (Dossiers)**: No cluttered data dumps; clicking any judge expands an inline dossier showing their career era, dissent frequency ("1 in every X rounds"), 10-8 volume, top clash co-judge, and sample round scorecards.
-5. **Plain-English Plot Labelling**: Self-explanatory metric names, explicit units, and clear context.
-6. **Prominent Key Estimates**: 4 high-contrast KPI cards showcasing the historical UFC average, the top dissenter, the most consensual mainstay, and the all-time volume record holder.
-7. **No Duplicated Metrics**: Every card provides distinct, complementary insight.
-8. **Dual Theme Engine**: Instant switch between Dark Mode (`#090d16` slate) and Light Mode (`#f8fafc` editorial palette).
-9. **Bespoke Modern Typography**: `Plus Jakarta Sans` for headlines, `Inter` for prose, and `JetBrains Mono` with `tabular-nums` for tabular alignment.
-10. **8pt Grid & Consistent Scales**: Standardized 8px spacing tokens, 12px radii, and synchronized axis benchmarks.
+1. **Clear Editorial User Journey**: Numbered chapters starting directly with the core question and immediately delivering the answer before deeper exploration.
+2. **Seamless 3-Way Analysis Mode Switcher**:
+   * **Round Scoring Disagreements**: Detailed round-by-round dissent (10-9, 10-8) across 31,881 rounds.
+   * **Fight Decision Splits**: Final 15-minute fight decision split disagreement rankings across 4,010 bouts.
+   * **Fighter Controversy Index**: Deep-dive into which UFC fighters find themselves in razor-thin fights, who suffers the worst split decision luck (-4 net luck for Masvidal & Lee), who benefits most (+3 for Strickland & Fili), and who has the highest rate of contested rounds (48.39% for Paul Felder).
+3. **Intentional Visual Hierarchy**: Primary lead cards, secondary comparative gauges, and tertiary supporting charts.
+4. **Zero Wasted Hero Space**: Interactive **Benchmark Deviation Gauge** visualizing how each judge or fighter compares to historical UFC baselines (7.41% for rounds, 20.05% for split decisions), plus the **UFC Luck Differential** gauge.
+5. **Curated Table with Interactive Row Expansion (Dossiers)**: No cluttered data dumps; clicking any judge or fighter expands an inline dossier showing active career eras, disagreement frequencies, colleague clash stats, and sample bout scorecards.
+6. **Plain-English Plot Labelling**: Self-explanatory metric names, explicit units, and clear context.
+7. **Prominent Key Estimates**: 4 high-contrast KPI cards showcasing benchmarks, leaders, volume records, and luck extremes.
+8. **No Duplicated Metrics**: Every card provides distinct, complementary insight.
+9. **Dual Theme Engine**: Instant switch between Dark Mode (`#090d16` slate) and Light Mode (`#f8fafc` editorial palette).
+10. **Bespoke Modern Typography**: `Plus Jakarta Sans` for headlines, `Inter` for prose, and `JetBrains Mono` with `tabular-nums` for tabular alignment.
 
 ---
 
 ## How to Run & Explore
 
 ### 1. View the Live Web Dashboard
+
 * **Live Website**: [https://martindavies-code.github.io/ufc-judging-analysis/](https://martindavies-code.github.io/ufc-judging-analysis/)
-* **Offline Local**: Double-click `index.html` or open it in any modern browser. It is 100% self-contained with no external server required. You can toggle between **Round Scoring Disagreements** (primary) and **Fight Decision Splits** (secondary), filter by volume thresholds, search judges in real time, sort columns, view judge dossiers, and export filtered data to CSV.
+* **Offline Local**: Double-click `index.html` or open it in any modern browser. It is 100% self-contained with no external server required. You can toggle between **Round Scoring Disagreements**, **Fight Decision Splits**, and **Fighter Controversy Index**, filter by thresholds, search judges and fighters in real time, sort columns, view interactive dossiers, and export data directly to CSV (`ufc_fighter_controversy_index.csv` or `ufc_judging_*_analysis.csv`).
 
 ### 2. Automated Weekly Updates (Every Monday)
+
 The repository automatically checks for new weekend UFC events every Monday at 10:00 UTC via GitHub Actions:
+
 * **Workflow**: [`.github/workflows/weekly_update.yml`](.github/workflows/weekly_update.yml)
 * **Schedule**: Runs on cron `0 10 * * 1` (Mondays) and on manual `workflow_dispatch`.
 * **Execution**:
@@ -204,16 +250,19 @@ The repository automatically checks for new weekend UFC events every Monday at 1
   4. Automatically commits and pushes to `main`, instantly updating the live GitHub Pages site!
 
 To run the weekly update pipeline locally:
+
 ```bash
 python src/weekly_update.py
 ```
 
 ### 3. Query the SQLite Database
+
 ```bash
 sqlite3 data/ufc_judging.db "SELECT judge_name, COUNT(*) as rounds, SUM(is_dissent) as dissents, ROUND(CAST(SUM(is_dissent) AS FLOAT) / COUNT(*) * 100, 2) as dissent_pct FROM round_scores WHERE consensus_winner != 'SPLIT_3WAY' GROUP BY judge_name HAVING rounds >= 250 ORDER BY dissent_pct DESC LIMIT 10;"
 ```
 
 ### 4. Run the Test Suite
+
 ```bash
 pytest --cov=src
 ```

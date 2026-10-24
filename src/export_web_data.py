@@ -187,6 +187,10 @@ def export_web_data(db_path: Path = DB_PATH) -> Path:
     else:
         split_sample = []
 
+    # Fighter controversy and split decision metrics
+    from src.fighter_analysis import calculate_fighter_metrics
+    fighter_list, fighter_kpis = calculate_fighter_metrics(df_fights, df_rounds)
+
     unanimous_count = int(df_fights['decision_type'].str.contains('Unanimous', case=False, na=False).sum()) if not df_fights.empty else 0
     split_count = int(df_fights['decision_type'].str.contains('Split', case=False, na=False).sum()) if not df_fights.empty else 0
     majority_count = int(df_fights['decision_type'].str.contains('Majority', case=False, na=False).sum()) if not df_fights.empty else 0
@@ -199,15 +203,18 @@ def export_web_data(db_path: Path = DB_PATH) -> Path:
             'unanimous_count': unanimous_count,
             'split_count': split_count,
             'majority_count': majority_count,
-            'rounds': round_summary
+            'rounds': round_summary,
+            'fighters': fighter_kpis
         },
         'round_judges': round_judges_list,
         'round_pairs': round_pairs_list,
         'recent_round_dissents': recent_round_dissents,
         'judges': stats_list,
         'pairs': pair_list,
-        'recent_dissents': split_sample
+        'recent_dissents': split_sample,
+        'fighters': fighter_list
     }
+
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     temp_json = OUTPUT_JSON_PATH.with_suffix(".tmp")

@@ -847,6 +847,12 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             color: var(--accent-green);
         }
 
+        .rate-badge.draw {
+            background: var(--bg-surface-elevated);
+            color: var(--text-muted);
+            border: 1px solid var(--border-subtle);
+        }
+
         /* Interactive Dossier Drawer */
         tr.dossier-drawer-row {
             display: none;
@@ -1088,6 +1094,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             <div class="mode-toggle-group">
                 <button class="mode-btn active" id="btn-mode-rounds">Round Scoring Disagreements</button>
                 <button class="mode-btn" id="btn-mode-fights">Fight Decision Splits</button>
+                <button class="mode-btn" id="btn-mode-fighters">Fighter Controversy Index</button>
             </div>
             <button class="theme-btn" id="theme-toggle" title="Toggle Light / Dark mode" aria-label="Toggle theme">
                 <svg id="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
@@ -1225,7 +1232,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
     </section>
 
     <!-- Chapter 3: Panel Friction (Co-Judge Head-to-Head Clash Matrix) -->
-    <section class="content-section">
+    <section class="content-section" id="pairs-section">
         <div class="section-header-block">
             <div class="chapter-badge">Chapter 3 · Panel Friction</div>
             <h3 class="section-title">Co-Judge Head-to-Head Clash Matrix</h3>
@@ -1314,14 +1321,17 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
 <script>
     const ROUND_JUDGES = __ROUND_JUDGES_JSON__;
     const FIGHT_JUDGES = __FIGHT_JUDGES_JSON__;
+    const FIGHTERS = __FIGHTERS_JSON__;
+    const FIGHTER_KPIS = __FIGHTER_KPIS_JSON__;
     const ROUND_PAIRS = __ROUND_PAIRS_JSON__;
     const FIGHT_PAIRS = __FIGHT_PAIRS_JSON__;
     const SUMMARY = __SUMMARY_JSON__;
     const ROUND_SUMMARY = __ROUND_SUMMARY_JSON__;
 
     const UFC_BASELINE_PCT = 7.41;
+    const UFC_SPLIT_BASELINE_PCT = 20.05;
 
-    let currentMode = 'rounds'; // 'rounds' or 'fights'
+    let currentMode = 'rounds'; // 'rounds', 'fights', or 'fighters'
     let currentFilterMin = 250;
     let currentRosterFilter = 'all'; // 'all', 'active', or 'historical'
     let currentGaugeView = 'dissenters'; // 'dissenters' or 'agreers'
@@ -1333,6 +1343,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
     // DOM References
     const btnModeRounds = document.getElementById('btn-mode-rounds');
     const btnModeFights = document.getElementById('btn-mode-fights');
+    const btnModeFighters = document.getElementById('btn-mode-fighters');
     const themeToggle = document.getElementById('theme-toggle');
     const themeIconSun = document.getElementById('theme-icon-sun');
     const themeIconMoon = document.getElementById('theme-icon-moon');
@@ -1372,6 +1383,12 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
     // Helper: Determine if judge is currently active (judged UFC fights in 2024–2026)
     function isJudgeActive(j) {
         const lastYear = Number(j.last_year);
+        return !isNaN(lastYear) && lastYear >= 2024;
+    }
+
+    // Helper: Determine if fighter is currently active (fought in UFC in 2024–2026)
+    function isFighterActive(f) {
+        const lastYear = Number(f.last_year);
         return !isNaN(lastYear) && lastYear >= 2024;
     }
 
@@ -1429,7 +1446,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                 document.getElementById('kpi-volume-val').textContent = "220";
                 document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 6.34% rate over 3,468 scored rounds (historic volume)";
             }
-        } else {
+        } else if (currentMode === 'fights') {
             document.getElementById('hero-question').textContent = "Which UFC judge dissents most often on the final fight decision outcome?";
 
             if (currentRosterFilter === 'active') {
@@ -1481,31 +1498,119 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                 document.getElementById('kpi-volume-val').textContent = "75";
                 document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 1,151 fights judged (most active in UFC history)";
             }
+        } else {
+            // Fighter Controversy & Disagreement Index Mode
+            document.getElementById('hero-question').textContent = "Which UFC fighters are subject to the most judging disagreements and controversial split decisions?";
+
+            if (currentRosterFilter === 'active') {
+                document.getElementById('hero-narrative').innerHTML = "Among currently active UFC fighters (2024–2026), <strong>Sean Strickland</strong> and <strong>Andre Fili</strong> have been involved in <strong>7 split decisions</strong> each, winning 5 of them (5W-2L record, +3 net luck). <strong>Sean Woodson</strong> holds a <strong>57.14% split decision rate</strong> (4 of 7 decisions, 3W-0L), while <strong>Angela Hill</strong> has suffered the most split decision losses among active fighters with <strong>4 split losses</strong> (1W-4L, net -3). <strong>Alexander Hernandez</strong> leads active fighters in contested rounds with <strong>40.74%</strong> of his scored rounds dissented.";
+
+                document.getElementById('kpi-benchmark-val').textContent = "20.05%";
+                document.getElementById('kpi-benchmark-sub').textContent = "Overall UFC Split Decision Rate (804 of 4,010 decisions)";
+
+                document.getElementById('kpi-leader-val').textContent = "57.14%";
+                document.getElementById('kpi-leader-delta').textContent = "+37.1% vs avg";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Sean Woodson</strong> · 4 splits in 7 decisions (3W-0L, undefeated in splits)";
+
+                document.getElementById('kpi-agreeable-val').textContent = "1W - 4L";
+                document.getElementById('kpi-agreeable-delta').textContent = "-3 Net Luck";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Angela Hill</strong> · 4 split losses in 25 decisions (#1 active split losses)";
+
+                document.getElementById('kpi-volume-val').textContent = "5W - 2L";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sean Strickland</strong> · 5 split wins in 17 decisions (tied with Andre Fili)";
+            } else if (currentRosterFilter === 'historical') {
+                document.getElementById('hero-narrative').innerHTML = "Among historical UFC fighters (&lt; 2024), <strong>Zubaira Tukhugov</strong> recorded an astounding <strong>83.33% split decision rate</strong> (5 of 6 decisions ended in splits). <strong>Jorge Masvidal</strong> and <strong>Andrea Lee</strong> share the all-time UFC record for the most unlucky split decision record at <strong>0W-4L (net -4 luck)</strong>. <strong>Paul Felder</strong> holds the all-time record for contested rounds: <strong>48.39%</strong> of his scored rounds (15 of 31) had a judge dissent, and 6 of his 9 decisions were splits (66.67%).";
+
+                document.getElementById('kpi-benchmark-val').textContent = "20.05%";
+                document.getElementById('kpi-benchmark-sub').textContent = "Overall UFC Split Decision Rate across all eras";
+
+                document.getElementById('kpi-leader-val').textContent = "83.33%";
+                document.getElementById('kpi-leader-delta').textContent = "+63.3% vs avg";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Zubaira Tukhugov</strong> · 5 splits in 6 bouts (#1 all-time split rate)";
+
+                document.getElementById('kpi-agreeable-val').textContent = "0W - 4L";
+                document.getElementById('kpi-agreeable-delta').textContent = "-4 Net Luck";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Jorge Masvidal</strong> · 4 split losses, 0 wins (tied with Andrea Lee)";
+
+                document.getElementById('kpi-volume-val').textContent = "48.39%";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Paul Felder</strong> · 15 of 31 rounds contested (6 of 9 fights splits)";
+            } else {
+                document.getElementById('hero-narrative').innerHTML = "Across 4,010 UFC bouts ending in a decision, exactly <strong>804 bouts (20.05%)</strong> resulted in a split decision. <strong>Clay Guida</strong> holds the all-time record for career split decisions with <strong>8 splits</strong> (4W-4L). <strong>Zubaira Tukhugov</strong> holds the highest career split rate at <strong>83.33%</strong> (5 of 6). <strong>Jorge Masvidal</strong> and <strong>Andrea Lee</strong> are the most unlucky fighters in UFC history with <strong>4 split losses and 0 split wins (0W-4L, net -4)</strong>, while <strong>Neil Magny</strong> and <strong>Benson Henderson</strong> are undefeated in splits at <strong>4W-0L (+4)</strong>, and <strong>Sean Strickland</strong> has the most split wins at <strong>5W-2L (+3)</strong>.";
+
+                document.getElementById('kpi-benchmark-val').textContent = "20.05%";
+                document.getElementById('kpi-benchmark-sub').textContent = "804 split decisions across 4,010 UFC bouts (1 in every 5 decisions)";
+
+                document.getElementById('kpi-leader-val').textContent = "83.33%";
+                document.getElementById('kpi-leader-delta').textContent = "+63.3% vs avg";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Zubaira Tukhugov</strong> · 5 split decisions in 6 bouts (1W-3L-1D)";
+
+                document.getElementById('kpi-agreeable-val').textContent = "0W - 4L";
+                document.getElementById('kpi-agreeable-delta').textContent = "-4 Net Luck";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Jorge Masvidal</strong> · 4 split losses, 0 wins (tied with Andrea Lee)";
+
+                document.getElementById('kpi-volume-val').textContent = "8 Splits";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Clay Guida</strong> · 8 split decisions in 18 bouts (4W-4L record)";
+            }
         }
     }
 
-    // Mode Switcher (Rounds vs Fights)
+    // Mode Switcher (Rounds vs Fights vs Fighters)
     function setMode(mode) {
         currentMode = mode;
         expandedJudge = null;
         if (mode === 'rounds') {
             btnModeRounds.classList.add('active');
             btnModeFights.classList.remove('active');
+            btnModeFighters.classList.remove('active');
             currentFilterMin = 250;
+            sortColumn = 'rate';
+            sortAsc = false;
 
             document.getElementById('benchmark-gauge-section').style.display = 'block';
+            document.getElementById('pairs-section').style.display = 'block';
             document.getElementById('anatomy-section').style.display = 'block';
+            document.getElementById('table-section-title').textContent = "The Hall of Dissent: Judge Rankings";
+            document.getElementById('search-input').placeholder = "Search judge name...";
+            const btnD = document.getElementById('btn-gauge-dissenters');
+            const btnA = document.getElementById('btn-gauge-agreers');
+            if (btnD) btnD.innerHTML = `<span class="status-dot crimson"></span> Top Dissenters (Disagreers)`;
+            if (btnA) btnA.innerHTML = `<span class="status-dot active"></span> Most Consensual (Agreers)`;
             document.querySelectorAll('.round-chart').forEach(c => c.style.display = 'block');
             document.querySelectorAll('.fight-chart').forEach(c => c.style.display = 'none');
-        } else {
+        } else if (mode === 'fights') {
             btnModeRounds.classList.remove('active');
             btnModeFights.classList.add('active');
+            btnModeFighters.classList.remove('active');
             currentFilterMin = 100;
+            sortColumn = 'rate';
+            sortAsc = false;
 
             document.getElementById('benchmark-gauge-section').style.display = 'none';
+            document.getElementById('pairs-section').style.display = 'block';
             document.getElementById('anatomy-section').style.display = 'none';
+            document.getElementById('table-section-title').textContent = "Fight Decision Dissent: Judge Rankings";
+            document.getElementById('search-input').placeholder = "Search judge name...";
             document.querySelectorAll('.round-chart').forEach(c => c.style.display = 'none');
             document.querySelectorAll('.fight-chart').forEach(c => c.style.display = 'block');
+        } else {
+            btnModeRounds.classList.remove('active');
+            btnModeFights.classList.remove('active');
+            btnModeFighters.classList.add('active');
+            currentFilterMin = 5;
+            sortColumn = 'split_pct';
+            sortAsc = false;
+
+            document.getElementById('benchmark-gauge-section').style.display = 'block';
+            document.getElementById('pairs-section').style.display = 'none';
+            document.getElementById('anatomy-section').style.display = 'none';
+            document.getElementById('table-section-title').textContent = "The Fighter Controversy Index: Most Contested Fighters";
+            document.getElementById('search-input').placeholder = "Search fighter name...";
+            const btnD = document.getElementById('btn-gauge-dissenters');
+            const btnA = document.getElementById('btn-gauge-agreers');
+            if (btnD) btnD.innerHTML = `<span class="status-dot crimson"></span> Highest Split % (Close Bouts)`;
+            if (btnA) btnA.innerHTML = `<span class="status-dot active"></span> Luck Index (Unlucky vs Fortunate)`;
+            document.querySelectorAll('.round-chart').forEach(c => c.style.display = 'none');
+            document.querySelectorAll('.fight-chart').forEach(c => c.style.display = 'none');
         }
 
         updateChapter1HeroAndKpis();
@@ -1548,14 +1653,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
 
     // Benchmark Deviation Bars
     function renderDeviationBars() {
-        if (currentMode !== 'rounds') return;
-
-        let pool = ROUND_JUDGES.filter(j => (j.total_rounds || 0) >= 250);
-        if (currentRosterFilter === 'active') {
-            pool = pool.filter(j => isJudgeActive(j));
-        } else if (currentRosterFilter === 'historical') {
-            pool = pool.filter(j => !isJudgeActive(j));
-        }
+        if (currentMode === 'fights') return;
 
         const gaugeHeading = document.getElementById('gauge-heading');
         const gaugeSubheading = document.getElementById('gauge-subheading');
@@ -1563,6 +1661,113 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
 
         const rosterLabel = currentRosterFilter === 'active' ? 'Currently Active (2024–2026)' : 
                            (currentRosterFilter === 'historical' ? 'Historical Only (&lt; 2024)' : 'All Eras (1995–2026)');
+
+        if (currentMode === 'fighters') {
+            let pool = FIGHTERS.filter(f => (f.total_fights || 0) >= 5);
+            if (currentRosterFilter === 'active') {
+                pool = pool.filter(f => isFighterActive(f));
+            } else if (currentRosterFilter === 'historical') {
+                pool = pool.filter(f => !isFighterActive(f));
+            }
+
+            if (currentGaugeView === 'dissenters') {
+                pool.sort((a, b) => (b.split_pct || 0) - (a.split_pct || 0));
+                const topFighters = pool.slice(0, 10);
+
+                if (gaugeHeading) gaugeHeading.textContent = "Fighter Split Decision Rates vs 20.05% UFC Benchmark";
+                if (gaugeSubheading) gaugeSubheading.innerHTML = `Top 10 fighters with highest split decision rates · ${rosterLabel} (Min 5 decisions)`;
+                if (gaugeLegend) {
+                    gaugeLegend.innerHTML = `
+                        <span><span class="legend-dot" style="background:var(--accent-crimson);"></span> Higher Split Rate (Above 20.05% Benchmark)</span>
+                        <span><span class="legend-dot" style="background:var(--accent-green);"></span> Lower Split Rate (More Decisive Decisions)</span>
+                        <span><span class="legend-dot" style="background:#ffffff; border:1px solid #000;"></span> 20.05% UFC Average</span>
+                    `;
+                }
+
+                deviationBars.innerHTML = topFighters.map(f => {
+                    const pct = f.split_pct || 0;
+                    const diff = pct - UFC_SPLIT_BASELINE_PCT;
+                    const isOver = diff >= 0;
+                    const diffStr = (isOver ? '+' : '') + diff.toFixed(1) + '%';
+                    const barColor = isOver ? 'var(--accent-crimson)' : 'var(--accent-green)';
+                    const barWidth = Math.min(100, Math.max(10, (pct / 85) * 100));
+                    const active = isFighterActive(f);
+                    const statusBadge = active 
+                        ? `<span class="roster-badge active"><span class="status-dot active"></span> Active</span>`
+                        : `<span class="roster-badge historical">${f.last_year || 'Historical'}</span>`;
+
+                    return `
+                        <div class="bar-row">
+                            <div class="bar-judge-col">
+                                <span class="bar-judge-name" title="${escapeHtml(f.fighter_name)}">${escapeHtml(f.fighter_name)}</span>
+                                ${statusBadge}
+                            </div>
+                            <div class="bar-track">
+                                <div class="bar-benchmark-line" style="left: ${(UFC_SPLIT_BASELINE_PCT / 85) * 100}%;" title="20.05% Baseline Split Rate"></div>
+                                <div class="bar-fill" style="width: ${barWidth}%; background: ${barColor};"></div>
+                            </div>
+                            <div class="bar-val-col">
+                                <span class="bar-val" style="color: ${barColor};">${pct.toFixed(1)}%</span>
+                                <span class="bar-delta">(${diffStr})</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } else {
+                // Luck Differential View
+                const unluckyPool = [...pool].sort((a, b) => a.net_split_diff - b.net_split_diff).slice(0, 5);
+                const fortunatePool = [...pool].sort((a, b) => b.net_split_diff - a.net_split_diff).slice(0, 5);
+                const luckDisplay = [...unluckyPool, ...fortunatePool];
+
+                if (gaugeHeading) gaugeHeading.textContent = "The UFC Luck Differential: Most Unlucky vs Most Fortunate";
+                if (gaugeSubheading) gaugeSubheading.innerHTML = `Fighters with most extreme split decision records (Wins vs Losses) · ${rosterLabel}`;
+                if (gaugeLegend) {
+                    gaugeLegend.innerHTML = `
+                        <span><span class="legend-dot" style="background:var(--accent-crimson);"></span> Unlucky (Negative Split Record)</span>
+                        <span><span class="legend-dot" style="background:#10b981;"></span> Fortunate (Positive Split Record)</span>
+                        <span><span class="legend-dot" style="background:#ffffff; border:1px solid #000;"></span> 0 Net Differential (Even 50-50)</span>
+                    `;
+                }
+
+                deviationBars.innerHTML = luckDisplay.map(f => {
+                    const diff = f.net_split_diff || 0;
+                    const isFortunate = diff > 0;
+                    const isUnlucky = diff < 0;
+                    const barColor = isUnlucky ? 'var(--accent-crimson)' : (isFortunate ? '#10b981' : 'var(--text-muted)');
+                    const diffSign = diff > 0 ? '+' : '';
+                    const recStr = `${f.split_wins}W - ${f.split_losses}L`;
+                    const barWidth = Math.max(12, (Math.abs(diff) / 4) * 80);
+                    const active = isFighterActive(f);
+                    const statusBadge = active 
+                        ? `<span class="roster-badge active"><span class="status-dot active"></span> Active</span>`
+                        : `<span class="roster-badge historical">${f.last_year || 'Historical'}</span>`;
+
+                    return `
+                        <div class="bar-row">
+                            <div class="bar-judge-col">
+                                <span class="bar-judge-name" title="${escapeHtml(f.fighter_name)}">${escapeHtml(f.fighter_name)}</span>
+                                ${statusBadge}
+                            </div>
+                            <div class="bar-track">
+                                <div class="bar-fill" style="width: ${barWidth}%; background: ${barColor};"></div>
+                            </div>
+                            <div class="bar-val-col">
+                                <span class="bar-val" style="color: ${barColor};">${diffSign}${diff} Net</span>
+                                <span class="bar-delta">(${recStr})</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+            return;
+        }
+
+        let pool = ROUND_JUDGES.filter(j => (j.total_rounds || 0) >= 250);
+        if (currentRosterFilter === 'active') {
+            pool = pool.filter(j => isJudgeActive(j));
+        } else if (currentRosterFilter === 'historical') {
+            pool = pool.filter(j => !isJudgeActive(j));
+        }
 
         if (currentGaugeView === 'dissenters') {
             pool.sort((a, b) => (b.round_dissent_pct || 0) - (a.round_dissent_pct || 0));
@@ -1664,12 +1869,19 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             { label: 'Regular Veterans (100+ Rds)', min: 100 },
             { label: 'Emerging / Mid-Volume (50+ Rds)', min: 50 },
             { label: 'All Judges (1+ Rds)', min: 1 }
-        ] : [
+        ] : (currentMode === 'fights' ? [
             { label: 'All-Time Mainstays (250+ Fights)', min: 250 },
             { label: 'Veterans (100+ Fights)', min: 100 },
             { label: 'Regulars (50+ Fights)', min: 50 },
             { label: 'All Judges', min: 1 }
-        ];
+        ] : [
+            { label: 'Veterans (10+ Decs)', min: 10 },
+            { label: 'Regulars (5+ Decs)', min: 5 },
+            { label: 'Contested (3+ Splits)', min: 'splits_3' },
+            { label: 'Most Unlucky (Net ≤ -1)', min: 'unlucky' },
+            { label: 'Most Fortunate (Net ≥ +1)', min: 'fortunate' },
+            { label: 'All Fighters', min: 1 }
+        ]);
 
         filters.forEach(f => {
             const btn = document.createElement('button');
@@ -1700,7 +1912,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                     <th style="text-align:right;">Profile</th>
                 </tr>
             `;
-        } else {
+        } else if (currentMode === 'fights') {
             tableHead.innerHTML = `
                 <tr>
                     <th data-sort="rank" style="width:50px;">#</th>
@@ -1710,6 +1922,20 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                     <th data-sort="rate">Dissent Rate (%)</th>
                     <th data-sort="unanimous">Unanimous %</th>
                     <th data-sort="era">Active Era</th>
+                    <th style="text-align:right;">Profile</th>
+                </tr>
+            `;
+        } else {
+            tableHead.innerHTML = `
+                <tr>
+                    <th data-sort="rank" style="width:50px;">#</th>
+                    <th data-sort="name">Fighter Name & Status</th>
+                    <th data-sort="fights">Decision Bouts</th>
+                    <th data-sort="splits">Split Decisions</th>
+                    <th data-sort="split_pct">Split Rate (%)</th>
+                    <th data-sort="record">Split Record (W-L-D)</th>
+                    <th data-sort="luck">Luck Index</th>
+                    <th data-sort="contested">Contested Rounds (%)</th>
                     <th style="text-align:right;">Profile</th>
                 </tr>
             `;
@@ -1731,6 +1957,164 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
 
     // Table Render with Accordion Dossier
     function renderTable() {
+        if (currentMode === 'fighters') {
+            let filtered = FIGHTERS.filter(f => {
+                if (typeof currentFilterMin === 'number') {
+                    if ((f.total_fights || 0) < currentFilterMin) return false;
+                } else if (currentFilterMin === 'splits_3') {
+                    if ((f.split_fights || 0) < 3) return false;
+                } else if (currentFilterMin === 'unlucky') {
+                    if ((f.net_split_diff || 0) > -1) return false;
+                } else if (currentFilterMin === 'fortunate') {
+                    if ((f.net_split_diff || 0) < 1) return false;
+                }
+                if (currentRosterFilter === 'active' && !isFighterActive(f)) return false;
+                if (currentRosterFilter === 'historical' && isFighterActive(f)) return false;
+                if (searchQuery) {
+                    return f.fighter_name.toLowerCase().includes(searchQuery.toLowerCase());
+                }
+                return true;
+            });
+
+            // Sorting
+            filtered.sort((a, b) => {
+                let valA, valB;
+                if (sortColumn === 'name') { valA = a.fighter_name; valB = b.fighter_name; }
+                else if (sortColumn === 'fights') { valA = a.total_fights; valB = b.total_fights; }
+                else if (sortColumn === 'splits') { valA = a.split_fights; valB = b.split_fights; }
+                else if (sortColumn === 'split_pct') { valA = a.split_pct; valB = b.split_pct; }
+                else if (sortColumn === 'record') { valA = a.split_wins; valB = b.split_wins; }
+                else if (sortColumn === 'luck') { valA = a.net_split_diff; valB = b.net_split_diff; }
+                else if (sortColumn === 'contested') { valA = a.contested_round_pct; valB = b.contested_round_pct; }
+                else { valA = a.split_pct; valB = b.split_pct; }
+
+                if (valA < valB) return sortAsc ? -1 : 1;
+                if (valA > valB) return sortAsc ? 1 : -1;
+                return (b.total_fights || 0) - (a.total_fights || 0);
+            });
+
+            if (filtered.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding: 32px; color: var(--text-muted);">No fighters found matching search or filter criteria.</td></tr>`;
+                return;
+            }
+
+            let html = '';
+            filtered.forEach((f, idx) => {
+                const isExpanded = expandedJudge === f.fighter_name;
+                const active = isFighterActive(f);
+                const rosterBadge = active
+                    ? `<span class="roster-badge active" title="Active in UFC (2024–2026)"><span class="status-dot active"></span> Active</span>`
+                    : `<span class="roster-badge historical" title="Historical (last fought ${f.last_year || 'earlier'})">${f.first_year || ''}–${f.last_year || 'Past'}</span>`;
+
+                const pct = f.split_pct || 0;
+                const diff = pct - UFC_SPLIT_BASELINE_PCT;
+                const badgeClass = diff >= 0 ? 'over' : 'under';
+                const badgeSign = diff >= 0 ? '+' : '';
+
+                const net = f.net_split_diff || 0;
+                let luckStyle = '';
+                if (net < 0) {
+                    luckStyle = 'background:var(--accent-crimson-bg); color:var(--accent-crimson);';
+                } else if (net > 0) {
+                    luckStyle = 'background:var(--accent-green-bg); color:var(--accent-green);';
+                } else {
+                    luckStyle = 'background:var(--bg-surface-elevated); color:var(--text-muted); border:1px solid var(--border-subtle);';
+                }
+                const luckSign = net > 0 ? '+' : '';
+                const recStr = `${f.split_wins}W - ${f.split_losses}L${f.split_draws ? ' - ' + f.split_draws + 'D' : ''}`;
+
+                html += `
+                    <tr class="judge-row ${isExpanded ? 'expanded' : ''}" data-judge="${escapeHtml(f.fighter_name)}">
+                        <td class="mono-num" style="color:var(--text-muted);">${idx + 1}</td>
+                        <td>
+                            <div class="judge-cell">
+                                <svg class="expand-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                <span class="judge-name-text">${escapeHtml(f.fighter_name)}</span>
+                                ${rosterBadge}
+                            </div>
+                        </td>
+                        <td class="mono-num">${(f.total_fights || 0).toLocaleString()}</td>
+                        <td class="mono-num">${(f.split_fights || 0).toLocaleString()}</td>
+                        <td>
+                            <div class="rate-cell-group">
+                                <span class="mono-num" style="font-weight:700;">${pct.toFixed(1)}%</span>
+                                <span class="rate-badge ${badgeClass}">${badgeSign}${diff.toFixed(1)}%</span>
+                            </div>
+                        </td>
+                        <td class="mono-num">${recStr}</td>
+                        <td>
+                            <span class="rate-badge" style="${luckStyle}">
+                                ${luckSign}${net} (${f.luck_badge})
+                            </span>
+                        </td>
+                        <td class="mono-num">${f.contested_rounds || 0} / ${f.total_rounds || 0} (${(f.contested_round_pct || 0).toFixed(1)}%)</td>
+                        <td style="text-align:right;">
+                            <button class="pill-btn" style="padding:2px 8px; font-size:11px;">${isExpanded ? 'Close' : 'Dossier'}</button>
+                        </td>
+                    </tr>
+                `;
+
+                // Fighter Dossier Drawer Row
+                if (isExpanded) {
+                    const sampleFights = f.sample_close_fights || [];
+                    const fightsHtml = sampleFights.length > 0 ? sampleFights.map(fight => {
+                        const resBadgeClass = fight.result === 'W' ? 'under' : (fight.result === 'L' ? 'over' : 'draw');
+                        const resLabel = fight.result === 'W' ? 'WIN' : (fight.result === 'L' ? 'LOSS' : 'DRAW');
+                        return `
+                            <div class="sample-dissent-box">
+                                <div class="sample-dissent-header">
+                                    <span>${fight.year || ''}</span>
+                                    <span class="rate-badge ${resBadgeClass}" style="padding:1px 6px; font-size:10px;">${resLabel}</span>
+                                </div>
+                                <div class="sample-fight-name">vs ${escapeHtml(fight.opponent || 'Opponent')}</div>
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:4px;">
+                                    <span class="sample-score-tag">${escapeHtml(fight.decision_type || 'Split Decision')}</span>
+                                    <span style="font-size:10px; color:var(--text-muted);">${escapeHtml(fight.event || '')}</span>
+                                </div>
+                            </div>
+                        `;
+                    }).join('') : '<div style="color:var(--text-muted); font-size:12px;">No close split decision samples on file.</div>';
+
+                    html += `
+                        <tr class="dossier-drawer-row visible">
+                            <td colspan="9" style="padding:0;">
+                                <div class="dossier-card">
+                                    <div class="dossier-bio">
+                                        <div style="display:flex; align-items:center; gap:var(--space-2); margin-bottom:var(--space-2);">
+                                            <h4 style="margin:0;">${escapeHtml(f.fighter_name)}</h4>
+                                            ${rosterBadge}
+                                        </div>
+                                        <div class="dossier-stat-pill">UFC Career Span: <strong>${f.first_year || ''} – ${f.last_year || ''}</strong></div>
+                                        <div class="dossier-stat-pill">Decision Bouts: <strong>${f.total_fights} total (${f.unanimous_fights} UD, ${f.split_fights} SD, ${f.majority_fights} MD)</strong></div>
+                                        <div class="dossier-stat-pill">Split Decision Rate: <strong>${(f.split_pct || 0).toFixed(1)}% (UFC avg 20.05%)</strong></div>
+                                        <div class="dossier-stat-pill">Career Split Record: <strong>${recStr} (Net Luck: ${luckSign}${net})</strong></div>
+                                        <div class="dossier-stat-pill">Scored Rounds Disputed: <strong>${f.contested_rounds} of ${f.total_rounds} rounds (${(f.contested_round_pct || 0).toFixed(1)}% contested)</strong></div>
+                                    </div>
+                                    <div class="dossier-rounds-log">
+                                        <h5>Notable Close / Split Decision Bouts</h5>
+                                        <div class="sample-dissents-grid">
+                                            ${fightsHtml}
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                }
+            });
+
+            tableBody.innerHTML = html;
+
+            tableBody.querySelectorAll('tr.judge-row').forEach(row => {
+                row.addEventListener('click', () => {
+                    const jName = row.dataset.judge;
+                    expandedJudge = (expandedJudge === jName) ? null : jName;
+                    renderTable();
+                });
+            });
+            return;
+        }
+
         const rawList = currentMode === 'rounds' ? ROUND_JUDGES : FIGHT_JUDGES;
 
         let filtered = rawList.filter(j => {
@@ -1927,20 +2311,25 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
 
     // Export to CSV Function
     btnExportCsv.addEventListener('click', () => {
-        const list = currentMode === 'rounds' ? ROUND_JUDGES : FIGHT_JUDGES;
         let csv = '';
         if (currentMode === 'rounds') {
             csv = "Judge Name,Roster Status,Last Year,Total Rounds,Round Dissents,Dissent Rate Pct,Colleague Agreement Pct,Ten Eight Rounds,Consensus Rounds,Top Clash Partner\\n";
-            list.forEach(j => {
+            ROUND_JUDGES.forEach(j => {
                 const status = isJudgeActive(j) ? 'Active' : 'Historical';
                 const agreePct = (100 - (j.round_dissent_pct || 0)).toFixed(2);
                 csv += `"${j.judge_name}","${status}",${j.last_year || ''},${j.total_rounds},${j.round_dissents},${j.round_dissent_pct},${agreePct},${j.ten_eight_rounds},${j.consensus_rounds},"${j.top_clash_partner || ''}"\\n`;
             });
-        } else {
+        } else if (currentMode === 'fights') {
             csv = "Judge Name,Roster Status,First Year,Last Year,Total Fights,Dissents,Dissent Rate Pct,Unanimous Pct\\n";
-            list.forEach(j => {
+            FIGHT_JUDGES.forEach(j => {
                 const status = isJudgeActive(j) ? 'Active' : 'Historical';
                 csv += `"${j.judge_name}","${status}",${j.first_year},${j.last_year},${j.total_fights},${j.dissents},${j.dissent_pct},${j.unanimous_pct}\\n`;
+            });
+        } else {
+            csv = "Fighter Name,Roster Status,First Year,Last Year,Decision Bouts,Split Decisions,Split Rate Pct,Split Wins,Split Losses,Split Draws,Net Luck Index,Luck Category,Total Rounds,Contested Rounds,Contested Round Pct\\n";
+            FIGHTERS.forEach(f => {
+                const status = isFighterActive(f) ? 'Active' : 'Historical';
+                csv += `"${f.fighter_name}","${status}",${f.first_year || ''},${f.last_year || ''},${f.total_fights},${f.split_fights},${f.split_pct},${f.split_wins},${f.split_losses},${f.split_draws},${f.net_split_diff},"${f.luck_badge}",${f.total_rounds},${f.contested_rounds},${f.contested_round_pct}\\n`;
             });
         }
 
@@ -1948,7 +2337,8 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `ufc_judging_${currentMode}_analysis.csv`;
+        const filename = currentMode === 'fighters' ? 'ufc_fighter_controversy_index.csv' : `ufc_judging_${currentMode}_analysis.csv`;
+        a.download = filename;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
@@ -1958,6 +2348,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
     // Event Listeners
     btnModeRounds.addEventListener('click', () => setMode('rounds'));
     btnModeFights.addEventListener('click', () => setMode('fights'));
+    btnModeFighters.addEventListener('click', () => setMode('fighters'));
     searchInput.addEventListener('input', (e) => {
         searchQuery = e.target.value.trim();
         renderTable();
@@ -2033,6 +2424,8 @@ def build_dashboard_html() -> Path:
     # Safe JSON stringification preventing </script> injection and line separator breakout
     safe_round_judges_json = safe_json_embed(judging_data.get('round_judges', []))
     safe_fight_judges_json = safe_json_embed(judging_data.get('judges', []))
+    safe_fighters_json = safe_json_embed(judging_data.get('fighters', []))
+    safe_fighter_kpis_json = safe_json_embed(judging_data.get('summary', {}).get('fighters', {}))
     safe_round_pairs_json = safe_json_embed(judging_data.get('round_pairs', []))
     safe_fight_pairs_json = safe_json_embed(judging_data.get('pairs', []))
     safe_summary_json = safe_json_embed(judging_data.get('summary', {}))
@@ -2042,6 +2435,8 @@ def build_dashboard_html() -> Path:
     replacements = {
         "__ROUND_JUDGES_JSON__": safe_round_judges_json,
         "__FIGHT_JUDGES_JSON__": safe_fight_judges_json,
+        "__FIGHTERS_JSON__": safe_fighters_json,
+        "__FIGHTER_KPIS_JSON__": safe_fighter_kpis_json,
         "__ROUND_PAIRS_JSON__": safe_round_pairs_json,
         "__FIGHT_PAIRS_JSON__": safe_fight_pairs_json,
         "__SUMMARY_JSON__": safe_summary_json,
