@@ -30,19 +30,40 @@ A **Round Dissent** occurs when two cage-side colleagues agree on who won an ind
    * 1️⃣5️⃣ **Chris Lee**: **7.14%** (141 dissents in 1,974 rounds)
    * 1️⃣6️⃣ **Sal D'Amato**: **6.34%** (220 dissents in 3,468 rounds — highest absolute volume)
 
-2. **Emerging & Regular Judges (Minimum 50 Scored Rounds):**
+2. **Currently Active UFC Mainstays (2024–2026 Roster, Min 250 Rounds):**
+   * 🥇 **Rick Winter**: **8.75%** round dissent rate (30 dissents in 343 rounds) — **#1 Active Dissenter in the UFC today**
+   * 🥈 **Dave Tirelli**: **8.56%** (41 dissents in 479 rounds)
+   * 🥉 **David Lethaby**: **8.50%** (54 dissents in 635 rounds)
+   * 4️⃣ **Adalaide Byrd**: **8.14%** (55 dissents in 676 rounds)
+   * 5️⃣ **Anders Ohlsson**: **7.80%** (23 dissents in 295 rounds)
+   * 6️⃣ **Howard Hughes**: **7.63%** (27 dissents in 354 rounds)
+   * 7️⃣ **Eric Colón**: **7.61%** (98 dissents in 1,288 rounds)
+   * 8️⃣ **Derek Cleary**: **7.48%** (168 dissents in 2,246 rounds)
+   * 9️⃣ **Chris Lee**: **7.14%** (141 dissents in 1,974 rounds)
+
+3. **Most Consensual Judges (Highest Colleague Agreement Rate, Min 250 Rounds):**
+   * 🥇 **Clemens Werner**: **94.94% agreement rate** (5.06% dissent, 24 dissents in 474 rounds; -2.35% below avg) — **#1 Most Consensual Judge in UFC history**
+   * 🥈 **Jeff Mullen** *(Historical)*: **94.58% agreement rate** (5.42% dissent, 15 dissents in 277 rounds)
+   * 🥉 **Ron McCarthy**: **94.36% agreement rate** (5.64% dissent, 50 dissents in 886 rounds)
+   * 4️⃣ **Michael Bell**: **94.16% agreement rate** (5.84% dissent, 106 dissents in 1,814 rounds)
+   * 5️⃣ **Junichiro Kamijo**: **94.08% agreement rate** (5.92% dissent, 90 dissents in 1,519 rounds)
+   * 6️⃣ **Tony Weeks**: **93.86% agreement rate** (6.14% dissent, 61 dissents in 993 rounds)
+   * 7️⃣ **Sal D'Amato**: **93.66% agreement rate** (6.34% dissent, 220 dissents in 3,468 rounds)
+   * 8️⃣ **Ben Cartlidge**: **93.11% agreement rate** (6.89% dissent, 58 dissents in 842 rounds)
+
+4. **Emerging & Regular Judges (Minimum 50 Scored Rounds):**
    * 🥇 **Barry Luxenberg**: **20.63%** (13 dissents in 63 rounds)
    * 🥈 **Albert Shen**: **15.12%** (13 dissents in 86 rounds)
    * 🥉 **Howie Booth**: **14.93%** (10 dissents in 67 rounds)
    * 4️⃣ **Jerin Valel**: **14.29%** (9 dissents in 63 rounds)
    * 5️⃣ **Barry Foley**: **13.48%** (19 dissents in 141 rounds)
 
-3. **Pairwise Round Clashes (Co-Judges Seated Together, Min 100 Rounds):**
+5. **Pairwise Round Clashes (Co-Judges Seated Together, Min 100 Rounds):**
    * **Eric Colón & Michael Bell**: Disagreed on **19.74%** of rounds (46 round disagreements out of 233 rounds together).
    * **Glenn Trowbridge & Sal D'Amato**: Disagreed on **18.85%** of rounds (23 disagreements out of 122 rounds).
    * **Derek Cleary & Eric Colón**: Disagreed on **18.55%** of rounds (46 disagreements out of 248 rounds).
 
-4. **Overall Fight Decision Disagreements (Secondary Mode):**
+6. **Overall Fight Decision Disagreements (Secondary Mode):**
    * **Barry Foley** holds the #1 fight-level dissent rate at **22.64%** (12 dissents in 53 fights).
    * **Adalaide Byrd** holds the #1 fight-level dissent rate among 250+ fight veterans at **9.29%** (25 dissents in 269 fights).
 

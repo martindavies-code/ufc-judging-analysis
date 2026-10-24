@@ -48,3 +48,27 @@ class TestBuildDashboard:
         assert "<script>alert" not in html_text
         # Ensure script breakout tag </script> is escaped inside JSON data
         assert "</script>" in html_text  # only legitimate closing tags
+        # Verify agreers toggle and roster active/historical controls
+        assert 'id="btn-gauge-dissenters"' in html_text
+        assert 'id="btn-gauge-agreers"' in html_text
+        assert 'id="gauge-roster-toggle"' in html_text
+        assert 'id="table-roster-segmented"' in html_text
+        assert 'data-roster="active"' in html_text
+        assert 'data-roster="historical"' in html_text
+        assert 'Most Consensual (Agreers)' in html_text
+        assert 'Currently Active' in html_text
+
+    def test_export_data_year_typing(self):
+        real_db = Path("data/ufc_judging.db")
+        if real_db.exists():
+            json_path = export_web_data(real_db)
+            with open(json_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            # Ensure first_year and last_year are ints for judges
+            for j in data["judges"][:10]:
+                assert isinstance(j["first_year"], int)
+                assert isinstance(j["last_year"], int)
+            for rj in data["round_judges"][:10]:
+                assert isinstance(rj["first_year"], int)
+                assert isinstance(rj["last_year"], int)
+

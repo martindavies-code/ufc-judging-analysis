@@ -61,6 +61,8 @@ def export_web_data(db_path: Path = DB_PATH) -> Path:
         stats['dissent_pct'] = ((stats['dissents'] / stats['total_fights']) * 100).round(2)
         stats['score_dissent_pct'] = ((stats['score_dissents'] / stats['total_fights']) * 100).round(2)
         stats['unanimous_pct'] = ((stats['unanimous_fights'] / stats['total_fights']) * 100).round(2)
+        stats['first_year'] = pd.to_numeric(stats['first_year'], errors='coerce').fillna(1995).astype(int)
+        stats['last_year'] = pd.to_numeric(stats['last_year'], errors='coerce').fillna(2026).astype(int)
 
         stats_list = stats.sort_values(by=['total_fights', 'dissents'], ascending=[False, False]).to_dict(orient='records')
         unique_judges = int(stats['judge_name'].nunique())

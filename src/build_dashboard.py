@@ -434,12 +434,119 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             margin-top: var(--space-3);
         }
 
+        .segmented-group {
+            display: inline-flex;
+            background: var(--bg-surface-elevated);
+            padding: 3px;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border-subtle);
+            gap: 2px;
+        }
+
+        .seg-btn {
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .seg-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .seg-btn.active {
+            background: var(--text-primary);
+            color: var(--bg-page);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="dark"] .seg-btn.active {
+            background: #f8fafc;
+            color: #090d16;
+        }
+
+        [data-theme="light"] .seg-btn.active {
+            background: #0f172a;
+            color: #ffffff;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .status-dot.active {
+            background: #10b981;
+            box-shadow: 0 0 6px #10b981;
+        }
+
+        .status-dot.historical {
+            background: var(--text-muted);
+        }
+
+        .status-dot.crimson {
+            background: var(--accent-crimson);
+            box-shadow: 0 0 5px var(--accent-crimson);
+        }
+
+        .roster-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 2px 7px;
+            border-radius: var(--radius-full);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .roster-badge.active {
+            background: var(--accent-green-bg);
+            color: var(--accent-green);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .roster-badge.historical {
+            background: var(--bg-surface-elevated);
+            color: var(--text-muted);
+            border: 1px solid var(--border-subtle);
+        }
+
         .bar-row {
             display: grid;
-            grid-template-columns: 180px 1fr 100px;
+            grid-template-columns: 210px 1fr 140px;
             align-items: center;
             gap: var(--space-4);
             font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .bar-row {
+                grid-template-columns: 140px 1fr 85px;
+                gap: var(--space-2);
+            }
+        }
+
+        .bar-judge-col {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            min-width: 0;
         }
 
         .bar-judge-name {
@@ -481,12 +588,25 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             box-shadow: 0 0 4px rgba(15, 23, 42, 0.4);
         }
 
+        .bar-val-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            font-variant-numeric: tabular-nums;
+        }
+
         .bar-val {
             font-family: var(--font-mono);
             font-size: 13px;
             font-weight: 700;
             text-align: right;
             font-variant-numeric: tabular-nums;
+        }
+
+        .bar-delta {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
         }
 
         /* Section Layout */
@@ -520,6 +640,13 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             align-items: center;
             gap: var(--space-4);
             margin-bottom: var(--space-4);
+            flex-wrap: wrap;
+        }
+
+        .toolbar-left-cluster {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
             flex-wrap: wrap;
         }
 
@@ -1018,12 +1145,33 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         <!-- High-density Benchmark Deviation Bar Chart (Zero wasted space) -->
         <div class="gauge-section" id="benchmark-gauge-section">
             <div class="gauge-header">
-                <div class="gauge-title">Veteran Mainstays vs 7.41% Historical UFC Average</div>
-                <div class="gauge-legend">
-                    <span><span class="legend-dot" style="background:var(--accent-crimson);"></span> Higher Dissent Rate (Above Benchmark)</span>
-                    <span><span class="legend-dot" style="background:var(--accent-green);"></span> Lower Dissent Rate (More Consensual)</span>
-                    <span><span class="legend-dot" style="background:#ffffff; border:1px solid #000;"></span> 7.41% UFC Average</span>
+                <div>
+                    <div class="gauge-title" id="gauge-heading">Veteran Mainstays vs 7.41% Historical UFC Average</div>
+                    <div class="gauge-subtitle" id="gauge-subheading" style="font-size:12px; color:var(--text-secondary); margin-top:2px;">
+                        Top 10 judges with 250+ rounds scored · All Eras
+                    </div>
                 </div>
+                <div class="gauge-controls-cluster" style="display:flex; align-items:center; gap:var(--space-3); flex-wrap:wrap;">
+                    <!-- View Toggle: Top Dissenters vs Most Consensual -->
+                    <div class="segmented-group" id="gauge-view-toggle">
+                        <button class="seg-btn active" id="btn-gauge-dissenters" data-view="dissenters">
+                            <span class="status-dot crimson"></span> Top Dissenters (Disagreers)
+                        </button>
+                        <button class="seg-btn" id="btn-gauge-agreers" data-view="agreers">
+                            <span class="status-dot active"></span> Most Consensual (Agreers)
+                        </button>
+                    </div>
+                    <!-- Roster Status Toggle: All Eras vs Currently Active -->
+                    <div class="segmented-group" id="gauge-roster-toggle">
+                        <button class="seg-btn active" id="btn-gauge-all" data-roster="all">All Eras</button>
+                        <button class="seg-btn" id="btn-gauge-active" data-roster="active"><span class="status-dot active"></span> Active Only</button>
+                    </div>
+                </div>
+            </div>
+            <div class="gauge-legend" id="gauge-legend-container">
+                <span><span class="legend-dot" style="background:var(--accent-crimson);"></span> Higher Dissent Rate (Above Benchmark)</span>
+                <span><span class="legend-dot" style="background:var(--accent-green);"></span> Lower Dissent Rate (More Consensual)</span>
+                <span><span class="legend-dot" style="background:#ffffff; border:1px solid #000;"></span> 7.41% UFC Average</span>
             </div>
             <div class="deviation-bars-container" id="deviation-bars">
                 <!-- Injected via JavaScript -->
@@ -1040,8 +1188,15 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         </div>
 
         <div class="table-toolbar">
-            <div class="filter-pills" id="filter-pills-container">
-                <!-- Filter buttons injected dynamically -->
+            <div class="toolbar-left-cluster">
+                <div class="filter-pills" id="filter-pills-container">
+                    <!-- Filter buttons injected dynamically -->
+                </div>
+                <div class="segmented-group" id="table-roster-segmented" title="Filter by judge activity status">
+                    <button class="seg-btn active" id="btn-roster-all" data-roster="all">All Eras (1995–2026)</button>
+                    <button class="seg-btn" id="btn-roster-active" data-roster="active"><span class="status-dot active"></span> Currently Active</button>
+                    <button class="seg-btn" id="btn-roster-historical" data-roster="historical"><span class="status-dot historical"></span> Historical (&lt; 2024)</button>
+                </div>
             </div>
             <div class="search-export-cluster">
                 <div class="search-wrapper">
@@ -1168,6 +1323,8 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
 
     let currentMode = 'rounds'; // 'rounds' or 'fights'
     let currentFilterMin = 250;
+    let currentRosterFilter = 'all'; // 'all', 'active', or 'historical'
+    let currentGaugeView = 'dissenters'; // 'dissenters' or 'agreers'
     let searchQuery = '';
     let sortColumn = 'rate';
     let sortAsc = false;
@@ -1212,6 +1369,121 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         updateThemeIcon(next);
     });
 
+    // Helper: Determine if judge is currently active (judged UFC fights in 2024–2026)
+    function isJudgeActive(j) {
+        const lastYear = Number(j.last_year);
+        return !isNaN(lastYear) && lastYear >= 2024;
+    }
+
+    // Dynamic Chapter 1 Hero & KPI updater
+    function updateChapter1HeroAndKpis() {
+        if (currentMode === 'rounds') {
+            document.getElementById('hero-question').textContent = "When two cage-side judges agree on a round, which third judge breaks away most often?";
+
+            if (currentRosterFilter === 'active') {
+                document.getElementById('hero-narrative').innerHTML = "Across 31,881 individual rounds evaluated by 3-judge panels, exactly <strong>2,362 rounds (7.41%)</strong> produced a lone dissenting judge. Among currently active UFC mainstays (250+ rounds, 2024–2026), <strong>Rick Winter</strong> holds the #1 disagreement rate at <strong>8.75%</strong>, followed by <strong>Dave Tirelli</strong> (8.56%) and <strong>David Lethaby</strong> (8.50%). Meanwhile, <strong>Clemens Werner</strong> is the most consensual active judge at <strong>5.06%</strong> dissent (94.94% colleague agreement rate).";
+
+                document.getElementById('kpi-benchmark-val').textContent = "7.41%";
+                document.getElementById('kpi-benchmark-sub').textContent = "Average dissent rate across all 31,881 rounds (1 in every 13.5 rounds)";
+
+                document.getElementById('kpi-leader-val').textContent = "8.75%";
+                document.getElementById('kpi-leader-delta').textContent = "+1.34% vs avg";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Rick Winter</strong> · 30 dissents in 343 rounds (#1 active dissenter)";
+
+                document.getElementById('kpi-agreeable-val').textContent = "5.06%";
+                document.getElementById('kpi-agreeable-delta').textContent = "-2.35% vs avg";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Clemens Werner</strong> · 94.94% agreement in 474 rounds (most consensual active)";
+
+                document.getElementById('kpi-volume-val').textContent = "220";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 6.34% rate over 3,468 scored rounds (active through 2026)";
+            } else if (currentRosterFilter === 'historical') {
+                document.getElementById('hero-narrative').innerHTML = "Among historical UFC mainstays who have stepped away from the cage (&lt; 2024), <strong>Cardo Urso</strong> (last judged 2019) leads all-time round dissents at <strong>9.32%</strong>, followed by <strong>Glenn Trowbridge</strong> (last judged 2020) at <strong>8.83%</strong> and <strong>Marcos Rosales</strong> (last judged 2021) at <strong>8.32%</strong>.";
+
+                document.getElementById('kpi-benchmark-val').textContent = "7.41%";
+                document.getElementById('kpi-benchmark-sub').textContent = "Average dissent rate across all 31,881 rounds";
+
+                document.getElementById('kpi-leader-val').textContent = "9.32%";
+                document.getElementById('kpi-leader-delta').textContent = "+1.91% vs avg";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Cardo Urso</strong> · 29 dissents in 311 rounds (last judged 2019)";
+
+                document.getElementById('kpi-agreeable-val').textContent = "5.42%";
+                document.getElementById('kpi-agreeable-delta').textContent = "-1.99% vs avg";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Jeff Mullen</strong> · 94.58% agreement in 277 rounds (last judged 2017)";
+
+                document.getElementById('kpi-volume-val').textContent = "165";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Glenn Trowbridge</strong> · 453 rounds (historical mainstay)";
+            } else {
+                document.getElementById('hero-narrative').innerHTML = "Across 31,881 individual rounds evaluated by 3-judge panels, exactly <strong>2,362 rounds (7.41%)</strong> produced a lone dissenting judge. Among high-volume UFC mainstays (250+ rounds), <strong>Cardo Urso</strong> ranks #1 with a <strong>9.32%</strong> round dissent rate, followed by <strong>Glenn Trowbridge</strong> (8.83%) and <strong>Rick Winter</strong> (8.75%).";
+
+                document.getElementById('kpi-benchmark-val').textContent = "7.41%";
+                document.getElementById('kpi-benchmark-sub').textContent = "Average dissent rate across all 31,881 rounds (1 in every 13.5 rounds)";
+
+                document.getElementById('kpi-leader-val').textContent = "9.32%";
+                document.getElementById('kpi-leader-delta').textContent = "+1.91% vs avg";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Cardo Urso</strong> · 29 dissents in 311 rounds (1 in every 10.7 rounds)";
+
+                document.getElementById('kpi-agreeable-val').textContent = "5.06%";
+                document.getElementById('kpi-agreeable-delta').textContent = "-2.35% vs avg";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Clemens Werner</strong> · 94.94% agreement in 474 rounds (most consensual)";
+
+                document.getElementById('kpi-volume-val').textContent = "220";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 6.34% rate over 3,468 scored rounds (historic volume)";
+            }
+        } else {
+            document.getElementById('hero-question').textContent = "Which UFC judge dissents most often on the final fight decision outcome?";
+
+            if (currentRosterFilter === 'active') {
+                document.getElementById('hero-narrative').innerHTML = "When evaluating the final 15-minute fight decision across active UFC judges (50+ bouts, 2024–2026), <strong>Adalaide Byrd</strong> ranks #1 in split dissent rate at <strong>9.29%</strong> among veterans, while <strong>Ben Cartlidge</strong> holds the highest colleague consensus at <strong>4.85%</strong> dissent.";
+
+                document.getElementById('kpi-benchmark-val').textContent = "20.0%";
+                document.getElementById('kpi-benchmark-sub').textContent = "Split decision rate across 4,010 UFC fights (804 split decisions)";
+
+                document.getElementById('kpi-leader-val').textContent = "9.29%";
+                document.getElementById('kpi-leader-delta').textContent = "+4.4% vs avg";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Adalaide Byrd</strong> · 26 split dissents in 280 fights (active 2026)";
+
+                document.getElementById('kpi-agreeable-val').textContent = "4.85%";
+                document.getElementById('kpi-agreeable-delta').textContent = "-4.5% vs avg";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Ben Cartlidge</strong> · 13 dissents in 268 fights (most consensual active)";
+
+                document.getElementById('kpi-volume-val').textContent = "75";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 1,151 fights judged (most active in UFC history)";
+            } else if (currentRosterFilter === 'historical') {
+                document.getElementById('hero-narrative').innerHTML = "Among historical judges no longer active in the UFC (&lt; 2024), <strong>Barry Foley</strong> holds the #1 fight decision disagreement rate at <strong>22.64%</strong> (12 dissents in 53 fights).";
+
+                document.getElementById('kpi-benchmark-val').textContent = "20.0%";
+                document.getElementById('kpi-benchmark-sub').textContent = "Split decision rate across 4,010 UFC fights";
+
+                document.getElementById('kpi-leader-val').textContent = "22.64%";
+                document.getElementById('kpi-leader-delta').textContent = "+13.3% vs avg";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Barry Foley</strong> · 12 dissents in 53 fights (last judged 2013)";
+
+                document.getElementById('kpi-agreeable-val').textContent = "5.04%";
+                document.getElementById('kpi-agreeable-delta').textContent = "-4.3% vs avg";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Jeff Mullen</strong> · 6 dissents in 119 fights (last judged 2017)";
+
+                document.getElementById('kpi-volume-val').textContent = "36";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Glenn Trowbridge</strong> · 150 fights judged (last judged 2020)";
+            } else {
+                document.getElementById('hero-narrative').innerHTML = "When evaluating the final 15-minute fight decision across 4,010 UFC bouts, <strong>Barry Foley</strong> holds the #1 disagreement rate among regular judges (50+ fights) at <strong>22.64%</strong>. Among 250+ fight veterans, <strong>Adalaide Byrd</strong> ranks #1 with a <strong>9.29%</strong> split dissent rate.";
+
+                document.getElementById('kpi-benchmark-val').textContent = "20.0%";
+                document.getElementById('kpi-benchmark-sub').textContent = "Split decision rate across 4,010 UFC fights (804 split decisions)";
+
+                document.getElementById('kpi-leader-val').textContent = "22.64%";
+                document.getElementById('kpi-leader-delta').textContent = "+13.3% vs avg";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Barry Foley</strong> · 12 dissents in 53 fights (Min 50 fights)";
+
+                document.getElementById('kpi-agreeable-val').textContent = "4.85%";
+                document.getElementById('kpi-agreeable-delta').textContent = "-4.5% vs avg";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Ben Cartlidge</strong> · 13 dissents in 268 fights (most consensual)";
+
+                document.getElementById('kpi-volume-val').textContent = "75";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 1,151 fights judged (most active in UFC history)";
+            }
+        }
+    }
+
     // Mode Switcher (Rounds vs Fights)
     function setMode(mode) {
         currentMode = mode;
@@ -1220,23 +1492,6 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             btnModeRounds.classList.add('active');
             btnModeFights.classList.remove('active');
             currentFilterMin = 250;
-
-            document.getElementById('hero-question').textContent = "When two cage-side judges agree on a round, which third judge breaks away most often?";
-            document.getElementById('hero-narrative').innerHTML = "Across 31,881 individual rounds evaluated by 3-judge panels, exactly <strong>2,362 rounds (7.41%)</strong> produced a lone dissenting judge. Among high-volume UFC mainstays (250+ rounds), <strong>Cardo Urso</strong> ranks #1 with a <strong>9.32%</strong> round dissent rate, followed by <strong>Glenn Trowbridge</strong> (8.83%) and <strong>Rick Winter</strong> (8.75%).";
-
-            document.getElementById('kpi-benchmark-val').textContent = "7.41%";
-            document.getElementById('kpi-benchmark-sub').textContent = "Average dissent rate across all 31,881 rounds (1 in every 13.5 rounds)";
-
-            document.getElementById('kpi-leader-val').textContent = "9.32%";
-            document.getElementById('kpi-leader-delta').textContent = "+1.91% vs avg";
-            document.getElementById('kpi-leader-sub').innerHTML = "<strong>Cardo Urso</strong> · 29 dissents in 311 rounds (1 in every 10.7 rounds)";
-
-            document.getElementById('kpi-agreeable-val').textContent = "6.89%";
-            document.getElementById('kpi-agreeable-delta').textContent = "-0.52% vs avg";
-            document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Ben Cartlidge</strong> · 58 dissents in 842 rounds (highest agreement rate)";
-
-            document.getElementById('kpi-volume-val').textContent = "220";
-            document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 6.34% rate over 3,468 scored rounds (historic volume)";
 
             document.getElementById('benchmark-gauge-section').style.display = 'block';
             document.getElementById('anatomy-section').style.display = 'block';
@@ -1247,29 +1502,13 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             btnModeFights.classList.add('active');
             currentFilterMin = 100;
 
-            document.getElementById('hero-question').textContent = "Which UFC judge dissents most often on the final fight decision outcome?";
-            document.getElementById('hero-narrative').innerHTML = "When evaluating the final 15-minute fight decision across 4,010 UFC bouts, <strong>Barry Foley</strong> holds the #1 disagreement rate among regular judges (50+ fights) at <strong>22.64%</strong>. Among 250+ fight veterans, <strong>Adalaide Byrd</strong> ranks #1 with a <strong>9.29%</strong> split dissent rate.";
-
-            document.getElementById('kpi-benchmark-val').textContent = "20.0%";
-            document.getElementById('kpi-benchmark-sub').textContent = "Split decision rate across 4,010 UFC fights (804 split decisions)";
-
-            document.getElementById('kpi-leader-val').textContent = "22.64%";
-            document.getElementById('kpi-leader-delta').textContent = "+13.3% vs avg";
-            document.getElementById('kpi-leader-sub').innerHTML = "<strong>Barry Foley</strong> · 12 dissents in 53 fights (Min 50 fights)";
-
-            document.getElementById('kpi-agreeable-val').textContent = "4.85%";
-            document.getElementById('kpi-agreeable-delta').textContent = "-4.5% vs avg";
-            document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Ben Cartlidge</strong> · 13 dissents in 268 fights (most consensual)";
-
-            document.getElementById('kpi-volume-val').textContent = "75";
-            document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 1,151 fights judged (most active in UFC history)";
-
             document.getElementById('benchmark-gauge-section').style.display = 'none';
             document.getElementById('anatomy-section').style.display = 'none';
             document.querySelectorAll('.round-chart').forEach(c => c.style.display = 'none');
             document.querySelectorAll('.fight-chart').forEach(c => c.style.display = 'block');
         }
 
+        updateChapter1HeroAndKpis();
         renderFilterPills();
         renderTableHeaders();
         renderTable();
@@ -1277,29 +1516,144 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         renderPairsTable();
     }
 
+    // Roster Filter Switcher (All vs Active vs Historical)
+    function setRosterFilter(filter) {
+        currentRosterFilter = filter;
+
+        // Sync Gauge roster toggle buttons
+        const btnGaugeAll = document.getElementById('btn-gauge-all');
+        const btnGaugeActive = document.getElementById('btn-gauge-active');
+        if (btnGaugeAll) btnGaugeAll.classList.toggle('active', filter === 'all');
+        if (btnGaugeActive) btnGaugeActive.classList.toggle('active', filter === 'active');
+
+        // Sync Table roster toggle buttons
+        document.querySelectorAll('#table-roster-segmented .seg-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.roster === filter);
+        });
+
+        updateChapter1HeroAndKpis();
+        renderDeviationBars();
+        renderTable();
+    }
+
+    // Gauge View Switcher (Dissenters vs Agreers)
+    function setGaugeView(view) {
+        currentGaugeView = view;
+        const btnGaugeDissenters = document.getElementById('btn-gauge-dissenters');
+        const btnGaugeAgreers = document.getElementById('btn-gauge-agreers');
+        if (btnGaugeDissenters) btnGaugeDissenters.classList.toggle('active', view === 'dissenters');
+        if (btnGaugeAgreers) btnGaugeAgreers.classList.toggle('active', view === 'agreers');
+        renderDeviationBars();
+    }
+
     // Benchmark Deviation Bars
     function renderDeviationBars() {
         if (currentMode !== 'rounds') return;
-        const mainstays = ROUND_JUDGES.filter(j => (j.total_rounds || 0) >= 250).slice(0, 10);
-        deviationBars.innerHTML = mainstays.map(j => {
-            const pct = j.round_dissent_pct || 0;
-            const diff = pct - UFC_BASELINE_PCT;
-            const isOver = diff >= 0;
-            const diffStr = (isOver ? '+' : '') + diff.toFixed(2) + '%';
-            const barColor = isOver ? 'var(--accent-crimson)' : 'var(--accent-green)';
-            const barWidth = Math.min(100, Math.max(8, (pct / 12) * 100));
 
-            return `
-                <div class="bar-row">
-                    <span class="bar-judge-name">${escapeHtml(j.judge_name)}</span>
-                    <div class="bar-track">
-                        <div class="bar-benchmark-line" style="left: ${(UFC_BASELINE_PCT / 12) * 100}%;" title="7.41% Baseline"></div>
-                        <div class="bar-fill" style="width: ${barWidth}%; background: ${barColor};"></div>
+        let pool = ROUND_JUDGES.filter(j => (j.total_rounds || 0) >= 250);
+        if (currentRosterFilter === 'active') {
+            pool = pool.filter(j => isJudgeActive(j));
+        } else if (currentRosterFilter === 'historical') {
+            pool = pool.filter(j => !isJudgeActive(j));
+        }
+
+        const gaugeHeading = document.getElementById('gauge-heading');
+        const gaugeSubheading = document.getElementById('gauge-subheading');
+        const gaugeLegend = document.getElementById('gauge-legend-container');
+
+        const rosterLabel = currentRosterFilter === 'active' ? 'Currently Active (2024–2026)' : 
+                           (currentRosterFilter === 'historical' ? 'Historical Only (&lt; 2024)' : 'All Eras (1995–2026)');
+
+        if (currentGaugeView === 'dissenters') {
+            pool.sort((a, b) => (b.round_dissent_pct || 0) - (a.round_dissent_pct || 0));
+            const topJudges = pool.slice(0, 10);
+
+            if (gaugeHeading) gaugeHeading.textContent = "Veteran Mainstays vs 7.41% Historical UFC Average";
+            if (gaugeSubheading) gaugeSubheading.innerHTML = `Top 10 judges with highest round dissent rates · ${rosterLabel} (250+ rounds scored)`;
+            if (gaugeLegend) {
+                gaugeLegend.innerHTML = `
+                    <span><span class="legend-dot" style="background:var(--accent-crimson);"></span> Higher Dissent Rate (Above Benchmark)</span>
+                    <span><span class="legend-dot" style="background:var(--accent-green);"></span> Lower Dissent Rate (More Consensual)</span>
+                    <span><span class="legend-dot" style="background:#ffffff; border:1px solid #000;"></span> 7.41% UFC Average</span>
+                `;
+            }
+
+            deviationBars.innerHTML = topJudges.map(j => {
+                const pct = j.round_dissent_pct || 0;
+                const diff = pct - UFC_BASELINE_PCT;
+                const isOver = diff >= 0;
+                const diffStr = (isOver ? '+' : '') + diff.toFixed(2) + '%';
+                const barColor = isOver ? 'var(--accent-crimson)' : 'var(--accent-green)';
+                const barWidth = Math.min(100, Math.max(8, (pct / 12) * 100));
+                const active = isJudgeActive(j);
+                const statusBadge = active 
+                    ? `<span class="roster-badge active"><span class="status-dot active"></span> Active</span>`
+                    : `<span class="roster-badge historical">${j.last_year || 'Historical'}</span>`;
+
+                return `
+                    <div class="bar-row">
+                        <div class="bar-judge-col">
+                            <span class="bar-judge-name" title="${escapeHtml(j.judge_name)}">${escapeHtml(j.judge_name)}</span>
+                            ${statusBadge}
+                        </div>
+                        <div class="bar-track">
+                            <div class="bar-benchmark-line" style="left: ${(UFC_BASELINE_PCT / 12) * 100}%;" title="7.41% Baseline"></div>
+                            <div class="bar-fill" style="width: ${barWidth}%; background: ${barColor};"></div>
+                        </div>
+                        <div class="bar-val-col">
+                            <span class="bar-val" style="color: ${barColor};">${pct.toFixed(2)}%</span>
+                            <span class="bar-delta">(${diffStr})</span>
+                        </div>
                     </div>
-                    <span class="bar-val" style="color: ${barColor};">${pct.toFixed(2)}% <small style="font-size:10px;">(${diffStr})</small></span>
-                </div>
-            `;
-        }).join('');
+                `;
+            }).join('');
+        } else {
+            // Most Consensual (Agreers): sort lowest dissent rate first
+            pool.sort((a, b) => (a.round_dissent_pct || 0) - (b.round_dissent_pct || 0));
+            const topJudges = pool.slice(0, 10);
+
+            if (gaugeHeading) gaugeHeading.textContent = "Most Consensual Judges (Highest Colleague Agreement Rates)";
+            if (gaugeSubheading) gaugeSubheading.innerHTML = `Top 10 judges with highest colleague agreement · ${rosterLabel} (250+ rounds scored)`;
+            if (gaugeLegend) {
+                gaugeLegend.innerHTML = `
+                    <span><span class="legend-dot" style="background:#10b981;"></span> Colleague Agreement Rate (%)</span>
+                    <span><span class="legend-dot" style="background:#ffffff; border:1px solid #000;"></span> 92.59% UFC Baseline Agreement (100% - 7.41%)</span>
+                `;
+            }
+
+            const minScale = 88;
+            const maxScale = 96;
+            const baselinePos = ((92.59 - minScale) / (maxScale - minScale)) * 100;
+
+            deviationBars.innerHTML = topJudges.map(j => {
+                const dissentPct = j.round_dissent_pct || 0;
+                const agreePct = +(100 - dissentPct).toFixed(2);
+                const dissentDiff = dissentPct - UFC_BASELINE_PCT;
+                const diffStr = (dissentDiff >= 0 ? '+' : '') + dissentDiff.toFixed(2) + '% diss';
+                const barWidth = Math.min(100, Math.max(10, ((agreePct - minScale) / (maxScale - minScale)) * 100));
+                const active = isJudgeActive(j);
+                const statusBadge = active 
+                    ? `<span class="roster-badge active"><span class="status-dot active"></span> Active</span>`
+                    : `<span class="roster-badge historical">${j.last_year || 'Historical'}</span>`;
+
+                return `
+                    <div class="bar-row">
+                        <div class="bar-judge-col">
+                            <span class="bar-judge-name" title="${escapeHtml(j.judge_name)}">${escapeHtml(j.judge_name)}</span>
+                            ${statusBadge}
+                        </div>
+                        <div class="bar-track">
+                            <div class="bar-benchmark-line" style="left: ${baselinePos}%;" title="92.59% Baseline Colleague Agreement"></div>
+                            <div class="bar-fill" style="width: ${barWidth}%; background: linear-gradient(90deg, #059669, #10b981);"></div>
+                        </div>
+                        <div class="bar-val-col">
+                            <span class="bar-val" style="color: var(--accent-green);">${agreePct.toFixed(2)}%</span>
+                            <span class="bar-delta">(${diffStr})</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
     }
 
     // Filter Buttons
@@ -1337,7 +1691,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             tableHead.innerHTML = `
                 <tr>
                     <th data-sort="rank" style="width:50px;">#</th>
-                    <th data-sort="name">Judge Name</th>
+                    <th data-sort="name">Judge Name & Status</th>
                     <th data-sort="rounds">Rounds Judged</th>
                     <th data-sort="dissents">Lone Dissents</th>
                     <th data-sort="rate">Dissent Rate (%)</th>
@@ -1350,7 +1704,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             tableHead.innerHTML = `
                 <tr>
                     <th data-sort="rank" style="width:50px;">#</th>
-                    <th data-sort="name">Judge Name</th>
+                    <th data-sort="name">Judge Name & Status</th>
                     <th data-sort="fights">Fights Judged</th>
                     <th data-sort="dissents">Split Dissents</th>
                     <th data-sort="rate">Dissent Rate (%)</th>
@@ -1382,6 +1736,8 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         let filtered = rawList.filter(j => {
             const count = currentMode === 'rounds' ? (j.total_rounds || 0) : (j.total_fights || 0);
             if (count < currentFilterMin) return false;
+            if (currentRosterFilter === 'active' && !isJudgeActive(j)) return false;
+            if (currentRosterFilter === 'historical' && isJudgeActive(j)) return false;
             if (searchQuery) {
                 return j.judge_name.toLowerCase().includes(searchQuery.toLowerCase());
             }
@@ -1420,6 +1776,11 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         let html = '';
         filtered.forEach((j, idx) => {
             const isExpanded = expandedJudge === j.judge_name;
+            const active = isJudgeActive(j);
+            const rosterBadge = active
+                ? `<span class="roster-badge active" title="Active in UFC (2024–2026)"><span class="status-dot active"></span> Active</span>`
+                : `<span class="roster-badge historical" title="Historical (last judged ${j.last_year || 'earlier'})">Historical (${j.last_year || 'Past'})</span>`;
+
             if (currentMode === 'rounds') {
                 const pct = j.round_dissent_pct || 0;
                 const diff = pct - UFC_BASELINE_PCT;
@@ -1434,7 +1795,8 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                         <td>
                             <div class="judge-cell">
                                 <svg class="expand-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                <span>${escapeHtml(j.judge_name)}</span>
+                                <span class="judge-name-text">${escapeHtml(j.judge_name)}</span>
+                                ${rosterBadge}
                             </div>
                         </td>
                         <td class="mono-num">${(j.total_rounds || 0).toLocaleString()}</td>
@@ -1471,16 +1833,20 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                     `).join('') : '<div style="color:var(--text-muted); font-size:12px;">No round dissent samples on file.</div>';
 
                     const freq = j.round_dissents > 0 ? (j.total_rounds / j.round_dissents).toFixed(1) : '—';
+                    const agreePct = (100 - pct).toFixed(2);
 
                     html += `
                         <tr class="dossier-drawer-row visible">
                             <td colspan="8" style="padding:0;">
                                 <div class="dossier-card">
                                     <div class="dossier-bio">
-                                        <h4>${escapeHtml(j.judge_name)}</h4>
+                                        <div style="display:flex; align-items:center; gap:var(--space-2); margin-bottom:var(--space-2);">
+                                            <h4 style="margin:0;">${escapeHtml(j.judge_name)}</h4>
+                                            ${rosterBadge}
+                                        </div>
                                         <div class="dossier-stat-pill">Active UFC Era: <strong>${j.first_year || 1995} – ${j.last_year || 2026}</strong></div>
                                         <div class="dossier-stat-pill">Dissent Frequency: <strong>Dissents once every ${freq} rounds</strong></div>
-                                        <div class="dossier-stat-pill">Consensus Agreement: <strong>${((j.consensus_rounds || 0) / (j.total_rounds || 1) * 100).toFixed(1)}% of rounds</strong></div>
+                                        <div class="dossier-stat-pill">Colleague Agreement: <strong>${agreePct}% of rounds</strong></div>
                                         <div class="dossier-stat-pill">Dominant 10-8 Rounds Given: <strong>${j.ten_eight_rounds || 0} (${(j.ten_eight_pct || 0).toFixed(1)}%)</strong></div>
                                         <div class="dossier-stat-pill">Top Co-Judge Clash: <strong>${escapeHtml(j.top_clash_partner)} (${(j.top_clash_pct || 0).toFixed(1)}% disagreement over ${j.top_clash_rounds || 0} rounds)</strong></div>
                                     </div>
@@ -1504,7 +1870,8 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                         <td class="mono-num" style="color:var(--text-muted);">${idx + 1}</td>
                         <td>
                             <div class="judge-cell">
-                                <span>${escapeHtml(j.judge_name)}</span>
+                                <span class="judge-name-text">${escapeHtml(j.judge_name)}</span>
+                                ${rosterBadge}
                             </div>
                         </td>
                         <td class="mono-num">${(j.total_fights || 0).toLocaleString()}</td>
@@ -1563,14 +1930,17 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         const list = currentMode === 'rounds' ? ROUND_JUDGES : FIGHT_JUDGES;
         let csv = '';
         if (currentMode === 'rounds') {
-            csv = "Judge Name,Total Rounds,Round Dissents,Dissent Rate Pct,Ten Eight Rounds,Consensus Rounds,Top Clash Partner\\n";
+            csv = "Judge Name,Roster Status,Last Year,Total Rounds,Round Dissents,Dissent Rate Pct,Colleague Agreement Pct,Ten Eight Rounds,Consensus Rounds,Top Clash Partner\\n";
             list.forEach(j => {
-                csv += `"${j.judge_name}",${j.total_rounds},${j.round_dissents},${j.round_dissent_pct},${j.ten_eight_rounds},${j.consensus_rounds},"${j.top_clash_partner || ''}"\\n`;
+                const status = isJudgeActive(j) ? 'Active' : 'Historical';
+                const agreePct = (100 - (j.round_dissent_pct || 0)).toFixed(2);
+                csv += `"${j.judge_name}","${status}",${j.last_year || ''},${j.total_rounds},${j.round_dissents},${j.round_dissent_pct},${agreePct},${j.ten_eight_rounds},${j.consensus_rounds},"${j.top_clash_partner || ''}"\\n`;
             });
         } else {
-            csv = "Judge Name,Total Fights,Dissents,Dissent Rate Pct,Unanimous Pct,First Year,Last Year\\n";
+            csv = "Judge Name,Roster Status,First Year,Last Year,Total Fights,Dissents,Dissent Rate Pct,Unanimous Pct\\n";
             list.forEach(j => {
-                csv += `"${j.judge_name}",${j.total_fights},${j.dissents},${j.dissent_pct},${j.unanimous_pct},${j.first_year},${j.last_year}\\n`;
+                const status = isJudgeActive(j) ? 'Active' : 'Historical';
+                csv += `"${j.judge_name}","${status}",${j.first_year},${j.last_year},${j.total_fights},${j.dissents},${j.dissent_pct},${j.unanimous_pct}\\n`;
             });
         }
 
@@ -1591,6 +1961,34 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
     searchInput.addEventListener('input', (e) => {
         searchQuery = e.target.value.trim();
         renderTable();
+    });
+
+    // Gauge View Controls (Dissenters vs Agreers)
+    const btnGaugeDissenters = document.getElementById('btn-gauge-dissenters');
+    const btnGaugeAgreers = document.getElementById('btn-gauge-agreers');
+    if (btnGaugeDissenters) {
+        btnGaugeDissenters.addEventListener('click', () => setGaugeView('dissenters'));
+    }
+    if (btnGaugeAgreers) {
+        btnGaugeAgreers.addEventListener('click', () => setGaugeView('agreers'));
+    }
+
+    // Gauge Roster Controls (All vs Active)
+    const btnGaugeAll = document.getElementById('btn-gauge-all');
+    const btnGaugeActive = document.getElementById('btn-gauge-active');
+    if (btnGaugeAll) {
+        btnGaugeAll.addEventListener('click', () => setRosterFilter('all'));
+    }
+    if (btnGaugeActive) {
+        btnGaugeActive.addEventListener('click', () => setRosterFilter('active'));
+    }
+
+    // Table Roster Controls (All vs Active vs Historical)
+    document.querySelectorAll('#table-roster-segmented .seg-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const roster = btn.dataset.roster || 'all';
+            setRosterFilter(roster);
+        });
     });
 
     function escapeHtml(str) {
