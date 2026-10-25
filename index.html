@@ -10,24 +10,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* 8pt Grid Spacing Tokens */
-            --space-1: 4px;
-            --space-2: 8px;
-            --space-3: 12px;
-            --space-4: 16px;
-            --space-5: 20px;
-            --space-6: 24px;
-            --space-8: 32px;
-            --space-10: 40px;
-            --space-12: 48px;
+            /* Strict 4-Step Spacing Scale */
+            --space-half: 4px;
+            --space-1: 8px;
+            --space-2: 16px;
+            --space-3: 24px;
+            --space-4: 32px;
 
-            /* Radii */
-            --radius-sm: 6px;
-            --radius-md: 12px;
-            --radius-lg: 18px;
-            --radius-full: 9999px;
+            /* Consolidated Border Radii: 1 Container Radius (8px) + Pills (9999px) */
+            --radius: 8px;
+            --radius-pill: 9999px;
 
-            /* Typography */
+            /* Strict 4-Step Typography Scale (+ dedicated Stat token) */
+            --font-size-title: 28px;
+            --font-size-header: 18px;
+            --font-size-body: 14px;
+            --font-size-caption: 12px;
+            --font-size-stat: 32px;
+
+            /* Typography Stacks */
             --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
             --font-body: 'Inter', system-ui, -apple-system, sans-serif;
             --font-mono: 'JetBrains Mono', ui-monospace, monospace;
@@ -94,6 +95,7 @@
 
         body {
             font-family: var(--font-body);
+            font-size: var(--font-size-body);
             background-color: var(--bg-page);
             color: var(--text-primary);
             line-height: 1.5;
@@ -104,7 +106,7 @@
         .container {
             max-width: 1280px;
             margin: 0 auto;
-            padding: var(--space-6) var(--space-6) var(--space-12) var(--space-6);
+            padding: var(--space-3) var(--space-3) var(--space-4) var(--space-3);
         }
 
         /* Header Navigation */
@@ -112,20 +114,20 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: var(--space-4) 0;
-            margin-bottom: var(--space-8);
+            padding: var(--space-2) 0;
+            margin-bottom: var(--space-4);
             border-bottom: 1px solid var(--border-subtle);
         }
 
         .brand-cluster {
             display: flex;
             align-items: center;
-            gap: var(--space-4);
+            gap: var(--space-2);
         }
 
         .octagon-badge {
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             background: linear-gradient(135deg, var(--accent-crimson), #be123c);
             clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
             display: flex;
@@ -133,36 +135,38 @@
             justify-content: center;
             font-family: var(--font-display);
             font-weight: 800;
-            font-size: 16px;
+            font-size: 15px;
             color: #ffffff;
             box-shadow: 0 0 16px rgba(225, 29, 72, 0.4);
         }
 
         .brand-text h1 {
             font-family: var(--font-display);
-            font-size: 20px;
+            font-size: var(--font-size-header);
             font-weight: 800;
             letter-spacing: -0.02em;
             color: var(--text-primary);
+            line-height: 1.2;
         }
 
         .brand-text p {
-            font-size: 13px;
+            font-size: var(--font-size-caption);
             color: var(--text-secondary);
         }
 
         .nav-controls {
             display: flex;
             align-items: center;
-            gap: var(--space-3);
+            gap: var(--space-2);
         }
 
         .mode-toggle-group {
             display: flex;
             background: var(--bg-surface-elevated);
-            padding: var(--space-1);
-            border-radius: var(--radius-full);
+            padding: 3px;
+            border-radius: var(--radius-pill);
             border: 1px solid var(--border-subtle);
+            gap: 2px;
         }
 
         .mode-btn {
@@ -170,10 +174,10 @@
             background: transparent;
             color: var(--text-secondary);
             font-family: var(--font-body);
-            font-size: 13px;
+            font-size: var(--font-size-caption);
             font-weight: 600;
-            padding: var(--space-2) var(--space-4);
-            border-radius: var(--radius-full);
+            padding: 6px var(--space-2);
+            border-radius: var(--radius-pill);
             cursor: pointer;
             transition: all 0.15s ease;
         }
@@ -188,9 +192,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: var(--radius-md);
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius);
             border: 1px solid var(--border-subtle);
             background: var(--bg-surface-elevated);
             color: var(--text-primary);
@@ -207,28 +211,28 @@
         .chapter-badge {
             display: inline-flex;
             align-items: center;
-            gap: var(--space-2);
+            gap: var(--space-1);
             font-family: var(--font-mono);
-            font-size: 11px;
+            font-size: var(--font-size-caption);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             color: var(--accent-crimson);
             background: var(--accent-crimson-bg);
-            padding: var(--space-1) var(--space-3);
-            border-radius: var(--radius-full);
-            margin-bottom: var(--space-3);
+            padding: var(--space-half) var(--space-1);
+            border-radius: var(--radius-pill);
+            margin-bottom: var(--space-1);
             border: 1px solid var(--border-highlight);
         }
 
         .hero-lead-card {
             background: var(--bg-surface-card);
             border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            padding: var(--space-8);
+            border-radius: var(--radius);
+            padding: var(--space-4);
             box-shadow: var(--shadow-card);
             backdrop-filter: blur(12px);
-            margin-bottom: var(--space-8);
+            margin-bottom: var(--space-4);
             position: relative;
             overflow: hidden;
         }
@@ -245,20 +249,20 @@
 
         .hero-headline {
             font-family: var(--font-display);
-            font-size: 32px;
+            font-size: var(--font-size-title);
             font-weight: 800;
             letter-spacing: -0.03em;
             line-height: 1.25;
-            margin-bottom: var(--space-3);
+            margin-bottom: var(--space-1);
             color: var(--text-primary);
         }
 
         .hero-subhead {
-            font-size: 16px;
+            font-size: var(--font-size-body);
             color: var(--text-secondary);
             max-width: 900px;
             line-height: 1.6;
-            margin-bottom: var(--space-6);
+            margin-bottom: var(--space-3);
         }
 
         .hero-subhead strong {
@@ -268,16 +272,16 @@
         /* 4 Focused KPI Metric Cards */
         .kpi-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: var(--space-4);
-            margin-bottom: var(--space-6);
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: var(--space-2);
+            margin-bottom: var(--space-3);
         }
 
         .kpi-card {
             background: var(--bg-surface);
             border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: var(--space-5);
+            border-radius: var(--radius);
+            padding: var(--space-2) var(--space-3);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -289,36 +293,38 @@
         }
 
         .kpi-label {
-            font-size: 12px;
+            font-size: var(--font-size-caption);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: var(--text-muted);
-            margin-bottom: var(--space-2);
+            margin-bottom: var(--space-1);
         }
 
         .kpi-value-row {
             display: flex;
             align-items: baseline;
-            gap: var(--space-2);
-            margin-bottom: var(--space-1);
+            gap: var(--space-1);
+            margin-bottom: var(--space-half);
         }
 
         .kpi-value {
             font-family: var(--font-mono);
-            font-size: 34px;
+            font-size: var(--font-size-stat);
             font-weight: 800;
             color: var(--text-primary);
             font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum" 1;
             letter-spacing: -0.02em;
         }
 
         .kpi-delta {
             font-family: var(--font-mono);
-            font-size: 13px;
+            font-size: var(--font-size-caption);
             font-weight: 700;
             padding: 2px 8px;
-            border-radius: var(--radius-full);
+            border-radius: var(--radius-pill);
+            font-variant-numeric: tabular-nums;
         }
 
         .kpi-delta.high {
@@ -332,32 +338,32 @@
         }
 
         .kpi-context {
-            font-size: 13px;
+            font-size: var(--font-size-caption);
             color: var(--text-secondary);
             line-height: 1.4;
         }
 
-        /* Benchmark Deviation Bar Visualization (High information density, zero wasted space) */
+        /* Benchmark Deviation Bar Visualization */
         .gauge-section {
             background: var(--bg-surface);
             border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: var(--space-6);
-            margin-top: var(--space-4);
+            border-radius: var(--radius);
+            padding: var(--space-3);
+            margin-top: var(--space-2);
         }
 
         .gauge-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: var(--space-4);
+            margin-bottom: var(--space-2);
             flex-wrap: wrap;
-            gap: var(--space-2);
+            gap: var(--space-1);
         }
 
         .gauge-title {
             font-family: var(--font-display);
-            font-size: 16px;
+            font-size: var(--font-size-header);
             font-weight: 700;
             color: var(--text-primary);
         }
@@ -365,8 +371,8 @@
         .gauge-legend {
             display: flex;
             align-items: center;
-            gap: var(--space-4);
-            font-size: 12px;
+            gap: var(--space-2);
+            font-size: var(--font-size-caption);
             color: var(--text-secondary);
         }
 
@@ -380,15 +386,15 @@
         .deviation-bars-container {
             display: flex;
             flex-direction: column;
-            gap: var(--space-3);
-            margin-top: var(--space-3);
+            gap: var(--space-1);
+            margin-top: var(--space-2);
         }
 
         .segmented-group {
             display: inline-flex;
             background: var(--bg-surface-elevated);
             padding: 3px;
-            border-radius: var(--radius-full);
+            border-radius: var(--radius-pill);
             border: 1px solid var(--border-subtle);
             gap: 2px;
         }
@@ -398,10 +404,10 @@
             background: transparent;
             color: var(--text-secondary);
             font-family: var(--font-body);
-            font-size: 12px;
+            font-size: var(--font-size-caption);
             font-weight: 600;
-            padding: 5px 12px;
-            border-radius: var(--radius-full);
+            padding: 4px 10px;
+            border-radius: var(--radius-pill);
             cursor: pointer;
             transition: all 0.15s ease;
             display: inline-flex;
@@ -456,10 +462,10 @@
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            font-size: 10px;
+            font-size: var(--font-size-caption);
             font-weight: 600;
-            padding: 2px 7px;
-            border-radius: var(--radius-full);
+            padding: 1px 6px;
+            border-radius: var(--radius-pill);
             letter-spacing: 0.02em;
             text-transform: uppercase;
             white-space: nowrap;
@@ -481,21 +487,21 @@
             display: grid;
             grid-template-columns: 210px 1fr 140px;
             align-items: center;
-            gap: var(--space-4);
-            font-size: 13px;
+            gap: var(--space-2);
+            font-size: var(--font-size-body);
         }
 
         @media (max-width: 768px) {
             .bar-row {
                 grid-template-columns: 140px 1fr 85px;
-                gap: var(--space-2);
+                gap: var(--space-1);
             }
         }
 
         .bar-judge-col {
             display: flex;
             align-items: center;
-            gap: var(--space-2);
+            gap: var(--space-1);
             min-width: 0;
         }
 
@@ -509,9 +515,9 @@
 
         .bar-track {
             position: relative;
-            height: 24px;
+            height: 22px;
             background: var(--bg-surface-elevated);
-            border-radius: var(--radius-sm);
+            border-radius: var(--radius);
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -519,7 +525,7 @@
 
         .bar-fill {
             height: 100%;
-            border-radius: var(--radius-sm);
+            border-radius: var(--radius);
             transition: width 0.4s ease;
         }
 
@@ -543,44 +549,48 @@
             flex-direction: column;
             align-items: flex-end;
             font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum" 1;
         }
 
         .bar-val {
             font-family: var(--font-mono);
-            font-size: 13px;
+            font-size: var(--font-size-body);
             font-weight: 700;
             text-align: right;
             font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum" 1;
         }
 
         .bar-delta {
-            font-size: 11px;
+            font-size: var(--font-size-caption);
             color: var(--text-muted);
             font-family: var(--font-mono);
+            font-variant-numeric: tabular-nums;
         }
 
         /* Section Layout */
         .content-section {
-            margin-top: var(--space-12);
+            margin-top: var(--space-4);
         }
 
         .section-header-block {
-            margin-bottom: var(--space-6);
+            margin-bottom: var(--space-3);
         }
 
         .section-title {
             font-family: var(--font-display);
-            font-size: 24px;
+            font-size: var(--font-size-header);
             font-weight: 800;
             letter-spacing: -0.02em;
             color: var(--text-primary);
-            margin-bottom: var(--space-1);
+            margin-bottom: var(--space-half);
         }
 
         .section-desc {
-            font-size: 14px;
+            font-size: var(--font-size-body);
             color: var(--text-secondary);
             max-width: 800px;
+            line-height: 1.5;
         }
 
         /* Controls: Filters, Search, Export */
@@ -588,22 +598,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: var(--space-4);
-            margin-bottom: var(--space-4);
+            gap: var(--space-2);
+            margin-bottom: var(--space-2);
             flex-wrap: wrap;
         }
 
         .toolbar-left-cluster {
             display: flex;
             align-items: center;
-            gap: var(--space-3);
+            gap: var(--space-2);
             flex-wrap: wrap;
         }
 
         .filter-pills {
             display: flex;
             align-items: center;
-            gap: var(--space-2);
+            gap: var(--space-1);
             flex-wrap: wrap;
         }
 
@@ -611,10 +621,10 @@
             background: var(--bg-surface);
             border: 1px solid var(--border-subtle);
             color: var(--text-secondary);
-            font-size: 13px;
+            font-size: var(--font-size-caption);
             font-weight: 600;
-            padding: var(--space-2) var(--space-4);
-            border-radius: var(--radius-full);
+            padding: 6px var(--space-2);
+            border-radius: var(--radius-pill);
             cursor: pointer;
             transition: all 0.15s ease;
         }
@@ -633,7 +643,7 @@
         .search-export-cluster {
             display: flex;
             align-items: center;
-            gap: var(--space-3);
+            gap: var(--space-2);
         }
 
         .search-wrapper {
@@ -643,25 +653,25 @@
         .search-input {
             background: var(--bg-surface);
             border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: var(--space-2) var(--space-4);
-            padding-left: 36px;
-            font-size: 13px;
+            border-radius: var(--radius);
+            padding: 6px var(--space-2);
+            padding-left: 32px;
+            font-size: var(--font-size-body);
             color: var(--text-primary);
             outline: none;
-            width: 240px;
+            width: 220px;
             transition: all 0.15s ease;
         }
 
         .search-input:focus {
             border-color: var(--accent-crimson);
             box-shadow: 0 0 0 2px var(--accent-crimson-bg);
-            width: 280px;
+            width: 260px;
         }
 
         .search-icon {
             position: absolute;
-            left: 12px;
+            left: 10px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-muted);
@@ -671,14 +681,14 @@
         .btn-action {
             display: inline-flex;
             align-items: center;
-            gap: var(--space-2);
+            gap: var(--space-1);
             background: var(--bg-surface-elevated);
             border: 1px solid var(--border-subtle);
             color: var(--text-primary);
-            font-size: 13px;
+            font-size: var(--font-size-caption);
             font-weight: 600;
-            padding: var(--space-2) var(--space-4);
-            border-radius: var(--radius-md);
+            padding: 6px var(--space-2);
+            border-radius: var(--radius);
             cursor: pointer;
             transition: all 0.15s ease;
         }
@@ -692,7 +702,7 @@
         .table-card {
             background: var(--bg-surface);
             border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
+            border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow-card);
         }
@@ -705,8 +715,22 @@
         table {
             width: 100%;
             border-collapse: collapse;
+            font-size: var(--font-size-body);
+        }
+
+        /* Explicit Column Alignment Utilities (Stage 4) */
+        .col-text, th.col-text, td.col-text {
             text-align: left;
-            font-size: 13px;
+        }
+
+        .col-num, th.col-num, td.col-num {
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum" 1;
+        }
+
+        .col-center, th.col-center, td.col-center {
+            text-align: center;
         }
 
         th {
@@ -714,10 +738,10 @@
             color: var(--text-muted);
             font-family: var(--font-display);
             font-weight: 700;
-            font-size: 11px;
+            font-size: var(--font-size-caption);
             text-transform: uppercase;
             letter-spacing: 0.06em;
-            padding: var(--space-3) var(--space-4);
+            padding: var(--space-1) var(--space-2);
             border-bottom: 1px solid var(--border-subtle);
             cursor: pointer;
             user-select: none;
@@ -729,7 +753,7 @@
         }
 
         td {
-            padding: var(--space-4);
+            padding: var(--space-2);
             border-bottom: 1px solid var(--border-subtle);
             color: var(--text-secondary);
             vertical-align: middle;
@@ -751,7 +775,7 @@
         .judge-cell {
             display: flex;
             align-items: center;
-            gap: var(--space-2);
+            gap: var(--space-1);
             font-weight: 700;
             color: var(--text-primary);
         }
@@ -770,21 +794,24 @@
             font-family: var(--font-mono);
             font-weight: 600;
             font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum" 1;
         }
 
         /* In-Cell Benchmark Deviation Badge */
         .rate-cell-group {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: var(--space-2);
+            gap: var(--space-1);
         }
 
         .rate-badge {
             font-family: var(--font-mono);
-            font-size: 11px;
+            font-size: var(--font-size-caption);
             font-weight: 700;
             padding: 2px 6px;
-            border-radius: var(--radius-sm);
+            border-radius: var(--radius);
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum" 1;
         }
 
         .rate-badge.over {
@@ -814,10 +841,10 @@
         }
 
         .dossier-card {
-            padding: var(--space-6);
+            padding: var(--space-3);
             display: grid;
             grid-template-columns: 280px 1fr;
-            gap: var(--space-6);
+            gap: var(--space-3);
             border-top: 1px dashed var(--border-subtle);
             border-bottom: 1px dashed var(--border-subtle);
         }
@@ -831,9 +858,9 @@
         .dossier-bio {
             display: flex;
             flex-direction: column;
-            gap: var(--space-3);
+            gap: var(--space-1);
             border-right: 1px solid var(--border-subtle);
-            padding-right: var(--space-6);
+            padding-right: var(--space-3);
         }
 
         @media (max-width: 900px) {
@@ -841,19 +868,19 @@
                 border-right: none;
                 padding-right: 0;
                 border-bottom: 1px solid var(--border-subtle);
-                padding-bottom: var(--space-4);
+                padding-bottom: var(--space-2);
             }
         }
 
         .dossier-bio h4 {
             font-family: var(--font-display);
-            font-size: 18px;
+            font-size: var(--font-size-header);
             font-weight: 800;
             color: var(--text-primary);
         }
 
         .dossier-stat-pill {
-            font-size: 12px;
+            font-size: var(--font-size-caption);
             color: var(--text-secondary);
             line-height: 1.5;
         }
@@ -864,35 +891,35 @@
 
         .dossier-rounds-log h5 {
             font-family: var(--font-display);
-            font-size: 13px;
+            font-size: var(--font-size-caption);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: var(--text-muted);
-            margin-bottom: var(--space-3);
+            margin-bottom: var(--space-1);
         }
 
         .sample-dissents-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: var(--space-3);
+            gap: var(--space-1);
         }
 
         .sample-dissent-box {
             background: var(--bg-surface);
             border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: var(--space-3);
-            font-size: 12px;
+            border-radius: var(--radius);
+            padding: var(--space-1) var(--space-2);
+            font-size: var(--font-size-caption);
         }
 
         .sample-dissent-header {
             display: flex;
             justify-content: space-between;
             color: var(--text-muted);
-            font-size: 11px;
+            font-size: var(--font-size-caption);
             font-family: var(--font-mono);
-            margin-bottom: var(--space-1);
+            margin-bottom: 2px;
         }
 
         .sample-fight-name {
@@ -901,7 +928,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            margin-bottom: var(--space-2);
+            margin-bottom: 4px;
         }
 
         .sample-score-tag {
@@ -911,15 +938,16 @@
             color: var(--accent-crimson);
             background: var(--accent-crimson-bg);
             padding: 2px 6px;
-            border-radius: var(--radius-sm);
+            border-radius: var(--radius);
+            font-size: var(--font-size-caption);
         }
 
         /* Visualizations Section */
         .chart-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: var(--space-6);
-            margin-top: var(--space-6);
+            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+            gap: var(--space-3);
+            margin-top: var(--space-3);
         }
 
         @media (max-width: 600px) {
@@ -931,28 +959,28 @@
         .chart-card {
             background: var(--bg-surface);
             border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            padding: var(--space-6);
+            border-radius: var(--radius);
+            padding: var(--space-3);
             box-shadow: var(--shadow-card);
         }
 
         .chart-card h4 {
             font-family: var(--font-display);
-            font-size: 16px;
+            font-size: var(--font-size-header);
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: var(--space-1);
+            margin-bottom: var(--space-half);
         }
 
         .chart-card p {
-            font-size: 13px;
+            font-size: var(--font-size-caption);
             color: var(--text-secondary);
-            margin-bottom: var(--space-4);
+            margin-bottom: var(--space-2);
         }
 
         .chart-img-wrap {
             width: 100%;
-            border-radius: var(--radius-md);
+            border-radius: var(--radius);
             overflow: hidden;
             background: #000000;
         }
@@ -968,17 +996,17 @@
         .anatomy-bar-container {
             background: var(--bg-surface);
             border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            padding: var(--space-6);
-            margin-top: var(--space-4);
+            border-radius: var(--radius);
+            padding: var(--space-3);
+            margin-top: var(--space-2);
         }
 
         .anatomy-bar {
-            height: 32px;
+            height: 28px;
             display: flex;
-            border-radius: var(--radius-md);
+            border-radius: var(--radius);
             overflow: hidden;
-            margin: var(--space-4) 0;
+            margin: var(--space-2) 0;
         }
 
         .seg-10-9 { background: #38bdf8; width: 95.7%; }
@@ -988,15 +1016,15 @@
 
         .anatomy-legend {
             display: flex;
-            gap: var(--space-6);
+            gap: var(--space-3);
             flex-wrap: wrap;
-            font-size: 13px;
+            font-size: var(--font-size-caption);
         }
 
         .anatomy-item {
             display: flex;
             align-items: center;
-            gap: var(--space-2);
+            gap: var(--space-1);
         }
 
         .dot-10-9 { background: #38bdf8; }
@@ -1006,16 +1034,16 @@
 
         /* Footer */
         .site-footer {
-            margin-top: var(--space-12);
-            padding-top: var(--space-8);
+            margin-top: var(--space-4);
+            padding-top: var(--space-3);
             border-top: 1px solid var(--border-subtle);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 13px;
+            font-size: var(--font-size-caption);
             color: var(--text-muted);
             flex-wrap: wrap;
-            gap: var(--space-4);
+            gap: var(--space-2);
         }
 
         .site-footer a {
@@ -1037,7 +1065,7 @@
             <div class="octagon-badge">UFC</div>
             <div class="brand-text">
                 <h1>The Dissenter Index</h1>
-                <p>31 Years of UFC Judging Data (1995–2026) · Round-by-Round Scoring & Dissent</p>
+                <p>UFC Judging & Round-by-Round Scoring Analytics (1995–2026)</p>
             </div>
         </div>
         <div class="nav-controls">
@@ -1194,10 +1222,10 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Judge Pair</th>
-                            <th>Rounds Together</th>
-                            <th>Conflicting Round Scores</th>
-                            <th>Disagreement Rate (%)</th>
+                            <th class="col-text">Judge Pair</th>
+                            <th class="col-num">Rounds Together</th>
+                            <th class="col-num">Conflicting Round Scores</th>
+                            <th class="col-num">Disagreement Rate (%)</th>
                         </tr>
                     </thead>
                     <tbody id="pairs-table-body">
@@ -1231,7 +1259,7 @@
             </div>
         </div>
 
-        <div class="callout-card" style="margin-top:var(--space-4); margin-bottom:var(--space-4); padding:var(--space-4); background:var(--surface-elevated); border-left:3px solid var(--accent-blue); border-radius:var(--radius-sm); font-size:13px; line-height:1.5;">
+        <div class="callout-card" style="margin-top:var(--space-2); margin-bottom:var(--space-2); padding:var(--space-2); background:var(--bg-surface-elevated); border-left:3px solid var(--accent-blue); border-radius:var(--radius); font-size:var(--font-size-body); line-height:1.5;">
             <strong>Comprehensive Scope:</strong> When evaluating how judges score rounds, this analysis includes <em>every fight where official scorecards exist</em>, not just bouts that reached a final decision. If a fight concluded via KO, TKO, or submission in Round 4 (e.g. Miocic vs. Cormier 2 or Du Plessis vs. Adesanya), the official scores for Rounds 1, 2, and 3 are preserved and analyzed. Similarly, for 5-round title bouts ending in Round 5 (such as Usman vs. Covington 1 or Adesanya vs. Pereira 1), all completed prior rounds (1 through 4) are incorporated.
         </div>
 
@@ -1857,41 +1885,41 @@
         if (currentMode === 'rounds') {
             tableHead.innerHTML = `
                 <tr>
-                    <th data-sort="rank" style="width:50px;">#</th>
-                    <th data-sort="name">Judge Name & Status</th>
-                    <th data-sort="rounds">Rounds Judged</th>
-                    <th data-sort="dissents">Lone Dissents</th>
-                    <th data-sort="rate">Dissent Rate (%)</th>
-                    <th data-sort="ten_eight">10-8 Rounds (%)</th>
-                    <th data-sort="partner">Top Friction Co-Judge</th>
-                    <th style="text-align:right;">Profile</th>
+                    <th data-sort="rank" class="col-center" style="width:50px;">#</th>
+                    <th data-sort="name" class="col-text">Judge Name & Status</th>
+                    <th data-sort="rounds" class="col-num">Rounds Judged</th>
+                    <th data-sort="dissents" class="col-num">Lone Dissents</th>
+                    <th data-sort="rate" class="col-num">Dissent Rate (%)</th>
+                    <th data-sort="ten_eight" class="col-num">10-8 Rounds (%)</th>
+                    <th data-sort="partner" class="col-text">Top Friction Co-Judge</th>
+                    <th class="col-center" style="width:90px;">Profile</th>
                 </tr>
             `;
         } else if (currentMode === 'fights') {
             tableHead.innerHTML = `
                 <tr>
-                    <th data-sort="rank" style="width:50px;">#</th>
-                    <th data-sort="name">Judge Name & Status</th>
-                    <th data-sort="fights">Fights Judged</th>
-                    <th data-sort="dissents">Split Dissents</th>
-                    <th data-sort="rate">Dissent Rate (%)</th>
-                    <th data-sort="unanimous">Unanimous %</th>
-                    <th data-sort="era">Active Era</th>
-                    <th style="text-align:right;">Profile</th>
+                    <th data-sort="rank" class="col-center" style="width:50px;">#</th>
+                    <th data-sort="name" class="col-text">Judge Name & Status</th>
+                    <th data-sort="fights" class="col-num">Fights Judged</th>
+                    <th data-sort="dissents" class="col-num">Split Dissents</th>
+                    <th data-sort="rate" class="col-num">Dissent Rate (%)</th>
+                    <th data-sort="unanimous" class="col-num">Unanimous %</th>
+                    <th data-sort="era" class="col-center">Active Era</th>
+                    <th class="col-center" style="width:90px;">Profile</th>
                 </tr>
             `;
         } else {
             tableHead.innerHTML = `
                 <tr>
-                    <th data-sort="rank" style="width:50px;">#</th>
-                    <th data-sort="name">Fighter Name & Status</th>
-                    <th data-sort="fights">Decision Bouts</th>
-                    <th data-sort="splits">Split Decisions</th>
-                    <th data-sort="split_pct">Split Rate (%)</th>
-                    <th data-sort="record">Split Record (W-L-D)</th>
-                    <th data-sort="luck">Luck Index</th>
-                    <th data-sort="contested">Contested Rounds (%)</th>
-                    <th style="text-align:right;">Profile</th>
+                    <th data-sort="rank" class="col-center" style="width:50px;">#</th>
+                    <th data-sort="name" class="col-text">Fighter Name & Status</th>
+                    <th data-sort="fights" class="col-num">Decision Bouts</th>
+                    <th data-sort="splits" class="col-num">Split Decisions</th>
+                    <th data-sort="split_pct" class="col-num">Split Rate (%)</th>
+                    <th data-sort="record" class="col-center">Split Record (W-L-D)</th>
+                    <th data-sort="luck" class="col-center">Luck Index</th>
+                    <th data-sort="contested" class="col-num">Contested Rounds (%)</th>
+                    <th class="col-center" style="width:90px;">Profile</th>
                 </tr>
             `;
         }
@@ -1980,31 +2008,31 @@
 
                 html += `
                     <tr class="judge-row ${isExpanded ? 'expanded' : ''}" data-judge="${escapeHtml(f.fighter_name)}">
-                        <td class="mono-num" style="color:var(--text-muted);">${idx + 1}</td>
-                        <td>
+                        <td class="col-center mono-num" style="color:var(--text-muted);">${idx + 1}</td>
+                        <td class="col-text">
                             <div class="judge-cell">
                                 <svg class="expand-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 <span class="judge-name-text">${escapeHtml(f.fighter_name)}</span>
                                 ${rosterBadge}
                             </div>
                         </td>
-                        <td class="mono-num">${(f.total_fights || 0).toLocaleString()}</td>
-                        <td class="mono-num">${(f.split_fights || 0).toLocaleString()}</td>
-                        <td>
-                            <div class="rate-cell-group">
+                        <td class="col-num mono-num">${(f.total_fights || 0).toLocaleString()}</td>
+                        <td class="col-num mono-num">${(f.split_fights || 0).toLocaleString()}</td>
+                        <td class="col-num">
+                            <div class="rate-cell-group" style="justify-content: flex-end;">
                                 <span class="mono-num" style="font-weight:700;">${pct.toFixed(1)}%</span>
                                 <span class="rate-badge ${badgeClass}">${badgeSign}${diff.toFixed(1)}%</span>
                             </div>
                         </td>
-                        <td class="mono-num">${recStr}</td>
-                        <td>
+                        <td class="col-center mono-num">${recStr}</td>
+                        <td class="col-center">
                             <span class="rate-badge" style="${luckStyle}">
                                 ${luckSign}${net} (${f.luck_badge})
                             </span>
                         </td>
-                        <td class="mono-num">${f.contested_rounds || 0} / ${f.total_rounds || 0} (${(f.contested_round_pct || 0).toFixed(1)}%)</td>
-                        <td style="text-align:right;">
-                            <button class="pill-btn" style="padding:2px 8px; font-size:11px;">${isExpanded ? 'Close' : 'Dossier'}</button>
+                        <td class="col-num mono-num">${f.contested_rounds || 0} / ${f.total_rounds || 0} (${(f.contested_round_pct || 0).toFixed(1)}%)</td>
+                        <td class="col-center">
+                            <button class="pill-btn" style="padding:2px 8px; font-size:var(--font-size-caption);">${isExpanded ? 'Close' : 'Dossier'}</button>
                         </td>
                     </tr>
                 `;
@@ -2130,26 +2158,26 @@
 
                 html += `
                     <tr class="judge-row ${isExpanded ? 'expanded' : ''}" data-judge="${escapeHtml(j.judge_name)}">
-                        <td class="mono-num" style="color:var(--text-muted);">${idx + 1}</td>
-                        <td>
+                        <td class="col-center mono-num" style="color:var(--text-muted);">${idx + 1}</td>
+                        <td class="col-text">
                             <div class="judge-cell">
                                 <svg class="expand-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 <span class="judge-name-text">${escapeHtml(j.judge_name)}</span>
                                 ${rosterBadge}
                             </div>
                         </td>
-                        <td class="mono-num">${(j.total_rounds || 0).toLocaleString()}</td>
-                        <td class="mono-num">${(j.round_dissents || 0).toLocaleString()}</td>
-                        <td>
-                            <div class="rate-cell-group">
+                        <td class="col-num mono-num">${(j.total_rounds || 0).toLocaleString()}</td>
+                        <td class="col-num mono-num">${(j.round_dissents || 0).toLocaleString()}</td>
+                        <td class="col-num">
+                            <div class="rate-cell-group" style="justify-content: flex-end;">
                                 <span class="mono-num" style="font-weight:700;">${pct.toFixed(2)}%</span>
                                 <span class="rate-badge ${badgeClass}">${badgeSign}${diff.toFixed(2)}%</span>
                             </div>
                         </td>
-                        <td class="mono-num">${tenEightStr}</td>
-                        <td>${clashStr}</td>
-                        <td style="text-align:right;">
-                            <button class="pill-btn" style="padding:2px 8px; font-size:11px;">${isExpanded ? 'Close' : 'Dossier'}</button>
+                        <td class="col-num mono-num">${tenEightStr}</td>
+                        <td class="col-text">${clashStr}</td>
+                        <td class="col-center">
+                            <button class="pill-btn" style="padding:2px 8px; font-size:var(--font-size-caption);">${isExpanded ? 'Close' : 'Dossier'}</button>
                         </td>
                     </tr>
                 `;
@@ -2210,19 +2238,19 @@
 
                 html += `
                     <tr class="judge-row" data-judge="${escapeHtml(j.judge_name)}">
-                        <td class="mono-num" style="color:var(--text-muted);">${idx + 1}</td>
-                        <td>
+                        <td class="col-center mono-num" style="color:var(--text-muted);">${idx + 1}</td>
+                        <td class="col-text">
                             <div class="judge-cell">
                                 <span class="judge-name-text">${escapeHtml(j.judge_name)}</span>
                                 ${rosterBadge}
                             </div>
                         </td>
-                        <td class="mono-num">${(j.total_fights || 0).toLocaleString()}</td>
-                        <td class="mono-num">${(j.dissents || 0).toLocaleString()}</td>
-                        <td class="mono-num" style="font-weight:700;">${pct.toFixed(2)}%</td>
-                        <td class="mono-num">${j.unanimous_pct || 0}%</td>
-                        <td>${era}</td>
-                        <td style="text-align:right;"><span class="rate-badge under">Fight Decision</span></td>
+                        <td class="col-num mono-num">${(j.total_fights || 0).toLocaleString()}</td>
+                        <td class="col-num mono-num">${(j.dissents || 0).toLocaleString()}</td>
+                        <td class="col-num mono-num" style="font-weight:700;">${pct.toFixed(2)}%</td>
+                        <td class="col-num mono-num">${j.unanimous_pct || 0}%</td>
+                        <td class="col-center">${era}</td>
+                        <td class="col-center"><span class="rate-badge under">Fight Decision</span></td>
                     </tr>
                 `;
             }
@@ -2257,10 +2285,10 @@
 
             return `
                 <tr>
-                    <td style="font-weight:700; color:var(--text-primary);">${pairName}</td>
-                    <td class="mono-num">${volume.toLocaleString()}</td>
-                    <td class="mono-num">${diff.toLocaleString()}</td>
-                    <td>
+                    <td class="col-text" style="font-weight:700; color:var(--text-primary);">${pairName}</td>
+                    <td class="col-num mono-num">${volume.toLocaleString()}</td>
+                    <td class="col-num mono-num">${diff.toLocaleString()}</td>
+                    <td class="col-num">
                         <span class="rate-badge ${badgeClass}">${rate.toFixed(1)}%</span>
                     </td>
                 </tr>
