@@ -19,13 +19,13 @@ import json
 import logging
 import sys
 from pathlib import Path
-from typing import Dict, Any, List
+from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.security import escape_html, safe_resolve_path, safe_json_embed
+from src.security import safe_json_embed, safe_resolve_path
 
 logger = logging.getLogger(__name__)
 
@@ -43,7 +43,7 @@ def encode_image_base64(image_filename: str) -> str:
             with open(image_path, "rb") as f:
                 encoded = base64.b64encode(f.read()).decode("utf-8")
                 return f"data:image/png;base64,{encoded}"
-    except Exception as e:
+    except (OSError, ValueError) as e:
         logger.warning("Could not encode image %s: %s", image_filename, e)
     return ""
 
@@ -1691,7 +1691,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         const gaugeSubheading = document.getElementById('gauge-subheading');
         const gaugeLegend = document.getElementById('gauge-legend-container');
 
-        const rosterLabel = currentRosterFilter === 'active' ? 'Currently Active (2024–2026)' : 
+        const rosterLabel = currentRosterFilter === 'active' ? 'Currently Active (2024–2026)' :
                            (currentRosterFilter === 'historical' ? 'Historical Only (&lt; 2024)' : 'All Eras (1995–2026)');
 
         if (currentMode === 'fighters') {
@@ -1724,7 +1724,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                     const barColor = isOver ? 'var(--accent-crimson)' : 'var(--accent-green)';
                     const barWidth = Math.min(100, Math.max(10, (pct / 85) * 100));
                     const active = isFighterActive(f);
-                    const statusBadge = active 
+                    const statusBadge = active
                         ? `<span class="roster-badge active"><span class="status-dot active"></span> Active</span>`
                         : `<span class="roster-badge historical">${f.last_year || 'Historical'}</span>`;
 
@@ -1770,7 +1770,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                     const recStr = `${f.split_wins}W - ${f.split_losses}L`;
                     const barWidth = Math.max(12, (Math.abs(diff) / 4) * 80);
                     const active = isFighterActive(f);
-                    const statusBadge = active 
+                    const statusBadge = active
                         ? `<span class="roster-badge active"><span class="status-dot active"></span> Active</span>`
                         : `<span class="roster-badge historical">${f.last_year || 'Historical'}</span>`;
 
@@ -1823,7 +1823,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                 const barColor = isOver ? 'var(--accent-crimson)' : 'var(--accent-green)';
                 const barWidth = Math.min(100, Math.max(8, (pct / 12) * 100));
                 const active = isJudgeActive(j);
-                const statusBadge = active 
+                const statusBadge = active
                     ? `<span class="roster-badge active"><span class="status-dot active"></span> Active</span>`
                     : `<span class="roster-badge historical">${j.last_year || 'Historical'}</span>`;
 
@@ -1870,7 +1870,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                 const diffStr = (dissentDiff >= 0 ? '+' : '') + dissentDiff.toFixed(2) + '% diss';
                 const barWidth = Math.min(100, Math.max(10, ((agreePct - minScale) / (maxScale - minScale)) * 100));
                 const active = isJudgeActive(j);
-                const statusBadge = active 
+                const statusBadge = active
                     ? `<span class="roster-badge active"><span class="status-dot active"></span> Active</span>`
                     : `<span class="roster-badge historical">${j.last_year || 'Historical'}</span>`;
 
@@ -2444,7 +2444,7 @@ def build_dashboard_html() -> Path:
         raise FileNotFoundError(f"Web data not found at {WEB_DATA_PATH}. Run export_web_data first.")
 
     with open(WEB_DATA_PATH, "r", encoding="utf-8") as f:
-        judging_data: Dict[str, Any] = json.load(f)
+        judging_data: dict[str, Any] = json.load(f)
 
     # Encode round-level visualizations
     img_round_min50 = encode_image_base64("round_dissent_rate_min_50.png")
@@ -2459,14 +2459,14 @@ def build_dashboard_html() -> Path:
     img_trend = encode_image_base64("split_decision_trend.png")
 
     # Safe JSON stringification preventing </script> injection and line separator breakout
-    safe_round_judges_json = safe_json_embed(judging_data.get('round_judges', []))
-    safe_fight_judges_json = safe_json_embed(judging_data.get('judges', []))
-    safe_fighters_json = safe_json_embed(judging_data.get('fighters', []))
-    safe_fighter_kpis_json = safe_json_embed(judging_data.get('summary', {}).get('fighters', {}))
-    safe_round_pairs_json = safe_json_embed(judging_data.get('round_pairs', []))
-    safe_fight_pairs_json = safe_json_embed(judging_data.get('pairs', []))
-    safe_summary_json = safe_json_embed(judging_data.get('summary', {}))
-    safe_round_summary_json = safe_json_embed(judging_data.get('summary', {}).get('rounds', {}))
+    safe_round_judges_json = safe_json_embed(judging_data.get("round_judges", []))
+    safe_fight_judges_json = safe_json_embed(judging_data.get("judges", []))
+    safe_fighters_json = safe_json_embed(judging_data.get("fighters", []))
+    safe_fighter_kpis_json = safe_json_embed(judging_data.get("summary", {}).get("fighters", {}))
+    safe_round_pairs_json = safe_json_embed(judging_data.get("round_pairs", []))
+    safe_fight_pairs_json = safe_json_embed(judging_data.get("pairs", []))
+    safe_summary_json = safe_json_embed(judging_data.get("summary", {}))
+    safe_round_summary_json = safe_json_embed(judging_data.get("summary", {}).get("rounds", {}))
 
     html_content = DASHBOARD_TEMPLATE
     replacements = {

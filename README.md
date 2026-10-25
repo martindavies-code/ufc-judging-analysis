@@ -93,6 +93,7 @@ Which UFC fighters find themselves in razor-thin, split-call contests most frequ
 Across 4,010 UFC decisions, exactly **20.05% (1 in 5 bouts)** ended in a split decision.
 
 ### 1. Highest Split Decision Rate (Min 6 Decision Bouts)
+
 1. 🥇 **Zubaira Tukhugov**: **83.33%** (5 split decisions in 6 bouts) — **#1 All-Time Most Contested Fighter**
 2. 🥈 **Paul Felder**: **66.67%** (6 splits in 9 bouts; 48.39% of scored rounds had a judge dissent)
 3. 🥉 **Joshua Culibao**: **66.67%** (4 splits in 6 bouts)
@@ -101,6 +102,7 @@ Across 4,010 UFC decisions, exactly **20.05% (1 in 5 bouts)** ended in a split d
 6. 6️⃣ **Sean Woodson**: **57.14%** (4 splits in 7 bouts, 3W-0L in splits) — **#1 Active Split Rate**
 
 ### 2. The UFC "Luck Differential" (Net Split Wins vs Losses)
+
 * **Most Unlucky (Worst Split Decision Records)**:
   * 💔 **Jorge Masvidal**: **0W – 4L** (net **-4** luck differential; 0% win rate in split decisions)
   * 💔 **Andrea Lee**: **0W – 4L** (net **-4**)
@@ -115,6 +117,7 @@ Across 4,010 UFC decisions, exactly **20.05% (1 in 5 bouts)** ended in a split d
   * 🍀 **Benson Henderson**: **4W – 0L** (net **+4**; undefeated in career split decisions)
 
 ### 3. Most Contested Scored Rounds (Min 25 Scored Rounds)
+
 * 🥇 **Paul Felder**: **48.39%** of rounds contested (15 of 31 rounds produced a lone dissenting judge)
 * 🥈 **Dominick Cruz**: **41.38%** (12 of 29 rounds contested)
 * 🥉 **Alexander Hernandez**: **40.74%** (11 of 27 rounds contested) — **#1 Active**

@@ -1,6 +1,5 @@
 """Unit tests for security, sanitization, and path traversal protection."""
 
-from pathlib import Path
 import pytest
 
 from src.security import (
@@ -59,7 +58,7 @@ class TestSanitizeFilename:
 
     def test_windows_reserved_characters(self):
         sanitized = sanitize_filename('event<1516>:name"file|test?*.html')
-        for bad_char in ['<', '>', ':', '"', '/', '\\', '|', '?', '*']:
+        for bad_char in ["<", ">", ":", '"', "/", "\\", "|", "?", "*"]:
             assert bad_char not in sanitized
 
     def test_null_bytes_and_control_chars(self):
@@ -200,4 +199,3 @@ class TestSanitizeJudgeName:
         long_name = "Judge " * 50
         sanitized = sanitize_judge_name(long_name, max_length=30)
         assert len(sanitized) <= 30
-

@@ -7,33 +7,30 @@ and CSVs, updates the statistical analysis, and recompiles the standalone dashbo
 
 import json
 import logging
-import os
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Set, Tuple
+from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 import pandas as pd
-from bs4 import BeautifulSoup
+import requests
 
 from src.analyzer import run_deep_analysis
 from src.build_dashboard import build_dashboard_html
 from src.download_decisions import download_single_decision
 from src.export_web_data import export_web_data
-from src.parser import parse_event_html, clean_judge_name
-from src.round_parser import parse_decision_rounds, save_round_scores
+from src.parser import parse_event_html
+from src.round_parser import parse_decision_rounds
 from src.scraper import (
+    DEFAULT_TIMEOUT,
     atomic_write_text,
     fetch_events_for_year,
     get_thread_session,
-    DEFAULT_TIMEOUT,
-    MAX_RETRIES,
 )
-from src.security import safe_resolve_path, validate_numeric_id
 from src.visualizer import generate_visualizations
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
@@ -49,23 +46,23 @@ ROUND_SCORES_CSV = DATA_DIR / "ufc_round_scores.csv"
 DB_PATH = DATA_DIR / "ufc_judging.db"
 
 
-def fetch_new_events(target_years: Optional[List[int]] = None) -> List[Dict[str, str]]:
+def fetch_new_events(target_years: list[int] | None = None) -> list[dict[str, str]]:
     """Check archive for recent events and download new ones."""
     if target_years is None:
         curr_year = datetime.now().year
         target_years = [curr_year, curr_year - 1]
 
-    existing_events: List[Dict[str, str]] = []
+    existing_events: list[dict[str, str]] = []
     if EVENTS_JSON_PATH.exists():
         try:
             with open(EVENTS_JSON_PATH, "r", encoding="utf-8") as f:
                 existing_events = json.load(f)
-        except Exception as e:
+        except (OSError, json.JSONDecodeError, UnicodeDecodeError) as e:
             logger.warning("Could not read %s: %s", EVENTS_JSON_PATH, e)
 
-    existing_ids: Set[str] = {str(e.get("event_id")) for e in existing_events if e.get("event_id")}
+    existing_ids: set[str] = {str(e.get("event_id")) for e in existing_events if e.get("event_id")}
 
-    new_events_found: List[Dict[str, str]] = []
+    new_events_found: list[dict[str, str]] = []
     session = get_thread_session()
 
     for year in target_years:
@@ -87,7 +84,7 @@ def fetch_new_events(target_years: Optional[List[int]] = None) -> List[Dict[str,
                     resp = session.get(ev["url"], timeout=DEFAULT_TIMEOUT)
                     if resp.status_code == 200:
                         atomic_write_text(ev_file, resp.text)
-                except Exception as ex:
+                except (requests.RequestException, OSError) as ex:
                     logger.warning("Failed downloading event %s: %s", ev_id, ex)
 
     # Save updated ufc_events.json
@@ -100,9 +97,9 @@ def fetch_new_events(target_years: Optional[List[int]] = None) -> List[Dict[str,
     return new_events_found
 
 
-def ingest_new_decisions_and_rounds(new_events: List[Dict[str, str]], force: bool = False) -> Tuple[int, int]:
+def ingest_new_decisions_and_rounds(new_events: list[dict[str, str]], force: bool = False) -> tuple[int, int]:
     """Parse new decisions and their round-by-round tables into the database.
-    
+
     If new_events is empty and force is False, returns (0, 0) immediately.
     """
     EVENTS_HTML_DIR.mkdir(parents=True, exist_ok=True)
@@ -112,12 +109,12 @@ def ingest_new_decisions_and_rounds(new_events: List[Dict[str, str]], force: boo
         return 0, 0
 
     # 1. Load existing decisions & round scores
-    existing_dec_ids: Set[str] = set()
+    existing_dec_ids: set[str] = set()
     if SCORECARDS_CSV.exists():
         try:
             df_existing = pd.read_csv(SCORECARDS_CSV, usecols=["decision_id"])
             existing_dec_ids = set(df_existing["decision_id"].astype(str))
-        except Exception as e:
+        except (pd.errors.EmptyDataError, pd.errors.ParserError, OSError, KeyError) as e:
             logger.warning("Could not load %s: %s", SCORECARDS_CSV, e)
 
     # 2. Only parse event HTML files for the newly discovered events (or all if force)
@@ -130,8 +127,8 @@ def ingest_new_decisions_and_rounds(new_events: List[Dict[str, str]], force: boo
             if (EVENTS_HTML_DIR / f"{ev['event_id']}.html").exists()
         ]
 
-    all_new_fights: List[Any] = []
-    all_new_appearances: List[Any] = []
+    all_new_fights: list[Any] = []
+    all_new_appearances: list[Any] = []
 
     for ev_path in target_event_files:
         try:
@@ -142,7 +139,7 @@ def ingest_new_decisions_and_rounds(new_events: List[Dict[str, str]], force: boo
                 if str(f.decision_id) not in existing_dec_ids:
                     all_new_fights.append(f)
             all_new_appearances.extend(appearances)
-        except Exception as ex:
+        except (OSError, ValueError, TypeError, KeyError) as ex:
             logger.warning("Error parsing event HTML %s: %s", ev_path, ex)
 
     logger.info("Identified %d new fights/decisions to process.", len(all_new_fights))
@@ -162,16 +159,16 @@ def ingest_new_decisions_and_rounds(new_events: List[Dict[str, str]], force: boo
         logger.info("Downloaded %d new decision HTML pages.", downloaded_count)
 
     # 4. Extract round scores for newly downloaded decisions
-    new_round_scores: List[Any] = []
+    new_round_scores: list[Any] = []
     meta_map = {
         str(f.decision_id): {
-            'event_id': str(f.event_id),
-            'event_title': f.event_name,
-            'event_date': str(f.event_date),
-            'event_year': int(f.event_year) if f.event_year else datetime.now().year,
-            'decision_type': f.decision_type,
-            'fighter_1': f.fighter_1,
-            'fighter_2': f.fighter_2,
+            "event_id": str(f.event_id),
+            "event_title": getattr(f, "event_title", getattr(f, "event_name", "")),
+            "event_date": str(f.event_date),
+            "event_year": int(f.event_year) if f.event_year else datetime.now().year,
+            "decision_type": f.decision_type,
+            "fighter_1": f.fighter_1,
+            "fighter_2": f.fighter_2,
         }
         for f in all_new_fights
     }
@@ -184,46 +181,51 @@ def ingest_new_decisions_and_rounds(new_events: List[Dict[str, str]], force: boo
                 scores = parse_decision_rounds(html_text, str(f.decision_id), meta_map.get(str(f.decision_id), {}))
                 if scores:
                     new_round_scores.extend(scores)
-            except Exception as e:
+            except (OSError, ValueError, TypeError, KeyError, IndexError) as e:
                 logger.warning("Failed parsing rounds for decision %s: %s", f.decision_id, e)
 
     # 5. Append new records to CSV and SQLite
+    import sqlite3
+
     if all_new_fights:
         df_new_fights = pd.DataFrame([f.to_dict() for f in all_new_fights])
         df_new_fights.to_csv(SCORECARDS_CSV, mode="a", header=not SCORECARDS_CSV.exists(), index=False)
-        
+
         # Append to SQLite fights table
-        import sqlite3
         conn = sqlite3.connect(str(DB_PATH))
-        df_new_fights.to_sql("fights", conn, if_exists="append", index=False)
-        conn.close()
+        try:
+            df_new_fights.to_sql("fights", conn, if_exists="append", index=False)
+        finally:
+            conn.close()
 
     if all_new_appearances:
         df_new_app = pd.DataFrame([a.to_dict() for a in all_new_appearances])
         df_new_app.to_csv(APPEARANCES_CSV, mode="a", header=not APPEARANCES_CSV.exists(), index=False)
-        
+
         # Append to SQLite appearances table
-        import sqlite3
         conn = sqlite3.connect(str(DB_PATH))
-        df_new_app.to_sql("judge_appearances", conn, if_exists="append", index=False)
-        conn.close()
+        try:
+            df_new_app.to_sql("judge_appearances", conn, if_exists="append", index=False)
+        finally:
+            conn.close()
 
     if new_round_scores:
         df_new_rounds = pd.DataFrame([s.to_dict() for s in new_round_scores])
         df_new_rounds.to_csv(ROUND_SCORES_CSV, mode="a", header=not ROUND_SCORES_CSV.exists(), index=False)
 
         # Append to SQLite round_scores table
-        import sqlite3
         conn = sqlite3.connect(str(DB_PATH))
-        df_new_rounds.to_sql("round_scores", conn, if_exists="append", index=False)
-        conn.close()
+        try:
+            df_new_rounds.to_sql("round_scores", conn, if_exists="append", index=False)
+        finally:
+            conn.close()
 
     return len(all_new_fights), len(new_round_scores)
 
 
-def run_weekly_pipeline(force: bool = False) -> Dict[str, Any]:
+def run_weekly_pipeline(force: bool = False) -> dict[str, Any]:
     """Execute the complete weekly update pipeline.
-    
+
     Returns a summary dictionary of updates performed.
     """
     logger.info("=== Starting Weekly UFC Judging Data Update ===")
@@ -232,7 +234,7 @@ def run_weekly_pipeline(force: bool = False) -> Dict[str, Any]:
     new_events = fetch_new_events()
     new_fights_count, new_rounds_count = ingest_new_decisions_and_rounds(new_events, force=force)
 
-    has_changes = (len(new_events) > 0 or new_fights_count > 0 or new_rounds_count > 0 or force)
+    has_changes = len(new_events) > 0 or new_fights_count > 0 or new_rounds_count > 0 or force
 
     if not has_changes:
         logger.info("✓ Everything up to date. No new events or rounds to ingest.")

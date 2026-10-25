@@ -21241,14 +21241,14 @@
     {
       "judge_name": "Jeff Mullen",
       "total_fights": 177,
-      "dissents": 8,
-      "score_dissents": 18,
+      "dissents": 7,
+      "score_dissents": 17,
       "unanimous_fights": 135,
       "split_fights": 31,
       "first_year": 1997,
       "last_year": 2017,
-      "dissent_pct": 4.52,
-      "score_dissent_pct": 10.17,
+      "dissent_pct": 3.95,
+      "score_dissent_pct": 9.6,
       "unanimous_pct": 76.27
     },
     {
@@ -22006,7 +22006,7 @@
       "unanimous_pct": 80.95
     },
     {
-      "judge_name": "Unknown30 -  27",
+      "judge_name": "Unknown30 - 27",
       "total_fights": 21,
       "dissents": 0,
       "score_dissents": 4,
@@ -22112,14 +22112,14 @@
     {
       "judge_name": "Michael Depasquale Jr.",
       "total_fights": 19,
-      "dissents": 3,
-      "score_dissents": 3,
+      "dissents": 2,
+      "score_dissents": 2,
       "unanimous_fights": 14,
       "split_fights": 4,
       "first_year": 1996,
       "last_year": 2015,
-      "dissent_pct": 15.79,
-      "score_dissent_pct": 15.79,
+      "dissent_pct": 10.53,
+      "score_dissent_pct": 10.53,
       "unanimous_pct": 73.68
     },
     {
@@ -22279,7 +22279,7 @@
       "unanimous_pct": 73.33
     },
     {
-      "judge_name": "Unknown29 -  28",
+      "judge_name": "Unknown29 - 28",
       "total_fights": 15,
       "dissents": 0,
       "score_dissents": 2,
@@ -22331,20 +22331,20 @@
       "unanimous_pct": 61.54
     },
     {
-      "judge_name": "Gene LeBell",
+      "judge_name": "Gene Lebell",
       "total_fights": 13,
-      "dissents": 2,
-      "score_dissents": 3,
+      "dissents": 1,
+      "score_dissents": 2,
       "unanimous_fights": 10,
       "split_fights": 1,
       "first_year": 1998,
       "last_year": 2011,
-      "dissent_pct": 15.38,
-      "score_dissent_pct": 23.08,
+      "dissent_pct": 7.69,
+      "score_dissent_pct": 15.38,
       "unanimous_pct": 76.92
     },
     {
-      "judge_name": "JJ Ferraro",
+      "judge_name": "Jj Ferraro",
       "total_fights": 13,
       "dissents": 1,
       "score_dissents": 2,
@@ -22994,7 +22994,7 @@
       "unanimous_pct": 87.5
     },
     {
-      "judge_name": "Robert MacAvoy",
+      "judge_name": "Robert Macavoy",
       "total_fights": 8,
       "dissents": 1,
       "score_dissents": 3,
@@ -23631,7 +23631,7 @@
       "unanimous_pct": 83.33
     },
     {
-      "judge_name": "Unknown1 -  0",
+      "judge_name": "Unknown1 - 0",
       "total_fights": 6,
       "dissents": 0,
       "score_dissents": 0,
@@ -24003,19 +24003,6 @@
       "split_fights": 1,
       "first_year": 2024,
       "last_year": 2026,
-      "dissent_pct": 50.0,
-      "score_dissent_pct": 50.0,
-      "unanimous_pct": 50.0
-    },
-    {
-      "judge_name": "Tim Catalfo",
-      "total_fights": 4,
-      "dissents": 2,
-      "score_dissents": 2,
-      "unanimous_fights": 2,
-      "split_fights": 2,
-      "first_year": 1999,
-      "last_year": 1999,
       "dissent_pct": 50.0,
       "score_dissent_pct": 50.0,
       "unanimous_pct": 50.0
@@ -24619,6 +24606,19 @@
       "unanimous_pct": 75.0
     },
     {
+      "judge_name": "Tim Catalfo",
+      "total_fights": 4,
+      "dissents": 0,
+      "score_dissents": 0,
+      "unanimous_fights": 2,
+      "split_fights": 2,
+      "first_year": 1999,
+      "last_year": 1999,
+      "dissent_pct": 0.0,
+      "score_dissent_pct": 0.0,
+      "unanimous_pct": 50.0
+    },
+    {
       "judge_name": "Andreas Ramsby",
       "total_fights": 3,
       "dissents": 2,
@@ -24723,7 +24723,7 @@
       "unanimous_pct": 33.33
     },
     {
-      "judge_name": "Jason McCoy",
+      "judge_name": "Jason Mccoy",
       "total_fights": 3,
       "dissents": 1,
       "score_dissents": 1,
@@ -24801,7 +24801,7 @@
       "unanimous_pct": 33.33
     },
     {
-      "judge_name": "Patricia VanderMeer",
+      "judge_name": "Patricia Vandermeer",
       "total_fights": 3,
       "dissents": 1,
       "score_dissents": 1,
@@ -24970,7 +24970,7 @@
       "unanimous_pct": 66.67
     },
     {
-      "judge_name": "Dennis McMahon",
+      "judge_name": "Dennis Mcmahon",
       "total_fights": 3,
       "dissents": 0,
       "score_dissents": 0,
@@ -25243,7 +25243,7 @@
       "unanimous_pct": 100.0
     },
     {
-      "judge_name": "Matthew Mesardjian ",
+      "judge_name": "Matthew Mesardjian",
       "total_fights": 3,
       "dissents": 0,
       "score_dissents": 0,
@@ -25308,7 +25308,7 @@
       "unanimous_pct": 100.0
     },
     {
-      "judge_name": "Ralph McKnight",
+      "judge_name": "Ralph Mcknight",
       "total_fights": 3,
       "dissents": 0,
       "score_dissents": 0,
@@ -25477,7 +25477,7 @@
       "unanimous_pct": 100.0
     },
     {
-      "judge_name": "Unknown28 -  29",
+      "judge_name": "Unknown28 - 29",
       "total_fights": 2,
       "dissents": 2,
       "score_dissents": 1,
@@ -25503,7 +25503,7 @@
       "unanimous_pct": 50.0
     },
     {
-      "judge_name": "Bob LeBlanc",
+      "judge_name": "Bob Leblanc",
       "total_fights": 2,
       "dissents": 1,
       "score_dissents": 1,
@@ -25552,19 +25552,6 @@
       "last_year": 2007,
       "dissent_pct": 50.0,
       "score_dissent_pct": 100.0,
-      "unanimous_pct": 50.0
-    },
-    {
-      "judge_name": "John Peretti",
-      "total_fights": 2,
-      "dissents": 1,
-      "score_dissents": 1,
-      "unanimous_fights": 1,
-      "split_fights": 0,
-      "first_year": 1997,
-      "last_year": 1997,
-      "dissent_pct": 50.0,
-      "score_dissent_pct": 50.0,
       "unanimous_pct": 50.0
     },
     {
@@ -25646,7 +25633,7 @@
       "unanimous_pct": 50.0
     },
     {
-      "judge_name": "Richard DeCarufel",
+      "judge_name": "Richard Decarufel",
       "total_fights": 2,
       "dissents": 1,
       "score_dissents": 1,
@@ -25680,19 +25667,6 @@
       "split_fights": 0,
       "first_year": 2016,
       "last_year": 2016,
-      "dissent_pct": 50.0,
-      "score_dissent_pct": 50.0,
-      "unanimous_pct": 50.0
-    },
-    {
-      "judge_name": "Terushige Samejima",
-      "total_fights": 2,
-      "dissents": 1,
-      "score_dissents": 1,
-      "unanimous_fights": 1,
-      "split_fights": 0,
-      "first_year": 2000,
-      "last_year": 2000,
       "dissent_pct": 50.0,
       "score_dissent_pct": 50.0,
       "unanimous_pct": 50.0
@@ -25932,7 +25906,7 @@
       "unanimous_pct": 50.0
     },
     {
-      "judge_name": "Greg DiVilbiss",
+      "judge_name": "Greg Divilbiss",
       "total_fights": 2,
       "dissents": 0,
       "score_dissents": 0,
@@ -26063,6 +26037,19 @@
     },
     {
       "judge_name": "Joe Hamilton",
+      "total_fights": 2,
+      "dissents": 0,
+      "score_dissents": 0,
+      "unanimous_fights": 1,
+      "split_fights": 0,
+      "first_year": 1997,
+      "last_year": 1997,
+      "dissent_pct": 0.0,
+      "score_dissent_pct": 0.0,
+      "unanimous_pct": 50.0
+    },
+    {
+      "judge_name": "John Peretti",
       "total_fights": 2,
       "dissents": 0,
       "score_dissents": 0,
@@ -26439,6 +26426,19 @@
       "unanimous_pct": 100.0
     },
     {
+      "judge_name": "Terushige Samejima",
+      "total_fights": 2,
+      "dissents": 0,
+      "score_dissents": 0,
+      "unanimous_fights": 1,
+      "split_fights": 0,
+      "first_year": 2000,
+      "last_year": 2000,
+      "dissent_pct": 0.0,
+      "score_dissent_pct": 0.0,
+      "unanimous_pct": 50.0
+    },
+    {
       "judge_name": "Todd Agosta",
       "total_fights": 2,
       "dissents": 0,
@@ -26478,7 +26478,7 @@
       "unanimous_pct": 100.0
     },
     {
-      "judge_name": "William McKinnon",
+      "judge_name": "William Mckinnon",
       "total_fights": 2,
       "dissents": 0,
       "score_dissents": 0,
@@ -26538,19 +26538,6 @@
       "split_fights": 1,
       "first_year": 2018,
       "last_year": 2018,
-      "dissent_pct": 100.0,
-      "score_dissent_pct": 100.0,
-      "unanimous_pct": 0.0
-    },
-    {
-      "judge_name": "Robert Ferguson",
-      "total_fights": 1,
-      "dissents": 1,
-      "score_dissents": 1,
-      "unanimous_fights": 0,
-      "split_fights": 1,
-      "first_year": 1996,
-      "last_year": 1996,
       "dissent_pct": 100.0,
       "score_dissent_pct": 100.0,
       "unanimous_pct": 0.0
@@ -26985,7 +26972,7 @@
       "unanimous_pct": 100.0
     },
     {
-      "judge_name": "Kean McGill",
+      "judge_name": "Kean Mcgill",
       "total_fights": 1,
       "dissents": 0,
       "score_dissents": 0,
@@ -27165,6 +27152,19 @@
       "dissent_pct": 0.0,
       "score_dissent_pct": 0.0,
       "unanimous_pct": 100.0
+    },
+    {
+      "judge_name": "Robert Ferguson",
+      "total_fights": 1,
+      "dissents": 0,
+      "score_dissents": 0,
+      "unanimous_fights": 0,
+      "split_fights": 1,
+      "first_year": 1996,
+      "last_year": 1996,
+      "dissent_pct": 0.0,
+      "score_dissent_pct": 0.0,
+      "unanimous_pct": 0.0
     },
     {
       "judge_name": "Robert Young",
@@ -27362,7 +27362,7 @@
       "unanimous_pct": 100.0
     },
     {
-      "judge_name": "Unknown29 -  26",
+      "judge_name": "Unknown29 - 26",
       "total_fights": 1,
       "dissents": 0,
       "score_dissents": 1,
@@ -27375,7 +27375,7 @@
       "unanimous_pct": 100.0
     },
     {
-      "judge_name": "Unknown30 -  25",
+      "judge_name": "Unknown30 - 25",
       "total_fights": 1,
       "dissents": 0,
       "score_dissents": 1,
@@ -27388,7 +27388,7 @@
       "unanimous_pct": 100.0
     },
     {
-      "judge_name": "Unknown30 -  26",
+      "judge_name": "Unknown30 - 26",
       "total_fights": 1,
       "dissents": 0,
       "score_dissents": 1,
@@ -27473,20 +27473,6 @@
     {
       "event_title": "UFC on ESPN+ 101: Moicano vs. Saint Denis",
       "event_date": "September 28, 2024",
-      "fight": "Gomis def. Brito",
-      "decision_type": "Split",
-      "dissenter_judge_name": "Anders Ohlsson",
-      "j1_name": "Ben Cartlidge",
-      "j1_score": "29 - 28",
-      "j2_name": "Anders Ohlsson",
-      "j2_score": "28 - 29",
-      "j3_name": "Clemens Werner",
-      "j3_score": "29 - 28",
-      "decision_url": "https://mmadecisions.com/decision/15016/William-Gomis-vs-Joanderson-Brito"
-    },
-    {
-      "event_title": "UFC on ESPN+ 101: Moicano vs. Saint Denis",
-      "event_date": "September 28, 2024",
       "fight": "Cutelaba def. Erslan",
       "decision_type": "Split",
       "dissenter_judge_name": "Damien Gluski",
@@ -27511,6 +27497,20 @@
       "j3_name": "Mongi Zitouni",
       "j3_score": "28 - 29",
       "decision_url": "https://mmadecisions.com/decision/15006/Jacqueline-Cavalcanti-vs-Nora-Cornolle"
+    },
+    {
+      "event_title": "UFC on ESPN+ 101: Moicano vs. Saint Denis",
+      "event_date": "September 28, 2024",
+      "fight": "Gomis def. Brito",
+      "decision_type": "Split",
+      "dissenter_judge_name": "Anders Ohlsson",
+      "j1_name": "Ben Cartlidge",
+      "j1_score": "29 - 28",
+      "j2_name": "Anders Ohlsson",
+      "j2_score": "28 - 29",
+      "j3_name": "Clemens Werner",
+      "j3_score": "29 - 28",
+      "decision_url": "https://mmadecisions.com/decision/15016/William-Gomis-vs-Joanderson-Brito"
     },
     {
       "event_title": "UFC on ESPN+ 18: Hermansson vs. Cannonier",
@@ -27585,16 +27585,16 @@
     {
       "event_title": "UFC 119: Mir vs. Cro Cop",
       "event_date": "September 25, 2010",
-      "fight": "Sherk def. Dunham",
+      "fight": "Lowe def. Lopez",
       "decision_type": "Split",
-      "dissenter_judge_name": "Kelvin Caldwell",
-      "j1_name": "Kelvin Caldwell",
-      "j1_score": "28 - 29",
-      "j2_name": "Cecil Peoples",
-      "j2_score": "29 - 28",
-      "j3_name": "Glenn Trowbridge",
+      "dissenter_judge_name": "Dave Stone",
+      "j1_name": "Cecil Peoples",
+      "j1_score": "29 - 28",
+      "j2_name": "Dave Stone",
+      "j2_score": "28 - 29",
+      "j3_name": "Otto Torriero",
       "j3_score": "29 - 28",
-      "decision_url": "https://mmadecisions.com/decision/1849/Sean-Sherk-vs-Evan-Dunham"
+      "decision_url": "https://mmadecisions.com/decision/1846/Waylon-Lowe-vs-Steve-Lopez"
     },
     {
       "event_title": "UFC 119: Mir vs. Cro Cop",
@@ -27613,16 +27613,16 @@
     {
       "event_title": "UFC 119: Mir vs. Cro Cop",
       "event_date": "September 25, 2010",
-      "fight": "Lowe def. Lopez",
+      "fight": "Sherk def. Dunham",
       "decision_type": "Split",
-      "dissenter_judge_name": "Dave Stone",
-      "j1_name": "Cecil Peoples",
-      "j1_score": "29 - 28",
-      "j2_name": "Dave Stone",
-      "j2_score": "28 - 29",
-      "j3_name": "Otto Torriero",
+      "dissenter_judge_name": "Kelvin Caldwell",
+      "j1_name": "Kelvin Caldwell",
+      "j1_score": "28 - 29",
+      "j2_name": "Cecil Peoples",
+      "j2_score": "29 - 28",
+      "j3_name": "Glenn Trowbridge",
       "j3_score": "29 - 28",
-      "decision_url": "https://mmadecisions.com/decision/1846/Waylon-Lowe-vs-Steve-Lopez"
+      "decision_url": "https://mmadecisions.com/decision/1849/Sean-Sherk-vs-Evan-Dunham"
     },
     {
       "event_title": "UFC on ESPN+ 86: Fiziev vs. Gamrot",
@@ -27641,20 +27641,6 @@
     {
       "event_title": "UFC Fight Night 117: Saint Preux vs. Okami",
       "event_date": "September 23, 2017",
-      "fight": "Nakamura def. Morono",
-      "decision_type": "Split",
-      "dissenter_judge_name": "Barry Foley",
-      "j1_name": "Ben Cartlidge",
-      "j1_score": "29 - 28",
-      "j2_name": "Barry Foley",
-      "j2_score": "28 - 29",
-      "j3_name": "Charlie Keech",
-      "j3_score": "29 - 28",
-      "decision_url": "https://mmadecisions.com/decision/8424/Keita-Nakamura-vs-Alex-Morono"
-    },
-    {
-      "event_title": "UFC Fight Night 117: Saint Preux vs. Okami",
-      "event_date": "September 23, 2017",
       "fight": "Kondo def. Jeon",
       "decision_type": "Split",
       "dissenter_judge_name": "Evan Field",
@@ -27665,6 +27651,20 @@
       "j3_name": "Evan Field",
       "j3_score": "28 - 29",
       "decision_url": "https://mmadecisions.com/decision/8421/Syuri-Kondo-vs-Chan-Mi-Jeon"
+    },
+    {
+      "event_title": "UFC Fight Night 117: Saint Preux vs. Okami",
+      "event_date": "September 23, 2017",
+      "fight": "Nakamura def. Morono",
+      "decision_type": "Split",
+      "dissenter_judge_name": "Barry Foley",
+      "j1_name": "Ben Cartlidge",
+      "j1_score": "29 - 28",
+      "j2_name": "Barry Foley",
+      "j2_score": "28 - 29",
+      "j3_name": "Charlie Keech",
+      "j3_score": "29 - 28",
+      "decision_url": "https://mmadecisions.com/decision/8424/Keita-Nakamura-vs-Alex-Morono"
     },
     {
       "event_title": "UFC Fight Night 137: Santos vs. Anders",
@@ -27753,20 +27753,6 @@
     {
       "event_title": "UFC 165: Jones vs. Gustafsson",
       "event_date": "September 21, 2013",
-      "fight": "Caceres def. Delorme",
-      "decision_type": "Split",
-      "dissenter_judge_name": "Brian Beauchamp",
-      "j1_name": "Brian Beauchamp",
-      "j1_score": "28 - 29",
-      "j2_name": "Graham Bettes",
-      "j2_score": "29 - 28",
-      "j3_name": "Benoit Roussel",
-      "j3_score": "29 - 28",
-      "decision_url": "https://mmadecisions.com/decision/4507/Alex-Caceres-vs-Roland-Delorme"
-    },
-    {
-      "event_title": "UFC 165: Jones vs. Gustafsson",
-      "event_date": "September 21, 2013",
       "fight": "Prazeres def. Ronson",
       "decision_type": "Split",
       "dissenter_judge_name": "Brian Beauchamp",
@@ -27793,18 +27779,18 @@
       "decision_url": "https://mmadecisions.com/decision/4513/Myles-Jury-vs-Mike-Ricci"
     },
     {
-      "event_title": "UFC Fight Night 52: Hunt vs. Nelson",
-      "event_date": "September 20, 2014",
-      "fight": "Kunimoto def. Walsh",
+      "event_title": "UFC 165: Jones vs. Gustafsson",
+      "event_date": "September 21, 2013",
+      "fight": "Caceres def. Delorme",
       "decision_type": "Split",
-      "dissenter_judge_name": "Mark Collett",
-      "j1_name": "Mark Collett",
+      "dissenter_judge_name": "Brian Beauchamp",
+      "j1_name": "Brian Beauchamp",
       "j1_score": "28 - 29",
-      "j2_name": "Kon Papaioannou",
+      "j2_name": "Graham Bettes",
       "j2_score": "29 - 28",
-      "j3_name": "Tony Weeks",
+      "j3_name": "Benoit Roussel",
       "j3_score": "29 - 28",
-      "decision_url": "https://mmadecisions.com/decision/5520/Kiichi-Kunimoto-vs-Rich-Walsh"
+      "decision_url": "https://mmadecisions.com/decision/4507/Alex-Caceres-vs-Roland-Delorme"
     },
     {
       "event_title": "UFC Fight Night 52: Hunt vs. Nelson",
@@ -27821,18 +27807,32 @@
       "decision_url": "https://mmadecisions.com/decision/5510/Kyung-Ho-Kang-vs-Michinori-Tanaka"
     },
     {
+      "event_title": "UFC Fight Night 52: Hunt vs. Nelson",
+      "event_date": "September 20, 2014",
+      "fight": "Kunimoto def. Walsh",
+      "decision_type": "Split",
+      "dissenter_judge_name": "Mark Collett",
+      "j1_name": "Mark Collett",
+      "j1_score": "28 - 29",
+      "j2_name": "Kon Papaioannou",
+      "j2_score": "29 - 28",
+      "j3_name": "Tony Weeks",
+      "j3_score": "29 - 28",
+      "decision_url": "https://mmadecisions.com/decision/5520/Kiichi-Kunimoto-vs-Rich-Walsh"
+    },
+    {
       "event_title": "UFC 331: Van vs. Pantoja 2",
       "event_date": "September 19, 2026",
-      "fight": "Menifield def. Baraniewski",
+      "fight": "Aswell def. Yoo",
       "decision_type": "Split",
       "dissenter_judge_name": "Ron McCarthy",
-      "j1_name": "Chris Leben",
+      "j1_name": "Derek Cleary",
       "j1_score": "29 - 28",
       "j2_name": "Ron McCarthy",
       "j2_score": "28 - 29",
-      "j3_name": "Jovany Varela",
+      "j3_name": "Daniel Mobley",
       "j3_score": "29 - 28",
-      "decision_url": "https://mmadecisions.com/decision/16354/Alonzo-Menifield-vs-Iwo-Baraniewski"
+      "decision_url": "https://mmadecisions.com/decision/16351/Michael-Aswell-vs-Joo-Sang-Yoo"
     },
     {
       "event_title": "UFC 331: Van vs. Pantoja 2",
@@ -27851,30 +27851,16 @@
     {
       "event_title": "UFC 331: Van vs. Pantoja 2",
       "event_date": "September 19, 2026",
-      "fight": "Aswell def. Yoo",
+      "fight": "Menifield def. Baraniewski",
       "decision_type": "Split",
       "dissenter_judge_name": "Ron McCarthy",
-      "j1_name": "Derek Cleary",
+      "j1_name": "Chris Leben",
       "j1_score": "29 - 28",
       "j2_name": "Ron McCarthy",
       "j2_score": "28 - 29",
-      "j3_name": "Daniel Mobley",
+      "j3_name": "Jovany Varela",
       "j3_score": "29 - 28",
-      "decision_url": "https://mmadecisions.com/decision/16351/Michael-Aswell-vs-Joo-Sang-Yoo"
-    },
-    {
-      "event_title": "UFC on ESPN+ 36: Covington vs. Woodley",
-      "event_date": "September 19, 2020",
-      "fight": "Ewell def. Rivera",
-      "decision_type": "Split",
-      "dissenter_judge_name": "Junichiro Kamijo",
-      "j1_name": "Michael Bell",
-      "j1_score": "29 - 28",
-      "j2_name": "Dave Hagen",
-      "j2_score": "29 - 28",
-      "j3_name": "Junichiro Kamijo",
-      "j3_score": "28 - 29",
-      "decision_url": "https://mmadecisions.com/decision/11302/Andre-Ewell-vs-Irwin-Rivera"
+      "decision_url": "https://mmadecisions.com/decision/16354/Alonzo-Menifield-vs-Iwo-Baraniewski"
     },
     {
       "event_title": "UFC on ESPN+ 36: Covington vs. Woodley",
@@ -27905,6 +27891,20 @@
       "decision_url": "https://mmadecisions.com/decision/11309/Kevin-Holland-vs-Darren-Stewart"
     },
     {
+      "event_title": "UFC on ESPN+ 36: Covington vs. Woodley",
+      "event_date": "September 19, 2020",
+      "fight": "Ewell def. Rivera",
+      "decision_type": "Split",
+      "dissenter_judge_name": "Junichiro Kamijo",
+      "j1_name": "Michael Bell",
+      "j1_score": "29 - 28",
+      "j2_name": "Dave Hagen",
+      "j2_score": "29 - 28",
+      "j3_name": "Junichiro Kamijo",
+      "j3_score": "28 - 29",
+      "decision_url": "https://mmadecisions.com/decision/11302/Andre-Ewell-vs-Irwin-Rivera"
+    },
+    {
       "event_title": "UFC 103: Franklin vs. Belfort",
       "event_date": "September 19, 2009",
       "fight": "Marshall def. Brilz",
@@ -27921,20 +27921,6 @@
     {
       "event_title": "UFC on ESPN+ 68: Sandhagen vs. Song",
       "event_date": "September 17, 2022",
-      "fight": "Fili def. Algeo",
-      "decision_type": "Split",
-      "dissenter_judge_name": "Chris Lee",
-      "j1_name": "Derek Cleary",
-      "j1_score": "29 - 28",
-      "j2_name": "Sal D'Amato",
-      "j2_score": "29 - 28",
-      "j3_name": "Chris Lee",
-      "j3_score": "28 - 29",
-      "decision_url": "https://mmadecisions.com/decision/13490/Andre-Fili-vs-Bill-Algeo"
-    },
-    {
-      "event_title": "UFC on ESPN+ 68: Sandhagen vs. Song",
-      "event_date": "September 17, 2022",
       "fight": "Nascimento def. Boser",
       "decision_type": "Split",
       "dissenter_judge_name": "Douglas Crosby",
@@ -27947,18 +27933,18 @@
       "decision_url": "https://mmadecisions.com/decision/13488/Rodrigo-Nascimento-vs-Tanner-Boser"
     },
     {
-      "event_title": "UFC Fight Night 94: Poirier vs. Johnson",
-      "event_date": "September 17, 2016",
-      "fight": "Carneiro def. Robertson",
+      "event_title": "UFC on ESPN+ 68: Sandhagen vs. Song",
+      "event_date": "September 17, 2022",
+      "fight": "Fili def. Algeo",
       "decision_type": "Split",
-      "dissenter_judge_name": "Guadalupe Chapa",
-      "j1_name": "Guadalupe Chapa",
-      "j1_score": "28 - 29",
-      "j2_name": "Hector Maldonado",
-      "j2_score": "30 - 27",
-      "j3_name": "Marcos Rosales",
-      "j3_score": "29 - 28",
-      "decision_url": "https://mmadecisions.com/decision/7311/Roan-Carneiro-vs-Kenny-Robertson"
+      "dissenter_judge_name": "Chris Lee",
+      "j1_name": "Derek Cleary",
+      "j1_score": "29 - 28",
+      "j2_name": "Sal D'Amato",
+      "j2_score": "29 - 28",
+      "j3_name": "Chris Lee",
+      "j3_score": "28 - 29",
+      "decision_url": "https://mmadecisions.com/decision/13490/Andre-Fili-vs-Bill-Algeo"
     },
     {
       "event_title": "UFC Fight Night 94: Poirier vs. Johnson",
@@ -27973,6 +27959,20 @@
       "j3_name": "Marcos Rosales",
       "j3_score": "28 - 28",
       "decision_url": "https://mmadecisions.com/decision/7304/Albert-Morales-vs-Alejandro-Perez"
+    },
+    {
+      "event_title": "UFC Fight Night 94: Poirier vs. Johnson",
+      "event_date": "September 17, 2016",
+      "fight": "Carneiro def. Robertson",
+      "decision_type": "Split",
+      "dissenter_judge_name": "Guadalupe Chapa",
+      "j1_name": "Guadalupe Chapa",
+      "j1_score": "28 - 29",
+      "j2_name": "Hector Maldonado",
+      "j2_score": "30 - 27",
+      "j3_name": "Marcos Rosales",
+      "j3_score": "29 - 28",
+      "decision_url": "https://mmadecisions.com/decision/7311/Roan-Carneiro-vs-Kenny-Robertson"
     },
     {
       "event_title": "Noche UFC: Grasso vs. Shevchenko 2",
@@ -27991,20 +27991,6 @@
     {
       "event_title": "UFC Fight Night 116: Rockhold vs. Branch",
       "event_date": "September 16, 2017",
-      "fight": "Aubin-Mercier def. Martin",
-      "decision_type": "Split",
-      "dissenter_judge_name": "Eric Col\u00f3n",
-      "j1_name": "Eric Col\u00f3n",
-      "j1_score": "28 - 29",
-      "j2_name": "Greg Monskie",
-      "j2_score": "29 - 28",
-      "j3_name": "Jeff Mullen",
-      "j3_score": "29 - 28",
-      "decision_url": "https://mmadecisions.com/decision/8413/Olivier-Aubin-Mercier-vs-Anthony-Rocco-Martin"
-    },
-    {
-      "event_title": "UFC Fight Night 116: Rockhold vs. Branch",
-      "event_date": "September 16, 2017",
       "fight": "Ledet def. Anyanwu",
       "decision_type": "Split",
       "dissenter_judge_name": "Eric Col\u00f3n",
@@ -28015,6 +28001,20 @@
       "j3_name": "Cardo Urso",
       "j3_score": "29 - 28",
       "decision_url": "https://mmadecisions.com/decision/8414/Justin-Ledet-vs-Zu-Anyanwu"
+    },
+    {
+      "event_title": "UFC Fight Night 116: Rockhold vs. Branch",
+      "event_date": "September 16, 2017",
+      "fight": "Aubin-Mercier def. Martin",
+      "decision_type": "Split",
+      "dissenter_judge_name": "Eric Col\u00f3n",
+      "j1_name": "Eric Col\u00f3n",
+      "j1_score": "28 - 29",
+      "j2_name": "Greg Monskie",
+      "j2_score": "29 - 28",
+      "j3_name": "Jeff Mullen",
+      "j3_score": "29 - 28",
+      "decision_url": "https://mmadecisions.com/decision/8413/Olivier-Aubin-Mercier-vs-Anthony-Rocco-Martin"
     },
     {
       "event_title": "UFC Fight Night 136: Hunt vs. Oliynyk",
@@ -28061,20 +28061,6 @@
     {
       "event_title": "UFC on ESPN+ 16: Cerrone vs. Gaethje",
       "event_date": "September 14, 2019",
-      "fight": "Teixeira def. Krylov",
-      "decision_type": "Split",
-      "dissenter_judge_name": "Michael Bell",
-      "j1_name": "Michael Bell",
-      "j1_score": "28 - 29",
-      "j2_name": "Sal D'Amato",
-      "j2_score": "29 - 28",
-      "j3_name": "Dave Hagen",
-      "j3_score": "29 - 28",
-      "decision_url": "https://mmadecisions.com/decision/10439/Glover-Teixeira-vs-Nikita-Krylov"
-    },
-    {
-      "event_title": "UFC on ESPN+ 16: Cerrone vs. Gaethje",
-      "event_date": "September 14, 2019",
       "fight": "Johns def. Smith",
       "decision_type": "Split",
       "dissenter_judge_name": "Derek Cleary",
@@ -28085,6 +28071,20 @@
       "j3_name": "Dave Hagen",
       "j3_score": "29 - 28",
       "decision_url": "https://mmadecisions.com/decision/10433/Miles-Johns-vs-Cole-Smith"
+    },
+    {
+      "event_title": "UFC on ESPN+ 16: Cerrone vs. Gaethje",
+      "event_date": "September 14, 2019",
+      "fight": "Teixeira def. Krylov",
+      "decision_type": "Split",
+      "dissenter_judge_name": "Michael Bell",
+      "j1_name": "Michael Bell",
+      "j1_score": "28 - 29",
+      "j2_name": "Sal D'Amato",
+      "j2_score": "29 - 28",
+      "j3_name": "Dave Hagen",
+      "j3_score": "29 - 28",
+      "decision_url": "https://mmadecisions.com/decision/10439/Glover-Teixeira-vs-Nikita-Krylov"
     },
     {
       "event_title": "Noche UFC 3: Lopes vs. Silva",
@@ -28159,20 +28159,6 @@
     {
       "event_title": "UFC 279: Diaz vs. Ferguson",
       "event_date": "September 10, 2022",
-      "fight": "Lainesse def. Weeks",
-      "decision_type": "Split",
-      "dissenter_judge_name": "Ron McCarthy",
-      "j1_name": "Michael Bell",
-      "j1_score": "29 - 28",
-      "j2_name": "Ron McCarthy",
-      "j2_score": "28 - 29",
-      "j3_name": "Tony Weeks",
-      "j3_score": "29 - 28",
-      "decision_url": "https://mmadecisions.com/decision/13467/Yohan-Lainesse-vs-Darian-Weeks"
-    },
-    {
-      "event_title": "UFC 279: Diaz vs. Ferguson",
-      "event_date": "September 10, 2022",
       "fight": "Rodriguez def. Jingliang",
       "decision_type": "Split",
       "dissenter_judge_name": "Ron McCarthy",
@@ -28185,18 +28171,18 @@
       "decision_url": "https://mmadecisions.com/decision/13477/Daniel-Rodriguez-vs-Li-Jingliang"
     },
     {
-      "event_title": "UFC 203: Miocic vs. Overeem",
-      "event_date": "September 10, 2016",
-      "fight": "Tavares def. Magalh\u00e3es",
+      "event_title": "UFC 279: Diaz vs. Ferguson",
+      "event_date": "September 10, 2022",
+      "fight": "Lainesse def. Weeks",
       "decision_type": "Split",
-      "dissenter_judge_name": "Rick Winter",
-      "j1_name": "Derek Cleary",
-      "j1_score": "30 - 27",
-      "j2_name": "Eric Col\u00f3n",
-      "j2_score": "29 - 28",
-      "j3_name": "Rick Winter",
-      "j3_score": "28 - 29",
-      "decision_url": "https://mmadecisions.com/decision/7280/Brad-Tavares-vs-Caio-Magalh\u00e3es"
+      "dissenter_judge_name": "Ron McCarthy",
+      "j1_name": "Michael Bell",
+      "j1_score": "29 - 28",
+      "j2_name": "Ron McCarthy",
+      "j2_score": "28 - 29",
+      "j3_name": "Tony Weeks",
+      "j3_score": "29 - 28",
+      "decision_url": "https://mmadecisions.com/decision/13467/Yohan-Lainesse-vs-Darian-Weeks"
     },
     {
       "event_title": "UFC 203: Miocic vs. Overeem",
@@ -28211,6 +28197,20 @@
       "j3_name": "Sal D'Amato",
       "j3_score": "28 - 29",
       "decision_url": "https://mmadecisions.com/decision/7282/Bethe-Correia-vs-Jessica-Eye"
+    },
+    {
+      "event_title": "UFC 203: Miocic vs. Overeem",
+      "event_date": "September 10, 2016",
+      "fight": "Tavares def. Magalh\u00e3es",
+      "decision_type": "Split",
+      "dissenter_judge_name": "Rick Winter",
+      "j1_name": "Derek Cleary",
+      "j1_score": "30 - 27",
+      "j2_name": "Eric Col\u00f3n",
+      "j2_score": "29 - 28",
+      "j3_name": "Rick Winter",
+      "j3_score": "28 - 29",
+      "decision_url": "https://mmadecisions.com/decision/7280/Brad-Tavares-vs-Caio-Magalh\u00e3es"
     },
     {
       "event_title": "UFC 215: Nunes vs. Shevchenko 2",
@@ -28229,20 +28229,6 @@
     {
       "event_title": "UFC 228: Woodley vs. Till",
       "event_date": "September 08, 2018",
-      "fight": "Aldana def. Pudilova",
-      "decision_type": "Split",
-      "dissenter_judge_name": "Don Turnage",
-      "j1_name": "Steve Armstrong",
-      "j1_score": "29 - 28",
-      "j2_name": "Chris Lee",
-      "j2_score": "29 - 28",
-      "j3_name": "Don Turnage",
-      "j3_score": "28 - 29",
-      "decision_url": "https://mmadecisions.com/decision/9331/Irene-Aldana-vs-Lucie-Pudilova"
-    },
-    {
-      "event_title": "UFC 228: Woodley vs. Till",
-      "event_date": "September 08, 2018",
       "fight": "Brooks def. Sanchez",
       "decision_type": "Split",
       "dissenter_judge_name": "Don Turnage",
@@ -28253,6 +28239,20 @@
       "j3_name": "Don Turnage",
       "j3_score": "28 - 29",
       "decision_url": "https://mmadecisions.com/decision/9330/Jarred-Brooks-vs-Roberto-Sanchez"
+    },
+    {
+      "event_title": "UFC 228: Woodley vs. Till",
+      "event_date": "September 08, 2018",
+      "fight": "Aldana def. Pudilova",
+      "decision_type": "Split",
+      "dissenter_judge_name": "Don Turnage",
+      "j1_name": "Steve Armstrong",
+      "j1_score": "29 - 28",
+      "j2_name": "Chris Lee",
+      "j2_score": "29 - 28",
+      "j3_name": "Don Turnage",
+      "j3_score": "28 - 29",
+      "decision_url": "https://mmadecisions.com/decision/9331/Irene-Aldana-vs-Lucie-Pudilova"
     },
     {
       "event_title": "UFC 75: Champion vs. Champion",
@@ -28299,20 +28299,6 @@
     {
       "event_title": "UFC 88: Breakthrough",
       "event_date": "September 06, 2008",
-      "fight": "Kim def. Brown",
-      "decision_type": "Split",
-      "dissenter_judge_name": "Cecil Peoples",
-      "j1_name": "Douglas Crosby",
-      "j1_score": "29 - 28",
-      "j2_name": "Tony Mullinax",
-      "j2_score": "29 - 28",
-      "j3_name": "Cecil Peoples",
-      "j3_score": "28 - 29",
-      "decision_url": "https://mmadecisions.com/decision/1068/Dong-Hyun-Kim-vs-Matt-Brown"
-    },
-    {
-      "event_title": "UFC 88: Breakthrough",
-      "event_date": "September 06, 2008",
       "fight": "Chonan def. Carneiro",
       "decision_type": "Split",
       "dissenter_judge_name": "Chris Lee",
@@ -28325,18 +28311,18 @@
       "decision_url": "https://mmadecisions.com/decision/1064/Ryo-Chonan-vs-Roan-Carneiro"
     },
     {
-      "event_title": "UFC 191: Johnson vs. Dodson 2",
-      "event_date": "September 05, 2015",
-      "fight": "Silva def. Malegarie",
+      "event_title": "UFC 88: Breakthrough",
+      "event_date": "September 06, 2008",
+      "fight": "Kim def. Brown",
       "decision_type": "Split",
-      "dissenter_judge_name": "Cardo Urso",
-      "j1_name": "Adalaide Byrd",
-      "j1_score": "30 - 27",
-      "j2_name": "Marcos Rosales",
-      "j2_score": "30 - 27",
-      "j3_name": "Cardo Urso",
+      "dissenter_judge_name": "Cecil Peoples",
+      "j1_name": "Douglas Crosby",
+      "j1_score": "29 - 28",
+      "j2_name": "Tony Mullinax",
+      "j2_score": "29 - 28",
+      "j3_name": "Cecil Peoples",
       "j3_score": "28 - 29",
-      "decision_url": "https://mmadecisions.com/decision/6428/Joaquim-Silva-vs-Nazareno-Malegarie"
+      "decision_url": "https://mmadecisions.com/decision/1068/Dong-Hyun-Kim-vs-Matt-Brown"
     },
     {
       "event_title": "UFC 191: Johnson vs. Dodson 2",
@@ -28351,6 +28337,20 @@
       "j3_name": "Tony Weeks",
       "j3_score": "28 - 29",
       "decision_url": "https://mmadecisions.com/decision/6430/Tiago-Trator-vs-Clay-Collard"
+    },
+    {
+      "event_title": "UFC 191: Johnson vs. Dodson 2",
+      "event_date": "September 05, 2015",
+      "fight": "Silva def. Malegarie",
+      "decision_type": "Split",
+      "dissenter_judge_name": "Cardo Urso",
+      "j1_name": "Adalaide Byrd",
+      "j1_score": "30 - 27",
+      "j2_name": "Marcos Rosales",
+      "j2_score": "30 - 27",
+      "j3_name": "Cardo Urso",
+      "j3_score": "28 - 29",
+      "decision_url": "https://mmadecisions.com/decision/6428/Joaquim-Silva-vs-Nazareno-Malegarie"
     },
     {
       "event_title": "UFC 191: Johnson vs. Dodson 2",
@@ -28397,20 +28397,6 @@
     {
       "event_title": "UFC Fight Night 93: Arlovski vs. Barnett",
       "event_date": "September 03, 2016",
-      "fight": "Ayari def. Wallhead",
-      "decision_type": "Split",
-      "dissenter_judge_name": "Ben Cartlidge",
-      "j1_name": "Ben Cartlidge",
-      "j1_score": "28 - 29",
-      "j2_name": "Takeo Kobayashi",
-      "j2_score": "29 - 28",
-      "j3_name": "Paul Sutherland",
-      "j3_score": "30 - 27",
-      "decision_url": "https://mmadecisions.com/decision/7271/Jessin-Ayari-vs-Jim-Wallhead"
-    },
-    {
-      "event_title": "UFC Fight Night 93: Arlovski vs. Barnett",
-      "event_date": "September 03, 2016",
       "fight": "Colombo drew with Danho",
       "decision_type": "Majority",
       "dissenter_judge_name": "Andy Roberts",
@@ -28421,6 +28407,20 @@
       "j3_name": "Clemens Werner",
       "j3_score": "28 - 28",
       "decision_url": "https://mmadecisions.com/decision/7267/Christian-Colombo-vs-Jarjis-Danho"
+    },
+    {
+      "event_title": "UFC Fight Night 93: Arlovski vs. Barnett",
+      "event_date": "September 03, 2016",
+      "fight": "Ayari def. Wallhead",
+      "decision_type": "Split",
+      "dissenter_judge_name": "Ben Cartlidge",
+      "j1_name": "Ben Cartlidge",
+      "j1_score": "28 - 29",
+      "j2_name": "Takeo Kobayashi",
+      "j2_score": "29 - 28",
+      "j3_name": "Paul Sutherland",
+      "j3_score": "30 - 27",
+      "decision_url": "https://mmadecisions.com/decision/7271/Jessin-Ayari-vs-Jim-Wallhead"
     },
     {
       "event_title": "UFC 267: Blachowicz vs. Teixeira",
@@ -28439,20 +28439,6 @@
     {
       "event_title": "UFC on ESPN+ 71: Kattar vs. Allen",
       "event_date": "October 29, 2022",
-      "fight": "Griffin def. Means",
-      "decision_type": "Split",
-      "dissenter_judge_name": "Eric Col\u00f3n",
-      "j1_name": "Ben Cartlidge",
-      "j1_score": "29 - 28",
-      "j2_name": "Derek Cleary",
-      "j2_score": "30 - 27",
-      "j3_name": "Eric Col\u00f3n",
-      "j3_score": "28 - 29",
-      "decision_url": "https://mmadecisions.com/decision/13568/Max-Griffin-vs-Tim-Means"
-    },
-    {
-      "event_title": "UFC on ESPN+ 71: Kattar vs. Allen",
-      "event_date": "October 29, 2022",
       "fight": "Rountree Jr. def. Jacoby",
       "decision_type": "Split",
       "dissenter_judge_name": "Ron McCarthy",
@@ -28463,6 +28449,20 @@
       "j3_name": "Ron McCarthy",
       "j3_score": "28 - 29",
       "decision_url": "https://mmadecisions.com/decision/13565/Khalil-Rountree-Jr.-vs-Dustin-Jacoby"
+    },
+    {
+      "event_title": "UFC on ESPN+ 71: Kattar vs. Allen",
+      "event_date": "October 29, 2022",
+      "fight": "Griffin def. Means",
+      "decision_type": "Split",
+      "dissenter_judge_name": "Eric Col\u00f3n",
+      "j1_name": "Ben Cartlidge",
+      "j1_score": "29 - 28",
+      "j2_name": "Derek Cleary",
+      "j2_score": "30 - 27",
+      "j3_name": "Eric Col\u00f3n",
+      "j3_score": "28 - 29",
+      "decision_url": "https://mmadecisions.com/decision/13568/Max-Griffin-vs-Tim-Means"
     },
     {
       "event_title": "UFC 137: Penn vs. Diaz",
@@ -28497,10 +28497,10 @@
       "event_date": "October 27, 2018",
       "fight": "Villante def. Herman",
       "decision_type": "Split",
-      "dissenter_judge_name": "Bob LeBlanc",
+      "dissenter_judge_name": "Bob Leblanc",
       "j1_name": "Hubert Earle",
       "j1_score": "29 - 28",
-      "j2_name": "Bob LeBlanc",
+      "j2_name": "Bob Leblanc",
       "j2_score": "28 - 29",
       "j3_name": "David Therien",
       "j3_score": "29 - 28",
@@ -28519,6 +28519,20 @@
       "j3_name": "Jacob Montalvo",
       "j3_score": "28 - 29",
       "decision_url": "https://mmadecisions.com/decision/15070/Mateusz-Rebecki-vs-Myktybek-Orolbai"
+    },
+    {
+      "event_title": "UFC on ESPN+ 20: Maia vs. Askren",
+      "event_date": "October 26, 2019",
+      "fight": "Ray def. Johnson",
+      "decision_type": "Majority",
+      "dissenter_judge_name": "Evan Field",
+      "j1_name": "Evan Field",
+      "j1_score": "28 - 28",
+      "j2_name": "Barry Foley",
+      "j2_score": "29 - 28",
+      "j3_name": "Pawel Harasim",
+      "j3_score": "29 - 28",
+      "decision_url": "https://mmadecisions.com/decision/10600/Stevie-Ray-vs-Michael-Johnson"
     },
     {
       "event_title": "UFC on ESPN+ 20: Maia vs. Askren",
@@ -28547,20 +28561,6 @@
       "j3_name": "Howard Hughes",
       "j3_score": "29 - 28",
       "decision_url": "https://mmadecisions.com/decision/10595/Randa-Markos-vs-Ashley-Yoder"
-    },
-    {
-      "event_title": "UFC on ESPN+ 20: Maia vs. Askren",
-      "event_date": "October 26, 2019",
-      "fight": "Ray def. Johnson",
-      "decision_type": "Majority",
-      "dissenter_judge_name": "Evan Field",
-      "j1_name": "Evan Field",
-      "j1_score": "28 - 28",
-      "j2_name": "Barry Foley",
-      "j2_score": "29 - 28",
-      "j3_name": "Pawel Harasim",
-      "j3_score": "29 - 28",
-      "decision_url": "https://mmadecisions.com/decision/10600/Stevie-Ray-vs-Michael-Johnson"
     },
     {
       "event_title": "UFC 321: Aspinall vs. Gane",
@@ -28621,20 +28621,6 @@
     {
       "event_title": "UFC Fight Night 76: Holohan vs. Smolka",
       "event_date": "October 24, 2015",
-      "fight": "Till drew with Dalby",
-      "decision_type": "Majority",
-      "dissenter_judge_name": "Mark Collett",
-      "j1_name": "Mark Collett",
-      "j1_score": "29 - 28",
-      "j2_name": "Andy Roberts",
-      "j2_score": "28 - 28",
-      "j3_name": "Dean Weir",
-      "j3_score": "28 - 28",
-      "decision_url": "https://mmadecisions.com/decision/6532/Darren-Till-vs-Nicolas-Dalby"
-    },
-    {
-      "event_title": "UFC Fight Night 76: Holohan vs. Smolka",
-      "event_date": "October 24, 2015",
       "fight": "Jotko def. Askham",
       "decision_type": "Split",
       "dissenter_judge_name": "Paul Sutherland",
@@ -28645,6 +28631,20 @@
       "j3_name": "Dean Weir",
       "j3_score": "29 - 28",
       "decision_url": "https://mmadecisions.com/decision/6528/Krzysztof-Jotko-vs-Scott-Askham"
+    },
+    {
+      "event_title": "UFC Fight Night 76: Holohan vs. Smolka",
+      "event_date": "October 24, 2015",
+      "fight": "Till drew with Dalby",
+      "decision_type": "Majority",
+      "dissenter_judge_name": "Mark Collett",
+      "j1_name": "Mark Collett",
+      "j1_score": "29 - 28",
+      "j2_name": "Andy Roberts",
+      "j2_score": "28 - 28",
+      "j3_name": "Dean Weir",
+      "j3_score": "28 - 28",
+      "decision_url": "https://mmadecisions.com/decision/6532/Darren-Till-vs-Nicolas-Dalby"
     },
     {
       "event_title": "UFC 104: Machida vs. Shogun",
@@ -28663,20 +28663,6 @@
     {
       "event_title": "UFC on ESPN+ 54: Costa vs. Vettori",
       "event_date": "October 23, 2021",
-      "fight": "Dawson drew with Glenn",
-      "decision_type": "Majority",
-      "dissenter_judge_name": "Douglas Crosby",
-      "j1_name": "Douglas Crosby",
-      "j1_score": "29 - 28",
-      "j2_name": "Chris Lee",
-      "j2_score": "28 - 28",
-      "j3_name": "Ron McCarthy",
-      "j3_score": "28 - 28",
-      "decision_url": "https://mmadecisions.com/decision/12655/Grant-Dawson-vs-Ricky-Glenn"
-    },
-    {
-      "event_title": "UFC on ESPN+ 54: Costa vs. Vettori",
-      "event_date": "October 23, 2021",
       "fight": "Trinaldo def. Grant",
       "decision_type": "Split",
       "dissenter_judge_name": "Sal D'Amato",
@@ -28689,18 +28675,18 @@
       "decision_url": "https://mmadecisions.com/decision/12651/Francisco-Trinaldo-vs-Dwight-Grant"
     },
     {
-      "event_title": "UFC 121: Lesnar vs. Velasquez",
-      "event_date": "October 23, 2010",
-      "fight": "Shields def. Kampmann",
-      "decision_type": "Split",
-      "dissenter_judge_name": "Unknown28 -  29",
-      "j1_name": "Nelson Hamilton",
-      "j1_score": "30 - 27",
-      "j2_name": "Unknown28 -  29",
-      "j2_score": "28 - 29",
-      "j3_name": "Unknown29 -  28",
-      "j3_score": "29 - 28",
-      "decision_url": "https://mmadecisions.com/decision/1981/Jake-Shields-vs-Martin-Kampmann"
+      "event_title": "UFC on ESPN+ 54: Costa vs. Vettori",
+      "event_date": "October 23, 2021",
+      "fight": "Dawson drew with Glenn",
+      "decision_type": "Majority",
+      "dissenter_judge_name": "Douglas Crosby",
+      "j1_name": "Douglas Crosby",
+      "j1_score": "29 - 28",
+      "j2_name": "Chris Lee",
+      "j2_score": "28 - 28",
+      "j3_name": "Ron McCarthy",
+      "j3_score": "28 - 28",
+      "decision_url": "https://mmadecisions.com/decision/12655/Grant-Dawson-vs-Ricky-Glenn"
     },
     {
       "event_title": "UFC 121: Lesnar vs. Velasquez",
@@ -28729,6 +28715,20 @@
       "j3_name": "Cecil Peoples",
       "j3_score": "29 - 28",
       "decision_url": "https://mmadecisions.com/decision/1976/Chris-Camozzi-vs-Dongi-Yang"
+    },
+    {
+      "event_title": "UFC 121: Lesnar vs. Velasquez",
+      "event_date": "October 23, 2010",
+      "fight": "Shields def. Kampmann",
+      "decision_type": "Split",
+      "dissenter_judge_name": "Unknown28 - 29",
+      "j1_name": "Nelson Hamilton",
+      "j1_score": "30 - 27",
+      "j2_name": "Unknown28 - 29",
+      "j2_score": "28 - 29",
+      "j3_name": "Unknown29 - 28",
+      "j3_score": "29 - 28",
+      "decision_url": "https://mmadecisions.com/decision/1981/Jake-Shields-vs-Martin-Kampmann"
     },
     {
       "event_title": "UFC 280: Oliveira vs. Makhachev",
@@ -28775,20 +28775,6 @@
     {
       "event_title": "UFC 77: Hostile Territory",
       "event_date": "October 20, 2007",
-      "fight": "Burkman def. Petz",
-      "decision_type": "Split",
-      "dissenter_judge_name": "Unknown28 -  29",
-      "j1_name": "Unknown28 -  29",
-      "j1_score": "28 - 29",
-      "j2_name": "Unknown29 -  28",
-      "j2_score": "29 - 28",
-      "j3_name": "Unknown29 -  28",
-      "j3_score": "29 - 28",
-      "decision_url": "https://mmadecisions.com/decision/868/Joshua-Burkman-vs-Forrest-Petz"
-    },
-    {
-      "event_title": "UFC 77: Hostile Territory",
-      "event_date": "October 20, 2007",
       "fight": "Grice def. Black",
       "decision_type": "Split",
       "dissenter_judge_name": "John Kloock",
@@ -28799,6 +28785,20 @@
       "j3_name": "Jeff Mullen",
       "j3_score": "29 - 28",
       "decision_url": "https://mmadecisions.com/decision/867/Matt-Grice-vs-Jason-Black"
+    },
+    {
+      "event_title": "UFC 77: Hostile Territory",
+      "event_date": "October 20, 2007",
+      "fight": "Burkman def. Petz",
+      "decision_type": "Split",
+      "dissenter_judge_name": "Unknown28 - 29",
+      "j1_name": "Unknown28 - 29",
+      "j1_score": "28 - 29",
+      "j2_name": "Unknown29 - 28",
+      "j2_score": "29 - 28",
+      "j3_name": "Unknown29 - 28",
+      "j3_score": "29 - 28",
+      "decision_url": "https://mmadecisions.com/decision/868/Joshua-Burkman-vs-Forrest-Petz"
     },
     {
       "event_title": "UFC 166: Velasquez vs. Dos Santos 3",

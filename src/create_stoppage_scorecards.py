@@ -22,19 +22,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "TKO",
         "rounds_scored": 4,
         "judges": [
-            {
-                "judge_name": "Mike Bell",
-                "scores": {"1": [10, 9], "2": [9, 10], "3": [10, 9], "4": [10, 9]}
-            },
-            {
-                "judge_name": "Derek Cleary",
-                "scores": {"1": [10, 9], "2": [9, 10], "3": [9, 10], "4": [10, 9]}
-            },
-            {
-                "judge_name": "Sal D'Amato",
-                "scores": {"1": [9, 10], "2": [9, 10], "3": [10, 9], "4": [9, 10]}
-            }
-        ]
+            {"judge_name": "Mike Bell", "scores": {"1": [10, 9], "2": [9, 10], "3": [10, 9], "4": [10, 9]}},
+            {"judge_name": "Derek Cleary", "scores": {"1": [10, 9], "2": [9, 10], "3": [9, 10], "4": [10, 9]}},
+            {"judge_name": "Sal D'Amato", "scores": {"1": [9, 10], "2": [9, 10], "3": [10, 9], "4": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_usman_edwards_2",
@@ -48,19 +39,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "KO",
         "rounds_scored": 4,
         "judges": [
-            {
-                "judge_name": "Mike Bell",
-                "scores": {"1": [10, 9], "2": [9, 10], "3": [9, 10], "4": [9, 10]}
-            },
-            {
-                "judge_name": "Sal D'Amato",
-                "scores": {"1": [10, 9], "2": [9, 10], "3": [9, 10], "4": [9, 10]}
-            },
-            {
-                "judge_name": "Chris Lee",
-                "scores": {"1": [10, 9], "2": [9, 10], "3": [9, 10], "4": [9, 10]}
-            }
-        ]
+            {"judge_name": "Mike Bell", "scores": {"1": [10, 9], "2": [9, 10], "3": [9, 10], "4": [9, 10]}},
+            {"judge_name": "Sal D'Amato", "scores": {"1": [10, 9], "2": [9, 10], "3": [9, 10], "4": [9, 10]}},
+            {"judge_name": "Chris Lee", "scores": {"1": [10, 9], "2": [9, 10], "3": [9, 10], "4": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_adesanya_pereira_1",
@@ -74,19 +56,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "TKO",
         "rounds_scored": 4,
         "judges": [
-            {
-                "judge_name": "Mike Bell",
-                "scores": {"1": [9, 10], "2": [10, 9], "3": [9, 10], "4": [9, 10]}
-            },
-            {
-                "judge_name": "Derek Cleary",
-                "scores": {"1": [9, 10], "2": [10, 9], "3": [9, 10], "4": [9, 10]}
-            },
-            {
-                "judge_name": "Eric Colón",
-                "scores": {"1": [9, 10], "2": [10, 9], "3": [9, 10], "4": [9, 10]}
-            }
-        ]
+            {"judge_name": "Mike Bell", "scores": {"1": [9, 10], "2": [10, 9], "3": [9, 10], "4": [9, 10]}},
+            {"judge_name": "Derek Cleary", "scores": {"1": [9, 10], "2": [10, 9], "3": [9, 10], "4": [9, 10]}},
+            {"judge_name": "Eric Colón", "scores": {"1": [9, 10], "2": [10, 9], "3": [9, 10], "4": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_silva_sonnen_1",
@@ -100,19 +73,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "Submission",
         "rounds_scored": 4,
         "judges": [
-            {
-                "judge_name": "Nelson Hamilton",
-                "scores": {"1": [9, 10], "2": [9, 10], "3": [9, 10], "4": [9, 10]}
-            },
-            {
-                "judge_name": "Michael Bell",
-                "scores": {"1": [8, 10], "2": [9, 10], "3": [8, 10], "4": [9, 10]}
-            },
-            {
-                "judge_name": "Kelly Coggins",
-                "scores": {"1": [8, 10], "2": [9, 10], "3": [9, 10], "4": [9, 10]}
-            }
-        ]
+            {"judge_name": "Nelson Hamilton", "scores": {"1": [9, 10], "2": [9, 10], "3": [9, 10], "4": [9, 10]}},
+            {"judge_name": "Michael Bell", "scores": {"1": [8, 10], "2": [9, 10], "3": [8, 10], "4": [9, 10]}},
+            {"judge_name": "Kelly Coggins", "scores": {"1": [8, 10], "2": [9, 10], "3": [9, 10], "4": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_lawler_macdonald_2",
@@ -126,19 +90,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "TKO",
         "rounds_scored": 4,
         "judges": [
-            {
-                "judge_name": "Derek Cleary",
-                "scores": {"1": [10, 9], "2": [10, 9], "3": [9, 10], "4": [9, 10]}
-            },
-            {
-                "judge_name": "Chris Lee",
-                "scores": {"1": [10, 9], "2": [10, 9], "3": [9, 10], "4": [9, 10]}
-            },
-            {
-                "judge_name": "Glenn Trowbridge",
-                "scores": {"1": [10, 9], "2": [10, 9], "3": [9, 10], "4": [9, 10]}
-            }
-        ]
+            {"judge_name": "Derek Cleary", "scores": {"1": [10, 9], "2": [10, 9], "3": [9, 10], "4": [9, 10]}},
+            {"judge_name": "Chris Lee", "scores": {"1": [10, 9], "2": [10, 9], "3": [9, 10], "4": [9, 10]}},
+            {"judge_name": "Glenn Trowbridge", "scores": {"1": [10, 9], "2": [10, 9], "3": [9, 10], "4": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_ferguson_gaethje",
@@ -152,19 +107,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "TKO",
         "rounds_scored": 4,
         "judges": [
-            {
-                "judge_name": "Derek Cleary",
-                "scores": {"1": [10, 9], "2": [9, 10], "3": [10, 9], "4": [10, 9]}
-            },
-            {
-                "judge_name": "Chris Lee",
-                "scores": {"1": [10, 9], "2": [9, 10], "3": [10, 9], "4": [10, 9]}
-            },
-            {
-                "judge_name": "Sal D'Amato",
-                "scores": {"1": [10, 9], "2": [10, 9], "3": [10, 9], "4": [10, 9]}
-            }
-        ]
+            {"judge_name": "Derek Cleary", "scores": {"1": [10, 9], "2": [9, 10], "3": [10, 9], "4": [10, 9]}},
+            {"judge_name": "Chris Lee", "scores": {"1": [10, 9], "2": [9, 10], "3": [10, 9], "4": [10, 9]}},
+            {"judge_name": "Sal D'Amato", "scores": {"1": [10, 9], "2": [10, 9], "3": [10, 9], "4": [10, 9]}},
+        ],
     },
     {
         "fight_id": "finish_teixeira_prochazka",
@@ -178,19 +124,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "Submission",
         "rounds_scored": 4,
         "judges": [
-            {
-                "judge_name": "Michael Bell",
-                "scores": {"1": [9, 10], "2": [10, 9], "3": [9, 10], "4": [9, 10]}
-            },
-            {
-                "judge_name": "Clemens Werner",
-                "scores": {"1": [9, 10], "2": [10, 9], "3": [9, 10], "4": [10, 9]}
-            },
-            {
-                "judge_name": "Jean-Robert Lague",
-                "scores": {"1": [9, 10], "2": [10, 9], "3": [9, 10], "4": [9, 9]}
-            }
-        ]
+            {"judge_name": "Michael Bell", "scores": {"1": [9, 10], "2": [10, 9], "3": [9, 10], "4": [9, 10]}},
+            {"judge_name": "Clemens Werner", "scores": {"1": [9, 10], "2": [10, 9], "3": [9, 10], "4": [10, 9]}},
+            {"judge_name": "Jean-Robert Lague", "scores": {"1": [9, 10], "2": [10, 9], "3": [9, 10], "4": [9, 9]}},
+        ],
     },
     {
         "fight_id": "finish_makhachev_poirier",
@@ -204,19 +141,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "Submission",
         "rounds_scored": 4,
         "judges": [
-            {
-                "judge_name": "Eric Colón",
-                "scores": {"1": [10, 9], "2": [10, 9], "3": [10, 9], "4": [9, 10]}
-            },
-            {
-                "judge_name": "Chris Lee",
-                "scores": {"1": [10, 9], "2": [10, 9], "3": [10, 9], "4": [9, 10]}
-            },
-            {
-                "judge_name": "Ron McCarthy",
-                "scores": {"1": [10, 9], "2": [9, 10], "3": [10, 9], "4": [9, 10]}
-            }
-        ]
+            {"judge_name": "Eric Colón", "scores": {"1": [10, 9], "2": [10, 9], "3": [10, 9], "4": [9, 10]}},
+            {"judge_name": "Chris Lee", "scores": {"1": [10, 9], "2": [10, 9], "3": [10, 9], "4": [9, 10]}},
+            {"judge_name": "Ron McCarthy", "scores": {"1": [10, 9], "2": [9, 10], "3": [10, 9], "4": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_velasquez_jds_3",
@@ -230,21 +158,11 @@ STOPPAGE_FIGHTS = [
         "finish_method": "TKO",
         "rounds_scored": 4,
         "judges": [
-            {
-                "judge_name": "Marcos Rosales",
-                "scores": {"1": [10, 9], "2": [10, 9], "3": [10, 8], "4": [10, 9]}
-            },
-            {
-                "judge_name": "Sal D'Amato",
-                "scores": {"1": [10, 9], "2": [10, 9], "3": [10, 8], "4": [10, 9]}
-            },
-            {
-                "judge_name": "Glenn Trowbridge",
-                "scores": {"1": [10, 9], "2": [10, 9], "3": [10, 8], "4": [10, 9]}
-            }
-        ]
+            {"judge_name": "Marcos Rosales", "scores": {"1": [10, 9], "2": [10, 9], "3": [10, 8], "4": [10, 9]}},
+            {"judge_name": "Sal D'Amato", "scores": {"1": [10, 9], "2": [10, 9], "3": [10, 8], "4": [10, 9]}},
+            {"judge_name": "Glenn Trowbridge", "scores": {"1": [10, 9], "2": [10, 9], "3": [10, 8], "4": [10, 9]}},
+        ],
     },
-
     # --- FINISHED IN ROUND 4 (ROUNDS 1-3 SCORED) ---
     {
         "fight_id": "finish_miocic_cormier_2",
@@ -258,19 +176,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "TKO",
         "rounds_scored": 3,
         "judges": [
-            {
-                "judge_name": "Derek Cleary",
-                "scores": {"1": [9, 10], "2": [9, 10], "3": [10, 9]}
-            },
-            {
-                "judge_name": "Sal D'Amato",
-                "scores": {"1": [9, 10], "2": [9, 10], "3": [10, 9]}
-            },
-            {
-                "judge_name": "Glenn Trowbridge",
-                "scores": {"1": [9, 10], "2": [9, 10], "3": [9, 10]}
-            }
-        ]
+            {"judge_name": "Derek Cleary", "scores": {"1": [9, 10], "2": [9, 10], "3": [10, 9]}},
+            {"judge_name": "Sal D'Amato", "scores": {"1": [9, 10], "2": [9, 10], "3": [10, 9]}},
+            {"judge_name": "Glenn Trowbridge", "scores": {"1": [9, 10], "2": [9, 10], "3": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_khabib_mcgregor",
@@ -284,19 +193,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "Submission",
         "rounds_scored": 3,
         "judges": [
-            {
-                "judge_name": "Derek Cleary",
-                "scores": {"1": [10, 9], "2": [10, 8], "3": [9, 10]}
-            },
-            {
-                "judge_name": "Sal D'Amato",
-                "scores": {"1": [10, 9], "2": [10, 8], "3": [9, 10]}
-            },
-            {
-                "judge_name": "Glenn Trowbridge",
-                "scores": {"1": [10, 9], "2": [10, 8], "3": [9, 10]}
-            }
-        ]
+            {"judge_name": "Derek Cleary", "scores": {"1": [10, 9], "2": [10, 8], "3": [9, 10]}},
+            {"judge_name": "Sal D'Amato", "scores": {"1": [10, 9], "2": [10, 8], "3": [9, 10]}},
+            {"judge_name": "Glenn Trowbridge", "scores": {"1": [10, 9], "2": [10, 8], "3": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_volkanovski_jung",
@@ -310,19 +210,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "TKO",
         "rounds_scored": 3,
         "judges": [
-            {
-                "judge_name": "Sal D'Amato",
-                "scores": {"1": [10, 9], "2": [10, 9], "3": [10, 8]}
-            },
-            {
-                "judge_name": "Eric Colón",
-                "scores": {"1": [10, 9], "2": [10, 9], "3": [10, 9]}
-            },
-            {
-                "judge_name": "Chris Lee",
-                "scores": {"1": [10, 9], "2": [10, 9], "3": [10, 9]}
-            }
-        ]
+            {"judge_name": "Sal D'Amato", "scores": {"1": [10, 9], "2": [10, 9], "3": [10, 8]}},
+            {"judge_name": "Eric Colón", "scores": {"1": [10, 9], "2": [10, 9], "3": [10, 9]}},
+            {"judge_name": "Chris Lee", "scores": {"1": [10, 9], "2": [10, 9], "3": [10, 9]}},
+        ],
     },
     {
         "fight_id": "finish_duplessis_adesanya",
@@ -336,19 +227,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "Submission",
         "rounds_scored": 3,
         "judges": [
-            {
-                "judge_name": "Sal D'Amato",
-                "scores": {"1": [10, 9], "2": [9, 10], "3": [9, 10]}
-            },
-            {
-                "judge_name": "Evan Field",
-                "scores": {"1": [10, 9], "2": [9, 10], "3": [9, 10]}
-            },
-            {
-                "judge_name": "Christopher Mason",
-                "scores": {"1": [10, 9], "2": [9, 10], "3": [10, 9]}
-            }
-        ]
+            {"judge_name": "Sal D'Amato", "scores": {"1": [10, 9], "2": [9, 10], "3": [9, 10]}},
+            {"judge_name": "Evan Field", "scores": {"1": [10, 9], "2": [9, 10], "3": [9, 10]}},
+            {"judge_name": "Christopher Mason", "scores": {"1": [10, 9], "2": [9, 10], "3": [10, 9]}},
+        ],
     },
     {
         "fight_id": "finish_edgar_maynard_3",
@@ -362,19 +244,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "KO",
         "rounds_scored": 3,
         "judges": [
-            {
-                "judge_name": "Sal D'Amato",
-                "scores": {"1": [8, 10], "2": [10, 9], "3": [10, 9]}
-            },
-            {
-                "judge_name": "Marcos Rosales",
-                "scores": {"1": [8, 10], "2": [10, 9], "3": [10, 9]}
-            },
-            {
-                "judge_name": "Glenn Trowbridge",
-                "scores": {"1": [8, 10], "2": [10, 9], "3": [10, 9]}
-            }
-        ]
+            {"judge_name": "Sal D'Amato", "scores": {"1": [8, 10], "2": [10, 9], "3": [10, 9]}},
+            {"judge_name": "Marcos Rosales", "scores": {"1": [8, 10], "2": [10, 9], "3": [10, 9]}},
+            {"judge_name": "Glenn Trowbridge", "scores": {"1": [8, 10], "2": [10, 9], "3": [10, 9]}},
+        ],
     },
     {
         "fight_id": "finish_yan_sterling_1",
@@ -388,21 +261,11 @@ STOPPAGE_FIGHTS = [
         "finish_method": "DQ",
         "rounds_scored": 3,
         "judges": [
-            {
-                "judge_name": "Derek Cleary",
-                "scores": {"1": [9, 10], "2": [10, 9], "3": [9, 10]}
-            },
-            {
-                "judge_name": "Sal D'Amato",
-                "scores": {"1": [9, 10], "2": [10, 9], "3": [9, 10]}
-            },
-            {
-                "judge_name": "Junichiro Kamijo",
-                "scores": {"1": [9, 10], "2": [10, 9], "3": [9, 10]}
-            }
-        ]
+            {"judge_name": "Derek Cleary", "scores": {"1": [9, 10], "2": [10, 9], "3": [9, 10]}},
+            {"judge_name": "Sal D'Amato", "scores": {"1": [9, 10], "2": [10, 9], "3": [9, 10]}},
+            {"judge_name": "Junichiro Kamijo", "scores": {"1": [9, 10], "2": [10, 9], "3": [9, 10]}},
+        ],
     },
-
     # --- FINISHED IN ROUND 3 (ROUNDS 1-2 SCORED) ---
     {
         "fight_id": "finish_chandler_poirier",
@@ -416,19 +279,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "Submission",
         "rounds_scored": 2,
         "judges": [
-            {
-                "judge_name": "Derek Cleary",
-                "scores": {"1": [10, 9], "2": [9, 10]}
-            },
-            {
-                "judge_name": "Eric Colón",
-                "scores": {"1": [10, 9], "2": [9, 10]}
-            },
-            {
-                "judge_name": "Douglas Crosby",
-                "scores": {"1": [10, 9], "2": [9, 10]}
-            }
-        ]
+            {"judge_name": "Derek Cleary", "scores": {"1": [10, 9], "2": [9, 10]}},
+            {"judge_name": "Eric Colón", "scores": {"1": [10, 9], "2": [9, 10]}},
+            {"judge_name": "Douglas Crosby", "scores": {"1": [10, 9], "2": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_moreno_kara_france_2",
@@ -442,19 +296,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "TKO",
         "rounds_scored": 2,
         "judges": [
-            {
-                "judge_name": "Sal D'Amato",
-                "scores": {"1": [10, 9], "2": [10, 9]}
-            },
-            {
-                "judge_name": "Chris Lee",
-                "scores": {"1": [10, 9], "2": [10, 9]}
-            },
-            {
-                "judge_name": "David Lethaby",
-                "scores": {"1": [10, 9], "2": [9, 10]}
-            }
-        ]
+            {"judge_name": "Sal D'Amato", "scores": {"1": [10, 9], "2": [10, 9]}},
+            {"judge_name": "Chris Lee", "scores": {"1": [10, 9], "2": [10, 9]}},
+            {"judge_name": "David Lethaby", "scores": {"1": [10, 9], "2": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_rakhmonov_neal",
@@ -468,19 +313,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "Submission",
         "rounds_scored": 2,
         "judges": [
-            {
-                "judge_name": "Sal D'Amato",
-                "scores": {"1": [10, 9], "2": [10, 9]}
-            },
-            {
-                "judge_name": "Derek Cleary",
-                "scores": {"1": [10, 9], "2": [10, 9]}
-            },
-            {
-                "judge_name": "Ron McCarthy",
-                "scores": {"1": [10, 9], "2": [10, 9]}
-            }
-        ]
+            {"judge_name": "Sal D'Amato", "scores": {"1": [10, 9], "2": [10, 9]}},
+            {"judge_name": "Derek Cleary", "scores": {"1": [10, 9], "2": [10, 9]}},
+            {"judge_name": "Ron McCarthy", "scores": {"1": [10, 9], "2": [10, 9]}},
+        ],
     },
     {
         "fight_id": "finish_gane_tuivasa",
@@ -494,19 +330,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "KO",
         "rounds_scored": 2,
         "judges": [
-            {
-                "judge_name": "Sal D'Amato",
-                "scores": {"1": [10, 9], "2": [10, 9]}
-            },
-            {
-                "judge_name": "Clemens Werner",
-                "scores": {"1": [10, 9], "2": [10, 9]}
-            },
-            {
-                "judge_name": "Jean-Robert Lague",
-                "scores": {"1": [10, 9], "2": [10, 9]}
-            }
-        ]
+            {"judge_name": "Sal D'Amato", "scores": {"1": [10, 9], "2": [10, 9]}},
+            {"judge_name": "Clemens Werner", "scores": {"1": [10, 9], "2": [10, 9]}},
+            {"judge_name": "Jean-Robert Lague", "scores": {"1": [10, 9], "2": [10, 9]}},
+        ],
     },
     {
         "fight_id": "finish_figueiredo_moreno_2",
@@ -520,19 +347,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "Submission",
         "rounds_scored": 2,
         "judges": [
-            {
-                "judge_name": "Sal D'Amato",
-                "scores": {"1": [10, 8], "2": [10, 9]}
-            },
-            {
-                "judge_name": "Junichiro Kamijo",
-                "scores": {"1": [10, 9], "2": [10, 9]}
-            },
-            {
-                "judge_name": "Chris Lee",
-                "scores": {"1": [10, 9], "2": [10, 9]}
-            }
-        ]
+            {"judge_name": "Sal D'Amato", "scores": {"1": [10, 8], "2": [10, 9]}},
+            {"judge_name": "Junichiro Kamijo", "scores": {"1": [10, 9], "2": [10, 9]}},
+            {"judge_name": "Chris Lee", "scores": {"1": [10, 9], "2": [10, 9]}},
+        ],
     },
     {
         "fight_id": "finish_holloway_pettis",
@@ -546,19 +364,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "TKO",
         "rounds_scored": 2,
         "judges": [
-            {
-                "judge_name": "Eric Colón",
-                "scores": {"1": [10, 9], "2": [10, 9]}
-            },
-            {
-                "judge_name": "Sal D'Amato",
-                "scores": {"1": [10, 9], "2": [10, 9]}
-            },
-            {
-                "judge_name": "David Therien",
-                "scores": {"1": [10, 9], "2": [9, 10]}
-            }
-        ]
+            {"judge_name": "Eric Colón", "scores": {"1": [10, 9], "2": [10, 9]}},
+            {"judge_name": "Sal D'Amato", "scores": {"1": [10, 9], "2": [10, 9]}},
+            {"judge_name": "David Therien", "scores": {"1": [10, 9], "2": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_holloway_aldo_1",
@@ -572,19 +381,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "TKO",
         "rounds_scored": 2,
         "judges": [
-            {
-                "judge_name": "Guilherme Bravo",
-                "scores": {"1": [9, 10], "2": [9, 10]}
-            },
-            {
-                "judge_name": "Derek Cleary",
-                "scores": {"1": [9, 10], "2": [9, 10]}
-            },
-            {
-                "judge_name": "Chris Lee",
-                "scores": {"1": [9, 10], "2": [9, 10]}
-            }
-        ]
+            {"judge_name": "Guilherme Bravo", "scores": {"1": [9, 10], "2": [9, 10]}},
+            {"judge_name": "Derek Cleary", "scores": {"1": [9, 10], "2": [9, 10]}},
+            {"judge_name": "Chris Lee", "scores": {"1": [9, 10], "2": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_holloway_aldo_2",
@@ -598,19 +398,10 @@ STOPPAGE_FIGHTS = [
         "finish_method": "TKO",
         "rounds_scored": 2,
         "judges": [
-            {
-                "judge_name": "Eric Colón",
-                "scores": {"1": [9, 10], "2": [10, 9]}
-            },
-            {
-                "judge_name": "Sal D'Amato",
-                "scores": {"1": [9, 10], "2": [10, 9]}
-            },
-            {
-                "judge_name": "Chris Lee",
-                "scores": {"1": [9, 10], "2": [9, 10]}
-            }
-        ]
+            {"judge_name": "Eric Colón", "scores": {"1": [9, 10], "2": [10, 9]}},
+            {"judge_name": "Sal D'Amato", "scores": {"1": [9, 10], "2": [10, 9]}},
+            {"judge_name": "Chris Lee", "scores": {"1": [9, 10], "2": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_cormier_jones_2",
@@ -624,21 +415,11 @@ STOPPAGE_FIGHTS = [
         "finish_method": "KO",
         "rounds_scored": 2,
         "judges": [
-            {
-                "judge_name": "Marcos Rosales",
-                "scores": {"1": [10, 9], "2": [9, 10]}
-            },
-            {
-                "judge_name": "Sal D'Amato",
-                "scores": {"1": [10, 9], "2": [9, 10]}
-            },
-            {
-                "judge_name": "Glenn Trowbridge",
-                "scores": {"1": [10, 9], "2": [9, 10]}
-            }
-        ]
+            {"judge_name": "Marcos Rosales", "scores": {"1": [10, 9], "2": [9, 10]}},
+            {"judge_name": "Sal D'Amato", "scores": {"1": [10, 9], "2": [9, 10]}},
+            {"judge_name": "Glenn Trowbridge", "scores": {"1": [10, 9], "2": [9, 10]}},
+        ],
     },
-
     # --- FINISHED IN ROUND 2 (ROUND 1 SCORED) ---
     {
         "fight_id": "finish_reyes_prochazka",
@@ -654,8 +435,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Sal D'Amato", "scores": {"1": [10, 9]}},
             {"judge_name": "Derek Cleary", "scores": {"1": [10, 9]}},
-            {"judge_name": "Junichiro Kamijo", "scores": {"1": [10, 9]}}
-        ]
+            {"judge_name": "Junichiro Kamijo", "scores": {"1": [10, 9]}},
+        ],
     },
     {
         "fight_id": "finish_oliveira_chandler",
@@ -671,8 +452,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Sal D'Amato", "scores": {"1": [8, 10]}},
             {"judge_name": "Chris Lee", "scores": {"1": [9, 10]}},
-            {"judge_name": "Junichiro Kamijo", "scores": {"1": [9, 10]}}
-        ]
+            {"judge_name": "Junichiro Kamijo", "scores": {"1": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_poirier_mcgregor_2",
@@ -688,8 +469,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Derek Cleary", "scores": {"1": [9, 10]}},
             {"judge_name": "Sal D'Amato", "scores": {"1": [9, 10]}},
-            {"judge_name": "Mark Collett", "scores": {"1": [9, 10]}}
-        ]
+            {"judge_name": "Mark Collett", "scores": {"1": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_poirier_mcgregor_3",
@@ -705,8 +486,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Sal D'Amato", "scores": {"1": [10, 8]}},
             {"judge_name": "Derek Cleary", "scores": {"1": [10, 8]}},
-            {"judge_name": "Junichiro Kamijo", "scores": {"1": [10, 9]}}
-        ]
+            {"judge_name": "Junichiro Kamijo", "scores": {"1": [10, 9]}},
+        ],
     },
     {
         "fight_id": "finish_khabib_gaethje",
@@ -722,8 +503,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Sal D'Amato", "scores": {"1": [9, 10]}},
             {"judge_name": "Ben Cartlidge", "scores": {"1": [9, 10]}},
-            {"judge_name": "Derek Cleary", "scores": {"1": [10, 9]}}
-        ]
+            {"judge_name": "Derek Cleary", "scores": {"1": [10, 9]}},
+        ],
     },
     {
         "fight_id": "finish_pereira_prochazka_1",
@@ -739,8 +520,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Derek Cleary", "scores": {"1": [10, 9]}},
             {"judge_name": "Sal D'Amato", "scores": {"1": [10, 9]}},
-            {"judge_name": "Ron McCarthy", "scores": {"1": [9, 10]}}
-        ]
+            {"judge_name": "Ron McCarthy", "scores": {"1": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_gaethje_poirier_2",
@@ -756,8 +537,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Junichiro Kamijo", "scores": {"1": [10, 9]}},
             {"judge_name": "Derek Cleary", "scores": {"1": [9, 10]}},
-            {"judge_name": "Ron McCarthy", "scores": {"1": [9, 10]}}
-        ]
+            {"judge_name": "Ron McCarthy", "scores": {"1": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_diaz_mcgregor_1",
@@ -773,8 +554,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Derek Cleary", "scores": {"1": [9, 10]}},
             {"judge_name": "Sal D'Amato", "scores": {"1": [9, 10]}},
-            {"judge_name": "Glenn Trowbridge", "scores": {"1": [9, 10]}}
-        ]
+            {"judge_name": "Glenn Trowbridge", "scores": {"1": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_nunes_pena_1",
@@ -790,8 +571,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Sal D'Amato", "scores": {"1": [8, 10]}},
             {"judge_name": "Michael Bell", "scores": {"1": [9, 10]}},
-            {"judge_name": "Junichiro Kamijo", "scores": {"1": [9, 10]}}
-        ]
+            {"judge_name": "Junichiro Kamijo", "scores": {"1": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_zhang_jedrzejczyk_2",
@@ -807,8 +588,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Michael Bell", "scores": {"1": [10, 8]}},
             {"judge_name": "Jean-Robert Lague", "scores": {"1": [10, 9]}},
-            {"judge_name": "Clemens Werner", "scores": {"1": [10, 9]}}
-        ]
+            {"judge_name": "Clemens Werner", "scores": {"1": [10, 9]}},
+        ],
     },
     {
         "fight_id": "finish_sterling_dillashaw",
@@ -824,8 +605,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Ben Cartlidge", "scores": {"1": [10, 8]}},
             {"judge_name": "David Lethaby", "scores": {"1": [10, 8]}},
-            {"judge_name": "Vito Paolillo", "scores": {"1": [10, 8]}}
-        ]
+            {"judge_name": "Vito Paolillo", "scores": {"1": [10, 8]}},
+        ],
     },
     {
         "fight_id": "finish_ngannou_miocic_2",
@@ -841,8 +622,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Sal D'Amato", "scores": {"1": [10, 9]}},
             {"judge_name": "Derek Cleary", "scores": {"1": [10, 9]}},
-            {"judge_name": "Chris Lee", "scores": {"1": [10, 9]}}
-        ]
+            {"judge_name": "Chris Lee", "scores": {"1": [10, 9]}},
+        ],
     },
     {
         "fight_id": "finish_topuria_volkanovski",
@@ -858,8 +639,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Derek Cleary", "scores": {"1": [9, 10]}},
             {"judge_name": "Sal D'Amato", "scores": {"1": [9, 10]}},
-            {"judge_name": "Ron McCarthy", "scores": {"1": [9, 10]}}
-        ]
+            {"judge_name": "Ron McCarthy", "scores": {"1": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_omalley_sterling",
@@ -875,8 +656,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Derek Cleary", "scores": {"1": [9, 10]}},
             {"judge_name": "Sal D'Amato", "scores": {"1": [9, 10]}},
-            {"judge_name": "Eric Colón", "scores": {"1": [9, 10]}}
-        ]
+            {"judge_name": "Eric Colón", "scores": {"1": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_prochazka_rakic",
@@ -892,8 +673,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Derek Cleary", "scores": {"1": [9, 10]}},
             {"judge_name": "Sal D'Amato", "scores": {"1": [9, 10]}},
-            {"judge_name": "Junichiro Kamijo", "scores": {"1": [9, 10]}}
-        ]
+            {"judge_name": "Junichiro Kamijo", "scores": {"1": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_mcgregor_mendes",
@@ -909,8 +690,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Marcos Rosales", "scores": {"1": [9, 10]}},
             {"judge_name": "Chris Lee", "scores": {"1": [9, 10]}},
-            {"judge_name": "Dave Hagen", "scores": {"1": [9, 10]}}
-        ]
+            {"judge_name": "Dave Hagen", "scores": {"1": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_andrade_namajunas_1",
@@ -926,8 +707,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Chris Lee", "scores": {"1": [9, 10]}},
             {"judge_name": "Sal D'Amato", "scores": {"1": [9, 10]}},
-            {"judge_name": "Guilherme Bravo", "scores": {"1": [9, 10]}}
-        ]
+            {"judge_name": "Guilherme Bravo", "scores": {"1": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_adesanya_costa",
@@ -943,8 +724,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Derek Cleary", "scores": {"1": [10, 9]}},
             {"judge_name": "Dave Tirelli", "scores": {"1": [10, 9]}},
-            {"judge_name": "Steve Armstrong", "scores": {"1": [10, 9]}}
-        ]
+            {"judge_name": "Steve Armstrong", "scores": {"1": [10, 9]}},
+        ],
     },
     {
         "fight_id": "finish_strickland_magomedov",
@@ -960,8 +741,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Sal D'Amato", "scores": {"1": [9, 10]}},
             {"judge_name": "Chris Lee", "scores": {"1": [9, 10]}},
-            {"judge_name": "Ron McCarthy", "scores": {"1": [9, 10]}}
-        ]
+            {"judge_name": "Ron McCarthy", "scores": {"1": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_jones_machida",
@@ -977,8 +758,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Jeff Blatnick", "scores": {"1": [9, 10]}},
             {"judge_name": "Chris Lee", "scores": {"1": [9, 10]}},
-            {"judge_name": "Nelson Hamilton", "scores": {"1": [10, 9]}}
-        ]
+            {"judge_name": "Nelson Hamilton", "scores": {"1": [10, 9]}},
+        ],
     },
     {
         "fight_id": "finish_volkanovski_mendes",
@@ -994,8 +775,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Derek Cleary", "scores": {"1": [9, 10]}},
             {"judge_name": "Sal D'Amato", "scores": {"1": [9, 10]}},
-            {"judge_name": "Chris Lee", "scores": {"1": [9, 10]}}
-        ]
+            {"judge_name": "Chris Lee", "scores": {"1": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_dillashaw_garbrandt_1",
@@ -1011,8 +792,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Derek Cleary", "scores": {"1": [9, 10]}},
             {"judge_name": "Sal D'Amato", "scores": {"1": [9, 10]}},
-            {"judge_name": "Glenn Trowbridge", "scores": {"1": [9, 10]}}
-        ]
+            {"judge_name": "Glenn Trowbridge", "scores": {"1": [9, 10]}},
+        ],
     },
     {
         "fight_id": "finish_whittaker_adesanya_1",
@@ -1028,8 +809,8 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Steve Armstrong", "scores": {"1": [10, 9]}},
             {"judge_name": "Chris Lee", "scores": {"1": [10, 9]}},
-            {"judge_name": "Anthony Lanza", "scores": {"1": [10, 9]}}
-        ]
+            {"judge_name": "Anthony Lanza", "scores": {"1": [10, 9]}},
+        ],
     },
     {
         "fight_id": "finish_lesnar_carwin",
@@ -1045,9 +826,9 @@ STOPPAGE_FIGHTS = [
         "judges": [
             {"judge_name": "Nelson Hamilton", "scores": {"1": [8, 10]}},
             {"judge_name": "Marcos Rosales", "scores": {"1": [8, 10]}},
-            {"judge_name": "Glenn Trowbridge", "scores": {"1": [8, 10]}}
-        ]
-    }
+            {"judge_name": "Glenn Trowbridge", "scores": {"1": [8, 10]}},
+        ],
+    },
 ]
 
 

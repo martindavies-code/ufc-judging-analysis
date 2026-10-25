@@ -1,6 +1,8 @@
 """Unit tests for score parsing, judge name normalization, consensus evaluation, and event HTML extraction."""
 
+import json
 import sqlite3
+
 import pytest
 
 from src.models import JudgeScorecard
@@ -58,9 +60,36 @@ class TestCleanJudgeName:
 class TestDeterminePanelConsensus:
     def test_unanimous_decision(self):
         judges = [
-            JudgeScorecard(judge_id="1", judge_name="Bell", judge_short="BELL", score_text="30-27", score_f1=30, score_f2=27, pick="fighter_1", has_selected_class=False),
-            JudgeScorecard(judge_id="2", judge_name="Lee", judge_short="LEE", score_text="30-27", score_f1=30, score_f2=27, pick="fighter_1", has_selected_class=False),
-            JudgeScorecard(judge_id="3", judge_name="Cleary", judge_short="CLEARY", score_text="29-28", score_f1=29, score_f2=28, pick="fighter_1", has_selected_class=False),
+            JudgeScorecard(
+                judge_id="1",
+                judge_name="Bell",
+                judge_short="BELL",
+                score_text="30-27",
+                score_f1=30,
+                score_f2=27,
+                pick="fighter_1",
+                has_selected_class=False,
+            ),
+            JudgeScorecard(
+                judge_id="2",
+                judge_name="Lee",
+                judge_short="LEE",
+                score_text="30-27",
+                score_f1=30,
+                score_f2=27,
+                pick="fighter_1",
+                has_selected_class=False,
+            ),
+            JudgeScorecard(
+                judge_id="3",
+                judge_name="Cleary",
+                judge_short="CLEARY",
+                score_text="29-28",
+                score_f1=29,
+                score_f2=28,
+                pick="fighter_1",
+                has_selected_class=False,
+            ),
         ]
         consensus = determine_panel_consensus(judges)
         assert consensus.majority_pick == "fighter_1"
@@ -70,9 +99,36 @@ class TestDeterminePanelConsensus:
 
     def test_split_decision_with_dissenter(self):
         judges = [
-            JudgeScorecard(judge_id="1", judge_name="Bell", judge_short="BELL", score_text="29-28", score_f1=29, score_f2=28, pick="fighter_1", has_selected_class=False),
-            JudgeScorecard(judge_id="2", judge_name="Lee", judge_short="LEE", score_text="28-29", score_f1=28, score_f2=29, pick="fighter_2", has_selected_class=True),
-            JudgeScorecard(judge_id="3", judge_name="Cleary", judge_short="CLEARY", score_text="29-28", score_f1=29, score_f2=28, pick="fighter_1", has_selected_class=False),
+            JudgeScorecard(
+                judge_id="1",
+                judge_name="Bell",
+                judge_short="BELL",
+                score_text="29-28",
+                score_f1=29,
+                score_f2=28,
+                pick="fighter_1",
+                has_selected_class=False,
+            ),
+            JudgeScorecard(
+                judge_id="2",
+                judge_name="Lee",
+                judge_short="LEE",
+                score_text="28-29",
+                score_f1=28,
+                score_f2=29,
+                pick="fighter_2",
+                has_selected_class=True,
+            ),
+            JudgeScorecard(
+                judge_id="3",
+                judge_name="Cleary",
+                judge_short="CLEARY",
+                score_text="29-28",
+                score_f1=29,
+                score_f2=28,
+                pick="fighter_1",
+                has_selected_class=False,
+            ),
         ]
         consensus = determine_panel_consensus(judges)
         assert consensus.majority_pick == "fighter_1"
@@ -83,9 +139,36 @@ class TestDeterminePanelConsensus:
 
     def test_majority_draw_with_dissenter(self):
         judges = [
-            JudgeScorecard(judge_id="1", judge_name="Bell", judge_short="BELL", score_text="28-28", score_f1=28, score_f2=28, pick="draw", has_selected_class=False),
-            JudgeScorecard(judge_id="2", judge_name="Lee", judge_short="LEE", score_text="28-28", score_f1=28, score_f2=28, pick="draw", has_selected_class=False),
-            JudgeScorecard(judge_id="3", judge_name="Cleary", judge_short="CLEARY", score_text="29-28", score_f1=29, score_f2=28, pick="fighter_1", has_selected_class=True),
+            JudgeScorecard(
+                judge_id="1",
+                judge_name="Bell",
+                judge_short="BELL",
+                score_text="28-28",
+                score_f1=28,
+                score_f2=28,
+                pick="draw",
+                has_selected_class=False,
+            ),
+            JudgeScorecard(
+                judge_id="2",
+                judge_name="Lee",
+                judge_short="LEE",
+                score_text="28-28",
+                score_f1=28,
+                score_f2=28,
+                pick="draw",
+                has_selected_class=False,
+            ),
+            JudgeScorecard(
+                judge_id="3",
+                judge_name="Cleary",
+                judge_short="CLEARY",
+                score_text="29-28",
+                score_f1=29,
+                score_f2=28,
+                pick="fighter_1",
+                has_selected_class=True,
+            ),
         ]
         consensus = determine_panel_consensus(judges)
         assert consensus.majority_pick == "draw"
@@ -95,9 +178,36 @@ class TestDeterminePanelConsensus:
 
     def test_three_way_split_draw(self):
         judges = [
-            JudgeScorecard(judge_id="1", judge_name="Bell", judge_short="BELL", score_text="29-28", score_f1=29, score_f2=28, pick="fighter_1", has_selected_class=False),
-            JudgeScorecard(judge_id="2", judge_name="Lee", judge_short="LEE", score_text="28-29", score_f1=28, score_f2=29, pick="fighter_2", has_selected_class=False),
-            JudgeScorecard(judge_id="3", judge_name="Cleary", judge_short="CLEARY", score_text="28-28", score_f1=28, score_f2=28, pick="draw", has_selected_class=False),
+            JudgeScorecard(
+                judge_id="1",
+                judge_name="Bell",
+                judge_short="BELL",
+                score_text="29-28",
+                score_f1=29,
+                score_f2=28,
+                pick="fighter_1",
+                has_selected_class=False,
+            ),
+            JudgeScorecard(
+                judge_id="2",
+                judge_name="Lee",
+                judge_short="LEE",
+                score_text="28-29",
+                score_f1=28,
+                score_f2=29,
+                pick="fighter_2",
+                has_selected_class=False,
+            ),
+            JudgeScorecard(
+                judge_id="3",
+                judge_name="Cleary",
+                judge_short="CLEARY",
+                score_text="28-28",
+                score_f1=28,
+                score_f2=28,
+                pick="draw",
+                has_selected_class=False,
+            ),
         ]
         consensus = determine_panel_consensus(judges)
         assert consensus.majority_pick is None
@@ -108,9 +218,20 @@ class TestDeterminePanelConsensus:
         with pytest.raises(ValueError, match="exactly 3 judges"):
             determine_panel_consensus([])
         with pytest.raises(ValueError, match="exactly 3 judges"):
-            determine_panel_consensus([
-                JudgeScorecard(judge_id="1", judge_name="A", judge_short="A", score_text="30-27", score_f1=30, score_f2=27, pick="fighter_1", has_selected_class=False)
-            ])
+            determine_panel_consensus(
+                [
+                    JudgeScorecard(
+                        judge_id="1",
+                        judge_name="A",
+                        judge_short="A",
+                        score_text="30-27",
+                        score_f1=30,
+                        score_f2=27,
+                        pick="fighter_1",
+                        has_selected_class=False,
+                    )
+                ]
+            )
 
 
 class TestParseEventHtml:
@@ -152,10 +273,7 @@ class TestParseEventHtml:
 
     def test_parse_event_html_valid(self):
         fights, appearances = parse_event_html(
-            self.MOCK_EVENT_HTML,
-            event_id="300",
-            default_title="UFC 300",
-            default_year="2024"
+            self.MOCK_EVENT_HTML, event_id="300", default_title="UFC 300", default_year="2024"
         )
         assert len(fights) == 1
         f = fights[0]
@@ -181,10 +299,11 @@ class TestParseEventHtml:
 
 class TestDatabaseSchema:
     def test_schema_creation_and_indexes(self):
-        with sqlite3.connect(":memory:") as conn:
+        conn = sqlite3.connect(":memory:")
+        try:
             init_database_schema(conn)
             cursor = conn.cursor()
-            
+
             # Verify tables exist
             cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
             tables = [r[0] for r in cursor.fetchall()]
@@ -196,3 +315,82 @@ class TestDatabaseSchema:
             indexes = [r[0] for r in cursor.fetchall()]
             assert "idx_ja_judge_name" in indexes
             assert "idx_ja_event_year" in indexes
+        finally:
+            conn.close()
+
+    def test_parse_event_html_drew_with_and_draw_scores(self):
+        html = """
+        <html>
+        <div class="decision-top">UFC 205</div>
+        <table class="decision">
+            <tr>
+                <td class="list"><a href="decision/999/Woodley-Thompson">Tyron Woodley drew with Stephen Thompson</a></td>
+                <td>Judge Alpha<br><span>28 - 28</span></td>
+                <td><a href="judge/5/Beta">Judge Beta</a><br><span>29 - 28</span></td>
+                <td>Judge Gamma</td>
+            </tr>
+        </table>
+        </html>
+        """
+        fights, appearances = parse_event_html(html, event_id="205", default_title="UFC 205", default_year="2016")
+        assert len(fights) == 1
+        assert fights[0].outcome == "draw"
+        assert fights[0].fighter_1 == "Tyron Woodley"
+        assert fights[0].fighter_2 == "Stephen Thompson"
+        assert len(appearances) == 3
+
+    def test_parse_all_events_full_flow(self, tmp_path, monkeypatch):
+        from src import parser
+
+        json_events = tmp_path / "ufc_events.json"
+        events_dir = tmp_path / "events_html"
+        events_dir.mkdir()
+
+        json_events.write_text(
+            json.dumps(
+                [
+                    {"event_id": "100", "title": "UFC 100", "year": "2009"},
+                    {"event_id": "101", "title": "UFC 101", "year": "2009"},
+                ]
+            ),
+            encoding="utf-8",
+        )
+
+        event_html = """
+        <html>
+        <div class="decision-top">UFC 100</div>
+        <table class="decision">
+            <tr>
+                <td class="list"><a href="decision/10/Lesnar-Mir">Brock Lesnar def. Frank Mir</a></td>
+                <td><a href="judge/1/Bell">Mike Bell</a><span>29-28</span></td>
+                <td><a href="judge/2/Cleary">Derek Cleary</a><span>29-28</span></td>
+                <td><a href="judge/3/Damato">Sal D'Amato</a><span>29-28</span></td>
+            </tr>
+        </table>
+        </html>
+        """
+        (events_dir / "100.html").write_text(event_html, encoding="utf-8")
+
+        fights_csv = tmp_path / "fights.csv"
+        judges_csv = tmp_path / "judges.csv"
+        db_file = tmp_path / "ufc.db"
+
+        monkeypatch.setattr(parser, "EVENTS_JSON_PATH", json_events)
+        monkeypatch.setattr(parser, "EVENTS_HTML_DIR", events_dir)
+        monkeypatch.setattr(parser, "CSV_OUTPUT_PATH", fights_csv)
+        monkeypatch.setattr(parser, "JUDGE_CSV_OUTPUT_PATH", judges_csv)
+        monkeypatch.setattr(parser, "DB_OUTPUT_PATH", db_file)
+
+        df_f, df_j = parser.parse_all_events()
+        assert len(df_f) == 1
+        assert len(df_j) == 3
+        assert fights_csv.exists()
+        assert judges_csv.exists()
+        assert db_file.exists()
+
+    def test_parse_all_events_missing_json_raises(self, monkeypatch, tmp_path):
+        from src import parser
+
+        monkeypatch.setattr(parser, "EVENTS_JSON_PATH", tmp_path / "non_existent.json")
+        with pytest.raises(FileNotFoundError):
+            parser.parse_all_events()

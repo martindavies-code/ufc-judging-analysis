@@ -5,23 +5,27 @@ with rate limiting, atomic writes, exponential backoff, and path sanitization.
 """
 
 import logging
-import os
 import sys
-import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
+import contextlib
+
 import pandas as pd
 import requests
 from tqdm import tqdm
 
-from src.scraper import atomic_write_text, get_thread_session, DEFAULT_TIMEOUT, MAX_RETRIES
+from src.scraper import (
+    DEFAULT_TIMEOUT,
+    MAX_RETRIES,
+    atomic_write_text,
+    get_thread_session,
+)
 from src.security import safe_resolve_path, validate_numeric_id, validate_safe_url
 
 logger = logging.getLogger(__name__)
@@ -31,7 +35,7 @@ DECISIONS_HTML_DIR = DATA_DIR / "decisions_html"
 SCORECARDS_CSV = DATA_DIR / "ufc_scorecards.csv"
 
 
-def download_single_decision(item: Tuple[int, str]) -> Tuple[int, bool, str]:
+def download_single_decision(item: tuple[int, str]) -> tuple[int, bool, str]:
     """Download and cache an individual decision page HTML with security checks."""
     decision_id, decision_url = item
     try:
@@ -55,23 +59,20 @@ def download_single_decision(item: Tuple[int, str]) -> Tuple[int, bool, str]:
                     return val_id, True, "downloaded"
                 elif resp.status_code == 404:
                     return val_id, False, "404 Not Found"
-                time.sleep(0.3 * (2 ** attempt))
+                time.sleep(0.3 * (2**attempt))
             except requests.RequestException as e:
                 if attempt == MAX_RETRIES - 1:
                     return val_id, False, str(e)
-                time.sleep(0.5 * (2 ** attempt))
+                time.sleep(0.5 * (2**attempt))
 
         return val_id, False, "HTTP Failed"
-    except Exception as e:
+    except (ValueError, OSError, requests.RequestException) as e:
         return decision_id, False, str(e)
 
 
 def download_all_decisions(
-    max_workers: int = 16,
-    reverse: bool = False,
-    start_idx: int = 0,
-    end_idx: Optional[int] = None
-) -> Tuple[int, int, int]:
+    max_workers: int = 16, reverse: bool = False, start_idx: int = 0, end_idx: int | None = None
+) -> tuple[int, int, int]:
     """Download HTML for all indexed decisions using a thread pool."""
     DECISIONS_HTML_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -79,8 +80,8 @@ def download_all_decisions(
         raise FileNotFoundError(f"Scorecards CSV not found at {SCORECARDS_CSV}")
 
     df = pd.read_csv(SCORECARDS_CSV)
-    df_valid = df.dropna(subset=['decision_id', 'decision_url'])
-    items = [(int(row['decision_id']), str(row['decision_url'])) for _, row in df_valid.iterrows()]
+    df_valid = df.dropna(subset=["decision_id", "decision_url"])
+    items = [(int(row["decision_id"]), str(row["decision_url"])) for _, row in df_valid.iterrows()]
     if reverse:
         items.reverse()
 
@@ -89,7 +90,9 @@ def download_all_decisions(
     items = items[start_idx:end]
 
     order_str = "reversed order" if reverse else "standard order"
-    print(f"Starting download/cache check for {len(items)} decision scorecards (range [{start_idx}:{end}] of {total_all}, workers={max_workers}, {order_str})...")
+    print(
+        f"Starting download/cache check for {len(items)} decision scorecards (range [{start_idx}:{end}] of {total_all}, workers={max_workers}, {order_str})..."
+    )
 
     success = 0
     cached = 0
@@ -120,18 +123,12 @@ if __name__ == "__main__":
     end = None
     for arg in sys.argv:
         if arg.startswith("--workers="):
-            try:
+            with contextlib.suppress(ValueError):
                 workers = int(arg.split("=")[1])
-            except ValueError:
-                pass
         elif arg.startswith("--start="):
-            try:
+            with contextlib.suppress(ValueError):
                 start = int(arg.split("=")[1])
-            except ValueError:
-                pass
         elif arg.startswith("--end="):
-            try:
+            with contextlib.suppress(ValueError):
                 end = int(arg.split("=")[1])
-            except ValueError:
-                pass
     download_all_decisions(max_workers=workers, reverse=is_reverse, start_idx=start, end_idx=end)

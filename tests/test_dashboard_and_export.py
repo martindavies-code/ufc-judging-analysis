@@ -2,6 +2,7 @@
 
 import json
 from pathlib import Path
+
 import pytest
 
 from src.build_dashboard import build_dashboard_html, encode_image_base64
@@ -27,7 +28,6 @@ class TestExportWebData:
             assert "pairs" in data
             assert "recent_dissents" in data
             assert data["summary"]["total_fights"] > 0
-
 
             assert "fighters" in data
             assert "fighters" in data["summary"]
@@ -63,10 +63,10 @@ class TestBuildDashboard:
     def test_dashboard_compilation_and_xss_safety(self):
         dashboard_path = build_dashboard_html()
         assert dashboard_path.exists()
-        
+
         with open(dashboard_path, "r", encoding="utf-8") as f:
             html_text = f.read()
-            
+
         assert "<!DOCTYPE html>" in html_text
         assert "UFC Judging" in html_text
         assert "Round-by-Round" in html_text
@@ -84,12 +84,12 @@ class TestBuildDashboard:
         assert 'id="table-roster-segmented"' in html_text
         assert 'data-roster="active"' in html_text
         assert 'data-roster="historical"' in html_text
-        assert 'Most Consensual (Agreers)' in html_text
-        assert 'Currently Active' in html_text
+        assert "Most Consensual (Agreers)" in html_text
+        assert "Currently Active" in html_text
         # Verify Fighter Controversy controls
         assert 'id="btn-mode-fighters"' in html_text
-        assert 'Fighter Controversy Index' in html_text
-        assert 'ufc_fighter_controversy_index.csv' in html_text
+        assert "Fighter Controversy Index" in html_text
+        assert "ufc_fighter_controversy_index.csv" in html_text
         # Verify stoppage rounds metadata and comprehensive scope notice
         assert "32,876" in html_text
         assert "Comprehensive Scope" in html_text
@@ -99,16 +99,21 @@ class TestBuildDashboard:
     def test_dashboard_javascript_syntax(self):
         import shutil
         import subprocess
+
         dashboard_path = build_dashboard_html()
         assert dashboard_path.exists()
-        
+
         node_bin = shutil.which("node")
         if node_bin:
             res = subprocess.run(
-                [node_bin, "-e", "const fs = require('fs'); const html = fs.readFileSync('index.html', 'utf8'); const m = html.match(/<script>([\\s\\S]*?)<\\/script>/); if (m) { new Function(m[1]); }"],
+                [
+                    node_bin,
+                    "-e",
+                    "const fs = require('fs'); const html = fs.readFileSync('index.html', 'utf8'); const m = html.match(/<script>([\\s\\S]*?)<\\/script>/); if (m) { new Function(m[1]); }",
+                ],
                 capture_output=True,
                 text=True,
-                cwd=str(dashboard_path.parent)
+                cwd=str(dashboard_path.parent),
             )
             assert res.returncode == 0, f"JavaScript syntax error in index.html: {res.stderr}"
 
@@ -135,6 +140,7 @@ class TestBuildDashboard:
 class TestFighterAnalysis:
     def test_calculate_fighter_metrics_logic(self):
         import pandas as pd
+
         from src.fighter_analysis import calculate_fighter_metrics
 
         names_map = {
@@ -143,49 +149,53 @@ class TestFighterAnalysis:
             "3": ("Fighter A", "Fighter D"),
         }
 
-        df_fights = pd.DataFrame([
-            {
-                "decision_id": "1",
-                "event_year": 2023,
-                "fighter_1": "Fighter A",
-                "fighter_2": "Fighter B",
-                "outcome": "def",
-                "decision_type": "Split Decision",
-                "fight": "Fighter A def. Fighter B",
-            },
-            {
-                "decision_id": "2",
-                "event_year": 2024,
-                "fighter_1": "Fighter C",
-                "fighter_2": "Fighter A",
-                "outcome": "def",
-                "decision_type": "Split Decision",
-                "fight": "Fighter C def. Fighter A",
-            },
-            {
-                "decision_id": "3",
-                "event_year": 2024,
-                "fighter_1": "Fighter A",
-                "fighter_2": "Fighter D",
-                "outcome": "def",
-                "decision_type": "Unanimous Decision",
-                "fight": "Fighter A def. Fighter D",
-            },
-        ])
+        df_fights = pd.DataFrame(
+            [
+                {
+                    "decision_id": "1",
+                    "event_year": 2023,
+                    "fighter_1": "Fighter A",
+                    "fighter_2": "Fighter B",
+                    "outcome": "def",
+                    "decision_type": "Split Decision",
+                    "fight": "Fighter A def. Fighter B",
+                },
+                {
+                    "decision_id": "2",
+                    "event_year": 2024,
+                    "fighter_1": "Fighter C",
+                    "fighter_2": "Fighter A",
+                    "outcome": "def",
+                    "decision_type": "Split Decision",
+                    "fight": "Fighter C def. Fighter A",
+                },
+                {
+                    "decision_id": "3",
+                    "event_year": 2024,
+                    "fighter_1": "Fighter A",
+                    "fighter_2": "Fighter D",
+                    "outcome": "def",
+                    "decision_type": "Unanimous Decision",
+                    "fight": "Fighter A def. Fighter D",
+                },
+            ]
+        )
 
-        df_rounds = pd.DataFrame([
-            {"decision_id": "1", "round_num": 1, "round_dissented": 1},
-            {"decision_id": "1", "round_num": 2, "round_dissented": 0},
-            {"decision_id": "1", "round_num": 3, "round_dissented": 0},
-            {"decision_id": "2", "round_num": 1, "round_dissented": 1},
-            {"decision_id": "2", "round_num": 2, "round_dissented": 1},
-            {"decision_id": "2", "round_num": 3, "round_dissented": 0},
-            {"decision_id": "3", "round_num": 1, "round_dissented": 0},
-            {"decision_id": "3", "round_num": 2, "round_dissented": 0},
-            {"decision_id": "3", "round_num": 3, "round_dissented": 0},
-        ])
+        df_rounds = pd.DataFrame(
+            [
+                {"decision_id": "1", "round_num": 1, "round_dissented": 1},
+                {"decision_id": "1", "round_num": 2, "round_dissented": 0},
+                {"decision_id": "1", "round_num": 3, "round_dissented": 0},
+                {"decision_id": "2", "round_num": 1, "round_dissented": 1},
+                {"decision_id": "2", "round_num": 2, "round_dissented": 1},
+                {"decision_id": "2", "round_num": 3, "round_dissented": 0},
+                {"decision_id": "3", "round_num": 1, "round_dissented": 0},
+                {"decision_id": "3", "round_num": 2, "round_dissented": 0},
+                {"decision_id": "3", "round_num": 3, "round_dissented": 0},
+            ]
+        )
 
-        fighters_list, kpis = calculate_fighter_metrics(df_fights, df_rounds, names_map=names_map)
+        fighters_list, _kpis = calculate_fighter_metrics(df_fights, df_rounds, names_map=names_map)
         f_a = next(f for f in fighters_list if f["fighter_name"] == "Fighter A")
         assert f_a["total_fights"] == 3
         assert f_a["split_fights"] == 2
@@ -203,4 +213,93 @@ class TestFighterAnalysis:
         assert f_a["sample_close_fights"][0]["type"] == "Split Decision"
         assert f_a["sample_close_fights"][1]["type"] == "Split Decision"
 
+    def test_export_web_data_empty_database(self, tmp_path, monkeypatch):
+        import sqlite3
 
+        empty_db = tmp_path / "empty_test.db"
+        conn = sqlite3.connect(empty_db)
+        try:
+            conn.execute("""
+                CREATE TABLE fights (
+                    decision_id TEXT, event_id TEXT, event_year TEXT, decision_type TEXT
+                )
+            """)
+            conn.execute("""
+                CREATE TABLE judge_appearances (
+                    judge_name TEXT, fight TEXT, event_year TEXT, decision_type TEXT,
+                    disagreed_with_both INT, disagreed_on_score INT
+                )
+            """)
+            conn.commit()
+        finally:
+            conn.close()
+
+        out_dir = tmp_path / "out1"
+        out_dir.mkdir(parents=True, exist_ok=True)
+        target_json = out_dir / "data.json"
+        monkeypatch.setattr("src.export_web_data.OUTPUT_JSON_PATH", target_json)
+        monkeypatch.setattr("src.export_web_data.OUTPUT_DIR", out_dir)
+        out_json = export_web_data(empty_db)
+        assert out_json.exists()
+        with open(out_json, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        assert data["summary"]["total_fights"] == 0
+        assert data["judges"] == []
+        assert data["recent_dissents"] == []
+
+    def test_export_web_data_with_non_digit_years(self, tmp_path, monkeypatch):
+        import sqlite3
+
+        db = tmp_path / "years_test.db"
+        conn = sqlite3.connect(db)
+        try:
+            conn.execute("""
+                CREATE TABLE fights (
+                    decision_id TEXT, event_id TEXT, event_year TEXT, decision_type TEXT,
+                    has_dissenter INT, event_date TEXT, fighter_1 TEXT, fighter_2 TEXT, outcome TEXT
+                )
+            """)
+            conn.execute("""
+                CREATE TABLE judge_appearances (
+                    judge_name TEXT, fight TEXT, event_year TEXT, decision_type TEXT,
+                    disagreed_with_both INT, disagreed_on_score INT
+                )
+            """)
+            conn.execute("""
+                CREATE TABLE round_scores (
+                    decision_id TEXT, round_num INT, judge_name TEXT, event_year TEXT,
+                    round_pick TEXT, colleagues_agreed INT, round_dissented INT, is_ten_eight INT,
+                    fight TEXT, score_f1 INT, score_f2 INT, colleague_1 TEXT, colleague_2 TEXT,
+                    is_finish INT, finish_round INT, finish_method TEXT
+                )
+            """)
+            conn.execute(
+                "INSERT INTO fights VALUES ('1', '10', 'UnknownYear', 'Split Decision', 1, '2024-01-01', 'Fighter 1', 'Fighter 2', 'def')"
+            )
+            conn.execute(
+                "INSERT INTO judge_appearances VALUES ('Judge X', 'Fight 1', 'UnknownYear', 'Split Decision', 1, 0)"
+            )
+            conn.execute(
+                "INSERT INTO round_scores VALUES ('1', 1, 'Judge X', 'NonDigit', 'fighter_1', 1, 1, 0, 'Fight 1', 10, 9, 'Judge Y', 'Judge Z', 0, NULL, NULL)"
+            )
+            conn.commit()
+        finally:
+            conn.close()
+
+        out_dir = tmp_path / "out2"
+        out_dir.mkdir(parents=True, exist_ok=True)
+        target_json = out_dir / "data.json"
+        monkeypatch.setattr("src.export_web_data.OUTPUT_JSON_PATH", target_json)
+        monkeypatch.setattr("src.export_web_data.OUTPUT_DIR", out_dir)
+        out_json = export_web_data(db)
+        assert out_json.exists()
+        with open(out_json, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        assert data["summary"]["total_fights"] == 1
+
+    def test_build_dashboard_missing_data_raises(self, monkeypatch, tmp_path):
+        from src import build_dashboard
+
+        monkeypatch.setattr(build_dashboard, "WEB_DATA_PATH", tmp_path / "non_existent.json")
+        with pytest.raises(FileNotFoundError):
+            build_dashboard.build_dashboard_html()

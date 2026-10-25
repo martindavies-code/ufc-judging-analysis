@@ -2,7 +2,7 @@
 
 import sqlite3
 from pathlib import Path
-import pytest
+
 import matplotlib.pyplot as plt
 
 from src.visualizer import generate_visualizations
@@ -26,11 +26,14 @@ class TestVisualizer:
 
     def test_generate_visualizations_on_empty_db(self, tmp_path):
         empty_db = tmp_path / "empty.db"
-        with sqlite3.connect(empty_db) as conn:
+        conn = sqlite3.connect(empty_db)
+        try:
             conn.execute("CREATE TABLE fights (event_year TEXT, decision_type TEXT)")
             conn.execute("CREATE TABLE judge_appearances (judge_name TEXT)")
             conn.execute("CREATE TABLE round_scores (judge_name TEXT, total_rounds INT)")
             conn.commit()
+        finally:
+            conn.close()
 
         initial_figs = len(plt.get_fignums())
         generate_visualizations(empty_db)
