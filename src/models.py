@@ -108,6 +108,9 @@ class RoundScore:
     colleague_1: str
     colleague_2: str
     is_ten_eight: bool  # |score_f1 - score_f2| >= 2
+    is_finish: bool = False  # Did the fight end before the scheduled distance?
+    finish_round: Optional[int] = None  # Round in which stoppage occurred (e.g. 4 for 4th round finish)
+    finish_method: Optional[str] = None  # Method of finish (KO/TKO, Submission, DQ)
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)

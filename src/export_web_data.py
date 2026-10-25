@@ -107,20 +107,30 @@ def export_web_data(db_path: Path = DB_PATH) -> Path:
 
         # Build sample dissents per judge
         dissents_by_judge: Dict[str, List[Dict[str, Any]]] = {}
-        df_diss = df_rounds[df_rounds['round_dissented'] == 1]
+        df_diss = df_rounds[df_rounds['round_dissented'] == 1].copy()
+        # Sort dissents by year descending so recent and stoppage dissents appear in judge dossiers
+        df_diss['sort_year'] = pd.to_numeric(df_diss['event_year'], errors='coerce').fillna(2000).astype(int)
+        df_diss = df_diss.sort_values(by=['sort_year'], ascending=False)
+
         for row in df_diss.itertuples(index=False):
             jname = row.judge_name
             if jname not in dissents_by_judge:
                 dissents_by_judge[jname] = []
-            if len(dissents_by_judge[jname]) < 4:
+            if len(dissents_by_judge[jname]) < 5:
+                is_fin = bool(getattr(row, 'is_finish', 0) == 1)
+                fin_rd = getattr(row, 'finish_round', None)
+                fin_method = getattr(row, 'finish_method', None)
                 dissents_by_judge[jname].append({
                     'fight': row.fight,
-                    'year': row.event_year,
-                    'round': row.round_num,
+                    'year': str(row.event_year),
+                    'round': int(row.round_num),
                     'score': f"{row.score_f1}-{row.score_f2}",
                     'pick': row.round_pick,
                     'c1': row.colleague_1,
-                    'c2': row.colleague_2
+                    'c2': row.colleague_2,
+                    'is_finish': is_fin,
+                    'finish_round': int(fin_rd) if fin_rd is not None and pd.notna(fin_rd) else None,
+                    'finish_method': str(fin_method) if fin_method is not None and pd.notna(fin_method) else None
                 })
 
         # Enrich round_judges_list
@@ -142,10 +152,16 @@ def export_web_data(db_path: Path = DB_PATH) -> Path:
         total_rounds = len(df_rounds)
         total_round_dissents = int(df_rounds['round_dissented'].sum())
         total_ten_eight = int(df_rounds['is_ten_eight'].sum())
+        finish_rounds = int(df_rounds['is_finish'].sum()) if 'is_finish' in df_rounds.columns else 0
+        finish_fights_count = int(df_rounds[df_rounds['is_finish'] == 1]['decision_id'].nunique()) if 'is_finish' in df_rounds.columns else 0
+        decision_rounds = total_rounds - finish_rounds
 
         diff = (df_rounds['score_f1'] - df_rounds['score_f2']).abs()
         round_summary = {
             'total_rounds': total_rounds,
+            'decision_rounds': decision_rounds,
+            'finish_rounds': finish_rounds,
+            'finish_fights_count': finish_fights_count,
             'total_round_dissents': total_round_dissents,
             'round_dissent_pct': round((total_round_dissents / total_rounds) * 100, 2) if total_rounds > 0 else 0.0,
             'total_ten_eight': total_ten_eight,
@@ -158,12 +174,21 @@ def export_web_data(db_path: Path = DB_PATH) -> Path:
             }
         }
 
-        # Recent round dissents sample
+        # Recent round dissents sample: include ALL stoppage dissents + top 200 recent decision dissents
         dissented_rounds = df_rounds[df_rounds['round_dissented'] == 1].copy()
         if not dissented_rounds.empty:
-            cols = ['decision_id', 'event_year', 'fight', 'round_num', 'judge_name', 'score_f1', 'score_f2', 'round_pick', 'colleague_1', 'colleague_2']
+            cols = [
+                'decision_id', 'event_year', 'fight', 'round_num',
+                'judge_name', 'score_f1', 'score_f2', 'round_pick',
+                'colleague_1', 'colleague_2', 'is_finish', 'finish_round', 'finish_method'
+            ]
             avail = [c for c in cols if c in dissented_rounds.columns]
-            recent_round_dissents = dissented_rounds[avail].head(150).to_dict(orient='records')
+            dissented_rounds['sort_year'] = pd.to_numeric(dissented_rounds['event_year'], errors='coerce').fillna(2000).astype(int)
+
+            finish_dissents = dissented_rounds[dissented_rounds['is_finish'] == 1]
+            decision_dissents = dissented_rounds[dissented_rounds['is_finish'] == 0].sort_values(by=['sort_year'], ascending=False).head(200)
+            combined_recent = pd.concat([finish_dissents, decision_dissents]).drop_duplicates(subset=['decision_id', 'round_num', 'judge_name'])
+            recent_round_dissents = combined_recent.sort_values(by=['sort_year'], ascending=False)[avail].to_dict(orient='records')
 
     # Read pair clashes (fight level)
     if PAIRS_CSV.exists():

@@ -17,11 +17,11 @@ from src.analyzer import (
 class TestCalculateJudgeRoundMetrics:
     def test_round_metrics_calculation(self):
         df_rounds = pd.DataFrame([
-            {'judge_name': 'Ben Cartlidge', 'round_num': 1, 'colleagues_agreed': True, 'round_dissented': True, 'is_ten_eight': False},
-            {'judge_name': 'Ben Cartlidge', 'round_num': 2, 'colleagues_agreed': True, 'round_dissented': False, 'is_ten_eight': False},
-            {'judge_name': 'Ben Cartlidge', 'round_num': 3, 'colleagues_agreed': False, 'round_dissented': False, 'is_ten_eight': True},
-            {'judge_name': 'Derek Cleary', 'round_num': 1, 'colleagues_agreed': True, 'round_dissented': False, 'is_ten_eight': False},
-            {'judge_name': 'Derek Cleary', 'round_num': 2, 'colleagues_agreed': True, 'round_dissented': False, 'is_ten_eight': False},
+            {'judge_name': 'Ben Cartlidge', 'round_num': 1, 'colleagues_agreed': True, 'round_dissented': True, 'is_ten_eight': False, 'is_finish': True},
+            {'judge_name': 'Ben Cartlidge', 'round_num': 2, 'colleagues_agreed': True, 'round_dissented': False, 'is_ten_eight': False, 'is_finish': True},
+            {'judge_name': 'Ben Cartlidge', 'round_num': 3, 'colleagues_agreed': False, 'round_dissented': False, 'is_ten_eight': True, 'is_finish': False},
+            {'judge_name': 'Derek Cleary', 'round_num': 1, 'colleagues_agreed': True, 'round_dissented': False, 'is_ten_eight': False, 'is_finish': False},
+            {'judge_name': 'Derek Cleary', 'round_num': 2, 'colleagues_agreed': True, 'round_dissented': False, 'is_ten_eight': False, 'is_finish': False},
         ])
 
         metrics = calculate_judge_round_metrics(df_rounds)
@@ -34,11 +34,15 @@ class TestCalculateJudgeRoundMetrics:
         assert pytest.approx(ben['round_dissent_pct'], 0.01) == 33.33
         assert pytest.approx(ben['consensus_dissent_pct'], 0.01) == 50.0
         assert ben['ten_eight_rounds'] == 1
+        assert ben['finish_rounds'] == 2
+        assert ben['decision_rounds'] == 1
 
         derek = metrics[metrics['judge_name'] == 'Derek Cleary'].iloc[0]
         assert derek['total_rounds'] == 2
         assert derek['round_dissents'] == 0
         assert derek['round_dissent_pct'] == 0.0
+        assert derek['finish_rounds'] == 0
+        assert derek['decision_rounds'] == 2
 
     def test_empty_rounds_dataframe(self):
         empty_df = pd.DataFrame(columns=['judge_name', 'round_num', 'colleagues_agreed', 'round_dissented', 'is_ten_eight'])

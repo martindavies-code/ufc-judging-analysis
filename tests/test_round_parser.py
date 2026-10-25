@@ -189,3 +189,49 @@ def test_save_round_scores_to_csv_and_sqlite(tmp_path):
     # Test saving empty list
     save_round_scores([], csv_path=test_csv, db_path=test_db)
 
+
+def test_load_stoppage_scorecards_success():
+    """Verify official stoppage scorecards load correctly with all metadata."""
+    from src.round_parser import load_stoppage_scorecards
+
+    stoppage_scores = load_stoppage_scorecards()
+    assert len(stoppage_scores) == 288  # 48 fights, 96 rounds, 288 judge scores
+
+    # Verify all records have is_finish=True
+    assert all(r.is_finish for r in stoppage_scores)
+
+    # Verify finish_round and finish_method are populated
+    for r in stoppage_scores:
+        assert r.finish_round in [1, 2, 3, 4, 5]
+        assert r.finish_method in ['KO', 'TKO', 'TKO (Doctor Stoppage)', 'KO/TKO', 'Submission', 'DQ']
+        assert r.round_num <= r.finish_round  # Completed rounds are scored!
+
+    # Verify Usman vs Covington 1 (UFC 245, stopped in R5) has R1-R4 scored
+    usman_scores = [r for r in stoppage_scores if 'Usman' in r.fight and 'Covington' in r.fight]
+    assert len(usman_scores) == 12  # 3 judges * 4 completed rounds
+    rounds_present = {r.round_num for r in usman_scores}
+    assert rounds_present == {1, 2, 3, 4}
+
+    # Verify Miocic vs Cormier 2 (UFC 241, stopped in R4) has R1-R3 scored
+    miocic_scores = [r for r in stoppage_scores if 'Miocic' in r.fight and 'Cormier' in r.fight]
+    assert len(miocic_scores) == 9  # 3 judges * 3 completed rounds
+    assert {r.round_num for r in miocic_scores} == {1, 2, 3}
+
+
+def test_load_stoppage_scorecards_missing_and_corrupt(tmp_path):
+    """Verify load_stoppage_scorecards handles missing and corrupt files safely."""
+    from src.round_parser import load_stoppage_scorecards
+    import json
+
+    missing_path = tmp_path / "nonexistent.json"
+    assert load_stoppage_scorecards(missing_path) == []
+
+    corrupt_path = tmp_path / "corrupt.json"
+    corrupt_path.write_text("{not valid json}", encoding="utf-8")
+    assert load_stoppage_scorecards(corrupt_path) == []
+
+    empty_path = tmp_path / "empty.json"
+    empty_path.write_text("[]", encoding="utf-8")
+    assert load_stoppage_scorecards(empty_path) == []
+
+

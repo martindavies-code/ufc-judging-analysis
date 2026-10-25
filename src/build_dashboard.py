@@ -54,7 +54,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Dissenter Index: UFC Judging & Round-by-Round Scoring Analysis (1995–2026)</title>
-    <meta name="description" content="An empirical investigation into 31,881 UFC rounds across 4,010 decisions: which cage-side judges disagree with their colleagues most frequently?">
+    <meta name="description" content="An empirical investigation into 32,876 UFC rounds across 4,010 decisions and 48 stoppage bouts: which cage-side judges disagree with their colleagues most frequently?">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
@@ -1108,8 +1108,8 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         <div class="chapter-badge">Chapter 1 · The Core Discovery</div>
         <h2 class="hero-headline" id="hero-question">When two cage-side judges agree on a round, which third judge breaks away most often?</h2>
         <p class="hero-subhead" id="hero-narrative">
-            Across 31,881 individual rounds evaluated by 3-judge panels, exactly <strong>2,362 rounds (7.41%)</strong> produced a lone dissenting judge.
-            Among high-volume UFC mainstays (250+ rounds), <strong>Cardo Urso</strong> ranks #1 with a <strong>9.32%</strong> round dissent rate, followed by <strong>Glenn Trowbridge</strong> (8.83%) and <strong>Rick Winter</strong> (8.75%).
+            Across 32,876 individual rounds evaluated by 3-judge panels (including completed rounds from fights ending inside the distance), exactly <strong>2,376 rounds (7.23%)</strong> produced a lone dissenting judge.
+            Among high-volume UFC mainstays (250+ rounds), <strong>Cardo Urso</strong> ranks #1 with a <strong>9.01%</strong> round dissent rate, followed by <strong>Rick Winter</strong> (8.75%) and <strong>David Lethaby</strong> (8.62%).
         </p>
 
         <!-- Focused 4 KPI Cards (Unique, non-redundant metrics) -->
@@ -1117,35 +1117,35 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             <div class="kpi-card">
                 <div class="kpi-label">Historical UFC Benchmark</div>
                 <div class="kpi-value-row">
-                    <span class="kpi-value" id="kpi-benchmark-val">7.41%</span>
+                    <span class="kpi-value" id="kpi-benchmark-val">7.23%</span>
                 </div>
-                <div class="kpi-context" id="kpi-benchmark-sub">Average dissent rate across all 31,881 rounds (1 in every 13.5 rounds)</div>
+                <div class="kpi-context" id="kpi-benchmark-sub">Average dissent rate across all 32,876 rounds (1 in every 13.8 rounds)</div>
             </div>
 
             <div class="kpi-card">
                 <div class="kpi-label">#1 Veteran Mainstay (250+ Rds)</div>
                 <div class="kpi-value-row">
-                    <span class="kpi-value" id="kpi-leader-val">9.32%</span>
-                    <span class="kpi-delta high" id="kpi-leader-delta">+1.91% vs avg</span>
+                    <span class="kpi-value" id="kpi-leader-val">9.01%</span>
+                    <span class="kpi-delta high" id="kpi-leader-delta">+1.78% vs avg</span>
                 </div>
-                <div class="kpi-context" id="kpi-leader-sub"><strong>Cardo Urso</strong> · 29 dissents in 311 rounds (1 in every 10.7 rounds)</div>
+                <div class="kpi-context" id="kpi-leader-sub"><strong>Cardo Urso</strong> · 29 dissents in 322 rounds (1 in every 11.1 rounds)</div>
             </div>
 
             <div class="kpi-card">
                 <div class="kpi-label">Most Consensual Mainstay</div>
                 <div class="kpi-value-row">
-                    <span class="kpi-value" id="kpi-agreeable-val">6.89%</span>
-                    <span class="kpi-delta consensual" id="kpi-agreeable-delta">-0.52% vs avg</span>
+                    <span class="kpi-value" id="kpi-agreeable-val">6.87%</span>
+                    <span class="kpi-delta consensual" id="kpi-agreeable-delta">-0.36% vs avg</span>
                 </div>
-                <div class="kpi-context" id="kpi-agreeable-sub"><strong>Ben Cartlidge</strong> · 58 dissents in 842 rounds (highest agreement rate)</div>
+                <div class="kpi-context" id="kpi-agreeable-sub"><strong>Ben Cartlidge</strong> · 58 dissents in 844 rounds (highest agreement rate)</div>
             </div>
 
             <div class="kpi-card">
                 <div class="kpi-label">Highest Absolute Dissents</div>
                 <div class="kpi-value-row">
-                    <span class="kpi-value" id="kpi-volume-val">220</span>
+                    <span class="kpi-value" id="kpi-volume-val">223</span>
                 </div>
-                <div class="kpi-context" id="kpi-volume-sub"><strong>Sal D'Amato</strong> · 6.34% rate over 3,468 scored rounds (historic volume)</div>
+                <div class="kpi-context" id="kpi-volume-sub"><strong>Sal D'Amato</strong> · 6.24% rate over 3,573 scored rounds (historic volume)</div>
             </div>
         </div>
 
@@ -1153,7 +1153,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         <div class="gauge-section" id="benchmark-gauge-section">
             <div class="gauge-header">
                 <div>
-                    <div class="gauge-title" id="gauge-heading">Veteran Mainstays vs 7.41% Historical UFC Average</div>
+                    <div class="gauge-title" id="gauge-heading">Veteran Mainstays vs 7.23% Historical UFC Average</div>
                     <div class="gauge-subtitle" id="gauge-subheading" style="font-size:12px; color:var(--text-secondary); margin-top:2px;">
                         Top 10 judges with 250+ rounds scored · All Eras
                     </div>
@@ -1178,7 +1178,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             <div class="gauge-legend" id="gauge-legend-container">
                 <span><span class="legend-dot" style="background:var(--accent-crimson);"></span> Higher Dissent Rate (Above Benchmark)</span>
                 <span><span class="legend-dot" style="background:var(--accent-green);"></span> Lower Dissent Rate (More Consensual)</span>
-                <span><span class="legend-dot" style="background:#ffffff; border:1px solid #000;"></span> 7.41% UFC Average</span>
+                <span><span class="legend-dot" style="background:#ffffff; border:1px solid #000;"></span> 7.23% UFC Average</span>
             </div>
             <div class="deviation-bars-container" id="deviation-bars">
                 <!-- Injected via JavaScript -->
@@ -1263,22 +1263,26 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         <div class="section-header-block">
             <div class="chapter-badge">Chapter 4 · Empirical Context</div>
             <h3 class="section-title">The Anatomy of a UFC Round (1995–2026)</h3>
-            <p class="section-desc">How often does a round score deviate from the standard 10-9? Out of 31,881 total rounds recorded across 31 years:</p>
+            <p class="section-desc">How often does a round score deviate from the standard 10-9? Out of 32,876 total scored rounds (32,588 decision rounds + 288 rounds from 48 stoppage bouts where scorecards exist):</p>
         </div>
 
         <div class="anatomy-bar-container">
             <div class="anatomy-bar">
-                <div class="seg-10-9" title="10-9 (95.7%)"></div>
-                <div class="seg-10-8" title="10-8 (3.76%)"></div>
-                <div class="seg-draw" title="10-10 Draw (0.48%)"></div>
-                <div class="seg-10-7" title="10-7 (0.03%)"></div>
+                <div class="seg-10-9" style="width: 95.76%;" title="10-9 (95.76%)"></div>
+                <div class="seg-10-8" style="width: 3.73%;" title="10-8 (3.73%)"></div>
+                <div class="seg-draw" style="width: 0.48%;" title="10-10 Draw (0.48%)"></div>
+                <div class="seg-10-7" style="width: 0.03%;" title="10-7 (0.03%)"></div>
             </div>
             <div class="anatomy-legend">
-                <div class="anatomy-item"><span class="legend-dot dot-10-9"></span> <strong>10-9 Rounds</strong>: 30,517 (95.72%)</div>
-                <div class="anatomy-item"><span class="legend-dot dot-10-8"></span> <strong>10-8 Dominant Rounds</strong>: 1,200 (3.76%)</div>
-                <div class="anatomy-item"><span class="legend-dot dot-draw"></span> <strong>10-10 Even Rounds</strong>: 154 (0.48%)</div>
+                <div class="anatomy-item"><span class="legend-dot dot-10-9"></span> <strong>10-9 Rounds</strong>: 31,482 (95.76%)</div>
+                <div class="anatomy-item"><span class="legend-dot dot-10-8"></span> <strong>10-8 Dominant Rounds</strong>: 1,227 (3.73%)</div>
+                <div class="anatomy-item"><span class="legend-dot dot-draw"></span> <strong>10-10 Even Rounds</strong>: 157 (0.48%)</div>
                 <div class="anatomy-item"><span class="legend-dot dot-10-7"></span> <strong>10-7 Blowout Rounds</strong>: 10 (0.03%)</div>
             </div>
+        </div>
+
+        <div class="callout-card" style="margin-top:var(--space-4); margin-bottom:var(--space-4); padding:var(--space-4); background:var(--surface-elevated); border-left:3px solid var(--accent-blue); border-radius:var(--radius-sm); font-size:13px; line-height:1.5;">
+            <strong>Comprehensive Scope:</strong> When evaluating how judges score rounds, this analysis includes <em>every fight where official scorecards exist</em>, not just bouts that reached a final decision. If a fight concluded via KO, TKO, or submission in Round 4 (e.g. Miocic vs. Cormier 2 or Du Plessis vs. Adesanya), the official scores for Rounds 1, 2, and 3 are preserved and analyzed. Similarly, for 5-round title bouts ending in Round 5 (such as Usman vs. Covington 1 or Adesanya vs. Pereira 1), all completed prior rounds (1 through 4) are incorporated.
         </div>
 
         <!-- Embedded Visualizations -->
@@ -1328,7 +1332,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
     const SUMMARY = __SUMMARY_JSON__;
     const ROUND_SUMMARY = __ROUND_SUMMARY_JSON__;
 
-    const UFC_BASELINE_PCT = 7.41;
+    const UFC_BASELINE_PCT = (typeof ROUND_SUMMARY !== 'undefined' && ROUND_SUMMARY.round_dissent_pct) ? ROUND_SUMMARY.round_dissent_pct : 7.23;
     const UFC_SPLIT_BASELINE_PCT = 20.05;
 
     let currentMode = 'rounds'; // 'rounds', 'fights', or 'fighters'
@@ -1398,53 +1402,53 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             document.getElementById('hero-question').textContent = "When two cage-side judges agree on a round, which third judge breaks away most often?";
 
             if (currentRosterFilter === 'active') {
-                document.getElementById('hero-narrative').innerHTML = "Across 31,881 individual rounds evaluated by 3-judge panels, exactly <strong>2,362 rounds (7.41%)</strong> produced a lone dissenting judge. Among currently active UFC mainstays (250+ rounds, 2024–2026), <strong>Rick Winter</strong> holds the #1 disagreement rate at <strong>8.75%</strong>, followed by <strong>Dave Tirelli</strong> (8.56%) and <strong>David Lethaby</strong> (8.50%). Meanwhile, <strong>Clemens Werner</strong> is the most consensual active judge at <strong>5.06%</strong> dissent (94.94% colleague agreement rate).";
+                document.getElementById('hero-narrative').innerHTML = "Across 32,876 individual rounds evaluated by 3-judge panels (including completed rounds from stoppage bouts), exactly <strong>2,376 rounds (7.23%)</strong> produced a lone dissenting judge. Among currently active UFC mainstays (250+ rounds, 2024–2026), <strong>Rick Winter</strong> holds the #1 disagreement rate at <strong>8.75%</strong>, followed by <strong>David Lethaby</strong> (8.62%) and <strong>Dave Tirelli</strong> (8.54%). Meanwhile, <strong>Clemens Werner</strong> is the most consensual active judge at <strong>4.99%</strong> dissent (95.01% colleague agreement rate).";
 
-                document.getElementById('kpi-benchmark-val').textContent = "7.41%";
-                document.getElementById('kpi-benchmark-sub').textContent = "Average dissent rate across all 31,881 rounds (1 in every 13.5 rounds)";
+                document.getElementById('kpi-benchmark-val').textContent = "7.23%";
+                document.getElementById('kpi-benchmark-sub').textContent = "Average dissent rate across all 32,876 rounds (1 in every 13.8 rounds)";
 
                 document.getElementById('kpi-leader-val').textContent = "8.75%";
-                document.getElementById('kpi-leader-delta').textContent = "+1.34% vs avg";
+                document.getElementById('kpi-leader-delta').textContent = "+1.52% vs avg";
                 document.getElementById('kpi-leader-sub').innerHTML = "<strong>Rick Winter</strong> · 30 dissents in 343 rounds (#1 active dissenter)";
 
-                document.getElementById('kpi-agreeable-val').textContent = "5.06%";
-                document.getElementById('kpi-agreeable-delta').textContent = "-2.35% vs avg";
-                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Clemens Werner</strong> · 94.94% agreement in 474 rounds (most consensual active)";
+                document.getElementById('kpi-agreeable-val').textContent = "4.99%";
+                document.getElementById('kpi-agreeable-delta').textContent = "-2.24% vs avg";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Clemens Werner</strong> · 95.01% agreement in 481 rounds (most consensual active)";
 
-                document.getElementById('kpi-volume-val').textContent = "220";
-                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 6.34% rate over 3,468 scored rounds (active through 2026)";
+                document.getElementById('kpi-volume-val').textContent = "223";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 6.24% rate over 3,573 scored rounds (active through 2026)";
             } else if (currentRosterFilter === 'historical') {
-                document.getElementById('hero-narrative').innerHTML = "Among historical UFC mainstays who have stepped away from the cage (&lt; 2024), <strong>Cardo Urso</strong> (last judged 2019) leads all-time round dissents at <strong>9.32%</strong>, followed by <strong>Glenn Trowbridge</strong> (last judged 2020) at <strong>8.83%</strong> and <strong>Marcos Rosales</strong> (last judged 2021) at <strong>8.32%</strong>.";
+                document.getElementById('hero-narrative').innerHTML = "Among historical UFC mainstays who have stepped away from the cage (&lt; 2024), <strong>Cardo Urso</strong> (last judged 2019) leads all-time round dissents at <strong>9.01%</strong>, followed by <strong>Glenn Trowbridge</strong> (last judged 2020) at <strong>8.37%</strong> and <strong>Marcos Rosales</strong> (last judged 2021) at <strong>7.97%</strong>.";
 
-                document.getElementById('kpi-benchmark-val').textContent = "7.41%";
-                document.getElementById('kpi-benchmark-sub').textContent = "Average dissent rate across all 31,881 rounds";
+                document.getElementById('kpi-benchmark-val').textContent = "7.23%";
+                document.getElementById('kpi-benchmark-sub').textContent = "Average dissent rate across all 32,876 rounds";
 
-                document.getElementById('kpi-leader-val').textContent = "9.32%";
-                document.getElementById('kpi-leader-delta').textContent = "+1.91% vs avg";
-                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Cardo Urso</strong> · 29 dissents in 311 rounds (last judged 2019)";
+                document.getElementById('kpi-leader-val').textContent = "9.01%";
+                document.getElementById('kpi-leader-delta').textContent = "+1.78% vs avg";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Cardo Urso</strong> · 29 dissents in 322 rounds (last judged 2019)";
 
-                document.getElementById('kpi-agreeable-val').textContent = "5.42%";
-                document.getElementById('kpi-agreeable-delta').textContent = "-1.99% vs avg";
-                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Jeff Mullen</strong> · 94.58% agreement in 277 rounds (last judged 2017)";
+                document.getElementById('kpi-agreeable-val').textContent = "5.36%";
+                document.getElementById('kpi-agreeable-delta').textContent = "-1.87% vs avg";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Jeff Mullen</strong> · 94.64% agreement in 280 rounds (last judged 2017)";
 
-                document.getElementById('kpi-volume-val').textContent = "165";
-                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Glenn Trowbridge</strong> · 453 rounds (historical mainstay)";
+                document.getElementById('kpi-volume-val').textContent = "41";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Glenn Trowbridge</strong> · 490 rounds (historical mainstay)";
             } else {
-                document.getElementById('hero-narrative').innerHTML = "Across 31,881 individual rounds evaluated by 3-judge panels, exactly <strong>2,362 rounds (7.41%)</strong> produced a lone dissenting judge. Among high-volume UFC mainstays (250+ rounds), <strong>Cardo Urso</strong> ranks #1 with a <strong>9.32%</strong> round dissent rate, followed by <strong>Glenn Trowbridge</strong> (8.83%) and <strong>Rick Winter</strong> (8.75%).";
+                document.getElementById('hero-narrative').innerHTML = "Across 32,876 individual rounds evaluated by 3-judge panels (including completed rounds from stoppage bouts), exactly <strong>2,376 rounds (7.23%)</strong> produced a lone dissenting judge. Among high-volume UFC mainstays (250+ rounds), <strong>Cardo Urso</strong> ranks #1 with a <strong>9.01%</strong> round dissent rate, followed by <strong>Rick Winter</strong> (8.75%) and <strong>David Lethaby</strong> (8.62%).";
 
-                document.getElementById('kpi-benchmark-val').textContent = "7.41%";
-                document.getElementById('kpi-benchmark-sub').textContent = "Average dissent rate across all 31,881 rounds (1 in every 13.5 rounds)";
+                document.getElementById('kpi-benchmark-val').textContent = "7.23%";
+                document.getElementById('kpi-benchmark-sub').textContent = "Average dissent rate across all 32,876 rounds (1 in every 13.8 rounds)";
 
-                document.getElementById('kpi-leader-val').textContent = "9.32%";
-                document.getElementById('kpi-leader-delta').textContent = "+1.91% vs avg";
-                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Cardo Urso</strong> · 29 dissents in 311 rounds (1 in every 10.7 rounds)";
+                document.getElementById('kpi-leader-val').textContent = "9.01%";
+                document.getElementById('kpi-leader-delta').textContent = "+1.78% vs avg";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Cardo Urso</strong> · 29 dissents in 322 rounds (1 in every 11.1 rounds)";
 
-                document.getElementById('kpi-agreeable-val').textContent = "5.06%";
-                document.getElementById('kpi-agreeable-delta').textContent = "-2.35% vs avg";
-                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Clemens Werner</strong> · 94.94% agreement in 474 rounds (most consensual)";
+                document.getElementById('kpi-agreeable-val').textContent = "4.99%";
+                document.getElementById('kpi-agreeable-delta').textContent = "-2.24% vs avg";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Clemens Werner</strong> · 95.01% agreement in 481 rounds (most consensual)";
 
-                document.getElementById('kpi-volume-val').textContent = "220";
-                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 6.34% rate over 3,468 scored rounds (historic volume)";
+                document.getElementById('kpi-volume-val').textContent = "223";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 6.24% rate over 3,573 scored rounds (historic volume)";
             }
         } else if (currentMode === 'fights') {
             document.getElementById('hero-question').textContent = "Which UFC judge dissents most often on the final fight decision outcome?";
@@ -1773,13 +1777,13 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             pool.sort((a, b) => (b.round_dissent_pct || 0) - (a.round_dissent_pct || 0));
             const topJudges = pool.slice(0, 10);
 
-            if (gaugeHeading) gaugeHeading.textContent = "Veteran Mainstays vs 7.41% Historical UFC Average";
+            if (gaugeHeading) gaugeHeading.textContent = `Veteran Mainstays vs ${UFC_BASELINE_PCT.toFixed(2)}% Historical UFC Average`;
             if (gaugeSubheading) gaugeSubheading.innerHTML = `Top 10 judges with highest round dissent rates · ${rosterLabel} (250+ rounds scored)`;
             if (gaugeLegend) {
                 gaugeLegend.innerHTML = `
                     <span><span class="legend-dot" style="background:var(--accent-crimson);"></span> Higher Dissent Rate (Above Benchmark)</span>
                     <span><span class="legend-dot" style="background:var(--accent-green);"></span> Lower Dissent Rate (More Consensual)</span>
-                    <span><span class="legend-dot" style="background:#ffffff; border:1px solid #000;"></span> 7.41% UFC Average</span>
+                    <span><span class="legend-dot" style="background:#ffffff; border:1px solid #000;"></span> ${UFC_BASELINE_PCT.toFixed(2)}% UFC Average</span>
                 `;
             }
 
@@ -1802,7 +1806,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                             ${statusBadge}
                         </div>
                         <div class="bar-track">
-                            <div class="bar-benchmark-line" style="left: ${(UFC_BASELINE_PCT / 12) * 100}%;" title="7.41% Baseline"></div>
+                            <div class="bar-benchmark-line" style="left: ${(UFC_BASELINE_PCT / 12) * 100}%;" title="${UFC_BASELINE_PCT.toFixed(2)}% Baseline"></div>
                             <div class="bar-fill" style="width: ${barWidth}%; background: ${barColor};"></div>
                         </div>
                         <div class="bar-val-col">
@@ -1816,19 +1820,20 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             // Most Consensual (Agreers): sort lowest dissent rate first
             pool.sort((a, b) => (a.round_dissent_pct || 0) - (b.round_dissent_pct || 0));
             const topJudges = pool.slice(0, 10);
+            const baselineAgree = +(100 - UFC_BASELINE_PCT).toFixed(2);
 
             if (gaugeHeading) gaugeHeading.textContent = "Most Consensual Judges (Highest Colleague Agreement Rates)";
             if (gaugeSubheading) gaugeSubheading.innerHTML = `Top 10 judges with highest colleague agreement · ${rosterLabel} (250+ rounds scored)`;
             if (gaugeLegend) {
                 gaugeLegend.innerHTML = `
                     <span><span class="legend-dot" style="background:#10b981;"></span> Colleague Agreement Rate (%)</span>
-                    <span><span class="legend-dot" style="background:#ffffff; border:1px solid #000;"></span> 92.59% UFC Baseline Agreement (100% - 7.41%)</span>
+                    <span><span class="legend-dot" style="background:#ffffff; border:1px solid #000;"></span> ${baselineAgree}% UFC Baseline Agreement (100% - ${UFC_BASELINE_PCT.toFixed(2)}%)</span>
                 `;
             }
 
             const minScale = 88;
             const maxScale = 96;
-            const baselinePos = ((92.59 - minScale) / (maxScale - minScale)) * 100;
+            const baselinePos = ((baselineAgree - minScale) / (maxScale - minScale)) * 100;
 
             deviationBars.innerHTML = topJudges.map(j => {
                 const dissentPct = j.round_dissent_pct || 0;
@@ -2202,11 +2207,13 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                 // Dossier Drawer Row
                 if (isExpanded) {
                     const sampleDissents = j.sample_dissents || [];
-                    const dissentsHtml = sampleDissents.length > 0 ? sampleDissents.map(d => `
+                    const dissentsHtml = sampleDissents.length > 0 ? sampleDissents.map(d => {
+                        const finishBadge = d.is_finish ? `<span class="finish-badge" style="background:rgba(239,68,68,0.2); color:#fca5a5; font-size:10px; padding:1px 5px; border-radius:4px; font-weight:600; margin-left:4px;" title="Bout finished in Round ${d.finish_round || ''} via ${d.finish_method || 'Finish'}">${d.finish_method || 'Finish'} (R${d.finish_round || '?'})</span>` : '';
+                        return `
                         <div class="sample-dissent-box">
                             <div class="sample-dissent-header">
                                 <span>${d.year || ''}</span>
-                                <span>Round ${d.round || ''}</span>
+                                <span>Round ${d.round || ''}${finishBadge}</span>
                             </div>
                             <div class="sample-fight-name">${escapeHtml(d.fight || '')}</div>
                             <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -2214,10 +2221,11 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                                 <span style="font-size:11px; color:var(--text-muted);">vs ${escapeHtml(d.c1)}, ${escapeHtml(d.c2)}</span>
                             </div>
                         </div>
-                    `).join('') : '<div style="color:var(--text-muted); font-size:12px;">No round dissent samples on file.</div>';
+                    `;}).join('') : '<div style="color:var(--text-muted); font-size:12px;">No round dissent samples on file.</div>';
 
                     const freq = j.round_dissents > 0 ? (j.total_rounds / j.round_dissents).toFixed(1) : '—';
                     const agreePct = (100 - pct).toFixed(2);
+                    const finishRoundsCount = j.finish_rounds || 0;
 
                     html += `
                         <tr class="dossier-drawer-row visible">
@@ -2231,6 +2239,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                                         <div class="dossier-stat-pill">Active UFC Era: <strong>${j.first_year || 1995} – ${j.last_year || 2026}</strong></div>
                                         <div class="dossier-stat-pill">Dissent Frequency: <strong>Dissents once every ${freq} rounds</strong></div>
                                         <div class="dossier-stat-pill">Colleague Agreement: <strong>${agreePct}% of rounds</strong></div>
+                                        <div class="dossier-stat-pill">Completed Stoppage Rounds: <strong>${finishRoundsCount} rounds</strong> (prior to finish)</div>
                                         <div class="dossier-stat-pill">Dominant 10-8 Rounds Given: <strong>${j.ten_eight_rounds || 0} (${(j.ten_eight_pct || 0).toFixed(1)}%)</strong></div>
                                         <div class="dossier-stat-pill">Top Co-Judge Clash: <strong>${escapeHtml(j.top_clash_partner)} (${(j.top_clash_pct || 0).toFixed(1)}% disagreement over ${j.top_clash_rounds || 0} rounds)</strong></div>
                                     </div>

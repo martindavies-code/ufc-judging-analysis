@@ -5,6 +5,7 @@ evaluates round-level consensus and dissents, and stores structured records
 to CSV and SQLite.
 """
 
+import json
 import logging
 import os
 import re
@@ -31,6 +32,7 @@ DATA_DIR = PROJECT_ROOT / "data"
 DECISIONS_HTML_DIR = DATA_DIR / "decisions_html"
 SCORECARDS_CSV = DATA_DIR / "ufc_scorecards.csv"
 ROUND_SCORES_CSV = DATA_DIR / "ufc_round_scores.csv"
+STOPPAGE_SCORECARDS_JSON = DATA_DIR / "stoppage_scorecards.json"
 DB_PATH = DATA_DIR / "ufc_judging.db"
 
 
@@ -127,103 +129,276 @@ def parse_decision_rounds(html_text: str, decision_id: str, metadata: Optional[D
     if len(judge_data) != 3:
         return []
 
-    # Find common round numbers across all 3 judges
-    common_rounds = set(judge_data[0]['rounds'].keys()) & set(judge_data[1]['rounds'].keys()) & set(judge_data[2]['rounds'].keys())
-    if not common_rounds:
+    # Collect all round numbers present across any judges
+    all_rounds = sorted(list(set(judge_data[0]['rounds'].keys()) | set(judge_data[1]['rounds'].keys()) | set(judge_data[2]['rounds'].keys())))
+    if not all_rounds:
         return []
 
     results: List[RoundScore] = []
 
-    for r_num in sorted(list(common_rounds)):
-        j0_round = judge_data[0]['rounds'][r_num]
-        j1_round = judge_data[1]['rounds'][r_num]
-        j2_round = judge_data[2]['rounds'][r_num]
+    for r_num in all_rounds:
+        has_j0 = r_num in judge_data[0]['rounds']
+        has_j1 = r_num in judge_data[1]['rounds']
+        has_j2 = r_num in judge_data[2]['rounds']
 
-        p0 = j0_round['pick']
-        p1 = j1_round['pick']
-        p2 = j2_round['pick']
+        # When all 3 judges scored this round -> full panel consensus & dissent evaluation
+        if has_j0 and has_j1 and has_j2:
+            j0_round = judge_data[0]['rounds'][r_num]
+            j1_round = judge_data[1]['rounds'][r_num]
+            j2_round = judge_data[2]['rounds'][r_num]
 
-        # Judge 0 consensus check
-        j0_colleagues_agreed = bool(p1 == p2 and p1 != 'unknown')
-        j0_dissented = bool(j0_colleagues_agreed and (p0 != p1) and p0 != 'unknown')
+            p0 = j0_round['pick']
+            p1 = j1_round['pick']
+            p2 = j2_round['pick']
 
-        # Judge 1 consensus check
-        j1_colleagues_agreed = bool(p0 == p2 and p0 != 'unknown')
-        j1_dissented = bool(j1_colleagues_agreed and (p1 != p0) and p1 != 'unknown')
+            # Judge 0 consensus check
+            j0_colleagues_agreed = bool(p1 == p2 and p1 != 'unknown')
+            j0_dissented = bool(j0_colleagues_agreed and (p0 != p1) and p0 != 'unknown')
 
-        # Judge 2 consensus check
-        j2_colleagues_agreed = bool(p0 == p1 and p0 != 'unknown')
-        j2_dissented = bool(j2_colleagues_agreed and (p2 != p0) and p2 != 'unknown')
+            # Judge 1 consensus check
+            j1_colleagues_agreed = bool(p0 == p2 and p0 != 'unknown')
+            j1_dissented = bool(j1_colleagues_agreed and (p1 != p0) and p1 != 'unknown')
 
-        # Build RoundScore records
-        results.append(RoundScore(
-            decision_id=str(decision_id),
-            event_id=event_id,
-            event_year=event_year,
-            fight=fight,
-            fighter_1=fighter_1,
-            fighter_2=fighter_2,
-            round_num=r_num,
-            judge_name=judge_data[0]['judge_name'],
-            judge_id=judge_data[0]['judge_id'],
-            score_f1=j0_round['s1'],
-            score_f2=j0_round['s2'],
-            round_pick=p0,
-            colleagues_agreed=j0_colleagues_agreed,
-            round_dissented=j0_dissented,
-            colleague_1=judge_data[1]['judge_name'],
-            colleague_2=judge_data[2]['judge_name'],
-            is_ten_eight=j0_round['is_ten_eight']
-        ))
+            # Judge 2 consensus check
+            j2_colleagues_agreed = bool(p0 == p1 and p0 != 'unknown')
+            j2_dissented = bool(j2_colleagues_agreed and (p2 != p0) and p2 != 'unknown')
 
-        results.append(RoundScore(
-            decision_id=str(decision_id),
-            event_id=event_id,
-            event_year=event_year,
-            fight=fight,
-            fighter_1=fighter_1,
-            fighter_2=fighter_2,
-            round_num=r_num,
-            judge_name=judge_data[1]['judge_name'],
-            judge_id=judge_data[1]['judge_id'],
-            score_f1=j1_round['s1'],
-            score_f2=j1_round['s2'],
-            round_pick=p1,
-            colleagues_agreed=j1_colleagues_agreed,
-            round_dissented=j1_dissented,
-            colleague_1=judge_data[0]['judge_name'],
-            colleague_2=judge_data[2]['judge_name'],
-            is_ten_eight=j1_round['is_ten_eight']
-        ))
+            # Build RoundScore records
+            results.append(RoundScore(
+                decision_id=str(decision_id),
+                event_id=event_id,
+                event_year=event_year,
+                fight=fight,
+                fighter_1=fighter_1,
+                fighter_2=fighter_2,
+                round_num=r_num,
+                judge_name=judge_data[0]['judge_name'],
+                judge_id=judge_data[0]['judge_id'],
+                score_f1=j0_round['s1'],
+                score_f2=j0_round['s2'],
+                round_pick=p0,
+                colleagues_agreed=j0_colleagues_agreed,
+                round_dissented=j0_dissented,
+                colleague_1=judge_data[1]['judge_name'],
+                colleague_2=judge_data[2]['judge_name'],
+                is_ten_eight=j0_round['is_ten_eight'],
+                is_finish=False
+            ))
 
-        results.append(RoundScore(
-            decision_id=str(decision_id),
-            event_id=event_id,
-            event_year=event_year,
-            fight=fight,
-            fighter_1=fighter_1,
-            fighter_2=fighter_2,
-            round_num=r_num,
-            judge_name=judge_data[2]['judge_name'],
-            judge_id=judge_data[2]['judge_id'],
-            score_f1=j2_round['s1'],
-            score_f2=j2_round['s2'],
-            round_pick=p2,
-            colleagues_agreed=j2_colleagues_agreed,
-            round_dissented=j2_dissented,
-            colleague_1=judge_data[0]['judge_name'],
-            colleague_2=judge_data[1]['judge_name'],
-            is_ten_eight=j2_round['is_ten_eight']
-        ))
+            results.append(RoundScore(
+                decision_id=str(decision_id),
+                event_id=event_id,
+                event_year=event_year,
+                fight=fight,
+                fighter_1=fighter_1,
+                fighter_2=fighter_2,
+                round_num=r_num,
+                judge_name=judge_data[1]['judge_name'],
+                judge_id=judge_data[1]['judge_id'],
+                score_f1=j1_round['s1'],
+                score_f2=j1_round['s2'],
+                round_pick=p1,
+                colleagues_agreed=j1_colleagues_agreed,
+                round_dissented=j1_dissented,
+                colleague_1=judge_data[0]['judge_name'],
+                colleague_2=judge_data[2]['judge_name'],
+                is_ten_eight=j1_round['is_ten_eight'],
+                is_finish=False
+            ))
+
+            results.append(RoundScore(
+                decision_id=str(decision_id),
+                event_id=event_id,
+                event_year=event_year,
+                fight=fight,
+                fighter_1=fighter_1,
+                fighter_2=fighter_2,
+                round_num=r_num,
+                judge_name=judge_data[2]['judge_name'],
+                judge_id=judge_data[2]['judge_id'],
+                score_f1=j2_round['s1'],
+                score_f2=j2_round['s2'],
+                round_pick=p2,
+                colleagues_agreed=j2_colleagues_agreed,
+                round_dissented=j2_dissented,
+                colleague_1=judge_data[0]['judge_name'],
+                colleague_2=judge_data[1]['judge_name'],
+                is_ten_eight=j2_round['is_ten_eight'],
+                is_finish=False
+            ))
+        else:
+            # 1 or 2 judges scored this round (e.g. historical bout where 1 judge's breakdown was omitted)
+            for idx, has_j, c1_idx, c2_idx in [
+                (0, has_j0, 1, 2),
+                (1, has_j1, 0, 2),
+                (2, has_j2, 0, 1)
+            ]:
+                if has_j:
+                    j_round = judge_data[idx]['rounds'][r_num]
+                    results.append(RoundScore(
+                        decision_id=str(decision_id),
+                        event_id=event_id,
+                        event_year=event_year,
+                        fight=fight,
+                        fighter_1=fighter_1,
+                        fighter_2=fighter_2,
+                        round_num=r_num,
+                        judge_name=judge_data[idx]['judge_name'],
+                        judge_id=judge_data[idx]['judge_id'],
+                        score_f1=j_round['s1'],
+                        score_f2=j_round['s2'],
+                        round_pick=j_round['pick'],
+                        colleagues_agreed=False,
+                        round_dissented=False,
+                        colleague_1=judge_data[c1_idx]['judge_name'],
+                        colleague_2=judge_data[c2_idx]['judge_name'],
+                        is_ten_eight=j_round['is_ten_eight'],
+                        is_finish=False
+                    ))
+
+    return results
+
+
+def load_stoppage_scorecards(json_path: Path = STOPPAGE_SCORECARDS_JSON) -> List[RoundScore]:
+    """Parse all stoppage fight scorecards into typed RoundScore records.
+
+    Captures official athletic commission scorecards for bouts that ended before the
+    scheduled distance (e.g., if a fight ended in Round 4, the judges scored Rounds 1, 2, and 3).
+    """
+    if not json_path.exists():
+        logger.info("No stoppage scorecards file found at %s", json_path)
+        return []
+
+    try:
+        with open(json_path, "r", encoding="utf-8") as f:
+            fights = json.load(f)
+    except Exception as e:
+        logger.error("Failed to read stoppage scorecards from %s: %s", json_path, e)
+        return []
+
+    results: List[RoundScore] = []
+
+    for fight_data in fights:
+        f_id = str(fight_data.get('fight_id', ''))
+        event_id = str(fight_data.get('event_id', ''))
+        event_year = str(fight_data.get('event_year', ''))
+        fight_name = str(fight_data.get('fight', ''))
+        fighter_1 = str(fight_data.get('fighter_1', ''))
+        fighter_2 = str(fight_data.get('fighter_2', ''))
+        finish_round = int(fight_data.get('finish_round', 0))
+        finish_method = str(fight_data.get('finish_method', 'Stoppage'))
+        rounds_scored = int(fight_data.get('rounds_scored', 0))
+        judges = fight_data.get('judges', [])
+
+        if len(judges) != 3 or rounds_scored <= 0:
+            continue
+
+        j0_name = clean_judge_name(judges[0].get('judge_name', ''))
+        j1_name = clean_judge_name(judges[1].get('judge_name', ''))
+        j2_name = clean_judge_name(judges[2].get('judge_name', ''))
+
+        for r_num in range(1, rounds_scored + 1):
+            r_str = str(r_num)
+            if (r_str not in judges[0].get('scores', {}) or
+                r_str not in judges[1].get('scores', {}) or
+                r_str not in judges[2].get('scores', {})):
+                continue
+
+            s0_1, s0_2 = judges[0]['scores'][r_str]
+            s1_1, s1_2 = judges[1]['scores'][r_str]
+            s2_1, s2_2 = judges[2]['scores'][r_str]
+
+            p0 = 'fighter_1' if s0_1 > s0_2 else ('fighter_2' if s0_2 > s0_1 else 'draw')
+            p1 = 'fighter_1' if s1_1 > s1_2 else ('fighter_2' if s1_2 > s1_1 else 'draw')
+            p2 = 'fighter_1' if s2_1 > s2_2 else ('fighter_2' if s2_2 > s2_1 else 'draw')
+
+            j0_agreed = bool(p1 == p2 and p1 != 'unknown')
+            j0_dissented = bool(j0_agreed and (p0 != p1) and p0 != 'unknown')
+
+            j1_agreed = bool(p0 == p2 and p0 != 'unknown')
+            j1_dissented = bool(j1_agreed and (p1 != p0) and p1 != 'unknown')
+
+            j2_agreed = bool(p0 == p1 and p0 != 'unknown')
+            j2_dissented = bool(j2_agreed and (p2 != p0) and p2 != 'unknown')
+
+            results.append(RoundScore(
+                decision_id=f_id,
+                event_id=event_id,
+                event_year=event_year,
+                fight=fight_name,
+                fighter_1=fighter_1,
+                fighter_2=fighter_2,
+                round_num=r_num,
+                judge_name=j0_name,
+                judge_id=None,
+                score_f1=s0_1,
+                score_f2=s0_2,
+                round_pick=p0,
+                colleagues_agreed=j0_agreed,
+                round_dissented=j0_dissented,
+                colleague_1=j1_name,
+                colleague_2=j2_name,
+                is_ten_eight=bool(abs(s0_1 - s0_2) >= 2),
+                is_finish=True,
+                finish_round=finish_round,
+                finish_method=finish_method
+            ))
+
+            results.append(RoundScore(
+                decision_id=f_id,
+                event_id=event_id,
+                event_year=event_year,
+                fight=fight_name,
+                fighter_1=fighter_1,
+                fighter_2=fighter_2,
+                round_num=r_num,
+                judge_name=j1_name,
+                judge_id=None,
+                score_f1=s1_1,
+                score_f2=s1_2,
+                round_pick=p1,
+                colleagues_agreed=j1_agreed,
+                round_dissented=j1_dissented,
+                colleague_1=j0_name,
+                colleague_2=j2_name,
+                is_ten_eight=bool(abs(s1_1 - s1_2) >= 2),
+                is_finish=True,
+                finish_round=finish_round,
+                finish_method=finish_method
+            ))
+
+            results.append(RoundScore(
+                decision_id=f_id,
+                event_id=event_id,
+                event_year=event_year,
+                fight=fight_name,
+                fighter_1=fighter_1,
+                fighter_2=fighter_2,
+                round_num=r_num,
+                judge_name=j2_name,
+                judge_id=None,
+                score_f1=s2_1,
+                score_f2=s2_2,
+                round_pick=p2,
+                colleagues_agreed=j2_agreed,
+                round_dissented=j2_dissented,
+                colleague_1=j0_name,
+                colleague_2=j1_name,
+                is_ten_eight=bool(abs(s2_1 - s2_2) >= 2),
+                is_finish=True,
+                finish_round=finish_round,
+                finish_method=finish_method
+            ))
 
     return results
 
 
 def parse_all_cached_decisions(
     decisions_dir: Path = DECISIONS_HTML_DIR,
-    scorecards_csv: Path = SCORECARDS_CSV
+    scorecards_csv: Path = SCORECARDS_CSV,
+    stoppage_json: Path = STOPPAGE_SCORECARDS_JSON
 ) -> List[RoundScore]:
-    """Parse all downloaded decision HTML files into round score records."""
+    """Parse all downloaded decision HTML files AND official stoppage fight scorecards."""
     if not scorecards_csv.exists():
         raise FileNotFoundError(f"Scorecards CSV not found at {scorecards_csv}")
 
@@ -261,8 +436,19 @@ def parse_all_cached_decisions(
             logger.warning("Error parsing decision %s: %s", decision_id, e)
             skipped += 1
 
-    print(f"Extracted {len(all_round_scores)} total round scorecards ({skipped} decisions skipped or without round tables).")
+    print(f"Extracted {len(all_round_scores)} total round scorecards from decisions ({skipped} decisions skipped or without round tables).")
+
+    # Ingest official scorecards from bouts that ended in a finish before scheduled distance
+    stoppage_scores = load_stoppage_scorecards(stoppage_json)
+    if stoppage_scores:
+        all_round_scores.extend(stoppage_scores)
+        print(f"Loaded {len(stoppage_scores)} round scores from {len(stoppage_scores) // 3} finished fight rounds.")
+
+    print(f"Total round scorecards across decisions and stoppage bouts: {len(all_round_scores)}")
     return all_round_scores
+
+
+parse_all_scorecards = parse_all_cached_decisions
 
 
 def save_round_scores(
@@ -297,6 +483,8 @@ def save_round_scores(
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_rs_decision ON round_scores(decision_id)")
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_rs_year ON round_scores(event_year)")
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_rs_dissented ON round_scores(round_dissented)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_rs_finish ON round_scores(is_finish)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_rs_round_num ON round_scores(round_num)")
         conn.commit()
         print(f"Saved and indexed {len(df)} round scores into SQLite table 'round_scores' at {db_path}")
     finally:

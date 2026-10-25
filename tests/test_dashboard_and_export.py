@@ -43,6 +43,18 @@ class TestExportWebData:
             assert "contested_round_pct" in sample_fighter
             assert "sample_close_fights" in sample_fighter
 
+            # Verify stoppage round metrics in summary and recent_round_dissents
+            assert "rounds" in data["summary"]
+            rounds_summary = data["summary"]["rounds"]
+            assert rounds_summary["total_rounds"] == 32876
+            assert rounds_summary["finish_rounds"] == 288
+            assert rounds_summary["finish_fights_count"] == 48
+            assert rounds_summary["decision_rounds"] == 32588
+            assert "recent_round_dissents" in data
+            stoppage_dissents = [d for d in data["recent_round_dissents"] if d.get("is_finish")]
+            assert len(stoppage_dissents) > 0
+            assert any("Usman" in d.get("fight", "") for d in stoppage_dissents)
+
 
 class TestBuildDashboard:
     def test_encode_image_base64_nonexistent(self):
@@ -78,6 +90,11 @@ class TestBuildDashboard:
         assert 'id="btn-mode-fighters"' in html_text
         assert 'Fighter Controversy Index' in html_text
         assert 'ufc_fighter_controversy_index.csv' in html_text
+        # Verify stoppage rounds metadata and comprehensive scope notice
+        assert "32,876" in html_text
+        assert "Comprehensive Scope" in html_text
+        assert "finish-badge" in html_text
+        assert "Completed Stoppage Rounds" in html_text
 
     def test_dashboard_javascript_syntax(self):
         import shutil

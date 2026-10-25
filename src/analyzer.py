@@ -38,12 +38,20 @@ def calculate_judge_round_metrics(df_rounds: pd.DataFrame) -> pd.DataFrame:
             'ten_eight_rounds', 'ten_eight_pct'
         ])
 
-    stats = df_rounds.groupby('judge_name').agg(
-        total_rounds=('round_num', 'count'),
-        consensus_rounds=('colleagues_agreed', 'sum'),
-        round_dissents=('round_dissented', 'sum'),
-        ten_eight_rounds=('is_ten_eight', 'sum')
-    ).reset_index()
+    agg_dict = {
+        'total_rounds': ('round_num', 'count'),
+        'consensus_rounds': ('colleagues_agreed', 'sum'),
+        'round_dissents': ('round_dissented', 'sum'),
+        'ten_eight_rounds': ('is_ten_eight', 'sum')
+    }
+    if 'is_finish' in df_rounds.columns:
+        agg_dict['finish_rounds'] = ('is_finish', 'sum')
+
+    stats = df_rounds.groupby('judge_name').agg(**agg_dict).reset_index()
+
+    if 'finish_rounds' not in stats.columns:
+        stats['finish_rounds'] = 0
+    stats['decision_rounds'] = stats['total_rounds'] - stats['finish_rounds']
 
     stats['round_dissent_pct'] = np.where(
         stats['total_rounds'] > 0,

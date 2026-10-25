@@ -6,50 +6,51 @@ An empirical data science project analyzing every available UFC judge's scorecar
 
 ## Executive Summary: Round-by-Round Scoring Disagreements
 
-Across **751 UFC events** from **1995 through 2026**, **4,010 UFC fights** went to a decision, yielding **31,881 individual 5-minute rounds scored** across **411 unique judges**.
+Across **751 UFC events** from **1995 through 2026**, this investigation analyzes **every fight where official scorecards exist** — encompassing **4,010 UFC decisions** plus **48 bouts that ended inside the distance** where judges' scorecards were officially submitted (e.g., Rounds 1–3 of a bout stopped in Round 4, or Rounds 1–4 of a bout stopped in Round 5). In total, **32,876 individual 5-minute rounds scored** across **411 unique judges** were evaluated.
 
 A **Round Dissent** occurs when two cage-side colleagues agree on who won an individual round, while the third judge submits a dissenting score for the opposing fighter or a draw.
 
 ### Which judge disagrees with their other two colleagues the highest percentage of times on round scoring?
 
 1. **UFC Veteran Mainstays (Minimum 250 Scored Rounds):**
-   * 🥇 **Cardo Urso**: **9.32%** round dissent rate (29 dissents in 311 rounds)
-   * 🥈 **Glenn Trowbridge**: **8.83%** (40 dissents in 453 rounds)
-   * 🥉 **Rick Winter**: **8.75%** (30 dissents in 343 rounds)
-   * 4️⃣ **Dave Tirelli**: **8.56%** (41 dissents in 479 rounds)
-   * 5️⃣ **David Lethaby**: **8.50%** (54 dissents in 635 rounds)
-   * 6️⃣ **Marcos Rosales**: **8.32%** (47 dissents in 565 rounds)
-   * 7️⃣ **Paul Sutherland**: **8.16%** (23 dissents in 282 rounds)
-   * 8️⃣ **Adalaide Byrd**: **8.14%** (55 dissents in 676 rounds)
-   * 9️⃣ **Anders Ohlsson**: **7.80%** (23 dissents in 295 rounds)
-   * 🔟 **Howard Hughes**: **7.63%** (27 dissents in 354 rounds)
-   * 1️⃣1️⃣ **Eric Colón**: **7.61%** (98 dissents in 1,288 rounds)
-   * 1️⃣2️⃣ **Derek Cleary**: **7.48%** (168 dissents in 2,246 rounds)
-   * 1️⃣3️⃣ **Mark Collett**: **7.26%** (34 dissents in 468 rounds)
-   * 1️⃣4️⃣ **Douglas Crosby**: **7.18%** (38 dissents in 529 rounds)
-   * 1️⃣5️⃣ **Chris Lee**: **7.14%** (141 dissents in 1,974 rounds)
-   * 1️⃣6️⃣ **Sal D'Amato**: **6.34%** (220 dissents in 3,468 rounds — highest absolute volume)
+   * 🥇 **Cardo Urso**: **9.01%** round dissent rate (29 dissents in 322 rounds)
+   * 🥈 **Rick Winter**: **8.75%** (30 dissents in 343 rounds)
+   * 🥉 **David Lethaby**: **8.62%** (55 dissents in 638 rounds)
+   * 4️⃣ **Dave Tirelli**: **8.54%** (41 dissents in 480 rounds)
+   * 5️⃣ **Glenn Trowbridge**: **8.37%** (41 dissents in 490 rounds)
+   * 6️⃣ **Marcos Rosales**: **7.97%** (47 dissents in 590 rounds)
+   * 7️⃣ **Adalaide Byrd**: **7.87%** (55 dissents in 699 rounds)
+   * 8️⃣ **Anders Ohlsson**: **7.80%** (23 dissents in 295 rounds)
+   * 9️⃣ **Howard Hughes**: **7.63%** (27 dissents in 354 rounds)
+   * 🔟 **Eric Colón**: **7.60%** (99 dissents in 1,302 rounds)
+   * 1️⃣1️⃣ **Derek Cleary**: **7.44%** (170 dissents in 2,284 rounds)
+   * 1️⃣2️⃣ **Mark Collett**: **7.26%** (34 dissents in 468 rounds)
+   * 1️⃣3️⃣ **Douglas Crosby**: **7.18%** (38 dissents in 529 rounds)
+   * 1️⃣4️⃣ **Chris Lee**: **7.08%** (142 dissents in 2,007 rounds)
+   * 1️⃣5️⃣ **Ben Cartlidge**: **6.87%** (58 dissents in 844 rounds)
+   * 1️⃣6️⃣ **Sal D'Amato**: **6.24%** (223 dissents in 3,573 rounds — highest absolute volume)
 
 2. **Currently Active UFC Mainstays (2024–2026 Roster, Min 250 Rounds):**
    * 🥇 **Rick Winter**: **8.75%** round dissent rate (30 dissents in 343 rounds) — **#1 Active Dissenter in the UFC today**
-   * 🥈 **Dave Tirelli**: **8.56%** (41 dissents in 479 rounds)
-   * 🥉 **David Lethaby**: **8.50%** (54 dissents in 635 rounds)
-   * 4️⃣ **Adalaide Byrd**: **8.14%** (55 dissents in 676 rounds)
+   * 🥈 **David Lethaby**: **8.62%** (55 dissents in 638 rounds)
+   * 🥉 **Dave Tirelli**: **8.54%** (41 dissents in 480 rounds)
+   * 4️⃣ **Adalaide Byrd**: **7.87%** (55 dissents in 699 rounds)
    * 5️⃣ **Anders Ohlsson**: **7.80%** (23 dissents in 295 rounds)
    * 6️⃣ **Howard Hughes**: **7.63%** (27 dissents in 354 rounds)
-   * 7️⃣ **Eric Colón**: **7.61%** (98 dissents in 1,288 rounds)
-   * 8️⃣ **Derek Cleary**: **7.48%** (168 dissents in 2,246 rounds)
-   * 9️⃣ **Chris Lee**: **7.14%** (141 dissents in 1,974 rounds)
+   * 7️⃣ **Eric Colón**: **7.60%** (99 dissents in 1,302 rounds)
+   * 8️⃣ **Derek Cleary**: **7.44%** (170 dissents in 2,284 rounds)
+   * 9️⃣ **Chris Lee**: **7.08%** (142 dissents in 2,007 rounds)
+   * 🔟 **Ben Cartlidge**: **6.87%** (58 dissents in 844 rounds)
 
 3. **Most Consensual Judges (Highest Colleague Agreement Rate, Min 250 Rounds):**
-   * 🥇 **Clemens Werner**: **94.94% agreement rate** (5.06% dissent, 24 dissents in 474 rounds; -2.35% below avg) — **#1 Most Consensual Judge in UFC history**
-   * 🥈 **Jeff Mullen** *(Historical)*: **94.58% agreement rate** (5.42% dissent, 15 dissents in 277 rounds)
-   * 🥉 **Ron McCarthy**: **94.36% agreement rate** (5.64% dissent, 50 dissents in 886 rounds)
-   * 4️⃣ **Michael Bell**: **94.16% agreement rate** (5.84% dissent, 106 dissents in 1,814 rounds)
-   * 5️⃣ **Junichiro Kamijo**: **94.08% agreement rate** (5.92% dissent, 90 dissents in 1,519 rounds)
+   * 🥇 **Clemens Werner**: **95.01% agreement rate** (4.99% dissent, 24 dissents in 481 rounds; -2.24% below avg) — **#1 Most Consensual Active Judge in UFC history**
+   * 🥈 **Jeff Mullen** *(Historical)*: **94.64% agreement rate** (5.36% dissent, 15 dissents in 280 rounds)
+   * 🥉 **Ron McCarthy**: **94.24% agreement rate** (5.76% dissent, 52 dissents in 902 rounds)
+   * 4️⃣ **Michael Bell**: **94.21% agreement rate** (5.79% dissent, 106 dissents in 1,830 rounds)
+   * 5️⃣ **Junichiro Kamijo**: **94.04% agreement rate** (5.96% dissent, 91 dissents in 1,528 rounds)
    * 6️⃣ **Tony Weeks**: **93.86% agreement rate** (6.14% dissent, 61 dissents in 993 rounds)
-   * 7️⃣ **Sal D'Amato**: **93.66% agreement rate** (6.34% dissent, 220 dissents in 3,468 rounds)
-   * 8️⃣ **Ben Cartlidge**: **93.11% agreement rate** (6.89% dissent, 58 dissents in 842 rounds)
+   * 7️⃣ **Sal D'Amato**: **93.76% agreement rate** (6.24% dissent, 223 dissents in 3,573 rounds)
+   * 8️⃣ **Ben Cartlidge**: **93.13% agreement rate** (6.87% dissent, 58 dissents in 844 rounds)
 
 4. **Emerging & Regular Judges (Minimum 50 Scored Rounds):**
    * 🥇 **Barry Luxenberg**: **20.63%** (13 dissents in 63 rounds)
@@ -173,7 +174,7 @@ ufc-judging-analysis/
 │   └── workflows/
 │       └── weekly_update.yml        # Automated Monday cron to ingest UFC events & redeploy Pages
 ├── data/
-│   ├── ufc_round_scores.csv         # 31,881 individual 5-minute round scores (10-9, 10-8, 10-10)
+│   ├── ufc_round_scores.csv         # 32,876 individual 5-minute round scores (10-9, 10-8, 10-10)
 │   ├── ufc_scorecards.csv           # 4,010 UFC fights with full scores and dissenter flags
 │   ├── ufc_judge_appearances.csv    # 12,030 individual judge-fight scorecard records
 │   ├── ufc_judging.db               # SQLite database with 'round_scores', 'fights', and 'judge_appearances'
@@ -202,7 +203,7 @@ ufc-judging-analysis/
 │   ├── export_web_data.py           # Web data enrichment pipeline & JSON compiler
 │   ├── build_dashboard.py           # Standalone interactive dashboard compiler
 │   └── security.py                  # Strict path resolution, SQL validation & XSS protection
-├── tests/                           # 96 comprehensive unit tests with branch coverage
+├── tests/                           # 97+ comprehensive unit tests with branch coverage
 ├── index.html                       # Standalone interactive HTML dashboard (GitHub Pages)
 ├── requirements.txt                 # Project dependencies
 └── README.md                        # Project documentation & analysis report
@@ -216,11 +217,11 @@ The dashboard (`index.html`) is engineered according to the principles articulat
 
 1. **Clear Editorial User Journey**: Numbered chapters starting directly with the core question and immediately delivering the answer before deeper exploration.
 2. **Seamless 3-Way Analysis Mode Switcher**:
-   * **Round Scoring Disagreements**: Detailed round-by-round dissent (10-9, 10-8) across 31,881 rounds.
+   * **Round Scoring Disagreements**: Detailed round-by-round dissent (10-9, 10-8) across 32,876 rounds (including completed rounds from stoppage bouts).
    * **Fight Decision Splits**: Final 15-minute fight decision split disagreement rankings across 4,010 bouts.
    * **Fighter Controversy Index**: Deep-dive into which UFC fighters find themselves in razor-thin fights, who suffers the worst split decision luck (-4 net luck for Masvidal & Lee), who benefits most (+3 for Strickland & Fili), and who has the highest rate of contested rounds (48.39% for Paul Felder).
 3. **Intentional Visual Hierarchy**: Primary lead cards, secondary comparative gauges, and tertiary supporting charts.
-4. **Zero Wasted Hero Space**: Interactive **Benchmark Deviation Gauge** visualizing how each judge or fighter compares to historical UFC baselines (7.41% for rounds, 20.05% for split decisions), plus the **UFC Luck Differential** gauge.
+4. **Zero Wasted Hero Space**: Interactive **Benchmark Deviation Gauge** visualizing how each judge or fighter compares to historical UFC baselines (7.23% for rounds, 20.05% for split decisions), plus the **UFC Luck Differential** gauge.
 5. **Curated Table with Interactive Row Expansion (Dossiers)**: No cluttered data dumps; clicking any judge or fighter expands an inline dossier showing active career eras, disagreement frequencies, colleague clash stats, and sample bout scorecards.
 6. **Plain-English Plot Labelling**: Self-explanatory metric names, explicit units, and clear context.
 7. **Prominent Key Estimates**: 4 high-contrast KPI cards showcasing benchmarks, leaders, volume records, and luck extremes.

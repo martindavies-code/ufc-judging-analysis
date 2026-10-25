@@ -1,0 +1,2546 @@
+[
+  {
+    "fight_id": "finish_usman_covington_1",
+    "event_id": "1001",
+    "event_title": "UFC 245: Usman vs. Covington",
+    "event_year": "2019",
+    "fight": "Usman def. Covington",
+    "fighter_1": "Kamaru Usman",
+    "fighter_2": "Colby Covington",
+    "finish_round": 5,
+    "finish_method": "TKO",
+    "rounds_scored": 4,
+    "judges": [
+      {
+        "judge_name": "Mike Bell",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            9,
+            10
+          ],
+          "3": [
+            10,
+            9
+          ],
+          "4": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            9,
+            10
+          ],
+          "3": [
+            9,
+            10
+          ],
+          "4": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            9,
+            10
+          ],
+          "3": [
+            10,
+            9
+          ],
+          "4": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_usman_edwards_2",
+    "event_id": "1280",
+    "event_title": "UFC 278: Usman vs. Edwards 2",
+    "event_year": "2022",
+    "fight": "Edwards def. Usman",
+    "fighter_1": "Leon Edwards",
+    "fighter_2": "Kamaru Usman",
+    "finish_round": 5,
+    "finish_method": "KO",
+    "rounds_scored": 4,
+    "judges": [
+      {
+        "judge_name": "Mike Bell",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            9,
+            10
+          ],
+          "3": [
+            9,
+            10
+          ],
+          "4": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            9,
+            10
+          ],
+          "3": [
+            9,
+            10
+          ],
+          "4": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Chris Lee",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            9,
+            10
+          ],
+          "3": [
+            9,
+            10
+          ],
+          "4": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_adesanya_pereira_1",
+    "event_id": "1310",
+    "event_title": "UFC 281: Adesanya vs. Pereira",
+    "event_year": "2022",
+    "fight": "Pereira def. Adesanya",
+    "fighter_1": "Alex Pereira",
+    "fighter_2": "Israel Adesanya",
+    "finish_round": 5,
+    "finish_method": "TKO",
+    "rounds_scored": 4,
+    "judges": [
+      {
+        "judge_name": "Mike Bell",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            9,
+            10
+          ],
+          "4": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            9,
+            10
+          ],
+          "4": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Eric Col\u00f3n",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            9,
+            10
+          ],
+          "4": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_silva_sonnen_1",
+    "event_id": "310",
+    "event_title": "UFC 117: Silva vs. Sonnen",
+    "event_year": "2010",
+    "fight": "Silva def. Sonnen",
+    "fighter_1": "Anderson Silva",
+    "fighter_2": "Chael Sonnen",
+    "finish_round": 5,
+    "finish_method": "Submission",
+    "rounds_scored": 4,
+    "judges": [
+      {
+        "judge_name": "Nelson Hamilton",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            9,
+            10
+          ],
+          "3": [
+            9,
+            10
+          ],
+          "4": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Michael Bell",
+        "scores": {
+          "1": [
+            8,
+            10
+          ],
+          "2": [
+            9,
+            10
+          ],
+          "3": [
+            8,
+            10
+          ],
+          "4": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Kelly Coggins",
+        "scores": {
+          "1": [
+            8,
+            10
+          ],
+          "2": [
+            9,
+            10
+          ],
+          "3": [
+            9,
+            10
+          ],
+          "4": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_lawler_macdonald_2",
+    "event_id": "620",
+    "event_title": "UFC 189: Mendes vs. McGregor",
+    "event_year": "2015",
+    "fight": "Lawler def. MacDonald",
+    "fighter_1": "Robbie Lawler",
+    "fighter_2": "Rory MacDonald",
+    "finish_round": 5,
+    "finish_method": "TKO",
+    "rounds_scored": 4,
+    "judges": [
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            9,
+            10
+          ],
+          "4": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Chris Lee",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            9,
+            10
+          ],
+          "4": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Glenn Trowbridge",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            9,
+            10
+          ],
+          "4": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_ferguson_gaethje",
+    "event_id": "1040",
+    "event_title": "UFC 249: Ferguson vs. Gaethje",
+    "event_year": "2020",
+    "fight": "Gaethje def. Ferguson",
+    "fighter_1": "Justin Gaethje",
+    "fighter_2": "Tony Ferguson",
+    "finish_round": 5,
+    "finish_method": "TKO",
+    "rounds_scored": 4,
+    "judges": [
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            9,
+            10
+          ],
+          "3": [
+            10,
+            9
+          ],
+          "4": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Chris Lee",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            9,
+            10
+          ],
+          "3": [
+            10,
+            9
+          ],
+          "4": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            10,
+            9
+          ],
+          "4": [
+            10,
+            9
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_teixeira_prochazka",
+    "event_id": "1260",
+    "event_title": "UFC 275: Teixeira vs. Prochazka",
+    "event_year": "2022",
+    "fight": "Prochazka def. Teixeira",
+    "fighter_1": "Jiri Prochazka",
+    "fighter_2": "Glover Teixeira",
+    "finish_round": 5,
+    "finish_method": "Submission",
+    "rounds_scored": 4,
+    "judges": [
+      {
+        "judge_name": "Michael Bell",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            9,
+            10
+          ],
+          "4": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Clemens Werner",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            9,
+            10
+          ],
+          "4": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Jean-Robert Lague",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            9,
+            10
+          ],
+          "4": [
+            9,
+            9
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_makhachev_poirier",
+    "event_id": "1475",
+    "event_title": "UFC 302: Makhachev vs. Poirier",
+    "event_year": "2024",
+    "fight": "Makhachev def. Poirier",
+    "fighter_1": "Islam Makhachev",
+    "fighter_2": "Dustin Poirier",
+    "finish_round": 5,
+    "finish_method": "Submission",
+    "rounds_scored": 4,
+    "judges": [
+      {
+        "judge_name": "Eric Col\u00f3n",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            10,
+            9
+          ],
+          "4": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Chris Lee",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            10,
+            9
+          ],
+          "4": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Ron McCarthy",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            9,
+            10
+          ],
+          "3": [
+            10,
+            9
+          ],
+          "4": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_velasquez_jds_3",
+    "event_id": "495",
+    "event_title": "UFC 166: Velasquez vs. dos Santos 3",
+    "event_year": "2013",
+    "fight": "Velasquez def. dos Santos",
+    "fighter_1": "Cain Velasquez",
+    "fighter_2": "Junior dos Santos",
+    "finish_round": 5,
+    "finish_method": "TKO",
+    "rounds_scored": 4,
+    "judges": [
+      {
+        "judge_name": "Marcos Rosales",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            10,
+            8
+          ],
+          "4": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            10,
+            8
+          ],
+          "4": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Glenn Trowbridge",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            10,
+            8
+          ],
+          "4": [
+            10,
+            9
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_miocic_cormier_2",
+    "event_id": "990",
+    "event_title": "UFC 241: Cormier vs. Miocic 2",
+    "event_year": "2019",
+    "fight": "Miocic def. Cormier",
+    "fighter_1": "Stipe Miocic",
+    "fighter_2": "Daniel Cormier",
+    "finish_round": 4,
+    "finish_method": "TKO",
+    "rounds_scored": 3,
+    "judges": [
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            9,
+            10
+          ],
+          "3": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            9,
+            10
+          ],
+          "3": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Glenn Trowbridge",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            9,
+            10
+          ],
+          "3": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_khabib_mcgregor",
+    "event_id": "910",
+    "event_title": "UFC 229: Khabib vs. McGregor",
+    "event_year": "2018",
+    "fight": "Nurmagomedov def. McGregor",
+    "fighter_1": "Khabib Nurmagomedov",
+    "fighter_2": "Conor McGregor",
+    "finish_round": 4,
+    "finish_method": "Submission",
+    "rounds_scored": 3,
+    "judges": [
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            8
+          ],
+          "3": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            8
+          ],
+          "3": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Glenn Trowbridge",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            8
+          ],
+          "3": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_volkanovski_jung",
+    "event_id": "1245",
+    "event_title": "UFC 273: Volkanovski vs. The Korean Zombie",
+    "event_year": "2022",
+    "fight": "Volkanovski def. Jung",
+    "fighter_1": "Alexander Volkanovski",
+    "fighter_2": "Chan Sung Jung",
+    "finish_round": 4,
+    "finish_method": "TKO",
+    "rounds_scored": 3,
+    "judges": [
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            10,
+            8
+          ]
+        }
+      },
+      {
+        "judge_name": "Eric Col\u00f3n",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Chris Lee",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            10,
+            9
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_duplessis_adesanya",
+    "event_id": "1489",
+    "event_title": "UFC 305: du Plessis vs. Adesanya",
+    "event_year": "2024",
+    "fight": "du Plessis def. Adesanya",
+    "fighter_1": "Dricus du Plessis",
+    "fighter_2": "Israel Adesanya",
+    "finish_round": 4,
+    "finish_method": "Submission",
+    "rounds_scored": 3,
+    "judges": [
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            9,
+            10
+          ],
+          "3": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Evan Field",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            9,
+            10
+          ],
+          "3": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Christopher Mason",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            9,
+            10
+          ],
+          "3": [
+            10,
+            9
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_edgar_maynard_3",
+    "event_id": "370",
+    "event_title": "UFC 136: Edgar vs. Maynard 3",
+    "event_year": "2011",
+    "fight": "Edgar def. Maynard",
+    "fighter_1": "Frankie Edgar",
+    "fighter_2": "Gray Maynard",
+    "finish_round": 4,
+    "finish_method": "KO",
+    "rounds_scored": 3,
+    "judges": [
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            8,
+            10
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Marcos Rosales",
+        "scores": {
+          "1": [
+            8,
+            10
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Glenn Trowbridge",
+        "scores": {
+          "1": [
+            8,
+            10
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            10,
+            9
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_yan_sterling_1",
+    "event_id": "1120",
+    "event_title": "UFC 259: Blachowicz vs. Adesanya",
+    "event_year": "2021",
+    "fight": "Sterling def. Yan",
+    "fighter_1": "Aljamain Sterling",
+    "fighter_2": "Petr Yan",
+    "finish_round": 4,
+    "finish_method": "DQ",
+    "rounds_scored": 3,
+    "judges": [
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Junichiro Kamijo",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            10,
+            9
+          ],
+          "3": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_chandler_poirier",
+    "event_id": "1310",
+    "event_title": "UFC 281: Adesanya vs. Pereira",
+    "event_year": "2022",
+    "fight": "Poirier def. Chandler",
+    "fighter_1": "Dustin Poirier",
+    "fighter_2": "Michael Chandler",
+    "finish_round": 3,
+    "finish_method": "Submission",
+    "rounds_scored": 2,
+    "judges": [
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Eric Col\u00f3n",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Douglas Crosby",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_moreno_kara_france_2",
+    "event_id": "1275",
+    "event_title": "UFC 277: Pena vs. Nunes 2",
+    "event_year": "2022",
+    "fight": "Moreno def. Kara-France",
+    "fighter_1": "Brandon Moreno",
+    "fighter_2": "Kai Kara-France",
+    "finish_round": 3,
+    "finish_method": "TKO",
+    "rounds_scored": 2,
+    "judges": [
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Chris Lee",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "David Lethaby",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_rakhmonov_neal",
+    "event_id": "1350",
+    "event_title": "UFC 285: Jones vs. Gane",
+    "event_year": "2023",
+    "fight": "Rakhmonov def. Neal",
+    "fighter_1": "Shavkat Rakhmonov",
+    "fighter_2": "Geoff Neal",
+    "finish_round": 3,
+    "finish_method": "Submission",
+    "rounds_scored": 2,
+    "judges": [
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Ron McCarthy",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_gane_tuivasa",
+    "event_id": "1285",
+    "event_title": "UFC Fight Night: Gane vs. Tuivasa",
+    "event_year": "2022",
+    "fight": "Gane def. Tuivasa",
+    "fighter_1": "Ciryl Gane",
+    "fighter_2": "Tai Tuivasa",
+    "finish_round": 3,
+    "finish_method": "KO",
+    "rounds_scored": 2,
+    "judges": [
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Clemens Werner",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Jean-Robert Lague",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_figueiredo_moreno_2",
+    "event_id": "1150",
+    "event_title": "UFC 263: Adesanya vs. Vettori 2",
+    "event_year": "2021",
+    "fight": "Moreno def. Figueiredo",
+    "fighter_1": "Brandon Moreno",
+    "fighter_2": "Deiveson Figueiredo",
+    "finish_round": 3,
+    "finish_method": "Submission",
+    "rounds_scored": 2,
+    "judges": [
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            10,
+            8
+          ],
+          "2": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Junichiro Kamijo",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Chris Lee",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_holloway_pettis",
+    "event_id": "740",
+    "event_title": "UFC 206: Holloway vs. Pettis",
+    "event_year": "2016",
+    "fight": "Holloway def. Pettis",
+    "fighter_1": "Max Holloway",
+    "fighter_2": "Anthony Pettis",
+    "finish_round": 3,
+    "finish_method": "TKO",
+    "rounds_scored": 2,
+    "judges": [
+      {
+        "judge_name": "Eric Col\u00f3n",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "David Therien",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_holloway_aldo_1",
+    "event_id": "780",
+    "event_title": "UFC 212: Aldo vs. Holloway",
+    "event_year": "2017",
+    "fight": "Holloway def. Aldo",
+    "fighter_1": "Max Holloway",
+    "fighter_2": "Jose Aldo",
+    "finish_round": 3,
+    "finish_method": "TKO",
+    "rounds_scored": 2,
+    "judges": [
+      {
+        "judge_name": "Guilherme Bravo",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Chris Lee",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_holloway_aldo_2",
+    "event_id": "835",
+    "event_title": "UFC 218: Holloway vs. Aldo 2",
+    "event_year": "2017",
+    "fight": "Holloway def. Aldo",
+    "fighter_1": "Max Holloway",
+    "fighter_2": "Jose Aldo",
+    "finish_round": 3,
+    "finish_method": "TKO",
+    "rounds_scored": 2,
+    "judges": [
+      {
+        "judge_name": "Eric Col\u00f3n",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Chris Lee",
+        "scores": {
+          "1": [
+            9,
+            10
+          ],
+          "2": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_cormier_jones_2",
+    "event_id": "795",
+    "event_title": "UFC 214: Cormier vs. Jones 2",
+    "event_year": "2017",
+    "fight": "Jones def. Cormier",
+    "fighter_1": "Jon Jones",
+    "fighter_2": "Daniel Cormier",
+    "finish_round": 3,
+    "finish_method": "KO",
+    "rounds_scored": 2,
+    "judges": [
+      {
+        "judge_name": "Marcos Rosales",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Glenn Trowbridge",
+        "scores": {
+          "1": [
+            10,
+            9
+          ],
+          "2": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_reyes_prochazka",
+    "event_id": "1140",
+    "event_title": "UFC on ESPN 23: Reyes vs. Prochazka",
+    "event_year": "2021",
+    "fight": "Prochazka def. Reyes",
+    "fighter_1": "Jiri Prochazka",
+    "fighter_2": "Dominick Reyes",
+    "finish_round": 2,
+    "finish_method": "KO",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Junichiro Kamijo",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_oliveira_chandler",
+    "event_id": "1145",
+    "event_title": "UFC 262: Oliveira vs. Chandler",
+    "event_year": "2021",
+    "fight": "Oliveira def. Chandler",
+    "fighter_1": "Charles Oliveira",
+    "fighter_2": "Michael Chandler",
+    "finish_round": 2,
+    "finish_method": "TKO",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            8,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Chris Lee",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Junichiro Kamijo",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_poirier_mcgregor_2",
+    "event_id": "1110",
+    "event_title": "UFC 257: Poirier vs. McGregor 2",
+    "event_year": "2021",
+    "fight": "Poirier def. McGregor",
+    "fighter_1": "Dustin Poirier",
+    "fighter_2": "Conor McGregor",
+    "finish_round": 2,
+    "finish_method": "TKO",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Mark Collett",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_poirier_mcgregor_3",
+    "event_id": "1165",
+    "event_title": "UFC 264: Poirier vs. McGregor 3",
+    "event_year": "2021",
+    "fight": "Poirier def. McGregor",
+    "fighter_1": "Dustin Poirier",
+    "fighter_2": "Conor McGregor",
+    "finish_round": 1,
+    "finish_method": "TKO (Doctor Stoppage)",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            10,
+            8
+          ]
+        }
+      },
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            10,
+            8
+          ]
+        }
+      },
+      {
+        "judge_name": "Junichiro Kamijo",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_khabib_gaethje",
+    "event_id": "1080",
+    "event_title": "UFC 254: Khabib vs. Gaethje",
+    "event_year": "2020",
+    "fight": "Nurmagomedov def. Gaethje",
+    "fighter_1": "Khabib Nurmagomedov",
+    "fighter_2": "Justin Gaethje",
+    "finish_round": 2,
+    "finish_method": "Submission",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Ben Cartlidge",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_pereira_prochazka_1",
+    "event_id": "1415",
+    "event_title": "UFC 295: Prochazka vs. Pereira",
+    "event_year": "2023",
+    "fight": "Pereira def. Prochazka",
+    "fighter_1": "Alex Pereira",
+    "fighter_2": "Jiri Prochazka",
+    "finish_round": 2,
+    "finish_method": "TKO",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Ron McCarthy",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_gaethje_poirier_2",
+    "event_id": "1395",
+    "event_title": "UFC 291: Poirier vs. Gaethje 2",
+    "event_year": "2023",
+    "fight": "Gaethje def. Poirier",
+    "fighter_1": "Justin Gaethje",
+    "fighter_2": "Dustin Poirier",
+    "finish_round": 2,
+    "finish_method": "KO",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Junichiro Kamijo",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Ron McCarthy",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_diaz_mcgregor_1",
+    "event_id": "675",
+    "event_title": "UFC 196: McGregor vs. Diaz",
+    "event_year": "2016",
+    "fight": "Diaz def. McGregor",
+    "fighter_1": "Nate Diaz",
+    "fighter_2": "Conor McGregor",
+    "finish_round": 2,
+    "finish_method": "Submission",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Glenn Trowbridge",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_nunes_pena_1",
+    "event_id": "1205",
+    "event_title": "UFC 269: Oliveira vs. Poirier",
+    "event_year": "2021",
+    "fight": "Pena def. Nunes",
+    "fighter_1": "Julianna Pena",
+    "fighter_2": "Amanda Nunes",
+    "finish_round": 2,
+    "finish_method": "Submission",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            8,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Michael Bell",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Junichiro Kamijo",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_zhang_jedrzejczyk_2",
+    "event_id": "1260",
+    "event_title": "UFC 275: Teixeira vs. Prochazka",
+    "event_year": "2022",
+    "fight": "Zhang def. Jedrzejczyk",
+    "fighter_1": "Weili Zhang",
+    "fighter_2": "Joanna Jedrzejczyk",
+    "finish_round": 2,
+    "finish_method": "KO",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Michael Bell",
+        "scores": {
+          "1": [
+            10,
+            8
+          ]
+        }
+      },
+      {
+        "judge_name": "Jean-Robert Lague",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Clemens Werner",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_sterling_dillashaw",
+    "event_id": "1300",
+    "event_title": "UFC 280: Oliveira vs. Makhachev",
+    "event_year": "2022",
+    "fight": "Sterling def. Dillashaw",
+    "fighter_1": "Aljamain Sterling",
+    "fighter_2": "TJ Dillashaw",
+    "finish_round": 2,
+    "finish_method": "TKO",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Ben Cartlidge",
+        "scores": {
+          "1": [
+            10,
+            8
+          ]
+        }
+      },
+      {
+        "judge_name": "David Lethaby",
+        "scores": {
+          "1": [
+            10,
+            8
+          ]
+        }
+      },
+      {
+        "judge_name": "Vito Paolillo",
+        "scores": {
+          "1": [
+            10,
+            8
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_ngannou_miocic_2",
+    "event_id": "1125",
+    "event_title": "UFC 260: Miocic vs. Ngannou 2",
+    "event_year": "2021",
+    "fight": "Ngannou def. Miocic",
+    "fighter_1": "Francis Ngannou",
+    "fighter_2": "Stipe Miocic",
+    "finish_round": 2,
+    "finish_method": "KO",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Chris Lee",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_topuria_volkanovski",
+    "event_id": "1440",
+    "event_title": "UFC 298: Volkanovski vs. Topuria",
+    "event_year": "2024",
+    "fight": "Topuria def. Volkanovski",
+    "fighter_1": "Ilia Topuria",
+    "fighter_2": "Alexander Volkanovski",
+    "finish_round": 2,
+    "finish_method": "KO",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Ron McCarthy",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_omalley_sterling",
+    "event_id": "1400",
+    "event_title": "UFC 292: Sterling vs. O'Malley",
+    "event_year": "2023",
+    "fight": "O'Malley def. Sterling",
+    "fighter_1": "Sean O'Malley",
+    "fighter_2": "Aljamain Sterling",
+    "finish_round": 2,
+    "finish_method": "TKO",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Eric Col\u00f3n",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_prochazka_rakic",
+    "event_id": "1460",
+    "event_title": "UFC 300: Pereira vs. Hill",
+    "event_year": "2024",
+    "fight": "Prochazka def. Rakic",
+    "fighter_1": "Jiri Prochazka",
+    "fighter_2": "Aleksandar Rakic",
+    "finish_round": 2,
+    "finish_method": "TKO",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Junichiro Kamijo",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_mcgregor_mendes",
+    "event_id": "620",
+    "event_title": "UFC 189: Mendes vs. McGregor",
+    "event_year": "2015",
+    "fight": "McGregor def. Mendes",
+    "fighter_1": "Conor McGregor",
+    "fighter_2": "Chad Mendes",
+    "finish_round": 2,
+    "finish_method": "TKO",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Marcos Rosales",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Chris Lee",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Dave Hagen",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_andrade_namajunas_1",
+    "event_id": "970",
+    "event_title": "UFC 237: Namajunas vs. Andrade",
+    "event_year": "2019",
+    "fight": "Andrade def. Namajunas",
+    "fighter_1": "Jessica Andrade",
+    "fighter_2": "Rose Namajunas",
+    "finish_round": 2,
+    "finish_method": "KO",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Chris Lee",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Guilherme Bravo",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_adesanya_costa",
+    "event_id": "1065",
+    "event_title": "UFC 253: Adesanya vs. Costa",
+    "event_year": "2020",
+    "fight": "Adesanya def. Costa",
+    "fighter_1": "Israel Adesanya",
+    "fighter_2": "Paulo Costa",
+    "finish_round": 2,
+    "finish_method": "TKO",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Dave Tirelli",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Steve Armstrong",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_strickland_magomedov",
+    "event_id": "1390",
+    "event_title": "UFC on ESPN 48: Strickland vs. Magomedov",
+    "event_year": "2023",
+    "fight": "Strickland def. Magomedov",
+    "fighter_1": "Sean Strickland",
+    "fighter_2": "Abus Magomedov",
+    "finish_round": 2,
+    "finish_method": "TKO",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Chris Lee",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Ron McCarthy",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_jones_machida",
+    "event_id": "385",
+    "event_title": "UFC 140: Jones vs. Machida",
+    "event_year": "2011",
+    "fight": "Jones def. Machida",
+    "fighter_1": "Jon Jones",
+    "fighter_2": "Lyoto Machida",
+    "finish_round": 2,
+    "finish_method": "Submission",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Jeff Blatnick",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Chris Lee",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Nelson Hamilton",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_volkanovski_mendes",
+    "event_id": "930",
+    "event_title": "UFC 232: Jones vs. Gustafsson 2",
+    "event_year": "2018",
+    "fight": "Volkanovski def. Mendes",
+    "fighter_1": "Alexander Volkanovski",
+    "fighter_2": "Chad Mendes",
+    "finish_round": 2,
+    "finish_method": "TKO",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Chris Lee",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_dillashaw_garbrandt_1",
+    "event_id": "830",
+    "event_title": "UFC 217: Bisping vs. St-Pierre",
+    "event_year": "2017",
+    "fight": "Dillashaw def. Garbrandt",
+    "fighter_1": "TJ Dillashaw",
+    "fighter_2": "Cody Garbrandt",
+    "finish_round": 2,
+    "finish_method": "KO",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Derek Cleary",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Sal D'Amato",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Glenn Trowbridge",
+        "scores": {
+          "1": [
+            9,
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_whittaker_adesanya_1",
+    "event_id": "1000",
+    "event_title": "UFC 243: Whittaker vs. Adesanya",
+    "event_year": "2019",
+    "fight": "Adesanya def. Whittaker",
+    "fighter_1": "Israel Adesanya",
+    "fighter_2": "Robert Whittaker",
+    "finish_round": 2,
+    "finish_method": "KO",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Steve Armstrong",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Chris Lee",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      },
+      {
+        "judge_name": "Anthony Lanza",
+        "scores": {
+          "1": [
+            10,
+            9
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fight_id": "finish_lesnar_carwin",
+    "event_id": "300",
+    "event_title": "UFC 116: Lesnar vs. Carwin",
+    "event_year": "2010",
+    "fight": "Lesnar def. Carwin",
+    "fighter_1": "Brock Lesnar",
+    "fighter_2": "Shane Carwin",
+    "finish_round": 2,
+    "finish_method": "Submission",
+    "rounds_scored": 1,
+    "judges": [
+      {
+        "judge_name": "Nelson Hamilton",
+        "scores": {
+          "1": [
+            8,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Marcos Rosales",
+        "scores": {
+          "1": [
+            8,
+            10
+          ]
+        }
+      },
+      {
+        "judge_name": "Glenn Trowbridge",
+        "scores": {
+          "1": [
+            8,
+            10
+          ]
+        }
+      }
+    ]
+  }
+]
