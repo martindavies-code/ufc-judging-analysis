@@ -9,12 +9,12 @@ from src.visualizer import generate_visualizations
 
 
 class TestVisualizer:
-    def test_missing_database_returns_early(self, tmp_path):
+    def test_missing_database_returns_early(self, tmp_path: Path) -> None:
         fake_db = tmp_path / "non_existent.db"
         # Should cleanly return without crashing
         generate_visualizations(fake_db)
 
-    def test_generate_visualizations_real_or_mock_db(self, tmp_path):
+    def test_generate_visualizations_real_or_mock_db(self, tmp_path: Path) -> None:
         real_db = Path("data/ufc_judging.db")
         if real_db.exists():
             # Test that figures generate and are closed without memory leak
@@ -24,7 +24,7 @@ class TestVisualizer:
             # All figures must be closed to avoid memory leaks
             assert final_figs == initial_figs or final_figs == 0
 
-    def test_generate_visualizations_on_empty_db(self, tmp_path):
+    def test_generate_visualizations_on_empty_db(self, tmp_path: Path) -> None:
         empty_db = tmp_path / "empty.db"
         conn = sqlite3.connect(empty_db)
         try:

@@ -10,12 +10,12 @@ from src.export_web_data import export_web_data
 
 
 class TestExportWebData:
-    def test_missing_database_raises(self, tmp_path):
+    def test_missing_database_raises(self, tmp_path: Path) -> None:
         fake_db = tmp_path / "missing.db"
         with pytest.raises(FileNotFoundError):
             export_web_data(fake_db)
 
-    def test_export_pipeline_execution(self, tmp_path):
+    def test_export_pipeline_execution(self, tmp_path: Path) -> None:
         # Run export on real database if exists
         real_db = Path("data/ufc_judging.db")
         if real_db.exists():
@@ -57,10 +57,10 @@ class TestExportWebData:
 
 
 class TestBuildDashboard:
-    def test_encode_image_base64_nonexistent(self):
+    def test_encode_image_base64_nonexistent(self) -> None:
         assert encode_image_base64("non_existent_img_12345.png") == ""
 
-    def test_dashboard_compilation_and_xss_safety(self):
+    def test_dashboard_compilation_and_xss_safety(self) -> None:
         dashboard_path = build_dashboard_html()
         assert dashboard_path.exists()
 
@@ -96,7 +96,7 @@ class TestBuildDashboard:
         assert "finish-badge" in html_text
         assert "Completed Stoppage Rounds" in html_text
 
-    def test_dashboard_javascript_syntax(self):
+    def test_dashboard_javascript_syntax(self) -> None:
         import shutil
         import subprocess
 
@@ -117,7 +117,7 @@ class TestBuildDashboard:
             )
             assert res.returncode == 0, f"JavaScript syntax error in index.html: {res.stderr}"
 
-    def test_export_data_year_typing(self):
+    def test_export_data_year_typing(self) -> None:
         real_db = Path("data/ufc_judging.db")
         if real_db.exists():
             json_path = export_web_data(real_db)
@@ -138,7 +138,7 @@ class TestBuildDashboard:
 
 
 class TestFighterAnalysis:
-    def test_calculate_fighter_metrics_logic(self):
+    def test_calculate_fighter_metrics_logic(self) -> None:
         import pandas as pd
 
         from src.fighter_analysis import calculate_fighter_metrics
@@ -213,7 +213,7 @@ class TestFighterAnalysis:
         assert f_a["sample_close_fights"][0]["type"] == "Split Decision"
         assert f_a["sample_close_fights"][1]["type"] == "Split Decision"
 
-    def test_export_web_data_empty_database(self, tmp_path, monkeypatch):
+    def test_export_web_data_empty_database(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
         import sqlite3
 
         empty_db = tmp_path / "empty_test.db"
@@ -247,7 +247,7 @@ class TestFighterAnalysis:
         assert data["judges"] == []
         assert data["recent_dissents"] == []
 
-    def test_export_web_data_with_non_digit_years(self, tmp_path, monkeypatch):
+    def test_export_web_data_with_non_digit_years(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
         import sqlite3
 
         db = tmp_path / "years_test.db"
@@ -297,7 +297,7 @@ class TestFighterAnalysis:
             data = json.load(f)
         assert data["summary"]["total_fights"] == 1
 
-    def test_build_dashboard_missing_data_raises(self, monkeypatch, tmp_path):
+    def test_build_dashboard_missing_data_raises(self, monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
         from src import build_dashboard
 
         monkeypatch.setattr(build_dashboard, "WEB_DATA_PATH", tmp_path / "non_existent.json")

@@ -1,12 +1,14 @@
 """Unit tests for round-by-round parser and consensus determination."""
 
+from pathlib import Path
+
 import pytest
 from bs4 import BeautifulSoup
 
 from src.round_parser import parse_decision_rounds, parse_round_cells
 
 
-def test_parse_round_cells_valid():
+def test_parse_round_cells_valid() -> None:
     """Verify standard valid round score rows are correctly parsed."""
     soup = BeautifulSoup("<tr><td>1</td><td>10</td><td>9</td></tr>", "html.parser")
     cells = soup.find_all("td")
@@ -19,7 +21,7 @@ def test_parse_round_cells_valid():
     assert parse_round_cells(cells) == (3, 8, 10)
 
 
-def test_parse_round_cells_invalid():
+def test_parse_round_cells_invalid() -> None:
     """Verify malformed, out-of-range, or corrupted cells are rejected."""
     # Round 6 out of bounds
     soup = BeautifulSoup("<tr><td>6</td><td>10</td><td>9</td></tr>", "html.parser")
@@ -38,7 +40,7 @@ def test_parse_round_cells_invalid():
     assert parse_round_cells(soup.find_all("td")) is None
 
 
-def test_parse_decision_rounds_consensus_and_dissent():
+def test_parse_decision_rounds_consensus_and_dissent() -> None:
     """Verify round consensus and dissent logic with synthetic HTML."""
     html_content = """
     <html><body>
@@ -92,7 +94,7 @@ def test_parse_decision_rounds_consensus_and_dissent():
     assert r2_scores["Judge Gamma"].round_dissented is False
 
 
-def test_parse_decision_rounds_ten_eight():
+def test_parse_decision_rounds_ten_eight() -> None:
     """Verify 10-8 scoring detection."""
     html_content = """
     <html><body>
@@ -108,7 +110,7 @@ def test_parse_decision_rounds_ten_eight():
     assert scores_by_judge["Judge Three"].is_ten_eight is False
 
 
-def test_parse_decision_rounds_unanimous():
+def test_parse_decision_rounds_unanimous() -> None:
     """Verify when all 3 judges agree, round_dissented is False for all."""
     html_content = """
     <html><body>
@@ -125,7 +127,7 @@ def test_parse_decision_rounds_unanimous():
         assert r.round_dissented is False
 
 
-def test_parse_decision_rounds_draw():
+def test_parse_decision_rounds_draw() -> None:
     """Verify 10-10 draw pick detection and dissent when two pick a fighter."""
     html_content = """
     <html><body>
@@ -141,7 +143,7 @@ def test_parse_decision_rounds_draw():
     assert by_judge["Judge Two"].round_dissented is False
 
 
-def test_parse_decision_rounds_edge_cases():
+def test_parse_decision_rounds_edge_cases() -> None:
     """Verify handling of empty HTML, missing judges, and 2-judge panels."""
     assert parse_decision_rounds("", "101") == []
     assert parse_decision_rounds("<html><body>No tables</body></html>", "102") == []
@@ -156,7 +158,7 @@ def test_parse_decision_rounds_edge_cases():
     assert parse_decision_rounds(two_judges_html, "103") == []
 
 
-def test_save_round_scores_to_csv_and_sqlite(tmp_path):
+def test_save_round_scores_to_csv_and_sqlite(tmp_path: Path) -> None:
     """Verify save_round_scores creates CSV and SQLite tables with indices."""
     import sqlite3
 
@@ -195,7 +197,7 @@ def test_save_round_scores_to_csv_and_sqlite(tmp_path):
     save_round_scores([], csv_path=test_csv, db_path=test_db)
 
 
-def test_load_stoppage_scorecards_success():
+def test_load_stoppage_scorecards_success() -> None:
     """Verify official stoppage scorecards load correctly with all metadata."""
     from src.round_parser import load_stoppage_scorecards
 
@@ -223,7 +225,7 @@ def test_load_stoppage_scorecards_success():
     assert {r.round_num for r in miocic_scores} == {1, 2, 3}
 
 
-def test_load_stoppage_scorecards_missing_and_corrupt(tmp_path):
+def test_load_stoppage_scorecards_missing_and_corrupt(tmp_path: Path) -> None:
     """Verify load_stoppage_scorecards handles missing and corrupt files safely."""
 
     from src.round_parser import load_stoppage_scorecards
@@ -240,7 +242,7 @@ def test_load_stoppage_scorecards_missing_and_corrupt(tmp_path):
     assert load_stoppage_scorecards(empty_path) == []
 
 
-def test_parse_decision_rounds_partial_rounds():
+def test_parse_decision_rounds_partial_rounds() -> None:
     """Test round scoring when only 2 judges have scores for a round (historical bout)."""
     from src.round_parser import parse_decision_rounds
 
@@ -270,7 +272,7 @@ def test_parse_decision_rounds_partial_rounds():
     assert all(not s.colleagues_agreed for s in r2_scores)
 
 
-def test_parse_all_cached_decisions_full_flow(tmp_path):
+def test_parse_all_cached_decisions_full_flow(tmp_path: Path) -> None:
     from src.round_parser import parse_all_cached_decisions
 
     decisions_dir = tmp_path / "decisions"
@@ -299,7 +301,7 @@ def test_parse_all_cached_decisions_full_flow(tmp_path):
     assert len(scores) == 3
 
 
-def test_parse_all_cached_decisions_missing_csv_raises(tmp_path):
+def test_parse_all_cached_decisions_missing_csv_raises(tmp_path: Path) -> None:
     from src.round_parser import parse_all_cached_decisions
 
     with pytest.raises(FileNotFoundError):

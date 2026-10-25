@@ -2,6 +2,7 @@
 
 import json
 import sqlite3
+from pathlib import Path
 
 import pytest
 
@@ -16,24 +17,24 @@ from src.parser import (
 
 
 class TestParseScore:
-    def test_standard_scores(self):
+    def test_standard_scores(self) -> None:
         assert parse_score("48 - 47") == (48, 47)
         assert parse_score("29-28") == (29, 28)
         assert parse_score("30:27") == (30, 27)
         assert parse_score(" 50 – 45 ") == (50, 45)
 
-    def test_scores_with_annotations(self):
+    def test_scores_with_annotations(self) -> None:
         # Point deduction notes
         assert parse_score("28-28 (1 pt deducted)") == (28, 28)
         assert parse_score("47 - 48 (round 2 10-8)") == (47, 48)
 
-    def test_invalid_and_empty_inputs(self):
+    def test_invalid_and_empty_inputs(self) -> None:
         assert parse_score("") == (None, None)
         assert parse_score(None) == (None, None)
         assert parse_score("Unanimous Decision") == (None, None)
         assert parse_score("48") == (None, None)
 
-    def test_boundary_and_absurd_scores_rejected(self):
+    def test_boundary_and_absurd_scores_rejected(self) -> None:
         # Scores below 10 or above 50 must be rejected
         assert parse_score("9 - 8") == (None, None)
         assert parse_score("100 - 90") == (None, None)
@@ -41,24 +42,24 @@ class TestParseScore:
 
 
 class TestCleanJudgeName:
-    def test_slug_with_id_and_hyphenated_name(self):
+    def test_slug_with_id_and_hyphenated_name(self) -> None:
         assert clean_judge_name("BELL", "judge/357/Michael-Bell") == "Michael Bell"
         assert clean_judge_name("D'AMATO", "judge/1/Sal-D'Amato") == "Sal D'Amato"
 
-    def test_url_encoded_characters(self):
+    def test_url_encoded_characters(self) -> None:
         assert clean_judge_name("COLON", "judge/86/Eric-Col%C3%B3n") == "Eric Colón"
 
-    def test_raw_display_fallback(self):
+    def test_raw_display_fallback(self) -> None:
         assert clean_judge_name("Chris Lee", None) == "Chris Lee"
         assert clean_judge_name("  derek   cleary  ", "") == "Derek Cleary"
 
-    def test_empty_fallback(self):
+    def test_empty_fallback(self) -> None:
         assert clean_judge_name(None, None) == "Unknown Judge"
         assert clean_judge_name("", "") == "Unknown Judge"
 
 
 class TestDeterminePanelConsensus:
-    def test_unanimous_decision(self):
+    def test_unanimous_decision(self) -> None:
         judges = [
             JudgeScorecard(
                 judge_id="1",
@@ -97,7 +98,7 @@ class TestDeterminePanelConsensus:
         assert consensus.dissenter_idx is None
         assert not consensus.is_three_way_split
 
-    def test_split_decision_with_dissenter(self):
+    def test_split_decision_with_dissenter(self) -> None:
         judges = [
             JudgeScorecard(
                 judge_id="1",
@@ -137,7 +138,7 @@ class TestDeterminePanelConsensus:
         assert consensus.dissenter_name == "Lee"
         assert not consensus.is_three_way_split
 
-    def test_majority_draw_with_dissenter(self):
+    def test_majority_draw_with_dissenter(self) -> None:
         judges = [
             JudgeScorecard(
                 judge_id="1",
@@ -176,7 +177,7 @@ class TestDeterminePanelConsensus:
         assert consensus.dissenter_idx == 2
         assert consensus.dissenter_name == "Cleary"
 
-    def test_three_way_split_draw(self):
+    def test_three_way_split_draw(self) -> None:
         judges = [
             JudgeScorecard(
                 judge_id="1",
@@ -214,7 +215,7 @@ class TestDeterminePanelConsensus:
         assert not consensus.has_dissenter
         assert consensus.is_three_way_split
 
-    def test_invalid_panel_size_raises(self):
+    def test_invalid_panel_size_raises(self) -> None:
         with pytest.raises(ValueError, match="exactly 3 judges"):
             determine_panel_consensus([])
         with pytest.raises(ValueError, match="exactly 3 judges"):
@@ -271,7 +272,7 @@ class TestParseEventHtml:
     </html>
     """
 
-    def test_parse_event_html_valid(self):
+    def test_parse_event_html_valid(self) -> None:
         fights, appearances = parse_event_html(
             self.MOCK_EVENT_HTML, event_id="300", default_title="UFC 300", default_year="2024"
         )
@@ -298,7 +299,7 @@ class TestParseEventHtml:
 
 
 class TestDatabaseSchema:
-    def test_schema_creation_and_indexes(self):
+    def test_schema_creation_and_indexes(self) -> None:
         conn = sqlite3.connect(":memory:")
         try:
             init_database_schema(conn)
@@ -318,7 +319,7 @@ class TestDatabaseSchema:
         finally:
             conn.close()
 
-    def test_parse_event_html_drew_with_and_draw_scores(self):
+    def test_parse_event_html_drew_with_and_draw_scores(self) -> None:
         html = """
         <html>
         <div class="decision-top">UFC 205</div>
@@ -339,7 +340,7 @@ class TestDatabaseSchema:
         assert fights[0].fighter_2 == "Stephen Thompson"
         assert len(appearances) == 3
 
-    def test_parse_all_events_full_flow(self, tmp_path, monkeypatch):
+    def test_parse_all_events_full_flow(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
         from src import parser
 
         json_events = tmp_path / "ufc_events.json"
@@ -388,7 +389,7 @@ class TestDatabaseSchema:
         assert judges_csv.exists()
         assert db_file.exists()
 
-    def test_parse_all_events_missing_json_raises(self, monkeypatch, tmp_path):
+    def test_parse_all_events_missing_json_raises(self, monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
         from src import parser
 
         monkeypatch.setattr(parser, "EVENTS_JSON_PATH", tmp_path / "non_existent.json")
