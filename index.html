@@ -1915,8 +1915,8 @@
         <div class="chapter-badge">Chapter 1 · The Core Discovery</div>
         <h2 class="hero-headline" id="hero-question">When two cage-side judges agree on a round, which third judge breaks away most often?</h2>
         <p class="hero-subhead" id="hero-narrative">
-            Across 32,876 individual rounds evaluated by 3-judge panels (including completed rounds from fights ending inside the distance), exactly <strong>2,376 rounds (7.23%)</strong> produced a lone dissenting judge.
-            Among high-volume UFC mainstays (250+ rounds), <strong>Cardo Urso</strong> ranks #1 with a <strong>9.01%</strong> round dissent rate, followed by <strong>Rick Winter</strong> (8.75%) and <strong>David Lethaby</strong> (8.62%).
+            Across 32,876 individual rounds evaluated by 3-judge panels (including completed rounds from stoppage bouts where official scorecards were submitted), exactly <strong>2,376 rounds (7.23%)</strong> saw one judge disagree with their two panel colleagues on the round winner (a lone dissenting judge).
+            Among high-volume UFC mainstays across all eras (250+ rounds scored), <strong>Cardo Urso</strong> ranks #1 with a <strong>9.01%</strong> round dissent rate, followed by <strong>Rick Winter</strong> (8.75%) and <strong>David Lethaby</strong> (8.62%).
         </p>
 
         <!-- Focused 4 KPI Cards (Unique, non-redundant metrics) -->
@@ -1926,7 +1926,7 @@
                 <div class="kpi-value-row">
                     <span class="kpi-value" id="kpi-benchmark-val">7.23%</span>
                 </div>
-                <div class="kpi-context" id="kpi-benchmark-sub">Average dissent rate across all 32,876 rounds (1 in every 13.8 rounds)</div>
+                <div class="kpi-context" id="kpi-benchmark-sub">Average round dissent rate across all 32,876 scored rounds (1 disagreement in every 13.8 rounds)</div>
             </div>
 
             <div class="kpi-card">
@@ -1935,7 +1935,7 @@
                     <span class="kpi-value" id="kpi-leader-val">9.01%</span>
                     <span class="kpi-delta high" id="kpi-leader-delta">+1.78% vs avg</span>
                 </div>
-                <div class="kpi-context" id="kpi-leader-sub"><strong>Cardo Urso</strong> · 29 dissents in 322 rounds (1 in every 11.1 rounds)</div>
+                <div class="kpi-context" id="kpi-leader-sub"><strong>Cardo Urso</strong> · 29 lone dissents in 322 rounds (dissents once every 11.1 rounds)</div>
             </div>
 
             <div class="kpi-card">
@@ -1944,15 +1944,15 @@
                     <span class="kpi-value" id="kpi-agreeable-val">6.87%</span>
                     <span class="kpi-delta consensual" id="kpi-agreeable-delta">-0.36% vs avg</span>
                 </div>
-                <div class="kpi-context" id="kpi-agreeable-sub"><strong>Ben Cartlidge</strong> · 58 dissents in 844 rounds (highest agreement rate)</div>
+                <div class="kpi-context" id="kpi-agreeable-sub"><strong>Ben Cartlidge</strong> · 93.13% colleague agreement across 844 rounds (58 dissents)</div>
             </div>
 
             <div class="kpi-card">
-                <div class="kpi-label">Highest Absolute Dissents</div>
+                <div class="kpi-label">Most Career Dissents</div>
                 <div class="kpi-value-row">
                     <span class="kpi-value" id="kpi-volume-val">223</span>
                 </div>
-                <div class="kpi-context" id="kpi-volume-sub"><strong>Sal D'Amato</strong> · 6.24% rate over 3,573 scored rounds (historic volume)</div>
+                <div class="kpi-context" id="kpi-volume-sub"><strong>Sal D'Amato</strong> · 223 lone round dissents across 3,573 scored rounds (historic volume)</div>
             </div>
         </div>
 
@@ -1998,7 +1998,7 @@
         <div class="section-header-block">
             <div class="chapter-badge">Chapter 2 · The Leaderboard & Dossiers</div>
             <h3 class="section-title" id="table-section-title">The Hall of Dissent: Judge Rankings</h3>
-            <p class="section-desc">Click on any judge row to expand their detailed dossier, including their career era, dissent frequency, top friction co-judge, and sample scorecards.</p>
+            <p class="section-desc" id="table-section-desc">Click on any judge row to expand their career dossier, including active years, round dissent frequency, top disagreement partner, and notable breakaway scorecards.</p>
         </div>
 
         <div class="table-toolbar">
@@ -2048,7 +2048,7 @@
         <div class="section-header-block">
             <div class="chapter-badge">Chapter 3 · Panel Friction</div>
             <h3 class="section-title">Co-Judge Head-to-Head Clash Matrix</h3>
-            <p class="section-desc">How often do pairs of judges seated on the exact same bout disagree on who won individual rounds? Analyzed across co-judges with at least 15 rounds together.</p>
+            <p class="section-desc" id="pairs-section-desc">How often do pairs of cage-side judges seated together on the same bout disagree on who won individual rounds? Analyzed across co-judges with at least 15 shared rounds.</p>
         </div>
 
         <div class="table-card">
@@ -2059,7 +2059,7 @@
             </div>
             <div class="table-responsive">
                 <table>
-                    <thead>
+                    <thead id="pairs-table-head">
                         <tr>
                             <th class="col-text">Judge Pair</th>
                             <th class="col-num">Rounds Together</th>
@@ -2080,7 +2080,7 @@
         <div class="section-header-block">
             <div class="chapter-badge">Chapter 4 · Empirical Context</div>
             <h3 class="section-title">The Anatomy of a UFC Round (1995–2026)</h3>
-            <p class="section-desc">How often does a round score deviate from the standard 10-9? Out of 32,876 total scored rounds (32,588 decision rounds + 288 rounds from 48 stoppage bouts where scorecards exist):</p>
+            <p class="section-desc">How often does an individual round score deviate from the standard 10-9? Out of 32,876 total rounds scored by 3-judge panels (32,588 rounds from full-distance decisions + 288 rounds from 48 stoppage bouts where scorecards were officially submitted prior to the finish):</p>
         </div>
 
         <div class="anatomy-bar-container">
@@ -2219,158 +2219,158 @@
             document.getElementById('hero-question').textContent = "When two cage-side judges agree on a round, which third judge breaks away most often?";
 
             if (currentRosterFilter === 'active') {
-                document.getElementById('hero-narrative').innerHTML = "Across 32,876 individual rounds evaluated by 3-judge panels (including completed rounds from stoppage bouts), exactly <strong>2,376 rounds (7.23%)</strong> produced a lone dissenting judge. Among currently active UFC mainstays (250+ rounds, 2024–2026), <strong>Rick Winter</strong> holds the #1 disagreement rate at <strong>8.75%</strong>, followed by <strong>David Lethaby</strong> (8.62%) and <strong>Dave Tirelli</strong> (8.54%). Meanwhile, <strong>Clemens Werner</strong> is the most consensual active judge at <strong>4.99%</strong> dissent (95.01% colleague agreement rate).";
+                document.getElementById('hero-narrative').innerHTML = "Across 32,876 individual rounds scored by 3-judge panels (including completed rounds from stoppage bouts where official scorecards were submitted), exactly <strong>2,376 rounds (7.23%)</strong> saw one judge disagree with their two panel colleagues on the round winner (a lone dissenting judge). Among currently active UFC mainstays (250+ rounds scored, 2024–2026), <strong>Rick Winter</strong> holds the #1 disagreement rate at <strong>8.75%</strong> (dissents once every 11.4 rounds), followed by <strong>David Lethaby</strong> (8.62%) and <strong>Dave Tirelli</strong> (8.54%). Conversely, <strong>Clemens Werner</strong> is the most consensual active judge, agreeing with fellow judges on <strong>95.01%</strong> of rounds (a lone dissent rate of only 4.99%).";
 
                 document.getElementById('kpi-benchmark-val').textContent = "7.23%";
-                document.getElementById('kpi-benchmark-sub').textContent = "Average dissent rate across all 32,876 rounds (1 in every 13.8 rounds)";
+                document.getElementById('kpi-benchmark-sub').textContent = "Average round dissent rate across all 32,876 scored rounds (1 disagreement in every 13.8 rounds)";
 
                 document.getElementById('kpi-leader-val').textContent = "8.75%";
                 document.getElementById('kpi-leader-delta').textContent = "+1.52% vs avg";
-                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Rick Winter</strong> · 30 dissents in 343 rounds (#1 active dissenter)";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Rick Winter</strong> · 30 lone dissents in 343 rounds (dissents once every 11.4 rounds; #1 active dissenter)";
 
                 document.getElementById('kpi-agreeable-val').textContent = "4.99%";
                 document.getElementById('kpi-agreeable-delta').textContent = "-2.24% vs avg";
-                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Clemens Werner</strong> · 95.01% agreement in 481 rounds (most consensual active)";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Clemens Werner</strong> · 95.01% colleague agreement in 481 rounds (most consensual active judge)";
 
                 document.getElementById('kpi-volume-val').textContent = "223";
-                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 6.24% rate over 3,573 scored rounds (active through 2026)";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 223 lone round dissents across 3,573 scored rounds (active through 2026; #1 all-time volume)";
             } else if (currentRosterFilter === 'historical') {
-                document.getElementById('hero-narrative').innerHTML = "Among historical UFC mainstays who have stepped away from the cage (&lt; 2024), <strong>Cardo Urso</strong> (last judged 2019) leads all-time round dissents at <strong>9.01%</strong>, followed by <strong>Glenn Trowbridge</strong> (last judged 2020) at <strong>8.37%</strong> and <strong>Marcos Rosales</strong> (last judged 2021) at <strong>7.97%</strong>.";
+                document.getElementById('hero-narrative').innerHTML = "Among historical UFC mainstays who are no longer active (&lt; 2024), <strong>Cardo Urso</strong> (last judged 2019) leads all-time round dissents at <strong>9.01%</strong> (dissents once every 11.1 rounds), followed by <strong>Glenn Trowbridge</strong> (last judged 2020) at <strong>8.37%</strong> and <strong>Marcos Rosales</strong> (last judged 2021) at <strong>7.97%</strong>.";
 
                 document.getElementById('kpi-benchmark-val').textContent = "7.23%";
-                document.getElementById('kpi-benchmark-sub').textContent = "Average dissent rate across all 32,876 rounds";
+                document.getElementById('kpi-benchmark-sub').textContent = "Average round dissent rate across all 32,876 scored rounds";
 
                 document.getElementById('kpi-leader-val').textContent = "9.01%";
                 document.getElementById('kpi-leader-delta').textContent = "+1.78% vs avg";
-                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Cardo Urso</strong> · 29 dissents in 322 rounds (last judged 2019)";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Cardo Urso</strong> · 29 lone dissents in 322 rounds (last judged 2019)";
 
                 document.getElementById('kpi-agreeable-val').textContent = "5.36%";
                 document.getElementById('kpi-agreeable-delta').textContent = "-1.87% vs avg";
-                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Jeff Mullen</strong> · 94.64% agreement in 280 rounds (last judged 2017)";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Jeff Mullen</strong> · 94.64% colleague agreement in 280 rounds (last judged 2017)";
 
                 document.getElementById('kpi-volume-val').textContent = "41";
-                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Glenn Trowbridge</strong> · 490 rounds (historical mainstay)";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Glenn Trowbridge</strong> · 41 lone dissents in 490 scored rounds (last judged 2020)";
             } else {
-                document.getElementById('hero-narrative').innerHTML = "Across 32,876 individual rounds evaluated by 3-judge panels (including completed rounds from stoppage bouts), exactly <strong>2,376 rounds (7.23%)</strong> produced a lone dissenting judge. Among high-volume UFC mainstays (250+ rounds), <strong>Cardo Urso</strong> ranks #1 with a <strong>9.01%</strong> round dissent rate, followed by <strong>Rick Winter</strong> (8.75%) and <strong>David Lethaby</strong> (8.62%).";
+                document.getElementById('hero-narrative').innerHTML = "Across 32,876 individual rounds scored by 3-judge panels (including completed rounds from stoppage bouts where official scorecards were submitted), exactly <strong>2,376 rounds (7.23%)</strong> saw one judge disagree with their two panel colleagues on the round winner (a lone dissenting judge). Among high-volume UFC mainstays across all eras (250+ rounds scored), <strong>Cardo Urso</strong> ranks #1 with a <strong>9.01%</strong> round dissent rate, followed by <strong>Rick Winter</strong> (8.75%) and <strong>David Lethaby</strong> (8.62%).";
 
                 document.getElementById('kpi-benchmark-val').textContent = "7.23%";
-                document.getElementById('kpi-benchmark-sub').textContent = "Average dissent rate across all 32,876 rounds (1 in every 13.8 rounds)";
+                document.getElementById('kpi-benchmark-sub').textContent = "Average round dissent rate across all 32,876 scored rounds (1 disagreement in every 13.8 rounds)";
 
                 document.getElementById('kpi-leader-val').textContent = "9.01%";
                 document.getElementById('kpi-leader-delta').textContent = "+1.78% vs avg";
-                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Cardo Urso</strong> · 29 dissents in 322 rounds (1 in every 11.1 rounds)";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Cardo Urso</strong> · 29 lone dissents in 322 rounds (dissents once every 11.1 rounds)";
 
                 document.getElementById('kpi-agreeable-val').textContent = "4.99%";
                 document.getElementById('kpi-agreeable-delta').textContent = "-2.24% vs avg";
-                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Clemens Werner</strong> · 95.01% agreement in 481 rounds (most consensual)";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Clemens Werner</strong> · 95.01% colleague agreement in 481 rounds (most consensual all-time)";
 
                 document.getElementById('kpi-volume-val').textContent = "223";
-                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 6.24% rate over 3,573 scored rounds (historic volume)";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 223 lone round dissents across 3,573 scored rounds (historic volume)";
             }
         } else if (currentMode === 'fights') {
             document.getElementById('hero-question').textContent = "Which UFC judge dissents most often on the final fight decision outcome?";
 
             if (currentRosterFilter === 'active') {
-                document.getElementById('hero-narrative').innerHTML = "When evaluating the final 15-minute fight decision across active UFC judges (50+ bouts, 2024–2026), <strong>Adalaide Byrd</strong> ranks #1 in split dissent rate at <strong>9.29%</strong> among veterans, while <strong>Ben Cartlidge</strong> holds the highest colleague consensus at <strong>4.85%</strong> dissent.";
+                document.getElementById('hero-narrative').innerHTML = "When examining the final fight verdict across active UFC judges (50+ bouts judged, 2024–2026), <strong>Adalaide Byrd</strong> ranks #1 in split decision dissents at <strong>9.29%</strong> (she was the dissenting judge in 26 split decisions across 280 bouts). In contrast, <strong>Ben Cartlidge</strong> has been the lone dissenting judge on a final decision in only <strong>4.85%</strong> of bouts (13 of 268 fights), reflecting the highest consensus with fellow judges.";
 
-                document.getElementById('kpi-benchmark-val').textContent = "20.0%";
-                document.getElementById('kpi-benchmark-sub').textContent = "Split decision rate across 4,010 UFC fights (804 split decisions)";
+                document.getElementById('kpi-benchmark-val').textContent = "20.05%";
+                document.getElementById('kpi-benchmark-sub').textContent = "Split decision rate across 4,010 UFC fights that went the distance (804 split decisions)";
 
                 document.getElementById('kpi-leader-val').textContent = "9.29%";
                 document.getElementById('kpi-leader-delta').textContent = "+4.4% vs avg";
-                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Adalaide Byrd</strong> · 26 split dissents in 280 fights (active 2026)";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Adalaide Byrd</strong> · 26 split decision dissents in 280 fights (active through 2026)";
 
                 document.getElementById('kpi-agreeable-val').textContent = "4.85%";
                 document.getElementById('kpi-agreeable-delta').textContent = "-4.5% vs avg";
-                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Ben Cartlidge</strong> · 13 dissents in 268 fights (most consensual active)";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Ben Cartlidge</strong> · 13 dissents in 268 fights (most consensual active judge)";
 
                 document.getElementById('kpi-volume-val').textContent = "75";
-                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 1,151 fights judged (most active in UFC history)";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 75 split dissents across 1,151 fights judged (most in UFC history)";
             } else if (currentRosterFilter === 'historical') {
-                document.getElementById('hero-narrative').innerHTML = "Among historical judges no longer active in the UFC (&lt; 2024), <strong>Barry Foley</strong> holds the #1 fight decision disagreement rate at <strong>22.64%</strong> (12 dissents in 53 fights).";
+                document.getElementById('hero-narrative').innerHTML = "Among historical judges no longer active in the UFC (&lt; 2024), <strong>Barry Foley</strong> holds the #1 fight decision disagreement rate at <strong>22.64%</strong> (he was the dissenting minority in 12 split decisions out of 53 fights judged).";
 
-                document.getElementById('kpi-benchmark-val').textContent = "20.0%";
-                document.getElementById('kpi-benchmark-sub').textContent = "Split decision rate across 4,010 UFC fights";
+                document.getElementById('kpi-benchmark-val').textContent = "20.05%";
+                document.getElementById('kpi-benchmark-sub').textContent = "Split decision rate across 4,010 UFC fights that went the distance";
 
                 document.getElementById('kpi-leader-val').textContent = "22.64%";
                 document.getElementById('kpi-leader-delta').textContent = "+13.3% vs avg";
-                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Barry Foley</strong> · 12 dissents in 53 fights (last judged 2013)";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Barry Foley</strong> · 12 split dissents in 53 fights (last judged 2013)";
 
                 document.getElementById('kpi-agreeable-val').textContent = "5.04%";
                 document.getElementById('kpi-agreeable-delta').textContent = "-4.3% vs avg";
                 document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Jeff Mullen</strong> · 6 dissents in 119 fights (last judged 2017)";
 
                 document.getElementById('kpi-volume-val').textContent = "36";
-                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Glenn Trowbridge</strong> · 150 fights judged (last judged 2020)";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Glenn Trowbridge</strong> · 36 split dissents in 150 fights judged (last judged 2020)";
             } else {
-                document.getElementById('hero-narrative').innerHTML = "When evaluating the final 15-minute fight decision across 4,010 UFC bouts, <strong>Barry Foley</strong> holds the #1 disagreement rate among regular judges (50+ fights) at <strong>22.64%</strong>. Among 250+ fight veterans, <strong>Adalaide Byrd</strong> ranks #1 with a <strong>9.29%</strong> split dissent rate.";
+                document.getElementById('hero-narrative').innerHTML = "When evaluating the final fight decision across 4,010 UFC bouts that went to judges' scorecards, <strong>Barry Foley</strong> holds the #1 disagreement rate among regular judges (50+ fights) at <strong>22.64%</strong> (12 dissents in 53 fights). Among high-volume veterans with 250+ bouts judged, <strong>Adalaide Byrd</strong> ranks #1 with a <strong>9.29%</strong> split dissent rate (26 dissents in 280 fights).";
 
-                document.getElementById('kpi-benchmark-val').textContent = "20.0%";
-                document.getElementById('kpi-benchmark-sub').textContent = "Split decision rate across 4,010 UFC fights (804 split decisions)";
+                document.getElementById('kpi-benchmark-val').textContent = "20.05%";
+                document.getElementById('kpi-benchmark-sub').textContent = "Split decision rate across 4,010 UFC fights that went the distance (804 split decisions)";
 
                 document.getElementById('kpi-leader-val').textContent = "22.64%";
                 document.getElementById('kpi-leader-delta').textContent = "+13.3% vs avg";
-                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Barry Foley</strong> · 12 dissents in 53 fights (Min 50 fights)";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Barry Foley</strong> · 12 split dissents in 53 fights (min 50 fights)";
 
                 document.getElementById('kpi-agreeable-val').textContent = "4.85%";
                 document.getElementById('kpi-agreeable-delta').textContent = "-4.5% vs avg";
-                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Ben Cartlidge</strong> · 13 dissents in 268 fights (most consensual)";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Ben Cartlidge</strong> · 13 dissents in 268 fights (most consensual veteran)";
 
                 document.getElementById('kpi-volume-val').textContent = "75";
-                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 1,151 fights judged (most active in UFC history)";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sal D'Amato</strong> · 75 split dissents across 1,151 fights judged (most active in UFC history)";
             }
         } else {
             // Fighter Controversy & Disagreement Index Mode
             document.getElementById('hero-question').textContent = "Which UFC fighters are subject to the most judging disagreements and controversial split decisions?";
 
             if (currentRosterFilter === 'active') {
-                document.getElementById('hero-narrative').innerHTML = "Among currently active UFC fighters (2024–2026), <strong>Sean Strickland</strong> and <strong>Andre Fili</strong> have been involved in <strong>7 split decisions</strong> each, winning 5 of them (5W-2L record, +3 net luck). <strong>Sean Woodson</strong> holds a <strong>57.14% split decision rate</strong> (4 of 7 decisions, 3W-0L), while <strong>Angela Hill</strong> has suffered the most split decision losses among active fighters with <strong>4 split losses</strong> (1W-4L, net -3). <strong>Alexander Hernandez</strong> leads active fighters in contested rounds with <strong>40.74%</strong> of his scored rounds dissented.";
+                document.getElementById('hero-narrative').innerHTML = "Among currently active UFC fighters (2024–2026), <strong>Sean Strickland</strong> and <strong>Andre Fili</strong> have appeared in the most split decisions with <strong>7 split decisions each</strong>, both winning 5 and losing 2 (a 5W-2L split record, +3 net luck margin). For <strong>Sean Woodson</strong>, <strong>4 out of his 7 fights that went the distance ended in a split decision</strong> (a 57.14% split decision rate); of those 4 split decisions, <strong>3 were wins and 1 was a draw</strong> (3W-0L-1D, undefeated in split verdicts). Meanwhile, <strong>Angela Hill</strong> has suffered the most split decision defeats among active fighters with <strong>4 split losses</strong> in 5 split verdicts (1W-4L, net -3 luck margin). <strong>Alexander Hernandez</strong> leads active fighters in divided judging, with <strong>40.74%</strong> of his completed rounds (11 of 27) seeing at least one judge dissent.";
 
                 document.getElementById('kpi-benchmark-val').textContent = "20.05%";
-                document.getElementById('kpi-benchmark-sub').textContent = "Overall UFC Split Decision Rate (804 of 4,010 decisions)";
+                document.getElementById('kpi-benchmark-sub').textContent = "Baseline UFC split decision frequency across 4,010 distance bouts (804 split decisions)";
 
                 document.getElementById('kpi-leader-val').textContent = "57.14%";
                 document.getElementById('kpi-leader-delta').textContent = "+37.1% vs avg";
-                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Sean Woodson</strong> · 4 splits in 7 decisions (3W-0L, undefeated in splits)";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Sean Woodson</strong> · 4 of 7 distance fights ended in split decisions (3 wins, 1 draw, 0 losses)";
 
                 document.getElementById('kpi-agreeable-val').textContent = "1W - 4L";
                 document.getElementById('kpi-agreeable-delta').textContent = "-3 Net Luck";
-                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Angela Hill</strong> · 4 split losses in 25 decisions (#1 active split losses)";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Angela Hill</strong> · 4 split losses in 5 split decisions (1 win, 4 losses, -3 net luck)";
 
                 document.getElementById('kpi-volume-val').textContent = "5W - 2L";
-                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sean Strickland</strong> · 5 split wins in 17 decisions (tied with Andre Fili)";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Sean Strickland</strong> · 5 split decision wins in 17 distance bouts (5W-2L, tied with Andre Fili)";
             } else if (currentRosterFilter === 'historical') {
-                document.getElementById('hero-narrative').innerHTML = "Among historical UFC fighters (&lt; 2024), <strong>Zubaira Tukhugov</strong> recorded an astounding <strong>83.33% split decision rate</strong> (5 of 6 decisions ended in splits). <strong>Jorge Masvidal</strong> and <strong>Andrea Lee</strong> share the all-time UFC record for the most unlucky split decision record at <strong>0W-4L (net -4 luck)</strong>. <strong>Paul Felder</strong> holds the all-time record for contested rounds: <strong>48.39%</strong> of his scored rounds (15 of 31) had a judge dissent, and 6 of his 9 decisions were splits (66.67%).";
+                document.getElementById('hero-narrative').innerHTML = "Among historical UFC fighters no longer active (&lt; 2024), <strong>Zubaira Tukhugov</strong> holds the all-time record split frequency: <strong>5 of his 6 fights that went the distance ended in a split verdict</strong> (83.33% split rate; 1 win, 3 losses, 1 draw). <strong>Jorge Masvidal</strong> and <strong>Andrea Lee</strong> share the most unlucky split decision record in UFC history at <strong>0W-4L (0 wins in 4 split verdicts, net -4 luck margin)</strong>. <strong>Paul Felder</strong> faced the most divided scoring of any career mainstay: <strong>48.39%</strong> of his scored rounds (15 of 31) had a judge dissent, and 6 of his 9 distance bouts ended in split decisions (66.67%).";
 
                 document.getElementById('kpi-benchmark-val').textContent = "20.05%";
-                document.getElementById('kpi-benchmark-sub').textContent = "Overall UFC Split Decision Rate across all eras";
+                document.getElementById('kpi-benchmark-sub').textContent = "Baseline UFC split decision frequency across all eras (804 of 4,010 decisions)";
 
                 document.getElementById('kpi-leader-val').textContent = "83.33%";
                 document.getElementById('kpi-leader-delta').textContent = "+63.3% vs avg";
-                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Zubaira Tukhugov</strong> · 5 splits in 6 bouts (#1 all-time split rate)";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Zubaira Tukhugov</strong> · 5 of 6 distance fights ended in split decisions (1 win, 3 losses, 1 draw)";
 
                 document.getElementById('kpi-agreeable-val').textContent = "0W - 4L";
                 document.getElementById('kpi-agreeable-delta').textContent = "-4 Net Luck";
-                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Jorge Masvidal</strong> · 4 split losses, 0 wins (tied with Andrea Lee)";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Jorge Masvidal</strong> · 4 split losses, 0 wins (tied with Andrea Lee for all-time unluckiest split record)";
 
                 document.getElementById('kpi-volume-val').textContent = "48.39%";
-                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Paul Felder</strong> · 15 of 31 rounds contested (6 of 9 fights splits)";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Paul Felder</strong> · 15 of 31 rounds had a dissenting judge (6 of 9 distance fights ended in splits)";
             } else {
-                document.getElementById('hero-narrative').innerHTML = "Across 4,010 UFC bouts ending in a decision, exactly <strong>804 bouts (20.05%)</strong> resulted in a split decision. <strong>Clay Guida</strong> holds the all-time record for career split decisions with <strong>8 splits</strong> (4W-4L). <strong>Zubaira Tukhugov</strong> holds the highest career split rate at <strong>83.33%</strong> (5 of 6). <strong>Jorge Masvidal</strong> and <strong>Andrea Lee</strong> are the most unlucky fighters in UFC history with <strong>4 split losses and 0 split wins (0W-4L, net -4)</strong>, while <strong>Neil Magny</strong> and <strong>Benson Henderson</strong> are undefeated in splits at <strong>4W-0L (+4)</strong>, and <strong>Sean Strickland</strong> has the most split wins at <strong>5W-2L (+3)</strong>.";
+                document.getElementById('hero-narrative').innerHTML = "Across 4,010 UFC bouts that went the distance to judges' scorecards, exactly <strong>804 bouts (20.05%)</strong> resulted in a divided split decision (roughly 1 in every 5 decisions). <strong>Clay Guida</strong> holds the all-time record for career split bouts, with <strong>8 of his 18 distance fights</strong> decided by split scorecards (4 wins, 4 losses). <strong>Zubaira Tukhugov</strong> holds the highest career split rate at <strong>83.33%</strong> (5 of 6 distance fights ended in splits: 1 win, 3 losses, 1 draw). <strong>Jorge Masvidal</strong> and <strong>Andrea Lee</strong> have experienced the worst split decision luck in UFC history with <strong>0 wins and 4 losses in split verdicts (0W-4L, net -4 margin)</strong>, while <strong>Neil Magny</strong> and <strong>Benson Henderson</strong> had perfect split decision fortunes at <strong>4W-0L (+4 margin)</strong>, and <strong>Sean Strickland</strong> has notched the most split decision wins at <strong>5W-2L (+3 margin)</strong>.";
 
                 document.getElementById('kpi-benchmark-val').textContent = "20.05%";
-                document.getElementById('kpi-benchmark-sub').textContent = "804 split decisions across 4,010 UFC bouts (1 in every 5 decisions)";
+                document.getElementById('kpi-benchmark-sub').textContent = "804 split decisions across 4,010 UFC bouts that went the distance (1 in every 5 decisions)";
 
                 document.getElementById('kpi-leader-val').textContent = "83.33%";
                 document.getElementById('kpi-leader-delta').textContent = "+63.3% vs avg";
-                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Zubaira Tukhugov</strong> · 5 split decisions in 6 bouts (1W-3L-1D)";
+                document.getElementById('kpi-leader-sub').innerHTML = "<strong>Zubaira Tukhugov</strong> · 5 of 6 distance fights ended in split decisions (1 win, 3 losses, 1 draw)";
 
                 document.getElementById('kpi-agreeable-val').textContent = "0W - 4L";
                 document.getElementById('kpi-agreeable-delta').textContent = "-4 Net Luck";
-                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Jorge Masvidal</strong> · 4 split losses, 0 wins (tied with Andrea Lee)";
+                document.getElementById('kpi-agreeable-sub').innerHTML = "<strong>Jorge Masvidal</strong> · 4 split losses, 0 split wins (tied with Andrea Lee for unluckiest career split record)";
 
                 document.getElementById('kpi-volume-val').textContent = "8 Splits";
-                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Clay Guida</strong> · 8 split decisions in 18 bouts (4W-4L record)";
+                document.getElementById('kpi-volume-sub').innerHTML = "<strong>Clay Guida</strong> · 8 split decisions across 18 distance fights (4 wins, 4 losses)";
             }
         }
     }
@@ -2391,6 +2391,19 @@
             document.getElementById('pairs-section').style.display = 'block';
             document.getElementById('anatomy-section').style.display = 'block';
             document.getElementById('table-section-title').textContent = "The Hall of Dissent: Judge Rankings";
+            const tableDescR = document.getElementById('table-section-desc');
+            if (tableDescR) tableDescR.textContent = "Click on any judge row to expand their career dossier, including active years, round dissent frequency, top disagreement partner, and notable breakaway scorecards.";
+            const pairsDescR = document.getElementById('pairs-section-desc');
+            if (pairsDescR) pairsDescR.textContent = "How often do pairs of cage-side judges seated together on the same bout disagree on who won individual rounds? Analyzed across co-judges with at least 15 shared rounds.";
+            const pairsHeadR = document.getElementById('pairs-table-head');
+            if (pairsHeadR) pairsHeadR.innerHTML = `
+                <tr>
+                    <th class="col-text">Judge Pair</th>
+                    <th class="col-num">Rounds Together</th>
+                    <th class="col-num">Conflicting Round Scores</th>
+                    <th class="col-num">Disagreement Rate (%)</th>
+                </tr>
+            `;
             document.getElementById('search-input').placeholder = "Search judge name...";
             const btnD = document.getElementById('btn-gauge-dissenters');
             const btnA = document.getElementById('btn-gauge-agreers');
@@ -2410,6 +2423,19 @@
             document.getElementById('pairs-section').style.display = 'block';
             document.getElementById('anatomy-section').style.display = 'none';
             document.getElementById('table-section-title').textContent = "Fight Decision Dissent: Judge Rankings";
+            const tableDescF = document.getElementById('table-section-desc');
+            if (tableDescF) tableDescF.textContent = "Click on any judge row to inspect their fight-level decision record, including unanimous vs split decision breakdown and career lone-dissenter scorecards.";
+            const pairsDescF = document.getElementById('pairs-section-desc');
+            if (pairsDescF) pairsDescF.textContent = "How often do pairs of judges seated together on the same panel pick different overall winners on the final fight decision? Analyzed across co-judges with at least 10 shared bouts.";
+            const pairsHeadF = document.getElementById('pairs-table-head');
+            if (pairsHeadF) pairsHeadF.innerHTML = `
+                <tr>
+                    <th class="col-text">Judge Pair</th>
+                    <th class="col-num">Bouts Together</th>
+                    <th class="col-num">Opposing Fight Picks</th>
+                    <th class="col-num">Split Disagreement Rate (%)</th>
+                </tr>
+            `;
             document.getElementById('search-input').placeholder = "Search judge name...";
             document.querySelectorAll('.round-chart').forEach(c => c.style.display = 'none');
             document.querySelectorAll('.fight-chart').forEach(c => c.style.display = 'block');
@@ -2425,6 +2451,8 @@
             document.getElementById('pairs-section').style.display = 'none';
             document.getElementById('anatomy-section').style.display = 'none';
             document.getElementById('table-section-title').textContent = "The Fighter Controversy Index: Most Contested Fighters";
+            const tableDescFi = document.getElementById('table-section-desc');
+            if (tableDescFi) tableDescFi.textContent = "Click on any fighter row to expand their judging controversy dossier, including split decision win/loss records, net judging luck (+/-), contested round rates, and scorecards from divided bouts.";
             document.getElementById('search-input').placeholder = "Search fighter name...";
             const btnD = document.getElementById('btn-gauge-dissenters');
             const btnA = document.getElementById('btn-gauge-agreers');
@@ -2697,11 +2725,11 @@
             { label: 'Regulars (50+ Fights)', min: 50 },
             { label: 'All Judges', min: 1 }
         ] : [
-            { label: 'Veterans (10+ Decs)', min: 10 },
-            { label: 'Regulars (5+ Decs)', min: 5 },
-            { label: 'Contested (3+ Splits)', min: 'splits_3' },
-            { label: 'Most Unlucky (Net ≤ -1)', min: 'unlucky' },
-            { label: 'Most Fortunate (Net ≥ +1)', min: 'fortunate' },
+            { label: 'Veterans (10+ Distance Fights)', min: 10 },
+            { label: 'Regulars (5+ Distance Fights)', min: 5 },
+            { label: 'Contested (3+ Split Decisions)', min: 'splits_3' },
+            { label: 'Unlucky (Net ≤ -1 Luck)', min: 'unlucky' },
+            { label: 'Fortunate (Net ≥ +1 Luck)', min: 'fortunate' },
             { label: 'All Fighters', min: 1 }
         ]);
 
@@ -2752,12 +2780,12 @@
                 <tr>
                     <th data-sort="rank" class="col-center" style="width:50px;">#</th>
                     <th data-sort="name" class="col-text">Fighter Name & Status</th>
-                    <th data-sort="fights" class="col-num">Decision Bouts</th>
-                    <th data-sort="splits" class="col-num">Split Decisions</th>
-                    <th data-sort="split_pct" class="col-num">Split Rate (%)</th>
-                    <th data-sort="record" class="col-center">Split Record (W-L-D)</th>
-                    <th data-sort="luck" class="col-center">Luck Index</th>
-                    <th data-sort="contested" class="col-num">Contested Rounds (%)</th>
+                    <th data-sort="fights" class="col-num" title="Number of UFC fights that went the full distance to judges' scorecards">Distance Bouts</th>
+                    <th data-sort="splits" class="col-num" title="Bouts resulting in a split decision">Split Decisions</th>
+                    <th data-sort="split_pct" class="col-num" title="Percentage of distance bouts ending in a split decision">Split Rate (%)</th>
+                    <th data-sort="record" class="col-center" title="Record in split decisions (Wins - Losses - Draws)">Split Record (W-L-D)</th>
+                    <th data-sort="luck" class="col-center" title="Net split decision wins minus losses">Luck Index</th>
+                    <th data-sort="contested" class="col-num" title="Percentage of scored rounds where at least one judge dissented">Contested Rounds (%)</th>
                     <th class="col-center" style="width:90px;">Profile</th>
                 </tr>
             `;
@@ -2927,22 +2955,22 @@
                                             <div class="dossier-stat-tile">
                                                 <span class="stat-tile-label">Split Decision Rate</span>
                                                 <div class="stat-tile-value" style="color: ${diff >= 0 ? 'var(--accent-crimson)' : 'var(--accent-green)'};">${pct.toFixed(1)}%</div>
-                                                <span class="stat-tile-sub">${f.split_fights} of ${f.total_fights} decisions (UFC avg 20.05%)</span>
+                                                <span class="stat-tile-sub">${f.split_fights} of ${f.total_fights} distance fights went to split verdict (UFC avg 20.05%)</span>
                                             </div>
                                             <div class="dossier-stat-tile">
                                                 <span class="stat-tile-label">Career Split Record</span>
                                                 <div class="stat-tile-value">${recStr}</div>
-                                                <span class="stat-tile-sub">Net Luck: ${luckSign}${net}</span>
+                                                <span class="stat-tile-sub">Net Luck Margin: ${luckSign}${net} (${net > 0 ? '+' + net + ' more wins than losses' : (net < 0 ? net + ' more losses than wins' : 'even win/loss record')})</span>
                                             </div>
                                             <div class="dossier-stat-tile">
                                                 <span class="stat-tile-label">Contested Rounds</span>
                                                 <div class="stat-tile-value">${(f.contested_round_pct || 0).toFixed(1)}%</div>
-                                                <span class="stat-tile-sub">${f.contested_rounds || 0} of ${f.total_rounds || 0} rounds</span>
+                                                <span class="stat-tile-sub">${f.contested_rounds || 0} of ${f.total_rounds || 0} scored rounds had a dissenting judge</span>
                                             </div>
                                             <div class="dossier-stat-tile">
                                                 <span class="stat-tile-label">Decision Breakdown</span>
-                                                <div class="stat-tile-value">${f.unanimous_fights || 0} UD</div>
-                                                <span class="stat-tile-sub">${f.split_fights || 0} SD · ${f.majority_fights || 0} MD</span>
+                                                <div class="stat-tile-value">${f.unanimous_fights || 0} Unanimous</div>
+                                                <span class="stat-tile-sub">${f.split_fights || 0} Split Decisions · ${f.majority_fights || 0} Majority Decisions</span>
                                             </div>
                                         </div>
                                         <div class="dossier-friction-box">
@@ -2950,8 +2978,8 @@
                                                 <span class="friction-badge">Career Split Luck Index</span>
                                                 <span class="rate-badge" style="${luckStyle}">${luckSign}${net} (${f.luck_badge})</span>
                                             </div>
-                                            <div class="friction-partner-name">${f.split_wins} Split Wins · ${f.split_losses} Split Losses</div>
-                                            <div class="friction-subtext">${net > 0 ? 'Fighter has benefited from split decision variance (+luck)' : (net < 0 ? 'Fighter has suffered negative variance in split verdicts (-luck)' : 'Even split decision distribution over career')}</div>
+                                            <div class="friction-partner-name">${f.split_wins} Split Win${f.split_wins === 1 ? '' : 's'} · ${f.split_losses} Split Loss${f.split_losses === 1 ? '' : 'es'}${f.split_draws ? ' · ' + f.split_draws + ' Split Draw' + (f.split_draws === 1 ? '' : 's') : ''}</div>
+                                            <div class="friction-subtext">${net > 0 ? 'This fighter has benefited from positive split decision variance (+net wins over losses)' : (net < 0 ? 'This fighter has suffered negative split decision variance (-net losses over wins)' : 'Perfect balance between split wins and split losses across career')}</div>
                                         </div>
                                     </div>
                                     <div class="dossier-evidence">
@@ -3115,33 +3143,33 @@
                                         </div>
                                         <div class="dossier-stats-grid">
                                             <div class="dossier-stat-tile">
-                                                <span class="stat-tile-label">Dissent Rate</span>
+                                                <span class="stat-tile-label">Round Dissent Rate</span>
                                                 <div class="stat-tile-value" style="color: ${diff >= 0 ? 'var(--accent-crimson)' : 'var(--accent-green)'};">${pct.toFixed(2)}%</div>
-                                                <span class="stat-tile-sub">1 every ${freq} rounds (${badgeSign}${diff.toFixed(2)}% vs avg)</span>
+                                                <span class="stat-tile-sub">Dissents once every ${freq} rounds (${badgeSign}${diff.toFixed(2)}% vs 7.23% UFC benchmark)</span>
                                             </div>
                                             <div class="dossier-stat-tile">
                                                 <span class="stat-tile-label">Consensus Rate</span>
                                                 <div class="stat-tile-value">${agreePct}%</div>
-                                                <span class="stat-tile-sub">Agrees with colleagues</span>
+                                                <span class="stat-tile-sub">Agrees with both co-judges on round winner</span>
                                             </div>
                                             <div class="dossier-stat-tile">
-                                                <span class="stat-tile-label">Dominant 10–8s</span>
+                                                <span class="stat-tile-label">Dominant 10–8s Given</span>
                                                 <div class="stat-tile-value">${(j.ten_eight_rounds || 0).toLocaleString()}</div>
-                                                <span class="stat-tile-sub">${(j.ten_eight_pct || 0).toFixed(1)}% of scored rounds</span>
+                                                <span class="stat-tile-sub">${(j.ten_eight_pct || 0).toFixed(1)}% of this judge's scored rounds</span>
                                             </div>
                                             <div class="dossier-stat-tile">
                                                 <span class="stat-tile-label">Completed Stoppage Rounds</span>
                                                 <div class="stat-tile-value">${finishRoundsCount}</div>
-                                                <span class="stat-tile-sub">Rounds prior to finish</span>
+                                                <span class="stat-tile-sub">Scored rounds before a fight ended by finish</span>
                                             </div>
                                         </div>
                                         <div class="dossier-friction-box">
                                             <div class="friction-box-header">
-                                                <span class="friction-badge">Top Colleague Friction</span>
+                                                <span class="friction-badge">Top Colleague Disagreement Partner</span>
                                                 <span class="friction-rate">${(j.top_clash_pct || 0).toFixed(1)}% Disagreement</span>
                                             </div>
                                             <div class="friction-partner-name">${escapeHtml(j.top_clash_partner || 'None recorded')}</div>
-                                            <div class="friction-subtext">Disagreed on ${Math.round(((j.top_clash_pct || 0) / 100) * (j.top_clash_rounds || 0))} of ${j.top_clash_rounds || 0} shared rounds seated together</div>
+                                            <div class="friction-subtext">Disagreed on round winners in ${Math.round(((j.top_clash_pct || 0) / 100) * (j.top_clash_rounds || 0))} of ${j.top_clash_rounds || 0} shared rounds seated together on the same panel</div>
                                         </div>
                                     </div>
                                     <div class="dossier-evidence">
@@ -3204,22 +3232,22 @@
                                             <div class="dossier-stat-tile">
                                                 <span class="stat-tile-label">Split Dissents</span>
                                                 <div class="stat-tile-value" style="color:var(--accent-crimson);">${(j.dissents || 0).toLocaleString()}</div>
-                                                <span class="stat-tile-sub">${pct.toFixed(2)}% of judged bouts</span>
+                                                <span class="stat-tile-sub">${pct.toFixed(2)}% of judged distance fights</span>
                                             </div>
                                             <div class="dossier-stat-tile">
                                                 <span class="stat-tile-label">Unanimous Bouts</span>
                                                 <div class="stat-tile-value">${(j.unanimous_pct || 0).toFixed(1)}%</div>
-                                                <span class="stat-tile-sub">${(j.unanimous_fights || 0).toLocaleString()} consensual decisions</span>
+                                                <span class="stat-tile-sub">${(j.unanimous_fights || 0).toLocaleString()} unanimous decision bouts</span>
                                             </div>
                                             <div class="dossier-stat-tile">
-                                                <span class="stat-tile-label">Total Fights</span>
+                                                <span class="stat-tile-label">Distance Fights Judged</span>
                                                 <div class="stat-tile-value">${(j.total_fights || 0).toLocaleString()}</div>
-                                                <span class="stat-tile-sub">Full bouts evaluated</span>
+                                                <span class="stat-tile-sub">Total bouts that went the full distance</span>
                                             </div>
                                             <div class="dossier-stat-tile">
-                                                <span class="stat-tile-label">Scorecard Variance</span>
+                                                <span class="stat-tile-label">Round-Level Dissents</span>
                                                 <div class="stat-tile-value">${(j.score_dissents || 0).toLocaleString()}</div>
-                                                <span class="stat-tile-sub">${(j.score_dissent_pct || 0).toFixed(1)}% round dissent rate</span>
+                                                <span class="stat-tile-sub">${(j.score_dissent_pct || 0).toFixed(1)}% round-level dissent rate</span>
                                             </div>
                                         </div>
                                         <div class="dossier-friction-box">
@@ -3227,8 +3255,8 @@
                                                 <span class="friction-badge">Career Decision Overview</span>
                                                 <span class="friction-rate">${(j.unanimous_pct || 0).toFixed(1)}% Consensual</span>
                                             </div>
-                                            <div class="friction-partner-name">${(j.total_fights || 0).toLocaleString()} UFC Decisions Judged</div>
-                                            <div class="friction-subtext">Judged from ${j.first_year || ''} to ${j.last_year || ''}. Dissenting minority in ${(j.dissents || 0).toLocaleString()} split verdicts.</div>
+                                            <div class="friction-partner-name">${(j.total_fights || 0).toLocaleString()} Distance Fights Judged</div>
+                                            <div class="friction-subtext">Officiated from ${j.first_year || 'early UFC'} to ${j.last_year || 'present'}. Cast the lone dissenting scorecard in ${(j.dissents || 0).toLocaleString()} split decision verdicts.</div>
                                         </div>
                                     </div>
                                     <div class="dossier-evidence">
@@ -3239,7 +3267,7 @@
                                         <div class="dossier-cards-grid">
                                             <div class="dissent-card">
                                                 <div class="dissent-card-top">
-                                                    <span class="dissent-year-round">Consensual</span>
+                                                    <span class="dissent-year-round">Consensual Bouts</span>
                                                     <span class="rate-badge under">Unanimous</span>
                                                 </div>
                                                 <div class="dissent-bout-name">${(j.unanimous_fights || 0).toLocaleString()} Unanimous Decisions</div>
@@ -3255,7 +3283,7 @@
                                                     <span class="dissent-year-round">Split Verdicts</span>
                                                     <span class="rate-badge over">Dissent</span>
                                                 </div>
-                                                <div class="dissent-bout-name">${(j.dissents || 0).toLocaleString()} Lone Dissents</div>
+                                                <div class="dissent-bout-name">${(j.dissents || 0).toLocaleString()} Lone Dissents in Split Verdicts</div>
                                                 <div class="dissent-scores-row">
                                                     <div class="dissent-judge-score">
                                                         <span class="score-label">Dissent Rate:</span>

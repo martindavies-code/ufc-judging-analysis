@@ -90,39 +90,43 @@ A **Round Dissent** occurs when two cage-side colleagues agree on who won an ind
 
 Which UFC fighters find themselves in razor-thin, split-call contests most frequently? Who has been historically "unlucky" on the wrong side of split decisions, and who has been the most fortunate?
 
-Across 4,010 UFC decisions, exactly **20.05% (1 in 5 bouts)** ended in a split decision.
+Across 4,010 UFC fights that went the distance, exactly **20.05% (804 bouts, or 1 in every 5 distance fights)** ended in a split decision.
 
-### 1. Highest Split Decision Rate (Min 6 Decision Bouts)
+### 1. Highest Split Decision Rate (Min 6 Distance Bouts)
 
-1. 🥇 **Zubaira Tukhugov**: **83.33%** (5 split decisions in 6 bouts) — **#1 All-Time Most Contested Fighter**
-2. 🥈 **Paul Felder**: **66.67%** (6 splits in 9 bouts; 48.39% of scored rounds had a judge dissent)
-3. 🥉 **Joshua Culibao**: **66.67%** (4 splits in 6 bouts)
-4. 4️⃣ **Brad Pickett**: **66.67%** (4 splits in 6 bouts)
-5. 5️⃣ **Gian Villante**: **62.50%** (5 splits in 8 bouts)
-6. 6️⃣ **Sean Woodson**: **57.14%** (4 splits in 7 bouts, 3W-0L in splits) — **#1 Active Split Rate**
+1. 🥇 **Zubaira Tukhugov**: **83.33%** (5 of his 6 distance fights ended in split decisions; 1W-3L-1D) — **#1 All-Time Most Contested Fighter**
+2. 🥈 **Paul Felder**: **66.67%** (6 of his 9 distance fights ended in split decisions; 3W-3L; 48.39% of his scored rounds had a dissenting judge)
+3. 🥉 **Joshua Culibao**: **66.67%** (4 of his 6 distance fights ended in split decisions; 1W-2L-1D)
+4. 4️⃣ **Brad Pickett**: **66.67%** (4 of his 6 distance fights ended in split decisions; 1W-3L)
+5. 5️⃣ **Gian Villante**: **62.50%** (5 of his 8 distance fights ended in split decisions; 3W-2L)
+6. 6️⃣ **Sean Woodson**: **57.14%** (4 of his 7 distance fights ended in split decisions: 3 wins, 1 draw, 0 losses; 3W-0L-1D, undefeated in split verdicts) — **#1 Active Split Decision Rate**
 
 ### 2. The UFC "Luck Differential" (Net Split Wins vs Losses)
 
-* **Most Unlucky (Worst Split Decision Records)**:
-  * 💔 **Jorge Masvidal**: **0W – 4L** (net **-4** luck differential; 0% win rate in split decisions)
-  * 💔 **Andrea Lee**: **0W – 4L** (net **-4**)
-  * 💔 **Angela Hill**: **1W – 4L** (net **-3**; 4 split losses — #1 among active UFC fighters)
-  * 💔 **Cortney Casey**: **1W – 4L** (net **-3**)
-  * 💔 **Pedro Munhoz / Santiago Ponzinibbio / Gerald Meerschaert**: **0W – 3L** (net **-3**)
-* **Most Fortunate (Best Split Decision Records)**:
-  * 🍀 **Sean Strickland**: **5W – 2L** (net **+3**; 5 career split wins — tied for #1 all-time)
-  * 🍀 **Andre Fili**: **5W – 2L** (net **+3**; 5 career split wins)
-  * 🍀 **Gleison Tibau**: **5W – 2L** (net **+3**; 5 career split wins)
-  * 🍀 **Neil Magny**: **4W – 0L** (net **+4**; undefeated in career split decisions)
-  * 🍀 **Benson Henderson**: **4W – 0L** (net **+4**; undefeated in career split decisions)
+*Calculated as `Split Wins minus Split Losses`. A positive differential indicates a fighter has won more split decisions than lost; a negative differential indicates more split losses than wins.*
+
+* **Most Unfavorable Split Verdicts (Worst Split Decision Records)**:
+  * 💔 **Jorge Masvidal**: **0W – 4L** (net **-4** luck margin: 4 more losses than wins; 0% win rate in split decisions)
+  * 💔 **Andrea Lee**: **0W – 4L** (net **-4** luck margin: 4 more losses than wins)
+  * 💔 **Angela Hill**: **1W – 4L** (net **-3** luck margin: 3 more losses than wins; 4 split decision defeats — #1 among active UFC fighters)
+  * 💔 **Cortney Casey**: **1W – 4L** (net **-3** luck margin: 3 more losses than wins)
+  * 💔 **Pedro Munhoz / Santiago Ponzinibbio / Gerald Meerschaert**: **0W – 3L** (net **-3** luck margin: 3 more losses than wins)
+* **Most Favorable Split Verdicts (Best Split Decision Records)**:
+  * 🍀 **Sean Strickland**: **5W – 2L** (net **+3** luck margin: 3 more wins than losses; 5 career split wins — tied for #1 all-time)
+  * 🍀 **Andre Fili**: **5W – 2L** (net **+3** luck margin: 3 more wins than losses; 5 career split wins)
+  * 🍀 **Gleison Tibau**: **5W – 2L** (net **+3** luck margin: 3 more wins than losses; 5 career split wins)
+  * 🍀 **Neil Magny**: **4W – 0L** (net **+4** luck margin: 4 more wins than losses; undefeated in career split decisions)
+  * 🍀 **Benson Henderson**: **4W – 0L** (net **+4** luck margin: 4 more wins than losses; undefeated in career split decisions)
 
 ### 3. Most Contested Scored Rounds (Min 25 Scored Rounds)
 
-* 🥇 **Paul Felder**: **48.39%** of rounds contested (15 of 31 rounds produced a lone dissenting judge)
-* 🥈 **Dominick Cruz**: **41.38%** (12 of 29 rounds contested)
-* 🥉 **Alexander Hernandez**: **40.74%** (11 of 27 rounds contested) — **#1 Active**
-* 4️⃣ **Ross Pearson / Benson Henderson**: **40.48%** (17 of 42 rounds contested)
-* 5️⃣ **Cory Sandhagen**: **38.46%** (15 of 39 rounds contested)
+*Percentage of a fighter's completed rounds where at least one judge dissented from the other two on who won the round:*
+
+* 🥇 **Paul Felder**: **48.39%** of rounds contested (15 of 31 scored rounds produced a lone dissenting judge)
+* 🥈 **Dominick Cruz**: **41.38%** (12 of 29 scored rounds contested)
+* 🥉 **Alexander Hernandez**: **40.74%** (11 of 27 scored rounds contested) — **#1 Active Fighter**
+* 4️⃣ **Ross Pearson / Benson Henderson**: **40.48%** (17 of 42 scored rounds contested)
+* 5️⃣ **Cory Sandhagen**: **38.46%** (15 of 39 scored rounds contested)
 
 ---
 
