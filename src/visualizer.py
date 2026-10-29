@@ -4,6 +4,7 @@ Plots round-level and fight-level disagreement rates, veteran rankings,
 scatter distributions, and historical trends over time.
 """
 
+import logging
 import sqlite3
 import sys
 from pathlib import Path
@@ -15,6 +16,8 @@ if str(PROJECT_ROOT) not in sys.path:
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib import ticker
+
+logger = logging.getLogger(__name__)
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = PROJECT_ROOT / "data"
@@ -32,7 +35,7 @@ plt.rcParams["axes.linewidth"] = 0.8
 def generate_visualizations(db_path: Path = DB_PATH) -> None:
     """Generate all analytical visualizations for the web dashboard and report."""
     if not db_path.exists():
-        print(f"Database {db_path} not found.")
+        logger.warning("Database %s not found.", db_path)
         return
 
     conn = sqlite3.connect(db_path)
@@ -352,8 +355,9 @@ def generate_visualizations(db_path: Path = DB_PATH) -> None:
         plt.savefig(OUTPUT_DIR / "split_decision_trend.png")
         plt.close()
 
-    print(f"All visualizations successfully updated in {OUTPUT_DIR}")
+    logger.info("All visualizations successfully updated in %s", OUTPUT_DIR)
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
     generate_visualizations()

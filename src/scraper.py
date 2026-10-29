@@ -21,9 +21,11 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 import requests
+import requests.adapters
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
+from src.exceptions import StorageError
 from src.security import (
     safe_resolve_path,
     sanitize_filename,
@@ -77,11 +79,11 @@ def atomic_write_text(filepath: Path, content: str, encoding: str = "utf-8") -> 
             f.flush()
             os.fsync(f.fileno())
         os.replace(temp_path, filepath)
-    except Exception:
+    except OSError as e:
         if temp_path.exists():
             with contextlib.suppress(OSError):
                 temp_path.unlink()
-        raise
+        raise StorageError(f"Failed to atomically write text to {filepath}: {e}") from e
 
 
 def get_available_years() -> list[str]:
@@ -114,7 +116,7 @@ def get_available_years() -> list[str]:
 
 def fetch_events_for_year(year: str) -> list[dict[str, str]]:
     """Fetch and filter UFC event listings for a given year."""
-    clean_year = sanitize_filename(str(year))
+    clean_year = sanitize_filename(year)
     url = f"{BASE_URL}/decisions-by-event/{clean_year}/"
     session = get_thread_session()
 
@@ -167,7 +169,12 @@ def fetch_events_for_year(year: str) -> list[dict[str, str]]:
 def get_all_ufc_events(max_workers: int = 5) -> list[dict[str, str]]:
     """Retrieve, validate, and persist all UFC events across all years."""
     years = get_available_years()
-    print(f"Checking events across {len(years)} years ({years[-1]} to {years[0]})...")
+    logger.info(
+        "Checking events across %d years (%s to %s)...",
+        len(years),
+        years[-1] if years else "",
+        years[0] if years else "",
+    )
 
     all_events: list[dict[str, str]] = []
     seen_ids: set[str] = set()
@@ -183,7 +190,7 @@ def get_all_ufc_events(max_workers: int = 5) -> list[dict[str, str]]:
                     all_events.append(ev)
 
     all_events.sort(key=lambda x: int(x["event_id"]), reverse=True)
-    print(f"Found {len(all_events)} unique UFC events.")
+    logger.info("Found %d unique UFC events.", len(all_events))
 
     # Save indexed events atomically
     temp_json = EVENTS_JSON_PATH.with_suffix(".tmp")
@@ -226,7 +233,7 @@ def download_single_event(event: dict[str, str]) -> tuple[str, bool, str]:
 
 def download_all_events(events: list[dict[str, str]], max_workers: int = 8) -> tuple[int, int, int]:
     """Download HTML for all events in parallel."""
-    print(f"\nDownloading/caching HTML for {len(events)} UFC events...")
+    logger.info("Downloading/caching HTML for %d UFC events...", len(events))
     EVENTS_HTML_DIR.mkdir(parents=True, exist_ok=True)
 
     success = 0
@@ -246,7 +253,7 @@ def download_all_events(events: list[dict[str, str]], max_workers: int = 8) -> t
                 failed += 1
                 logger.error("Failed to download event %s: %s", eid, status)
 
-    print(f"\nCompleted: {success} newly downloaded, {cached} loaded from cache, {failed} failed.")
+    logger.info("Completed: %d newly downloaded, %d loaded from cache, %d failed.", success, cached, failed)
     return success, cached, failed
 
 

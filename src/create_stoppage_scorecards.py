@@ -6,7 +6,10 @@ prior to the stoppage (e.g. rounds 1-3 for a 4th-round finish).
 """
 
 import json
+import logging
 from pathlib import Path
+
+logger = logging.getLogger(__name__)
 
 STOPPAGE_FIGHTS = [
     # --- FINISHED IN ROUND 5 (ROUNDS 1-4 SCORED) ---
@@ -837,9 +840,10 @@ def write_stoppage_scorecards_json(output_path: Path) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(STOPPAGE_FIGHTS, f, indent=2)
-    print(f"Saved {len(STOPPAGE_FIGHTS)} finished fights with official scorecards to {output_path}")
+    logger.info("Saved %d finished fights with official scorecards to %s", len(STOPPAGE_FIGHTS), output_path)
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
     out = Path(__file__).resolve().parent.parent / "data" / "stoppage_scorecards.json"
     write_stoppage_scorecards_json(out)

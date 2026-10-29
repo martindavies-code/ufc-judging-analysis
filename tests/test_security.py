@@ -1,5 +1,8 @@
 """Unit tests for security, sanitization, and path traversal protection."""
 
+from pathlib import Path
+from typing import Any, cast
+
 import pytest
 
 from src.security import (
@@ -15,58 +18,58 @@ from src.security import (
 
 
 class TestValidateNumericId:
-    def test_valid_integer(self):
+    def test_valid_integer(self) -> None:
         assert validate_numeric_id(1516) == 1516
         assert validate_numeric_id(0) == 0
 
-    def test_valid_numeric_string(self):
+    def test_valid_numeric_string(self) -> None:
         assert validate_numeric_id("1516") == 1516
         assert validate_numeric_id(" 42 ") == 42
 
-    def test_negative_integer_raises(self):
+    def test_negative_integer_raises(self) -> None:
         with pytest.raises(ValueError, match="non-negative"):
             validate_numeric_id(-1)
 
-    def test_negative_string_raises(self):
+    def test_negative_string_raises(self) -> None:
         with pytest.raises(ValueError, match="numeric digits"):
             validate_numeric_id("-5")
 
-    def test_non_numeric_string_raises(self):
+    def test_non_numeric_string_raises(self) -> None:
         with pytest.raises(ValueError, match="numeric digits"):
             validate_numeric_id("1516a")
         with pytest.raises(ValueError, match="numeric digits"):
             validate_numeric_id("../../1516")
 
-    def test_invalid_types_raise(self):
+    def test_invalid_types_raise(self) -> None:
         with pytest.raises(TypeError):
-            validate_numeric_id(None)
+            validate_numeric_id(cast(Any, None))
         with pytest.raises(TypeError):
-            validate_numeric_id([123])
+            validate_numeric_id(cast(Any, [123]))
         with pytest.raises(TypeError):
-            validate_numeric_id(12.34)
+            validate_numeric_id(cast(Any, 12.34))
 
 
 class TestSanitizeFilename:
-    def test_clean_name(self):
+    def test_clean_name(self) -> None:
         assert sanitize_filename("ufc_event_1516.html") == "ufc_event_1516.html"
 
-    def test_path_traversal_characters_removed(self):
+    def test_path_traversal_characters_removed(self) -> None:
         sanitized = sanitize_filename("../../etc/passwd")
         assert "/" not in sanitized
         assert ".." not in sanitized or "_" in sanitized
         assert "\\" not in sanitized
 
-    def test_windows_reserved_characters(self):
+    def test_windows_reserved_characters(self) -> None:
         sanitized = sanitize_filename('event<1516>:name"file|test?*.html')
         for bad_char in ["<", ">", ":", '"', "/", "\\", "|", "?", "*"]:
             assert bad_char not in sanitized
 
-    def test_null_bytes_and_control_chars(self):
+    def test_null_bytes_and_control_chars(self) -> None:
         raw = "test\x00file\x1f\x7f.html"
         assert "\x00" not in sanitize_filename(raw)
         assert "\x1f" not in sanitize_filename(raw)
 
-    def test_empty_filename_raises(self):
+    def test_empty_filename_raises(self) -> None:
         with pytest.raises(ValueError):
             sanitize_filename("")
         with pytest.raises(ValueError):
@@ -74,11 +77,11 @@ class TestSanitizeFilename:
 
 
 class TestSafeResolvePath:
-    def test_valid_child_resolution(self, tmp_path):
+    def test_valid_child_resolution(self, tmp_path: Path) -> None:
         resolved = safe_resolve_path(tmp_path, "subfolder/file.txt")
         assert resolved == (tmp_path / "subfolder" / "file.txt").resolve()
 
-    def test_path_traversal_attempt_raises(self, tmp_path):
+    def test_path_traversal_attempt_raises(self, tmp_path: Path) -> None:
         with pytest.raises(ValueError, match="Path traversal detected"):
             safe_resolve_path(tmp_path, "../outside.txt")
         with pytest.raises(ValueError, match="Path traversal detected"):
@@ -86,91 +89,91 @@ class TestSafeResolvePath:
 
 
 class TestSanitizeText:
-    def test_none_handling(self):
+    def test_none_handling(self) -> None:
         assert sanitize_text(None) == ""
 
-    def test_non_string_handling(self):
-        assert sanitize_text(12345) == "12345"
+    def test_non_string_handling(self) -> None:
+        assert sanitize_text(cast(Any, 12345)) == "12345"
 
-    def test_control_character_stripping(self):
+    def test_control_character_stripping(self) -> None:
         raw = "Hello\x00World\x07!"
         assert sanitize_text(raw) == "HelloWorld!"
 
-    def test_unicode_normalization(self):
+    def test_unicode_normalization(self) -> None:
         # Non-breaking space \xa0
         raw = "Rakhmonov\xa0def.\xa0Garry"
         assert sanitize_text(raw) == "Rakhmonov def. Garry"
 
 
 class TestEscapeHtml:
-    def test_script_tag_escaping(self):
+    def test_script_tag_escaping(self) -> None:
         xss_input = "<script>alert('XSS')</script>"
         escaped = escape_html(xss_input)
         assert "<script>" not in escaped
         assert "&lt;script&gt;" in escaped
         assert "&#x27;" in escaped or "&#39;" in escaped or "'" not in escaped
 
-    def test_attribute_quote_escaping(self):
+    def test_attribute_quote_escaping(self) -> None:
         raw = 'name" onmouseover="alert(1)'
         escaped = escape_html(raw)
         assert '"' not in escaped
         assert "&quot;" in escaped
 
-    def test_ampersand_escaping(self):
+    def test_ampersand_escaping(self) -> None:
         raw = "Johnson & Johnson"
         assert escape_html(raw) == "Johnson &amp; Johnson"
 
-    def test_none_value(self):
+    def test_none_value(self) -> None:
         assert escape_html(None) == ""
 
-    def test_numeric_value(self):
+    def test_numeric_value(self) -> None:
         assert escape_html(42) == "42"
 
 
 class TestValidateSafeUrl:
-    def test_valid_mmadecisions_https(self):
+    def test_valid_mmadecisions_https(self) -> None:
         url = "https://mmadecisions.com/decision/1516/Jon-Jones-def-Mauricio-Rua"
         assert validate_safe_url(url) == url
 
-    def test_valid_mmadecisions_http_with_allowed_flag(self):
+    def test_valid_mmadecisions_http_with_allowed_flag(self) -> None:
         url = "http://www.mmadecisions.com/event/751/UFC-310"
         assert validate_safe_url(url, allow_http=True) == url
 
-    def test_ssrf_localhost_rejected(self):
+    def test_ssrf_localhost_rejected(self) -> None:
         with pytest.raises(ValueError, match="Prohibited target host"):
             validate_safe_url("http://localhost:8080/admin")
         with pytest.raises(ValueError, match="Prohibited target host"):
             validate_safe_url("http://127.0.0.1/secrets")
 
-    def test_ssrf_cloud_metadata_rejected(self):
+    def test_ssrf_cloud_metadata_rejected(self) -> None:
         with pytest.raises(ValueError, match="Prohibited target host"):
             validate_safe_url("http://169.254.169.254/latest/meta-data/")
 
-    def test_untrusted_domain_rejected(self):
+    def test_untrusted_domain_rejected(self) -> None:
         with pytest.raises(ValueError, match="Untrusted host"):
             validate_safe_url("https://malicious-site.com/payload")
 
-    def test_disallowed_schemes_rejected(self):
+    def test_disallowed_schemes_rejected(self) -> None:
         with pytest.raises(ValueError, match="Disallowed URL scheme"):
             validate_safe_url("file:///etc/passwd")
         with pytest.raises(ValueError, match="Disallowed URL scheme"):
             validate_safe_url("ftp://mmadecisions.com/data")
 
-    def test_empty_or_invalid_type_rejected(self):
+    def test_empty_or_invalid_type_rejected(self) -> None:
         with pytest.raises(ValueError):
             validate_safe_url("")
         with pytest.raises(ValueError):
-            validate_safe_url(None)  # type: ignore
+            validate_safe_url(cast(str, None))
 
 
 class TestSafeJsonEmbed:
-    def test_prevents_script_breakout(self):
+    def test_prevents_script_breakout(self) -> None:
         data = {"comment": "</script><script>alert('pwned')</script>"}
         embedded = safe_json_embed(data)
         assert "</script>" not in embedded
         assert "\\u003c/script\\u003e" in embedded
 
-    def test_escapes_html_and_line_separators(self):
+    def test_escapes_html_and_line_separators(self) -> None:
         data = {"text": "A & B < C > D \u2028 \u2029"}
         embedded = safe_json_embed(data)
         assert "<" not in embedded
@@ -182,20 +185,20 @@ class TestSafeJsonEmbed:
 
 
 class TestSanitizeJudgeName:
-    def test_clean_name(self):
+    def test_clean_name(self) -> None:
         assert sanitize_judge_name("Sal D'Amato") == "Sal D'Amato"
 
-    def test_strips_html_tags(self):
+    def test_strips_html_tags(self) -> None:
         assert sanitize_judge_name("<script>alert(1)</script>Derek Cleary") == "alert(1)Derek Cleary"
 
-    def test_strips_control_characters(self):
+    def test_strips_control_characters(self) -> None:
         assert sanitize_judge_name("Chris\x00Lee\x07") == "ChrisLee"
 
-    def test_empty_name_defaults(self):
+    def test_empty_name_defaults(self) -> None:
         assert sanitize_judge_name("") == "Unknown Judge"
         assert sanitize_judge_name(None) == "Unknown Judge"
 
-    def test_truncates_oversized_name(self):
+    def test_truncates_oversized_name(self) -> None:
         long_name = "Judge " * 50
         sanitized = sanitize_judge_name(long_name, max_length=30)
         assert len(sanitized) <= 30

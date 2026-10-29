@@ -159,7 +159,7 @@ def parse_decision_rounds(html_text: str, decision_id: str, metadata: dict[str, 
             # Build RoundScore records
             results.append(
                 RoundScore(
-                    decision_id=str(decision_id),
+                    decision_id=decision_id,
                     event_id=event_id,
                     event_year=event_year,
                     fight=fight,
@@ -182,7 +182,7 @@ def parse_decision_rounds(html_text: str, decision_id: str, metadata: dict[str, 
 
             results.append(
                 RoundScore(
-                    decision_id=str(decision_id),
+                    decision_id=decision_id,
                     event_id=event_id,
                     event_year=event_year,
                     fight=fight,
@@ -205,7 +205,7 @@ def parse_decision_rounds(html_text: str, decision_id: str, metadata: dict[str, 
 
             results.append(
                 RoundScore(
-                    decision_id=str(decision_id),
+                    decision_id=decision_id,
                     event_id=event_id,
                     event_year=event_year,
                     fight=fight,
@@ -232,7 +232,7 @@ def parse_decision_rounds(html_text: str, decision_id: str, metadata: dict[str, 
                     j_round = judge_data[idx]["rounds"][r_num]
                     results.append(
                         RoundScore(
-                            decision_id=str(decision_id),
+                            decision_id=decision_id,
                             event_id=event_id,
                             event_year=event_year,
                             fight=fight,
@@ -311,14 +311,14 @@ def load_stoppage_scorecards(json_path: Path = STOPPAGE_SCORECARDS_JSON) -> list
             p1 = "fighter_1" if s1_1 > s1_2 else ("fighter_2" if s1_2 > s1_1 else "draw")
             p2 = "fighter_1" if s2_1 > s2_2 else ("fighter_2" if s2_2 > s2_1 else "draw")
 
-            j0_agreed = bool(p1 == p2 and p1 != "unknown")
-            j0_dissented = bool(j0_agreed and (p0 != p1) and p0 != "unknown")
+            j0_agreed = p1 == p2 and p1 != "unknown"
+            j0_dissented = j0_agreed and (p0 != p1) and p0 != "unknown"
 
-            j1_agreed = bool(p0 == p2 and p0 != "unknown")
-            j1_dissented = bool(j1_agreed and (p1 != p0) and p1 != "unknown")
+            j1_agreed = p0 == p2 and p0 != "unknown"
+            j1_dissented = j1_agreed and (p1 != p0) and p1 != "unknown"
 
-            j2_agreed = bool(p0 == p1 and p0 != "unknown")
-            j2_dissented = bool(j2_agreed and (p2 != p0) and p2 != "unknown")
+            j2_agreed = p0 == p1 and p0 != "unknown"
+            j2_dissented = j2_agreed and (p2 != p0) and p2 != "unknown"
 
             results.append(
                 RoundScore(
@@ -422,7 +422,7 @@ def parse_all_cached_decisions(
         }
 
     html_files = list(decisions_dir.glob("*.html"))
-    print(f"Parsing round scorecards from {len(html_files)} decision HTML files...")
+    logger.info("Parsing round scorecards from %d decision HTML files...", len(html_files))
 
     all_round_scores: list[RoundScore] = []
     skipped = 0

@@ -52,12 +52,13 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
+        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,0 70,0 100,30 100,70 70,100 30,100 0,70 0,30' fill='%23e11d48'/><text x='50' y='65' font-size='38' font-family='sans-serif' font-weight='800' fill='white' text-anchor='middle'>UFC</text></svg>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Dissenter Index: UFC Judging & Round-by-Round Scoring Analysis (1995–2026)</title>
     <meta name="description" content="An empirical investigation into 32,876 UFC rounds across 4,010 decisions and 48 stoppage bouts: which cage-side judges disagree with their colleagues most frequently?">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Strict 4-Step Spacing Scale */
@@ -71,17 +72,17 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             --radius: 8px;
             --radius-pill: 9999px;
 
-            /* Strict 4-Step Typography Scale (+ dedicated Stat token) */
-            --font-size-title: 28px;
-            --font-size-header: 18px;
+            /* Strict 4-Step Fluid Typography Scale (clamp() for smooth cross-device scaling) */
+            --font-size-title: clamp(22px, 3.2vw, 28px);
+            --font-size-header: clamp(16px, 2.2vw, 18px);
             --font-size-body: 14px;
             --font-size-caption: 12px;
-            --font-size-stat: 32px;
+            --font-size-stat: clamp(24px, 4vw, 32px);
 
-            /* Typography Stacks */
+            /* Typography Stacks: High-legibility proportional typefaces with tabular numerals */
             --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
             --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-            --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+            --font-mono: 'Inter', system-ui, -apple-system, sans-serif;
         }
 
         /* Dark Theme (Default) */
@@ -136,11 +137,43 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             --chart-filter: contrast(0.95);
         }
 
+
+        /* Enforce tabular numerals across all numbers, tables, badges, and statistics */
+        .tabular-nums,
+        .mono-num,
+        .kpi-value,
+        .kpi-delta,
+        .bar-val,
+        .bar-delta,
+        .rate-badge,
+        .col-num,
+        th.col-num,
+        td.col-num,
+        .stat-tile-value,
+        .stat-tile-sub,
+        .friction-rate,
+        .score-badge-crimson,
+        .dissent-year-round,
+        .dossier-era-tag strong,
+        .dossier-stat-pill strong,
+        .anatomy-legend strong,
+        .sample-score-tag {
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum" 1;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+            width: 100%;
         }
 
         body {
@@ -150,13 +183,42 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             color: var(--text-primary);
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
         }
 
         .container {
             max-width: 1280px;
             margin: 0 auto;
             padding: var(--space-3) var(--space-3) var(--space-4) var(--space-3);
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                padding: var(--space-2) var(--space-2) var(--space-3) var(--space-2);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 12px 10px 24px 10px;
+            }
+        }
+
+        /* Responsive Text Utilities */
+        .label-full {
+            display: inline;
+        }
+
+        .label-short {
+            display: none;
+        }
+
+        @media (max-width: 720px) {
+            .label-full {
+                display: none;
+            }
+            .label-short {
+                display: inline;
+            }
         }
 
         /* Header Navigation */
@@ -167,17 +229,39 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             padding: var(--space-2) 0;
             margin-bottom: var(--space-4);
             border-bottom: 1px solid var(--border-subtle);
+            gap: var(--space-2);
+        }
+
+        @media (max-width: 920px) {
+            .site-header {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                grid-template-areas:
+                    "brand theme"
+                    "nav nav";
+                row-gap: 12px;
+                column-gap: 12px;
+                margin-bottom: var(--space-3);
+            }
         }
 
         .brand-cluster {
             display: flex;
             align-items: center;
             gap: var(--space-2);
+            min-width: 0;
+        }
+
+        @media (max-width: 920px) {
+            .brand-cluster {
+                grid-area: brand;
+            }
         }
 
         .octagon-badge {
             width: 40px;
             height: 40px;
+            min-width: 40px;
             background: linear-gradient(135deg, var(--accent-crimson), #be123c);
             clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
             display: flex;
@@ -188,26 +272,46 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             font-size: 15px;
             color: #ffffff;
             box-shadow: 0 0 16px rgba(225, 29, 72, 0.4);
+            flex-shrink: 0;
+        }
+
+        .brand-text {
+            min-width: 0;
         }
 
         .brand-text h1 {
             font-family: var(--font-display);
-            font-size: var(--font-size-header);
+            font-size: clamp(16px, 4vw, var(--font-size-header));
             font-weight: 800;
             letter-spacing: -0.02em;
             color: var(--text-primary);
             line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .brand-text p {
-            font-size: var(--font-size-caption);
+            font-size: clamp(11px, 2.5vw, var(--font-size-caption));
             color: var(--text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .nav-controls {
             display: flex;
             align-items: center;
             gap: var(--space-2);
+            min-width: 0;
+        }
+
+        @media (max-width: 920px) {
+            .nav-controls {
+                grid-area: nav;
+                width: 100%;
+                display: block;
+            }
         }
 
         .mode-toggle-group {
@@ -217,6 +321,23 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             border-radius: var(--radius-pill);
             border: 1px solid var(--border-subtle);
             gap: 2px;
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        .mode-toggle-group::-webkit-scrollbar {
+            display: none;
+        }
+
+        @media (max-width: 920px) {
+            .mode-toggle-group {
+                width: 100%;
+            }
+            .mode-btn {
+                flex: 1;
+                text-align: center;
+                justify-content: center;
+            }
         }
 
         .mode-btn {
@@ -224,12 +345,29 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             background: transparent;
             color: var(--text-secondary);
             font-family: var(--font-body);
-            font-size: var(--font-size-caption);
+            font-size: 13px;
             font-weight: 600;
-            padding: 6px var(--space-2);
+            padding: 10px var(--space-2);
+            min-height: 44px;
             border-radius: var(--radius-pill);
             cursor: pointer;
             transition: all 0.15s ease;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 480px) {
+            .mode-btn {
+                padding: 6px 6px;
+                font-size: 11px;
+            }
+        }
+
+        .mode-btn:hover {
+            color: var(--text-primary);
         }
 
         .mode-btn.active {
@@ -242,14 +380,25 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 36px;
-            height: 36px;
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            min-height: 44px;
             border-radius: var(--radius);
             border: 1px solid var(--border-subtle);
             background: var(--bg-surface-elevated);
             color: var(--text-primary);
             cursor: pointer;
             transition: all 0.15s ease;
+            flex-shrink: 0;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 920px) {
+            .theme-btn {
+                grid-area: theme;
+                justify-self: end;
+            }
         }
 
         .theme-btn:hover {
@@ -263,7 +412,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             align-items: center;
             gap: var(--space-1);
             font-family: var(--font-mono);
-            font-size: var(--font-size-caption);
+            font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.08em;
@@ -281,10 +430,25 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             border-radius: var(--radius);
             padding: var(--space-4);
             box-shadow: var(--shadow-card);
+            -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
             margin-bottom: var(--space-4);
             position: relative;
             overflow: hidden;
+        }
+
+        @media (max-width: 900px) {
+            .hero-lead-card {
+                padding: var(--space-3);
+                margin-bottom: var(--space-3);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-lead-card {
+                padding: 16px 14px;
+                margin-bottom: 16px;
+            }
         }
 
         .hero-lead-card::before {
@@ -299,7 +463,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
 
         .hero-headline {
             font-family: var(--font-display);
-            font-size: var(--font-size-title);
+            font-size: clamp(20px, 4.5vw, var(--font-size-title));
             font-weight: 800;
             letter-spacing: -0.03em;
             line-height: 1.25;
@@ -308,7 +472,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         }
 
         .hero-subhead {
-            font-size: var(--font-size-body);
+            font-size: clamp(13px, 3.2vw, var(--font-size-body));
             color: var(--text-secondary);
             max-width: 900px;
             line-height: 1.6;
@@ -322,9 +486,23 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         /* 4 Focused KPI Metric Cards */
         .kpi-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: var(--space-2);
             margin-bottom: var(--space-3);
+        }
+
+        @media (max-width: 1024px) {
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .kpi-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
         }
 
         .kpi-card {
@@ -338,12 +516,18 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             position: relative;
         }
 
+        @media (max-width: 600px) {
+            .kpi-card {
+                padding: 12px 14px;
+            }
+        }
+
         .kpi-card:hover {
             border-color: var(--border-strong);
         }
 
         .kpi-label {
-            font-size: var(--font-size-caption);
+            font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -354,13 +538,15 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         .kpi-value-row {
             display: flex;
             align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
             gap: var(--space-1);
             margin-bottom: var(--space-half);
         }
 
         .kpi-value {
             font-family: var(--font-mono);
-            font-size: var(--font-size-stat);
+            font-size: clamp(24px, 5.5vw, var(--font-size-stat));
             font-weight: 800;
             color: var(--text-primary);
             font-variant-numeric: tabular-nums;
@@ -375,6 +561,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             padding: 2px 8px;
             border-radius: var(--radius-pill);
             font-variant-numeric: tabular-nums;
+            white-space: nowrap;
         }
 
         .kpi-delta.high {
@@ -402,20 +589,73 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             margin-top: var(--space-2);
         }
 
+        @media (max-width: 640px) {
+            .gauge-section {
+                padding: 14px 10px;
+            }
+        }
+
         .gauge-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             margin-bottom: var(--space-2);
-            flex-wrap: wrap;
-            gap: var(--space-1);
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        @media (min-width: 900px) {
+            .gauge-header {
+                flex-direction: row;
+                align-items: center;
+            }
         }
 
         .gauge-title {
             font-family: var(--font-display);
-            font-size: var(--font-size-header);
+            font-size: clamp(15px, 3.5vw, var(--font-size-header));
             font-weight: 700;
             color: var(--text-primary);
+        }
+
+        .gauge-controls-cluster {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        @media (min-width: 900px) {
+            .gauge-controls-cluster {
+                width: auto;
+                justify-content: flex-end;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .gauge-controls-cluster {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+            .gauge-controls-cluster .segmented-group {
+            display: inline-flex;
+            background: var(--bg-surface-elevated);
+            padding: 3px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-subtle);
+            gap: 3px;
+            align-items: center;
+            box-sizing: border-box;
+        }
+            .gauge-controls-cluster .seg-btn {
+                flex: 1;
+                justify-content: center;
+                padding: 10px 12px;
+                min-height: 44px;
+                font-size: 12px;
+            }
         }
 
         .gauge-legend {
@@ -424,6 +664,21 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             gap: var(--space-2);
             font-size: var(--font-size-caption);
             color: var(--text-secondary);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-1);
+        }
+
+        @media (max-width: 640px) {
+            .gauge-legend {
+                font-size: 11px;
+                gap: 6px 10px;
+            }
+        }
+
+        .gauge-subtitle {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 2px;
         }
 
         .legend-dot {
@@ -431,6 +686,20 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             height: 10px;
             border-radius: 50%;
             display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .legend-dot.crimson {
+            background: var(--accent-crimson);
+        }
+
+        .legend-dot.green {
+            background: var(--accent-green);
+        }
+
+        .legend-dot.benchmark {
+            background: #ffffff;
+            border: 1px solid #000000;
         }
 
         .deviation-bars-container {
@@ -454,16 +723,19 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             background: transparent;
             color: var(--text-secondary);
             font-family: var(--font-body);
-            font-size: var(--font-size-caption);
+            font-size: 13px;
             font-weight: 600;
-            padding: 4px 10px;
+            padding: 10px 16px;
+            min-height: 44px;
             border-radius: var(--radius-pill);
             cursor: pointer;
             transition: all 0.15s ease;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 6px;
             white-space: nowrap;
+            box-sizing: border-box;
         }
 
         .seg-btn:hover {
@@ -512,13 +784,14 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            font-size: var(--font-size-caption);
+            font-size: 11px;
             font-weight: 600;
             padding: 1px 6px;
             border-radius: var(--radius-pill);
             letter-spacing: 0.02em;
             text-transform: uppercase;
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .roster-badge.active {
@@ -535,16 +808,76 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
 
         .bar-row {
             display: grid;
-            grid-template-columns: 210px 1fr 140px;
+            grid-template-columns: minmax(180px, 220px) 1fr minmax(90px, 140px);
             align-items: center;
             gap: var(--space-2);
             font-size: var(--font-size-body);
+            padding: 4px 6px;
+            border-radius: var(--radius);
+            transition: background 0.15s ease;
         }
 
-        @media (max-width: 768px) {
+        .bar-row:hover {
+            background: var(--bg-surface-hover);
+        }
+
+        @media (max-width: 768px) and (min-width: 641px) {
             .bar-row {
-                grid-template-columns: 140px 1fr 85px;
+                grid-template-columns: 170px 1fr 100px;
                 gap: var(--space-1);
+            }
+        }
+
+        /* Mobile stacked bar card layout: names never truncated, bars get 100% width! */
+        @media (max-width: 640px) {
+            .bar-row {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: space-between;
+                padding: 8px 10px;
+                background: var(--bg-surface-elevated);
+                border-radius: var(--radius);
+                border: 1px solid var(--border-subtle);
+                margin-bottom: 6px;
+                gap: 4px 8px;
+            }
+
+            .bar-judge-col {
+                order: 1;
+                flex: 1 1 auto;
+                min-width: 0;
+            }
+
+            .bar-judge-name {
+                font-size: 13px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .bar-val-col {
+                order: 2;
+                flex: 0 0 auto;
+                flex-direction: row;
+                align-items: baseline;
+                gap: 6px;
+            }
+
+            .bar-val {
+                font-size: 13px;
+            }
+
+            .bar-delta {
+                font-size: 11px;
+            }
+
+            .bar-track {
+                order: 3;
+                width: 100%;
+                flex-basis: 100%;
+                height: 14px;
+                margin-top: 4px;
             }
         }
 
@@ -571,6 +904,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             overflow: hidden;
             display: flex;
             align-items: center;
+            min-width: 40px;
         }
 
         .bar-fill {
@@ -623,13 +957,19 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             margin-top: var(--space-4);
         }
 
+        @media (max-width: 600px) {
+            .content-section {
+                margin-top: var(--space-3);
+            }
+        }
+
         .section-header-block {
             margin-bottom: var(--space-3);
         }
 
         .section-title {
             font-family: var(--font-display);
-            font-size: var(--font-size-header);
+            font-size: clamp(17px, 4vw, var(--font-size-header));
             font-weight: 800;
             letter-spacing: -0.02em;
             color: var(--text-primary);
@@ -637,7 +977,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         }
 
         .section-desc {
-            font-size: var(--font-size-body);
+            font-size: clamp(13px, 3.2vw, var(--font-size-body));
             color: var(--text-secondary);
             max-width: 800px;
             line-height: 1.5;
@@ -658,25 +998,45 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             align-items: center;
             gap: var(--space-2);
             flex-wrap: wrap;
+            width: 100%;
+        }
+
+        @media (min-width: 960px) {
+            .toolbar-left-cluster {
+                width: auto;
+            }
         }
 
         .filter-pills {
             display: flex;
             align-items: center;
-            gap: var(--space-1);
-            flex-wrap: wrap;
+            gap: 6px;
+            overflow-x: auto;
+            max-width: 100%;
+            padding: 2px 0 4px 0;
+        }
+
+        .filter-pills::-webkit-scrollbar {
+            display: none;
         }
 
         .pill-btn {
             background: var(--bg-surface);
             border: 1px solid var(--border-subtle);
             color: var(--text-secondary);
-            font-size: var(--font-size-caption);
+            font-size: 13px;
             font-weight: 600;
-            padding: 6px var(--space-2);
+            padding: 10px 18px;
+            min-height: 44px;
             border-radius: var(--radius-pill);
             cursor: pointer;
             transition: all 0.15s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
         }
 
         .pill-btn:hover {
@@ -690,33 +1050,77 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             border-color: var(--text-primary);
         }
 
+        #table-roster-segmented {
+            width: 100%;
+            display: flex;
+        }
+
+        @media (min-width: 960px) {
+            #table-roster-segmented {
+                width: auto;
+                display: inline-flex;
+            }
+        }
+
+        @media (max-width: 960px) {
+            #table-roster-segmented .seg-btn {
+                flex: 1;
+                justify-content: center;
+                text-align: center;
+                padding: 10px 12px;
+                min-height: 44px;
+                font-size: 12px;
+            }
+        }
+
         .search-export-cluster {
             display: flex;
             align-items: center;
             gap: var(--space-2);
+            width: 100%;
+        }
+
+        @media (min-width: 960px) {
+            .search-export-cluster {
+                width: auto;
+            }
         }
 
         .search-wrapper {
             position: relative;
+            flex: 1;
         }
 
         .search-input {
             background: var(--bg-surface);
             border: 1px solid var(--border-subtle);
             border-radius: var(--radius);
-            padding: 6px var(--space-2);
-            padding-left: 32px;
+            padding: 10px var(--space-2);
+            padding-left: 36px;
             font-size: var(--font-size-body);
             color: var(--text-primary);
             outline: none;
-            width: 220px;
+            width: 100%;
+            min-height: 44px;
             transition: all 0.15s ease;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 960px) {
+            .search-wrapper {
+                flex: none;
+            }
+            .search-input {
+                width: 220px;
+            }
+            .search-input:focus {
+                width: 260px;
+            }
         }
 
         .search-input:focus {
             border-color: var(--accent-crimson);
             box-shadow: 0 0 0 2px var(--accent-crimson-bg);
-            width: 260px;
         }
 
         .search-icon {
@@ -735,12 +1139,16 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             background: var(--bg-surface-elevated);
             border: 1px solid var(--border-subtle);
             color: var(--text-primary);
-            font-size: var(--font-size-caption);
+            font-size: 13px;
             font-weight: 600;
-            padding: 6px var(--space-2);
+            padding: 10px 18px;
+            min-height: 44px;
             border-radius: var(--radius);
             cursor: pointer;
             transition: all 0.15s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+            box-sizing: border-box;
         }
 
         .btn-action:hover {
@@ -755,6 +1163,28 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow-card);
+            position: relative;
+        }
+
+        .table-scroll-hint {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 6px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            background: var(--accent-blue-bg);
+            border-bottom: 1px solid var(--border-subtle);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 1024px) {
+            .table-scroll-hint {
+                display: flex;
+            }
         }
 
         .table-responsive {
@@ -764,11 +1194,12 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
 
         table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
             font-size: var(--font-size-body);
         }
 
-        /* Explicit Column Alignment Utilities (Stage 4) */
+        /* Explicit Column Alignment Utilities */
         .col-text, th.col-text, td.col-text {
             text-align: left;
         }
@@ -791,11 +1222,16 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             font-size: var(--font-size-caption);
             text-transform: uppercase;
             letter-spacing: 0.06em;
-            padding: var(--space-1) var(--space-2);
+            padding: 12px 14px;
+            min-height: 44px;
             border-bottom: 1px solid var(--border-subtle);
             cursor: pointer;
+            -webkit-user-select: none;
             user-select: none;
             white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
         th:hover {
@@ -803,10 +1239,82 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         }
 
         td {
-            padding: var(--space-2);
+            padding: 12px 14px;
+            min-height: 44px;
             border-bottom: 1px solid var(--border-subtle);
             color: var(--text-secondary);
             vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        /* Sticky Columns on Horizontal Scroll for Mobile & Tablet */
+        @media (max-width: 1024px) {
+            thead th:first-child,
+            tr.judge-row td:first-child {
+                position: sticky;
+                left: 0;
+                z-index: 11;
+                background: var(--bg-surface-elevated);
+                width: 38px;
+                min-width: 38px;
+                max-width: 38px;
+                text-align: center;
+            }
+
+            tr.judge-row td:first-child {
+                background: var(--bg-surface);
+            }
+
+            thead th:nth-child(2),
+            tr.judge-row td:nth-child(2) {
+                position: sticky;
+                left: 38px;
+                z-index: 11;
+                background: var(--bg-surface-elevated);
+                min-width: 160px;
+                border-right: 2px solid var(--border-strong);
+                box-shadow: 4px 0 10px -2px rgba(0, 0, 0, 0.4);
+            }
+
+            tr.judge-row td:nth-child(2) {
+                background: var(--bg-surface);
+            }
+
+            thead th:first-child,
+            thead th:nth-child(2) {
+                z-index: 15;
+            }
+
+            tr.judge-row:hover td:first-child,
+            tr.judge-row:hover td:nth-child(2) {
+                background: var(--bg-surface-hover);
+            }
+
+            tr.judge-row.expanded td:first-child,
+            tr.judge-row.expanded td:nth-child(2) {
+                background: var(--bg-surface-elevated);
+            }
+
+            [data-theme="light"] tr.judge-row td:first-child,
+            [data-theme="light"] tr.judge-row td:nth-child(2) {
+                background: #ffffff;
+            }
+            [data-theme="light"] thead th:first-child,
+            [data-theme="light"] thead th:nth-child(2) {
+                background: #f1f5f9;
+            }
+            [data-theme="light"] tr.judge-row:hover td:first-child,
+            [data-theme="light"] tr.judge-row:hover td:nth-child(2) {
+                background: #f8fafc;
+            }
+            [data-theme="light"] tr.judge-row.expanded td:first-child,
+            [data-theme="light"] tr.judge-row.expanded td:nth-child(2) {
+                background: #f1f5f9;
+            }
+            [data-theme="light"] thead th:nth-child(2),
+            [data-theme="light"] tr.judge-row td:nth-child(2) {
+                box-shadow: 3px 0 8px -2px rgba(15, 23, 42, 0.15);
+            }
         }
 
         tr.judge-row {
@@ -833,6 +1341,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         .expand-chevron {
             color: var(--text-muted);
             transition: transform 0.2s ease;
+            flex-shrink: 0;
         }
 
         tr.judge-row.expanded .expand-chevron {
@@ -862,6 +1371,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             border-radius: var(--radius);
             font-variant-numeric: tabular-nums;
             font-feature-settings: "tnum" 1;
+            white-space: nowrap;
         }
 
         .rate-badge.over {
@@ -890,31 +1400,57 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             display: table-row;
         }
 
+        tr.dossier-drawer-row td {
+            position: static !important;
+            width: 100% !important;
+            min-width: 0 !important;
+            max-width: none !important;
+            box-shadow: none !important;
+            border-right: none !important;
+            background: var(--bg-surface-elevated) !important;
+            padding: 0 !important;
+            white-space: normal !important;
+        }
+
         .dossier-card {
             padding: var(--space-3);
             display: grid;
-            grid-template-columns: 280px 1fr;
+            grid-template-columns: minmax(300px, 360px) minmax(0, 1fr);
             gap: var(--space-3);
-            border-top: 1px dashed var(--border-subtle);
-            border-bottom: 1px dashed var(--border-subtle);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 2px solid var(--border-strong);
+            border-left: 3px solid var(--accent-crimson);
+            position: sticky;
+            left: 0;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            background: var(--bg-surface-elevated);
+            z-index: 6;
+            white-space: normal !important;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 1080px) {
             .dossier-card {
                 grid-template-columns: 1fr;
+                padding: var(--space-2);
+                gap: var(--space-2);
             }
         }
 
-        .dossier-bio {
+        /* Dossier Left Column: Profile & Metrics */
+        .dossier-profile {
             display: flex;
             flex-direction: column;
-            gap: var(--space-1);
+            gap: var(--space-2);
             border-right: 1px solid var(--border-subtle);
             padding-right: var(--space-3);
+            min-width: 0;
+            box-sizing: border-box;
         }
 
-        @media (max-width: 900px) {
-            .dossier-bio {
+        @media (max-width: 1080px) {
+            .dossier-profile {
                 border-right: none;
                 padding-right: 0;
                 border-bottom: 1px solid var(--border-subtle);
@@ -922,80 +1458,326 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             }
         }
 
-        .dossier-bio h4 {
+        .dossier-profile-header {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .dossier-title-row {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+            flex-wrap: wrap;
+        }
+
+        .dossier-name {
             font-family: var(--font-display);
             font-size: var(--font-size-header);
             font-weight: 800;
+            letter-spacing: -0.02em;
             color: var(--text-primary);
+            margin: 0;
+            line-height: 1.2;
         }
 
-        .dossier-stat-pill {
+        .dossier-era-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             font-size: var(--font-size-caption);
             color: var(--text-secondary);
-            line-height: 1.5;
         }
 
-        .dossier-stat-pill strong {
+        .dossier-era-tag strong {
             color: var(--text-primary);
+            font-variant-numeric: tabular-nums;
         }
 
-        .dossier-rounds-log h5 {
+        /* Structured 2x2 Metric Tiles */
+        .dossier-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: var(--space-1);
+        }
+
+        .dossier-stat-tile {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius);
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-width: 0;
+        }
+
+        .stat-tile-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            white-space: normal;
+            line-height: 1.25;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .stat-tile-value {
+            font-family: var(--font-mono);
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text-primary);
+            font-variant-numeric: tabular-nums;
+            line-height: 1.2;
+            margin-bottom: 2px;
+        }
+
+        .stat-tile-sub {
+            font-size: 11px;
+            color: var(--text-secondary);
+            line-height: 1.3;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        /* Co-Judge Friction Highlight Box */
+        .dossier-friction-box {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+
+        .friction-box-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .friction-badge {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-amber);
+        }
+
+        .friction-rate {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-crimson);
+            background: var(--accent-crimson-bg);
+            padding: 2px 6px;
+            border-radius: var(--radius-pill);
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap;
+        }
+
+        .friction-partner-name {
+            font-family: var(--font-display);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .friction-subtext {
+            font-size: 11px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        /* Dossier Right Column: Evidence Log */
+        .dossier-evidence {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+            min-width: 0;
+            box-sizing: border-box;
+        }
+
+        .dossier-evidence-header {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .dossier-evidence-header h5 {
             font-family: var(--font-display);
             font-size: var(--font-size-caption);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: var(--text-muted);
-            margin-bottom: var(--space-1);
+            margin: 0;
         }
 
-        .sample-dissents-grid {
+        .evidence-caption {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .dossier-cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: var(--space-1);
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: var(--space-2);
+            min-width: 0;
         }
 
-        .sample-dissent-box {
+        @media (max-width: 580px) {
+            .dossier-cards-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+        }
+
+        .dissent-card {
             background: var(--bg-surface);
             border: 1px solid var(--border-subtle);
             border-radius: var(--radius);
-            padding: var(--space-1) var(--space-2);
-            font-size: var(--font-size-caption);
-        }
-
-        .sample-dissent-header {
+            padding: 12px 14px;
             display: flex;
-            justify-content: space-between;
-            color: var(--text-muted);
-            font-size: var(--font-size-caption);
-            font-family: var(--font-mono);
-            margin-bottom: 2px;
+            flex-direction: column;
+            gap: 8px;
+            transition: border-color 0.15s ease, background-color 0.15s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            min-width: 0;
+            overflow: hidden;
+            box-sizing: border-box;
         }
 
-        .sample-fight-name {
+        .dissent-card:hover {
+            border-color: var(--border-strong);
+            background: var(--bg-surface-hover);
+        }
+
+        .dissent-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .dissent-year-round {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .dissent-bout-name {
+            font-family: var(--font-display);
+            font-size: 13px;
             font-weight: 700;
             color: var(--text-primary);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            margin-bottom: 4px;
+            line-height: 1.3;
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
 
-        .sample-score-tag {
-            display: inline-block;
+        .dissent-scores-row {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .dissent-judge-score {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .score-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .score-badge-crimson {
             font-family: var(--font-mono);
-            font-weight: 700;
+            font-size: 12px;
+            font-weight: 800;
             color: var(--accent-crimson);
             background: var(--accent-crimson-bg);
-            padding: 2px 6px;
-            border-radius: var(--radius);
-            font-size: var(--font-size-caption);
+            padding: 2px 8px;
+            border-radius: var(--radius-pill);
+            font-variant-numeric: tabular-nums;
+            border: 1px solid var(--border-highlight);
+        }
+
+        .dissent-consensus-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        .consensus-label {
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .consensus-names {
+            color: var(--text-secondary);
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .dossier-expand-btn {
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 0.02em;
+        }
+
+        .dossier-expand-btn:hover {
+            border-color: var(--accent-crimson);
+            color: var(--text-primary);
+            background: var(--bg-surface-hover);
+        }
+
+        .dossier-expand-btn.active {
+            background: var(--accent-crimson-bg);
+            color: var(--accent-crimson);
+            border-color: var(--border-highlight);
         }
 
         /* Visualizations Section */
         .chart-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
             gap: var(--space-3);
             margin-top: var(--space-3);
         }
@@ -1003,6 +1785,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         @media (max-width: 600px) {
             .chart-grid {
                 grid-template-columns: 1fr;
+                gap: var(--space-2);
             }
         }
 
@@ -1014,9 +1797,15 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             box-shadow: var(--shadow-card);
         }
 
+        @media (max-width: 600px) {
+            .chart-card {
+                padding: 14px 12px;
+            }
+        }
+
         .chart-card h4 {
             font-family: var(--font-display);
-            font-size: var(--font-size-header);
+            font-size: clamp(15px, 3.5vw, var(--font-size-header));
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: var(--space-half);
@@ -1026,6 +1815,25 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             font-size: var(--font-size-caption);
             color: var(--text-secondary);
             margin-bottom: var(--space-2);
+        }
+
+        .chart-card.fight-chart {
+            display: none;
+        }
+
+        .callout-card {
+            margin-top: var(--space-2);
+            margin-bottom: var(--space-2);
+            padding: var(--space-2);
+            background: var(--bg-surface-elevated);
+            border-left: 3px solid var(--accent-blue);
+            border-radius: var(--radius);
+            font-size: var(--font-size-body);
+            line-height: 1.5;
+        }
+
+        #theme-icon-sun {
+            display: none;
         }
 
         .chart-img-wrap {
@@ -1051,6 +1859,12 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             margin-top: var(--space-2);
         }
 
+        @media (max-width: 600px) {
+            .anatomy-bar-container {
+                padding: 14px 12px;
+            }
+        }
+
         .anatomy-bar {
             height: 28px;
             display: flex;
@@ -1059,8 +1873,8 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             margin: var(--space-2) 0;
         }
 
-        .seg-10-9 { background: #38bdf8; width: 95.7%; }
-        .seg-10-8 { background: var(--accent-amber); width: 3.76%; }
+        .seg-10-9 { background: #38bdf8; width: 95.76%; }
+        .seg-10-8 { background: var(--accent-amber); width: 3.73%; }
         .seg-draw { background: var(--accent-green); width: 0.48%; }
         .seg-10-7 { background: var(--accent-crimson); width: 0.03%; min-width: 4px; }
 
@@ -1069,6 +1883,21 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             gap: var(--space-3);
             flex-wrap: wrap;
             font-size: var(--font-size-caption);
+        }
+
+        @media (max-width: 600px) {
+            .anatomy-legend {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .anatomy-item {
+                background: var(--bg-surface-elevated);
+                padding: 5px 8px;
+                border-radius: var(--radius);
+                border: 1px solid var(--border-subtle);
+                font-size: 11px;
+            }
         }
 
         .anatomy-item {
@@ -1120,12 +1949,12 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         </div>
         <div class="nav-controls">
             <div class="mode-toggle-group">
-                <button class="mode-btn active" id="btn-mode-rounds">Round Scoring Disagreements</button>
-                <button class="mode-btn" id="btn-mode-fights">Fight Decision Splits</button>
-                <button class="mode-btn" id="btn-mode-fighters">Fighter Controversy Index</button>
+                <button class="mode-btn active" id="btn-mode-rounds"><span class="label-full">Round Scoring Disagreements</span><span class="label-short" aria-hidden="true">Round Scoring</span></button>
+                <button class="mode-btn" id="btn-mode-fights"><span class="label-full">Fight Decision Splits</span><span class="label-short" aria-hidden="true">Fight Splits</span></button>
+                <button class="mode-btn" id="btn-mode-fighters"><span class="label-full">Fighter Controversy Index</span><span class="label-short" aria-hidden="true">Fighter Index</span></button>
             </div>
             <button class="theme-btn" id="theme-toggle" title="Toggle Light / Dark mode" aria-label="Toggle theme">
-                <svg id="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg id="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
                 <svg id="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
             </button>
         </div>
@@ -1182,18 +2011,18 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             <div class="gauge-header">
                 <div>
                     <div class="gauge-title" id="gauge-heading">Veteran Mainstays vs 7.23% Historical UFC Average</div>
-                    <div class="gauge-subtitle" id="gauge-subheading" style="font-size:12px; color:var(--text-secondary); margin-top:2px;">
+                    <div class="gauge-subtitle" id="gauge-subheading">
                         Top 10 judges with 250+ rounds scored · All Eras
                     </div>
                 </div>
-                <div class="gauge-controls-cluster" style="display:flex; align-items:center; gap:var(--space-3); flex-wrap:wrap;">
+                <div class="gauge-controls-cluster">
                     <!-- View Toggle: Top Dissenters vs Most Consensual -->
                     <div class="segmented-group" id="gauge-view-toggle">
                         <button class="seg-btn active" id="btn-gauge-dissenters" data-view="dissenters">
-                            <span class="status-dot crimson"></span> Top Dissenters (Disagreers)
+                            <span class="status-dot crimson"></span> <span class="label-full">Top Dissenters (Disagreers)</span><span class="label-short" aria-hidden="true">Dissenters</span>
                         </button>
                         <button class="seg-btn" id="btn-gauge-agreers" data-view="agreers">
-                            <span class="status-dot active"></span> Most Consensual (Agreers)
+                            <span class="status-dot active"></span> <span class="label-full">Most Consensual (Agreers)</span><span class="label-short" aria-hidden="true">Consensual</span>
                         </button>
                     </div>
                     <!-- Roster Status Toggle: All Eras vs Currently Active -->
@@ -1204,9 +2033,9 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                 </div>
             </div>
             <div class="gauge-legend" id="gauge-legend-container">
-                <span><span class="legend-dot" style="background:var(--accent-crimson);"></span> Higher Dissent Rate (Above Benchmark)</span>
-                <span><span class="legend-dot" style="background:var(--accent-green);"></span> Lower Dissent Rate (More Consensual)</span>
-                <span><span class="legend-dot" style="background:#ffffff; border:1px solid #000;"></span> 7.23% UFC Average</span>
+                <span><span class="legend-dot crimson"></span> Higher Dissent Rate (Above Benchmark)</span>
+                <span><span class="legend-dot green"></span> Lower Dissent Rate (More Consensual)</span>
+                <span><span class="legend-dot benchmark"></span> 7.23% UFC Average</span>
             </div>
             <div class="deviation-bars-container" id="deviation-bars">
                 <!-- Injected via JavaScript -->
@@ -1228,9 +2057,9 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                     <!-- Filter buttons injected dynamically -->
                 </div>
                 <div class="segmented-group" id="table-roster-segmented" title="Filter by judge activity status">
-                    <button class="seg-btn active" id="btn-roster-all" data-roster="all">All Eras (1995–2026)</button>
-                    <button class="seg-btn" id="btn-roster-active" data-roster="active"><span class="status-dot active"></span> Currently Active</button>
-                    <button class="seg-btn" id="btn-roster-historical" data-roster="historical"><span class="status-dot historical"></span> Historical (&lt; 2024)</button>
+                    <button class="seg-btn active" id="btn-roster-all" data-roster="all"><span class="label-full">All Eras (1995–2026)</span><span class="label-short" aria-hidden="true">All Eras</span></button>
+                    <button class="seg-btn" id="btn-roster-active" data-roster="active"><span class="status-dot active"></span> <span class="label-full">Currently Active</span><span class="label-short" aria-hidden="true">Active</span></button>
+                    <button class="seg-btn" id="btn-roster-historical" data-roster="historical"><span class="status-dot historical"></span> <span class="label-full">Historical (&lt; 2024)</span><span class="label-short" aria-hidden="true">Historical</span></button>
                 </div>
             </div>
             <div class="search-export-cluster">
@@ -1246,6 +2075,11 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         </div>
 
         <div class="table-card">
+            <div class="table-scroll-hint">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                <span>Swipe table horizontally to see all metrics</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </div>
             <div class="table-responsive">
                 <table>
                     <thead id="table-head">
@@ -1268,6 +2102,11 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
         </div>
 
         <div class="table-card">
+            <div class="table-scroll-hint">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                <span>Swipe table horizontally to see all metrics</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </div>
             <div class="table-responsive">
                 <table>
                     <thead>
@@ -1296,10 +2135,10 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
 
         <div class="anatomy-bar-container">
             <div class="anatomy-bar">
-                <div class="seg-10-9" style="width: 95.76%;" title="10-9 (95.76%)"></div>
-                <div class="seg-10-8" style="width: 3.73%;" title="10-8 (3.73%)"></div>
-                <div class="seg-draw" style="width: 0.48%;" title="10-10 Draw (0.48%)"></div>
-                <div class="seg-10-7" style="width: 0.03%;" title="10-7 (0.03%)"></div>
+                <div class="seg-10-9" title="10-9 (95.76%)"></div>
+                <div class="seg-10-8" title="10-8 (3.73%)"></div>
+                <div class="seg-draw" title="10-10 Draw (0.48%)"></div>
+                <div class="seg-10-7" title="10-7 (0.03%)"></div>
             </div>
             <div class="anatomy-legend">
                 <div class="anatomy-item"><span class="legend-dot dot-10-9"></span> <strong>10-9 Rounds</strong>: 31,482 (95.76%)</div>
@@ -1309,8 +2148,8 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             </div>
         </div>
 
-        <div class="callout-card" style="margin-top:var(--space-2); margin-bottom:var(--space-2); padding:var(--space-2); background:var(--bg-surface-elevated); border-left:3px solid var(--accent-blue); border-radius:var(--radius); font-size:var(--font-size-body); line-height:1.5;">
-            <strong>Comprehensive Scope:</strong> When evaluating how judges score rounds, this analysis includes <em>every fight where official scorecards exist</em>, not just bouts that reached a final decision. If a fight concluded via KO, TKO, or submission in Round 4 (e.g. Miocic vs. Cormier 2 or Du Plessis vs. Adesanya), the official scores for Rounds 1, 2, and 3 are preserved and analyzed. Similarly, for 5-round title bouts ending in Round 5 (such as Usman vs. Covington 1 or Adesanya vs. Pereira 1), all completed prior rounds (1 through 4) are incorporated.
+        <div class="callout-card">
+            <strong>Scoring Methodology & Comprehensive Scope:</strong> When evaluating how judges score rounds, this analysis includes <em>every fight where official scorecards exist</em>, not just bouts that reached a final decision. If a fight concluded via KO, TKO, or submission in Round 4 (e.g. Miocic vs. Cormier 2 or Du Plessis vs. Adesanya), the official scores for Rounds 1, 2, and 3 are preserved and analyzed. Similarly, for 5-round title bouts ending in Round 5 (such as Usman vs. Covington 1 or Adesanya vs. Pereira 1), all completed prior rounds (1 through 4) are incorporated.
         </div>
 
         <!-- Embedded Visualizations -->
@@ -1325,12 +2164,12 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                 <p>How the percentage of rounds with a dissenting judge has evolved across UFC eras.</p>
                 <div class="chart-img-wrap"><img src="__IMG_ROUND_TREND__" alt="Round Disagreement Trend Over Time"></div>
             </div>
-            <div class="chart-card fight-chart" style="display:none;">
+            <div class="chart-card fight-chart">
                 <h4>Decision Split Rates (Min 50 Fights)</h4>
                 <p>Full 15-minute fight decision disagreement rate across judges.</p>
                 <div class="chart-img-wrap"><img src="__IMG_MIN50__" alt="Fight Decision Dissent Rate Min 50"></div>
             </div>
-            <div class="chart-card fight-chart" style="display:none;">
+            <div class="chart-card fight-chart">
                 <h4>Split Decision Percentage Over Time</h4>
                 <p>Evolution of split decisions from UFC 1 through UFC 333.</p>
                 <div class="chart-img-wrap"><img src="__IMG_TREND__" alt="Split Decision Trend Over Time"></div>
@@ -1345,7 +2184,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             Source data retrieved from <a href="https://mmadecisions.com" target="_blank" rel="noopener">MMADecisions.com</a>.
         </div>
         <div>
-            Built with strict adherence to data journalism design principles. No vibe-coded anti-patterns.
+            Empirical research into 32,876 UFC rounds across 4,010 decisions and 48 stoppage bouts (1995–2026). Data sourced from MMADecisions.com.
         </div>
     </footer>
 </div>
@@ -1605,8 +2444,8 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             document.getElementById('search-input').placeholder = "Search judge name...";
             const btnD = document.getElementById('btn-gauge-dissenters');
             const btnA = document.getElementById('btn-gauge-agreers');
-            if (btnD) btnD.innerHTML = `<span class="status-dot crimson"></span> Top Dissenters (Disagreers)`;
-            if (btnA) btnA.innerHTML = `<span class="status-dot active"></span> Most Consensual (Agreers)`;
+            if (btnD) btnD.innerHTML = `<span class="status-dot crimson"></span> <span class="label-full">Top Dissenters (Disagreers)</span><span class="label-short" aria-hidden="true">Dissenters</span>`;
+            if (btnA) btnA.innerHTML = `<span class="status-dot active"></span> <span class="label-full">Most Consensual (Agreers)</span><span class="label-short" aria-hidden="true">Consensual</span>`;
             document.querySelectorAll('.round-chart').forEach(c => c.style.display = 'block');
             document.querySelectorAll('.fight-chart').forEach(c => c.style.display = 'none');
         } else if (mode === 'fights') {
@@ -1639,8 +2478,8 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             document.getElementById('search-input').placeholder = "Search fighter name...";
             const btnD = document.getElementById('btn-gauge-dissenters');
             const btnA = document.getElementById('btn-gauge-agreers');
-            if (btnD) btnD.innerHTML = `<span class="status-dot crimson"></span> Highest Split % (Close Bouts)`;
-            if (btnA) btnA.innerHTML = `<span class="status-dot active"></span> Luck Index (Unlucky vs Fortunate)`;
+            if (btnD) btnD.innerHTML = `<span class="status-dot crimson"></span> <span class="label-full">Highest Split % (Close Bouts)</span><span class="label-short" aria-hidden="true">Highest Split %</span>`;
+            if (btnA) btnA.innerHTML = `<span class="status-dot active"></span> <span class="label-full">Luck Index (Unlucky vs Fortunate)</span><span class="label-short" aria-hidden="true">Luck Index</span>`;
             document.querySelectorAll('.round-chart').forEach(c => c.style.display = 'none');
             document.querySelectorAll('.fight-chart').forEach(c => c.style.display = 'none');
         }
@@ -1710,9 +2549,9 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                 if (gaugeSubheading) gaugeSubheading.innerHTML = `Top 10 fighters with highest split decision rates · ${rosterLabel} (Min 5 decisions)`;
                 if (gaugeLegend) {
                     gaugeLegend.innerHTML = `
-                        <span><span class="legend-dot" style="background:var(--accent-crimson);"></span> Higher Split Rate (Above 20.05% Benchmark)</span>
-                        <span><span class="legend-dot" style="background:var(--accent-green);"></span> Lower Split Rate (More Decisive Decisions)</span>
-                        <span><span class="legend-dot" style="background:#ffffff; border:1px solid #000;"></span> 20.05% UFC Average</span>
+                        <span><span class="legend-dot crimson"></span> Higher Split Rate (Above 20.05% Benchmark)</span>
+                        <span><span class="legend-dot green"></span> Lower Split Rate (More Decisive Decisions)</span>
+                        <span><span class="legend-dot benchmark"></span> 20.05% UFC Average</span>
                     `;
                 }
 
@@ -1755,9 +2594,9 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                 if (gaugeSubheading) gaugeSubheading.innerHTML = `Fighters with most extreme split decision records (Wins vs Losses) · ${rosterLabel}`;
                 if (gaugeLegend) {
                     gaugeLegend.innerHTML = `
-                        <span><span class="legend-dot" style="background:var(--accent-crimson);"></span> Unlucky (Negative Split Record)</span>
-                        <span><span class="legend-dot" style="background:#10b981;"></span> Fortunate (Positive Split Record)</span>
-                        <span><span class="legend-dot" style="background:#ffffff; border:1px solid #000;"></span> 0 Net Differential (Even 50-50)</span>
+                        <span><span class="legend-dot crimson"></span> Unlucky (Negative Split Record)</span>
+                        <span><span class="legend-dot green"></span> Fortunate (Positive Split Record)</span>
+                        <span><span class="legend-dot benchmark"></span> 0 Net Differential (Even 50-50)</span>
                     `;
                 }
 
@@ -1809,9 +2648,9 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             if (gaugeSubheading) gaugeSubheading.innerHTML = `Top 10 judges with highest round dissent rates · ${rosterLabel} (250+ rounds scored)`;
             if (gaugeLegend) {
                 gaugeLegend.innerHTML = `
-                    <span><span class="legend-dot" style="background:var(--accent-crimson);"></span> Higher Dissent Rate (Above Benchmark)</span>
-                    <span><span class="legend-dot" style="background:var(--accent-green);"></span> Lower Dissent Rate (More Consensual)</span>
-                    <span><span class="legend-dot" style="background:#ffffff; border:1px solid #000;"></span> ${UFC_BASELINE_PCT.toFixed(2)}% UFC Average</span>
+                    <span><span class="legend-dot crimson"></span> Higher Dissent Rate (Above Benchmark)</span>
+                    <span><span class="legend-dot green"></span> Lower Dissent Rate (More Consensual)</span>
+                    <span><span class="legend-dot benchmark"></span> ${UFC_BASELINE_PCT.toFixed(2)}% UFC Average</span>
                 `;
             }
 
@@ -1854,8 +2693,8 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
             if (gaugeSubheading) gaugeSubheading.innerHTML = `Top 10 judges with highest colleague agreement · ${rosterLabel} (250+ rounds scored)`;
             if (gaugeLegend) {
                 gaugeLegend.innerHTML = `
-                    <span><span class="legend-dot" style="background:#10b981;"></span> Colleague Agreement Rate (%)</span>
-                    <span><span class="legend-dot" style="background:#ffffff; border:1px solid #000;"></span> ${baselineAgree}% UFC Baseline Agreement (100% - ${UFC_BASELINE_PCT.toFixed(2)}%)</span>
+                    <span><span class="legend-dot green"></span> Colleague Agreement Rate (%)</span>
+                    <span><span class="legend-dot benchmark"></span> ${baselineAgree}% UFC Baseline Agreement (100% - ${UFC_BASELINE_PCT.toFixed(2)}%)</span>
                 `;
             }
 
@@ -2082,7 +2921,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                         </td>
                         <td class="col-num mono-num">${f.contested_rounds || 0} / ${f.total_rounds || 0} (${(f.contested_round_pct || 0).toFixed(1)}%)</td>
                         <td class="col-center">
-                            <button class="pill-btn" style="padding:2px 8px; font-size:var(--font-size-caption);">${isExpanded ? 'Close' : 'Dossier'}</button>
+                            <button class="dossier-expand-btn ${isExpanded ? 'active' : ''}">${isExpanded ? 'Close' : 'Dossier'}</button>
                         </td>
                     </tr>
                 `;
@@ -2091,41 +2930,86 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                 if (isExpanded) {
                     const sampleFights = f.sample_close_fights || [];
                     const fightsHtml = sampleFights.length > 0 ? sampleFights.map(fight => {
-                        const resBadgeClass = fight.result === 'W' ? 'under' : (fight.result === 'L' ? 'over' : 'draw');
-                        const resLabel = fight.result === 'W' ? 'WIN' : (fight.result === 'L' ? 'LOSS' : 'DRAW');
+                        const resStr = (fight.result || '').toLowerCase();
+                        const isWin = resStr.startsWith('w');
+                        const isLoss = resStr.startsWith('l');
+                        const resBadgeClass = isWin ? 'under' : (isLoss ? 'over' : 'draw');
+                        const resLabel = isWin ? 'WIN' : (isLoss ? 'LOSS' : 'DRAW');
                         return `
-                            <div class="sample-dissent-box">
-                                <div class="sample-dissent-header">
-                                    <span>${fight.year || ''}</span>
-                                    <span class="rate-badge ${resBadgeClass}" style="padding:1px 6px; font-size:10px;">${resLabel}</span>
+                            <div class="dissent-card">
+                                <div class="dissent-card-top">
+                                    <span class="dissent-year-round">${fight.year || ''}</span>
+                                    <span class="rate-badge ${resBadgeClass}">${resLabel}</span>
                                 </div>
-                                <div class="sample-fight-name">vs ${escapeHtml(fight.opponent || 'Opponent')}</div>
-                                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:4px;">
-                                    <span class="sample-score-tag">${escapeHtml(fight.decision_type || 'Split Decision')}</span>
-                                    <span style="font-size:10px; color:var(--text-muted);">${escapeHtml(fight.event || '')}</span>
+                                <div class="dissent-bout-name">vs ${escapeHtml(fight.opponent || 'Opponent')}</div>
+                                <div class="dissent-scores-row">
+                                    <div class="dissent-judge-score">
+                                        <span class="score-label">Decision:</span>
+                                        <span class="rate-badge draw">${escapeHtml(fight.type || 'Split')} Decision</span>
+                                    </div>
+                                    <div class="dissent-consensus-info">
+                                        <span class="consensus-label">Event:</span>
+                                        <span class="consensus-names">${escapeHtml(fight.event || 'UFC Bout')}</span>
+                                    </div>
                                 </div>
                             </div>
                         `;
-                    }).join('') : '<div style="color:var(--text-muted); font-size:12px;">No close split decision samples on file.</div>';
+                    }).join('') : '<div style="color:var(--text-muted); font-size:var(--font-size-caption); padding: var(--space-2) 0;">No close split decision samples on file.</div>';
+
+                    const eraYears = (f.last_year && f.first_year) ? `${(f.last_year - f.first_year + 1)} seasons` : 'Career';
 
                     html += `
                         <tr class="dossier-drawer-row visible">
                             <td colspan="9" style="padding:0;">
                                 <div class="dossier-card">
-                                    <div class="dossier-bio">
-                                        <div style="display:flex; align-items:center; gap:var(--space-2); margin-bottom:var(--space-2);">
-                                            <h4 style="margin:0;">${escapeHtml(f.fighter_name)}</h4>
-                                            ${rosterBadge}
+                                    <div class="dossier-profile">
+                                        <div class="dossier-profile-header">
+                                            <div class="dossier-title-row">
+                                                <h4 class="dossier-name">${escapeHtml(f.fighter_name)}</h4>
+                                                ${rosterBadge}
+                                            </div>
+                                            <div class="dossier-era-tag">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                                <span>UFC Career Span: <strong>${f.first_year || ''} – ${f.last_year || ''}</strong> (${eraYears})</span>
+                                            </div>
                                         </div>
-                                        <div class="dossier-stat-pill">UFC Career Span: <strong>${f.first_year || ''} – ${f.last_year || ''}</strong></div>
-                                        <div class="dossier-stat-pill">Decision Bouts: <strong>${f.total_fights} total (${f.unanimous_fights} UD, ${f.split_fights} SD, ${f.majority_fights} MD)</strong></div>
-                                        <div class="dossier-stat-pill">Split Decision Rate: <strong>${(f.split_pct || 0).toFixed(1)}% (UFC avg 20.05%)</strong></div>
-                                        <div class="dossier-stat-pill">Career Split Record: <strong>${recStr} (Net Luck: ${luckSign}${net})</strong></div>
-                                        <div class="dossier-stat-pill">Scored Rounds Disputed: <strong>${f.contested_rounds} of ${f.total_rounds} rounds (${(f.contested_round_pct || 0).toFixed(1)}% contested)</strong></div>
+                                        <div class="dossier-stats-grid">
+                                            <div class="dossier-stat-tile">
+                                                <span class="stat-tile-label">Split Decision Rate</span>
+                                                <div class="stat-tile-value" style="color: ${diff >= 0 ? 'var(--accent-crimson)' : 'var(--accent-green)'};">${pct.toFixed(1)}%</div>
+                                                <span class="stat-tile-sub">${f.split_fights} of ${f.total_fights} decisions (UFC avg 20.05%)</span>
+                                            </div>
+                                            <div class="dossier-stat-tile">
+                                                <span class="stat-tile-label">Career Split Record</span>
+                                                <div class="stat-tile-value">${recStr}</div>
+                                                <span class="stat-tile-sub">Net Luck: ${luckSign}${net}</span>
+                                            </div>
+                                            <div class="dossier-stat-tile">
+                                                <span class="stat-tile-label">Contested Rounds</span>
+                                                <div class="stat-tile-value">${(f.contested_round_pct || 0).toFixed(1)}%</div>
+                                                <span class="stat-tile-sub">${f.contested_rounds || 0} of ${f.total_rounds || 0} rounds</span>
+                                            </div>
+                                            <div class="dossier-stat-tile">
+                                                <span class="stat-tile-label">Decision Breakdown</span>
+                                                <div class="stat-tile-value">${f.unanimous_fights || 0} UD</div>
+                                                <span class="stat-tile-sub">${f.split_fights || 0} SD · ${f.majority_fights || 0} MD</span>
+                                            </div>
+                                        </div>
+                                        <div class="dossier-friction-box">
+                                            <div class="friction-box-header">
+                                                <span class="friction-badge">Career Split Luck Index</span>
+                                                <span class="rate-badge" style="${luckStyle}">${luckSign}${net} (${f.luck_badge})</span>
+                                            </div>
+                                            <div class="friction-partner-name">${f.split_wins} Split Wins · ${f.split_losses} Split Losses</div>
+                                            <div class="friction-subtext">${net > 0 ? 'Fighter has benefited from split decision variance (+luck)' : (net < 0 ? 'Fighter has suffered negative variance in split verdicts (-luck)' : 'Even split decision distribution over career')}</div>
+                                        </div>
                                     </div>
-                                    <div class="dossier-rounds-log">
-                                        <h5>Notable Close / Split Decision Bouts</h5>
-                                        <div class="sample-dissents-grid">
+                                    <div class="dossier-evidence">
+                                        <div class="dossier-evidence-header">
+                                            <h5>Notable Split Decision Bouts</h5>
+                                            <span class="evidence-caption">Key fights decided by divided or razor-thin judge scorecards</span>
+                                        </div>
+                                        <div class="dossier-cards-grid">
                                             ${fightsHtml}
                                         </div>
                                     </div>
@@ -2203,7 +3087,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                 const diff = pct - UFC_BASELINE_PCT;
                 const badgeClass = diff >= 0 ? 'over' : 'under';
                 const badgeSign = diff >= 0 ? '+' : '';
-                const tenEightStr = `${j.ten_eight_rounds || 0} (${(j.ten_eight_pct || 0).toFixed(1)}%)`;
+                const tenEightStr = `${(j.ten_eight_rounds || 0).toLocaleString()} (${(j.ten_eight_pct || 0).toFixed(1)}%)`;
                 const clashStr = j.top_clash_partner ? `${escapeHtml(j.top_clash_partner)} (${(j.top_clash_pct || 0).toFixed(1)}%)` : '—';
 
                 html += `
@@ -2227,7 +3111,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                         <td class="col-num mono-num">${tenEightStr}</td>
                         <td class="col-text">${clashStr}</td>
                         <td class="col-center">
-                            <button class="pill-btn" style="padding:2px 8px; font-size:var(--font-size-caption);">${isExpanded ? 'Close' : 'Dossier'}</button>
+                            <button class="dossier-expand-btn ${isExpanded ? 'active' : ''}">${isExpanded ? 'Close' : 'Dossier'}</button>
                         </td>
                     </tr>
                 `;
@@ -2236,44 +3120,86 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                 if (isExpanded) {
                     const sampleDissents = j.sample_dissents || [];
                     const dissentsHtml = sampleDissents.length > 0 ? sampleDissents.map(d => {
-                        const finishBadge = d.is_finish ? `<span class="finish-badge" style="background:rgba(239,68,68,0.2); color:#fca5a5; font-size:10px; padding:1px 5px; border-radius:4px; font-weight:600; margin-left:4px;" title="Bout finished in Round ${d.finish_round || ''} via ${d.finish_method || 'Finish'}">${d.finish_method || 'Finish'} (R${d.finish_round || '?'})</span>` : '';
+                        const finishBadge = d.is_finish
+                            ? `<span class="finish-badge" style="background:rgba(239,68,68,0.2); color:#fca5a5; font-size:10px; padding:1px 6px; border-radius:var(--radius-pill); font-weight:700;" title="Bout finished in Round ${d.finish_round || ''} via ${d.finish_method || 'Finish'}">${d.finish_method || 'Finish'} (R${d.finish_round || '?'})</span>`
+                            : '';
                         return `
-                        <div class="sample-dissent-box">
-                            <div class="sample-dissent-header">
-                                <span>${d.year || ''}</span>
-                                <span>Round ${d.round || ''}${finishBadge}</span>
+                        <div class="dissent-card">
+                            <div class="dissent-card-top">
+                                <span class="dissent-year-round">${d.year || ''} · Round ${d.round || ''}</span>
+                                ${finishBadge}
                             </div>
-                            <div class="sample-fight-name">${escapeHtml(d.fight || '')}</div>
-                            <div style="display:flex; justify-content:space-between; align-items:center;">
-                                <span class="sample-score-tag">Score: ${d.score}</span>
-                                <span style="font-size:11px; color:var(--text-muted);">vs ${escapeHtml(d.c1)}, ${escapeHtml(d.c2)}</span>
+                            <div class="dissent-bout-name">${escapeHtml(d.fight || '')}</div>
+                            <div class="dissent-scores-row">
+                                <div class="dissent-judge-score">
+                                    <span class="score-label">Judge Score:</span>
+                                    <span class="score-badge-crimson">${d.score}</span>
+                                </div>
+                                <div class="dissent-consensus-info">
+                                    <span class="consensus-label">Dissented Against:</span>
+                                    <span class="consensus-names">${escapeHtml(d.c1)}, ${escapeHtml(d.c2)}</span>
+                                </div>
                             </div>
                         </div>
-                    `;}).join('') : '<div style="color:var(--text-muted); font-size:12px;">No round dissent samples on file.</div>';
+                    `;}).join('') : '<div style="color:var(--text-muted); font-size:var(--font-size-caption); padding: var(--space-2) 0;">No round dissent samples on file for this judge.</div>';
 
                     const freq = j.round_dissents > 0 ? (j.total_rounds / j.round_dissents).toFixed(1) : '—';
                     const agreePct = (100 - pct).toFixed(2);
-                    const finishRoundsCount = j.finish_rounds || 0;
+                    const finishRoundsCount = (j.finish_rounds || 0).toLocaleString();
+                    const eraYears = (j.last_year && j.first_year) ? `${(j.last_year - j.first_year + 1)} seasons` : 'Career';
 
                     html += `
                         <tr class="dossier-drawer-row visible">
                             <td colspan="8" style="padding:0;">
                                 <div class="dossier-card">
-                                    <div class="dossier-bio">
-                                        <div style="display:flex; align-items:center; gap:var(--space-2); margin-bottom:var(--space-2);">
-                                            <h4 style="margin:0;">${escapeHtml(j.judge_name)}</h4>
-                                            ${rosterBadge}
+                                    <div class="dossier-profile">
+                                        <div class="dossier-profile-header">
+                                            <div class="dossier-title-row">
+                                                <h4 class="dossier-name">${escapeHtml(j.judge_name)}</h4>
+                                                ${rosterBadge}
+                                            </div>
+                                            <div class="dossier-era-tag">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                                <span>Active UFC Era: <strong>${j.first_year || 1995} – ${j.last_year || 2026}</strong> (${eraYears})</span>
+                                            </div>
                                         </div>
-                                        <div class="dossier-stat-pill">Active UFC Era: <strong>${j.first_year || 1995} – ${j.last_year || 2026}</strong></div>
-                                        <div class="dossier-stat-pill">Dissent Frequency: <strong>Dissents once every ${freq} rounds</strong></div>
-                                        <div class="dossier-stat-pill">Colleague Agreement: <strong>${agreePct}% of rounds</strong></div>
-                                        <div class="dossier-stat-pill">Completed Stoppage Rounds: <strong>${finishRoundsCount} rounds</strong> (prior to finish)</div>
-                                        <div class="dossier-stat-pill">Dominant 10-8 Rounds Given: <strong>${j.ten_eight_rounds || 0} (${(j.ten_eight_pct || 0).toFixed(1)}%)</strong></div>
-                                        <div class="dossier-stat-pill">Top Co-Judge Clash: <strong>${escapeHtml(j.top_clash_partner)} (${(j.top_clash_pct || 0).toFixed(1)}% disagreement over ${j.top_clash_rounds || 0} rounds)</strong></div>
+                                        <div class="dossier-stats-grid">
+                                            <div class="dossier-stat-tile">
+                                                <span class="stat-tile-label">Dissent Rate</span>
+                                                <div class="stat-tile-value" style="color: ${diff >= 0 ? 'var(--accent-crimson)' : 'var(--accent-green)'};">${pct.toFixed(2)}%</div>
+                                                <span class="stat-tile-sub">1 every ${freq} rounds (${badgeSign}${diff.toFixed(2)}% vs avg)</span>
+                                            </div>
+                                            <div class="dossier-stat-tile">
+                                                <span class="stat-tile-label">Consensus Rate</span>
+                                                <div class="stat-tile-value">${agreePct}%</div>
+                                                <span class="stat-tile-sub">Agrees with colleagues</span>
+                                            </div>
+                                            <div class="dossier-stat-tile">
+                                                <span class="stat-tile-label">Dominant 10–8s</span>
+                                                <div class="stat-tile-value">${(j.ten_eight_rounds || 0).toLocaleString()}</div>
+                                                <span class="stat-tile-sub">${(j.ten_eight_pct || 0).toFixed(1)}% of scored rounds</span>
+                                            </div>
+                                            <div class="dossier-stat-tile">
+                                                <span class="stat-tile-label">Completed Stoppage Rounds</span>
+                                                <div class="stat-tile-value">${finishRoundsCount}</div>
+                                                <span class="stat-tile-sub">Rounds prior to finish</span>
+                                            </div>
+                                        </div>
+                                        <div class="dossier-friction-box">
+                                            <div class="friction-box-header">
+                                                <span class="friction-badge">Top Colleague Friction</span>
+                                                <span class="friction-rate">${(j.top_clash_pct || 0).toFixed(1)}% Disagreement</span>
+                                            </div>
+                                            <div class="friction-partner-name">${escapeHtml(j.top_clash_partner || 'None recorded')}</div>
+                                            <div class="friction-subtext">Disagreed on ${Math.round(((j.top_clash_pct || 0) / 100) * (j.top_clash_rounds || 0))} of ${j.top_clash_rounds || 0} shared rounds seated together</div>
+                                        </div>
                                     </div>
-                                    <div class="dossier-rounds-log">
-                                        <h5>Notable Round Dissent Examples</h5>
-                                        <div class="sample-dissents-grid">
+                                    <div class="dossier-evidence">
+                                        <div class="dossier-evidence-header">
+                                            <h5>Notable Lone Round Dissents</h5>
+                                            <span class="evidence-caption">Scorecards where ${escapeHtml(j.judge_name)} broke away from colleague consensus</span>
+                                        </div>
+                                        <div class="dossier-cards-grid">
                                             ${dissentsHtml}
                                         </div>
                                     </div>
@@ -2287,10 +3213,11 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                 const era = `${j.first_year || ''}–${j.last_year || ''}`;
 
                 html += `
-                    <tr class="judge-row" data-judge="${escapeHtml(j.judge_name)}">
+                    <tr class="judge-row ${isExpanded ? 'expanded' : ''}" data-judge="${escapeHtml(j.judge_name)}">
                         <td class="col-center mono-num" style="color:var(--text-muted);">${idx + 1}</td>
                         <td class="col-text">
                             <div class="judge-cell">
+                                <svg class="expand-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 <span class="judge-name-text">${escapeHtml(j.judge_name)}</span>
                                 ${rosterBadge}
                             </div>
@@ -2300,9 +3227,99 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
                         <td class="col-num mono-num" style="font-weight:700;">${pct.toFixed(2)}%</td>
                         <td class="col-num mono-num">${j.unanimous_pct || 0}%</td>
                         <td class="col-center">${era}</td>
-                        <td class="col-center"><span class="rate-badge under">Fight Decision</span></td>
+                        <td class="col-center">
+                            <button class="dossier-expand-btn ${isExpanded ? 'active' : ''}">${isExpanded ? 'Close' : 'Dossier'}</button>
+                        </td>
                     </tr>
                 `;
+
+                if (isExpanded) {
+                    const eraYears = (j.last_year && j.first_year) ? `${(j.last_year - j.first_year + 1)} seasons` : 'Career';
+                    html += `
+                        <tr class="dossier-drawer-row visible">
+                            <td colspan="8" style="padding:0;">
+                                <div class="dossier-card">
+                                    <div class="dossier-profile">
+                                        <div class="dossier-profile-header">
+                                            <div class="dossier-title-row">
+                                                <h4 class="dossier-name">${escapeHtml(j.judge_name)}</h4>
+                                                ${rosterBadge}
+                                            </div>
+                                            <div class="dossier-era-tag">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                                <span>Active UFC Era: <strong>${j.first_year || 1995} – ${j.last_year || 2026}</strong> (${eraYears})</span>
+                                            </div>
+                                        </div>
+                                        <div class="dossier-stats-grid">
+                                            <div class="dossier-stat-tile">
+                                                <span class="stat-tile-label">Split Dissents</span>
+                                                <div class="stat-tile-value" style="color:var(--accent-crimson);">${(j.dissents || 0).toLocaleString()}</div>
+                                                <span class="stat-tile-sub">${pct.toFixed(2)}% of judged bouts</span>
+                                            </div>
+                                            <div class="dossier-stat-tile">
+                                                <span class="stat-tile-label">Unanimous Bouts</span>
+                                                <div class="stat-tile-value">${(j.unanimous_pct || 0).toFixed(1)}%</div>
+                                                <span class="stat-tile-sub">${(j.unanimous_fights || 0).toLocaleString()} consensual decisions</span>
+                                            </div>
+                                            <div class="dossier-stat-tile">
+                                                <span class="stat-tile-label">Total Fights</span>
+                                                <div class="stat-tile-value">${(j.total_fights || 0).toLocaleString()}</div>
+                                                <span class="stat-tile-sub">Full bouts evaluated</span>
+                                            </div>
+                                            <div class="dossier-stat-tile">
+                                                <span class="stat-tile-label">Scorecard Variance</span>
+                                                <div class="stat-tile-value">${(j.score_dissents || 0).toLocaleString()}</div>
+                                                <span class="stat-tile-sub">${(j.score_dissent_pct || 0).toFixed(1)}% round dissent rate</span>
+                                            </div>
+                                        </div>
+                                        <div class="dossier-friction-box">
+                                            <div class="friction-box-header">
+                                                <span class="friction-badge">Career Decision Overview</span>
+                                                <span class="friction-rate">${(j.unanimous_pct || 0).toFixed(1)}% Consensual</span>
+                                            </div>
+                                            <div class="friction-partner-name">${(j.total_fights || 0).toLocaleString()} UFC Decisions Judged</div>
+                                            <div class="friction-subtext">Judged from ${j.first_year || ''} to ${j.last_year || ''}. Dissenting minority in ${(j.dissents || 0).toLocaleString()} split verdicts.</div>
+                                        </div>
+                                    </div>
+                                    <div class="dossier-evidence">
+                                        <div class="dossier-evidence-header">
+                                            <h5>Fight-Level Verdict Distribution</h5>
+                                            <span class="evidence-caption">Career breakdown of unanimous vs split decisions</span>
+                                        </div>
+                                        <div class="dossier-cards-grid">
+                                            <div class="dissent-card">
+                                                <div class="dissent-card-top">
+                                                    <span class="dissent-year-round">Consensual</span>
+                                                    <span class="rate-badge under">Unanimous</span>
+                                                </div>
+                                                <div class="dissent-bout-name">${(j.unanimous_fights || 0).toLocaleString()} Unanimous Decisions</div>
+                                                <div class="dissent-scores-row">
+                                                    <div class="dissent-judge-score">
+                                                        <span class="score-label">Consensus Rate:</span>
+                                                        <span class="score-badge-crimson" style="background:var(--accent-green-bg); color:var(--accent-green); border-color:rgba(16,185,129,0.3);">${j.unanimous_pct || 0}%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="dissent-card">
+                                                <div class="dissent-card-top">
+                                                    <span class="dissent-year-round">Split Verdicts</span>
+                                                    <span class="rate-badge over">Dissent</span>
+                                                </div>
+                                                <div class="dissent-bout-name">${(j.dissents || 0).toLocaleString()} Lone Dissents</div>
+                                                <div class="dissent-scores-row">
+                                                    <div class="dissent-judge-score">
+                                                        <span class="score-label">Dissent Rate:</span>
+                                                        <span class="score-badge-crimson">${pct.toFixed(2)}%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                }
             }
         });
 
@@ -2492,9 +3509,10 @@ def build_dashboard_html() -> Path:
         html_content = html_content.replace(placeholder, val)
 
     OUTPUT_HTML_PATH.write_text(html_content, encoding="utf-8")
-    print(f"Compiled standalone UFC judging dashboard to {OUTPUT_HTML_PATH}")
+    logger.info("Compiled standalone UFC judging dashboard to %s", OUTPUT_HTML_PATH)
     return OUTPUT_HTML_PATH
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
     build_dashboard_html()

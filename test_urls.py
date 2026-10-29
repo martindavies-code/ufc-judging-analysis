@@ -13,7 +13,7 @@ test_urls = [
 
 for u in test_urls:
     try:
-        r = requests.get(u, headers=headers)
+        r = requests.get(u, headers=headers, timeout=15)
         print(f"{u} -> {r.status_code}")
     except Exception as e:
         print(f"{u} -> {e}")

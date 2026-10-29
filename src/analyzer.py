@@ -247,10 +247,19 @@ OUTPUT_RANKINGS_CSV = DATA_DIR / "judge_dissent_rankings.csv"
 OUTPUT_PAIRS_CSV = DATA_DIR / "judge_pair_disagreements.csv"
 
 
-def run_deep_analysis(db_path: Path = DB_PATH) -> dict[str, Any]:
+def run_deep_analysis(
+    db_path: Path = DB_PATH,
+    output_dir: Path | None = None,
+) -> dict[str, Any]:
     """Execute complete analytical pipeline across round-level and fight-level data."""
     if not db_path.exists():
         raise FileNotFoundError(f"Database not found at {db_path}. Run parser first.")
+
+    out_dir = output_dir or DATA_DIR
+    round_rankings_csv = out_dir / "judge_round_dissent_rankings.csv"
+    round_pairs_csv = out_dir / "judge_round_pair_disagreements.csv"
+    rankings_csv = out_dir / "judge_dissent_rankings.csv"
+    pairs_csv = out_dir / "judge_pair_disagreements.csv"
 
     conn = sqlite3.connect(db_path)
     try:
@@ -269,19 +278,19 @@ def run_deep_analysis(db_path: Path = DB_PATH) -> dict[str, Any]:
 
     total_fights = len(df_fights)
     total_appearances = len(df_judges)
-    total_split = int(df_fights["decision_type"].str.contains("Split", case=False, na=False).sum())
-    total_unanimous = int(df_fights["decision_type"].str.contains("Unanimous", case=False, na=False).sum())
-    total_majority = int(df_fights["decision_type"].str.contains("Majority", case=False, na=False).sum())
+    total_split = df_fights["decision_type"].str.contains("Split", case=False, na=False).sum()
+    total_unanimous = df_fights["decision_type"].str.contains("Unanimous", case=False, na=False).sum()
+    total_majority = df_fights["decision_type"].str.contains("Majority", case=False, na=False).sum()
 
-    print("==================================================")
-    print("UFC JUDGING ANALYSIS: SUMMARY METRICS")
-    print("==================================================")
-    print(f"Total UFC Fights with Decisions: {total_fights:,}")
-    print(f"Total Judge Scorecards: {total_appearances:,}")
+    logger.info("==================================================")
+    logger.info("UFC JUDGING ANALYSIS: SUMMARY METRICS")
+    logger.info("==================================================")
+    logger.info("Total UFC Fights with Decisions: %s", f"{total_fights:,}")
+    logger.info("Total Judge Scorecards: %s", f"{total_appearances:,}")
     if total_fights > 0:
-        print(f"Unanimous Decisions: {total_unanimous:,} ({total_unanimous / total_fights * 100:.1f}%)")
-        print(f"Split Decisions: {total_split:,} ({total_split / total_fights * 100:.1f}%)")
-        print(f"Majority Decisions: {total_majority:,} ({total_majority / total_fights * 100:.1f}%)")
+        logger.info("Unanimous Decisions: %s (%.1f%%)", f"{total_unanimous:,}", total_unanimous / total_fights * 100)
+        logger.info("Split Decisions: %s (%.1f%%)", f"{total_split:,}", total_split / total_fights * 100)
+        logger.info("Majority Decisions: %s (%.1f%%)", f"{total_majority:,}", total_majority / total_fights * 100)
 
     round_judge_stats = pd.DataFrame()
     round_pair_stats = pd.DataFrame()
@@ -290,26 +299,32 @@ def run_deep_analysis(db_path: Path = DB_PATH) -> dict[str, Any]:
         total_rounds = len(df_rounds)
         total_round_dissents = int(df_rounds["round_dissented"].sum())
         total_ten_eights = int(df_rounds["is_ten_eight"].sum())
-        print(f"\nTotal Individual Rounds Scored: {total_rounds:,}")
-        print(
-            f"Total Round Dissents (disagreed with both colleagues): {total_round_dissents:,} ({total_round_dissents / total_rounds * 100:.2f}%)"
+        logger.info("Total Individual Rounds Scored: %s", f"{total_rounds:,}")
+        logger.info(
+            "Total Round Dissents (disagreed with both colleagues): %s (%.2f%%)",
+            f"{total_round_dissents:,}",
+            total_round_dissents / total_rounds * 100,
         )
-        print(f"Total 10-8 or wider Rounds Given: {total_ten_eights:,} ({total_ten_eights / total_rounds * 100:.2f}%)")
+        logger.info(
+            "Total 10-8 or wider Rounds Given: %s (%.2f%%)",
+            f"{total_ten_eights:,}",
+            total_ten_eights / total_rounds * 100,
+        )
 
         round_judge_stats = calculate_judge_round_metrics(df_rounds)
         round_pair_stats = calculate_round_pair_clashes(df_rounds, min_rounds=30)
 
-        round_judge_stats.to_csv(OUTPUT_ROUND_RANKINGS_CSV, index=False)
-        round_pair_stats.to_csv(OUTPUT_ROUND_PAIRS_CSV, index=False)
-        print(f"Saved round-level rankings to {OUTPUT_ROUND_RANKINGS_CSV} and {OUTPUT_ROUND_PAIRS_CSV}")
+        round_judge_stats.to_csv(round_rankings_csv, index=False)
+        round_pair_stats.to_csv(round_pairs_csv, index=False)
+        logger.info("Saved round-level rankings to %s and %s", round_rankings_csv, round_pairs_csv)
 
     judge_stats = calculate_judge_metrics(df_judges)
     pair_stats = calculate_pair_clashes(df_fights, min_fights=20)
 
     # Save fight-level results to CSV
-    judge_stats.to_csv(OUTPUT_RANKINGS_CSV, index=False)
-    pair_stats.to_csv(OUTPUT_PAIRS_CSV, index=False)
-    print(f"Saved fight-level rankings to {OUTPUT_RANKINGS_CSV} and {OUTPUT_PAIRS_CSV}")
+    judge_stats.to_csv(rankings_csv, index=False)
+    pair_stats.to_csv(pairs_csv, index=False)
+    logger.info("Saved fight-level rankings to %s and %s", rankings_csv, pairs_csv)
 
     return {
         "round_judge_stats": round_judge_stats,
@@ -320,4 +335,5 @@ def run_deep_analysis(db_path: Path = DB_PATH) -> dict[str, Any]:
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
     run_deep_analysis()

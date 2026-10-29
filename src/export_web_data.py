@@ -4,6 +4,7 @@ import json
 import logging
 import sqlite3
 import sys
+import time
 from pathlib import Path
 from typing import Any, cast
 
@@ -72,7 +73,7 @@ def export_web_data(db_path: Path = DB_PATH) -> Path:
             list[dict[str, Any]],
             stats.sort_values(by=["total_fights", "dissents"], ascending=[False, False]).to_dict(orient="records"),
         )
-        unique_judges = int(stats["judge_name"].nunique())
+        unique_judges = stats["judge_name"].nunique()
 
     # Round-level judge stats
     round_judges_list: list[dict[str, Any]] = []
@@ -293,9 +294,9 @@ def export_web_data(db_path: Path = DB_PATH) -> Path:
 
     web_payload = {
         "summary": {
-            "total_fights": total_fights,
-            "total_scorecards": total_scorecards,
-            "total_judges": unique_judges,
+            "total_fights": int(total_fights),
+            "total_scorecards": int(total_scorecards),
+            "total_judges": int(unique_judges),
             "unanimous_count": unanimous_count,
             "split_count": split_count,
             "majority_count": majority_count,
@@ -311,17 +312,43 @@ def export_web_data(db_path: Path = DB_PATH) -> Path:
         "fighters": fighter_list,
     }
 
+    def _json_serial_default(obj: Any) -> Any:
+        if hasattr(obj, "item"):
+            return obj.item()
+        if hasattr(obj, "__int__"):
+            return int(obj)
+        if hasattr(obj, "__float__"):
+            return float(obj)
+        return str(obj)
+
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     temp_json = OUTPUT_JSON_PATH.with_suffix(".tmp")
     with open(temp_json, "w", encoding="utf-8") as f:
-        json.dump(web_payload, f, indent=2)
-    temp_json.replace(OUTPUT_JSON_PATH)
+        json.dump(web_payload, f, indent=2, default=_json_serial_default)
+    # Windows-safe atomic replacement with retry for transient file locks
+    for attempt in range(5):
+        try:
+            temp_json.replace(OUTPUT_JSON_PATH)
+            break
+        except PermissionError:
+            if attempt == 4:
+                try:
+                    OUTPUT_JSON_PATH.unlink(missing_ok=True)
+                    temp_json.replace(OUTPUT_JSON_PATH)
+                except OSError:
+                    temp_json.replace(OUTPUT_JSON_PATH)
+                break
+            time.sleep(0.05 * (attempt + 1))
 
-    print(
-        f"Exported web data with {len(round_judges_list)} round judges and {len(stats_list)} fight judges to {OUTPUT_JSON_PATH}"
+    logger.info(
+        "Exported web data with %d round judges and %d fight judges to %s",
+        len(round_judges_list),
+        len(stats_list),
+        OUTPUT_JSON_PATH,
     )
     return OUTPUT_JSON_PATH
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
     export_web_data()

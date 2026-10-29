@@ -8,7 +8,7 @@ headers = {
 }
 
 url = 'https://mmadecisions.com/decisions-by-event/'
-resp = requests.get(url, headers=headers)
+resp = requests.get(url, headers=headers, timeout=15)
 soup = BeautifulSoup(resp.text, 'html.parser')
 
 years = []

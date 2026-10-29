@@ -6,5 +6,5 @@ headers = {
 }
 
 url = 'https://mmadecisions.com/decisions-by-event/'
-resp = requests.get(url, headers=headers)
+resp = requests.get(url, headers=headers, timeout=15)
 print(f"Status code for {url}: {resp.status_code}")

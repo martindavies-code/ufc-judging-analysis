@@ -409,15 +409,27 @@ def init_database_schema(conn: sqlite3.Connection) -> None:
     conn.commit()
 
 
-def parse_all_events() -> tuple[pd.DataFrame, pd.DataFrame]:
+def parse_all_events(
+    events_json_path: Path | None = None,
+    events_html_dir: Path | None = None,
+    csv_output_path: Path | None = None,
+    judge_csv_output_path: Path | None = None,
+    db_output_path: Path | None = None,
+) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Parse all downloaded UFC event HTML files and persist to CSV/SQLite."""
-    if not EVENTS_JSON_PATH.exists():
-        raise FileNotFoundError(f"{EVENTS_JSON_PATH} not found. Run scraper first.")
+    json_path = events_json_path if events_json_path is not None else EVENTS_JSON_PATH
+    html_dir = events_html_dir if events_html_dir is not None else EVENTS_HTML_DIR
+    csv_path = csv_output_path if csv_output_path is not None else CSV_OUTPUT_PATH
+    judge_csv_path = judge_csv_output_path if judge_csv_output_path is not None else JUDGE_CSV_OUTPUT_PATH
+    db_path = db_output_path if db_output_path is not None else DB_OUTPUT_PATH
 
-    with open(EVENTS_JSON_PATH, "r", encoding="utf-8") as f:
+    if not json_path.exists():
+        raise FileNotFoundError(f"{json_path} not found. Run scraper first.")
+
+    with open(json_path, "r", encoding="utf-8") as f:
         events = json.load(f)
 
-    print(f"Parsing HTML scorecards for {len(events)} events...")
+    logger.info("Parsing HTML scorecards for %d events...", len(events))
 
     all_fights: list[dict[str, Any]] = []
     all_appearances: list[dict[str, Any]] = []
@@ -426,7 +438,7 @@ def parse_all_events() -> tuple[pd.DataFrame, pd.DataFrame]:
         event_id = event["event_id"]
         validate_numeric_id(event_id, "event_id")
 
-        file_path = safe_resolve_path(EVENTS_HTML_DIR, f"{event_id}.html")
+        file_path = safe_resolve_path(html_dir, f"{event_id}.html")
         if not file_path.exists():
             continue
 
@@ -449,11 +461,11 @@ def parse_all_events() -> tuple[pd.DataFrame, pd.DataFrame]:
     df_judge_fights = pd.DataFrame(all_appearances)
 
     # Save CSV files
-    df_fights.to_csv(CSV_OUTPUT_PATH, index=False)
-    df_judge_fights.to_csv(JUDGE_CSV_OUTPUT_PATH, index=False)
+    df_fights.to_csv(csv_path, index=False)
+    df_judge_fights.to_csv(judge_csv_path, index=False)
 
     # Save SQLite database with strict transactions
-    conn = sqlite3.connect(DB_OUTPUT_PATH)
+    conn = sqlite3.connect(db_path)
     try:
         init_database_schema(conn)
         df_fights.to_sql("fights", conn, if_exists="replace", index=False)
@@ -463,14 +475,15 @@ def parse_all_events() -> tuple[pd.DataFrame, pd.DataFrame]:
     finally:
         conn.close()
 
-    print("\nParsing Complete!")
-    print(f"Total Fights Parsed: {len(df_fights)}")
-    print(f"Total Judge-Fight Scorecard Records: {len(df_judge_fights)}")
-    print(f"Unique Judges: {df_judge_fights['judge_name'].nunique()}")
-    print(f"Persisted to {CSV_OUTPUT_PATH} and {DB_OUTPUT_PATH}")
+    logger.info("Parsing Complete!")
+    logger.info("Total Fights Parsed: %d", len(df_fights))
+    logger.info("Total Judge-Fight Scorecard Records: %d", len(df_judge_fights))
+    logger.info("Unique Judges: %d", df_judge_fights["judge_name"].nunique() if not df_judge_fights.empty else 0)
+    logger.info("Persisted to %s and %s", csv_path, db_path)
 
     return df_fights, df_judge_fights
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
     parse_all_events()

@@ -66,7 +66,7 @@ def download_single_decision(item: tuple[int, str]) -> tuple[int, bool, str]:
                 time.sleep(0.5 * (2**attempt))
 
         return val_id, False, "HTTP Failed"
-    except (ValueError, OSError, requests.RequestException) as e:
+    except (ValueError, OSError) as e:
         return decision_id, False, str(e)
 
 
@@ -90,8 +90,14 @@ def download_all_decisions(
     items = items[start_idx:end]
 
     order_str = "reversed order" if reverse else "standard order"
-    print(
-        f"Starting download/cache check for {len(items)} decision scorecards (range [{start_idx}:{end}] of {total_all}, workers={max_workers}, {order_str})..."
+    logger.info(
+        "Starting download/cache check for %d decision scorecards (range [%d:%s] of %d, workers=%d, %s)...",
+        len(items),
+        start_idx,
+        str(end),
+        total_all,
+        max_workers,
+        order_str,
     )
 
     success = 0
@@ -112,7 +118,7 @@ def download_all_decisions(
                 if failed <= 10:
                     logger.warning("Failed decision %s: %s", did, status)
 
-    print(f"\nFinished: {success} downloaded, {cached} cached, {failed} failed.")
+    logger.info("Finished: %d downloaded, %d cached, %d failed.", success, cached, failed)
     return success, cached, failed
 
 

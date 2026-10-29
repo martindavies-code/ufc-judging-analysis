@@ -6,7 +6,7 @@ headers = {
 }
 
 url = 'https://mmadecisions.com/decision/15158/Shavkat-Rakhmonov-vs-Ian-Garry'
-resp = requests.get(url, headers=headers)
+resp = requests.get(url, headers=headers, timeout=15)
 soup = BeautifulSoup(resp.text, 'html.parser')
 
 # Find tables that have round data
