@@ -5808,5 +5808,565 @@
     "slug": "UFC-on-ESPN+-107-Dern-vs-Ribas-2",
     "year": "2025",
     "url": "https://mmadecisions.com/event/1519/UFC-on-ESPN+-107-Dern-vs-Ribas-2"
+  },
+  {
+    "event_id": "1659",
+    "title": "UFC Fight Night 293: Cortes-Acosta vs. Walker",
+    "slug": "UFC-Fight-Night-293-Cortes-Acosta-vs-Walker",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1659/UFC-Fight-Night-293-Cortes-Acosta-vs-Walker"
+  },
+  {
+    "event_id": "1657",
+    "title": "UFC Fight Night 292: Moicano vs. Nolan",
+    "slug": "UFC-Fight-Night-292-Moicano-vs-Nolan",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1657/UFC-Fight-Night-292-Moicano-vs-Nolan"
+  },
+  {
+    "event_id": "1656",
+    "title": "UFC 333: Volkanovski vs. Evloev",
+    "slug": "UFC-333-Volkanovski-vs-Evloev",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1656/UFC-333-Volkanovski-vs-Evloev"
+  },
+  {
+    "event_id": "1654",
+    "title": "UFC Fight Night 291: Buckley vs. Malott",
+    "slug": "UFC-Fight-Night-291-Buckley-vs-Malott",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1654/UFC-Fight-Night-291-Buckley-vs-Malott"
+  },
+  {
+    "event_id": "1652",
+    "title": "UFC Fight Night 290: Allen vs. Duncan",
+    "slug": "UFC-Fight-Night-290-Allen-vs-Duncan",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1652/UFC-Fight-Night-290-Allen-vs-Duncan"
+  },
+  {
+    "event_id": "1651",
+    "title": "UFC 332: Silva vs. Wang",
+    "slug": "UFC-332-Silva-vs-Wang",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1651/UFC-332-Silva-vs-Wang"
+  },
+  {
+    "event_id": "1650",
+    "title": "UFC Fight Night 289: Rosas Jr. vs. Barcelos",
+    "slug": "UFC-Fight-Night-289-Rosas-Jr-vs-Barcelos",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1650/UFC-Fight-Night-289-Rosas-Jr-vs-Barcelos"
+  },
+  {
+    "event_id": "1648",
+    "title": "UFC 331: Van vs. Pantoja 2",
+    "slug": "UFC-331-Van-vs-Pantoja-2",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1648/UFC-331-Van-vs-Pantoja-2"
+  },
+  {
+    "event_id": "1647",
+    "title": "Noche UFC 4: Silva vs. Delgado",
+    "slug": "Noche-UFC-4-Silva-vs-Delgado",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1647/Noche-UFC-4-Silva-vs-Delgado"
+  },
+  {
+    "event_id": "1646",
+    "title": "UFC Fight Night 287: Hooker vs. Parnasse",
+    "slug": "UFC-Fight-Night-287-Hooker-vs-Parnasse",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1646/UFC-Fight-Night-287-Hooker-vs-Parnasse"
+  },
+  {
+    "event_id": "1645",
+    "title": "UFC Fight Night 286: Nurmagomedov vs. Song",
+    "slug": "UFC-Fight-Night-286-Nurmagomedov-vs-Song",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1645/UFC-Fight-Night-286-Nurmagomedov-vs-Song"
+  },
+  {
+    "event_id": "1643",
+    "title": "UFC Fight Night 285: Hernandez vs. Rodrigues",
+    "slug": "UFC-Fight-Night-285-Hernandez-vs-Rodrigues",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1643/UFC-Fight-Night-285-Hernandez-vs-Rodrigues"
+  },
+  {
+    "event_id": "1642",
+    "title": "UFC 330: Makhachev vs. Machado Garry",
+    "slug": "UFC-330-Makhachev-vs-Machado-Garry",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1642/UFC-330-Makhachev-vs-Machado-Garry"
+  },
+  {
+    "event_id": "1641",
+    "title": "UFC Fight Night 284: Gamrot vs. Salkilld",
+    "slug": "UFC-Fight-Night-284-Gamrot-vs-Salkilld",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1641/UFC-Fight-Night-284-Gamrot-vs-Salkilld"
+  },
+  {
+    "event_id": "1639",
+    "title": "UFC Fight Night 283: Medic vs. Rodriguez",
+    "slug": "UFC-Fight-Night-283-Medic-vs-Rodriguez",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1639/UFC-Fight-Night-283-Medic-vs-Rodriguez"
+  },
+  {
+    "event_id": "1637",
+    "title": "UFC Fight Night 282: Ankalaev vs. Guskov",
+    "slug": "UFC-Fight-Night-282-Ankalaev-vs-Guskov",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1637/UFC-Fight-Night-282-Ankalaev-vs-Guskov"
+  },
+  {
+    "event_id": "1635",
+    "title": "UFC Fight Night 281: du Plessis vs. Usman",
+    "slug": "UFC-Fight-Night-281-du-Plessis-vs-Usman",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1635/UFC-Fight-Night-281-du-Plessis-vs-Usman"
+  },
+  {
+    "event_id": "1634",
+    "title": "UFC 329: McGregor vs. Holloway 2",
+    "slug": "UFC-329-McGregor-vs-Holloway-2",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1634/UFC-329-McGregor-vs-Holloway-2"
+  },
+  {
+    "event_id": "1630",
+    "title": "UFC Fight Night 280: Fiziev vs. Torres",
+    "slug": "UFC-Fight-Night-280-Fiziev-vs-Torres",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1630/UFC-Fight-Night-280-Fiziev-vs-Torres"
+  },
+  {
+    "event_id": "1628",
+    "title": "UFC Fight Night 279: Kape vs. Horiguchi",
+    "slug": "UFC-Fight-Night-279-Kape-vs-Horiguchi",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1628/UFC-Fight-Night-279-Kape-vs-Horiguchi"
+  },
+  {
+    "event_id": "1625",
+    "title": "UFC Fight Night 278: Muhammad vs. Bonfim",
+    "slug": "UFC-Fight-Night-278-Muhammad-vs-Bonfim",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1625/UFC-Fight-Night-278-Muhammad-vs-Bonfim"
+  },
+  {
+    "event_id": "1624",
+    "title": "UFC Fight Night 277: Song vs. Figueiredo",
+    "slug": "UFC-Fight-Night-277-Song-vs-Figueiredo",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1624/UFC-Fight-Night-277-Song-vs-Figueiredo"
+  },
+  {
+    "event_id": "1621",
+    "title": "UFC Fight Night 276: Allen vs. Costa",
+    "slug": "UFC-Fight-Night-276-Allen-vs-Costa",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1621/UFC-Fight-Night-276-Allen-vs-Costa"
+  },
+  {
+    "event_id": "1620",
+    "title": "UFC 328: Chimaev vs. Strickland",
+    "slug": "UFC-328-Chimaev-vs-Strickland",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1620/UFC-328-Chimaev-vs-Strickland"
+  },
+  {
+    "event_id": "1618",
+    "title": "UFC Fight Night 275: Della Maddalena vs. Prates",
+    "slug": "UFC-Fight-Night-275-Della-Maddalena-vs-Prates",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1618/UFC-Fight-Night-275-Della-Maddalena-vs-Prates"
+  },
+  {
+    "event_id": "1616",
+    "title": "UFC Fight Night 274: Sterling vs. Zalal",
+    "slug": "UFC-Fight-Night-274-Sterling-vs-Zalal",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1616/UFC-Fight-Night-274-Sterling-vs-Zalal"
+  },
+  {
+    "event_id": "1615",
+    "title": "UFC Fight Night 273: Burns vs. Malott",
+    "slug": "UFC-Fight-Night-273-Burns-vs-Malott",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1615/UFC-Fight-Night-273-Burns-vs-Malott"
+  },
+  {
+    "event_id": "1612",
+    "title": "UFC 327: Prochazka vs. Ulberg",
+    "slug": "UFC-327-Prochazka-vs-Ulberg",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1612/UFC-327-Prochazka-vs-Ulberg"
+  },
+  {
+    "event_id": "1610",
+    "title": "UFC Fight Night 272: Moicano vs. Duncan",
+    "slug": "UFC-Fight-Night-272-Moicano-vs-Duncan",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1610/UFC-Fight-Night-272-Moicano-vs-Duncan"
+  },
+  {
+    "event_id": "1608",
+    "title": "UFC Fight Night 271: Adesanya vs. Pyfer",
+    "slug": "UFC-Fight-Night-271-Adesanya-vs-Pyfer",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1608/UFC-Fight-Night-271-Adesanya-vs-Pyfer"
+  },
+  {
+    "event_id": "1607",
+    "title": "UFC Fight Night 270: Evloev vs. Murphy",
+    "slug": "UFC-Fight-Night-270-Evloev-vs-Murphy",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1607/UFC-Fight-Night-270-Evloev-vs-Murphy"
+  },
+  {
+    "event_id": "1604",
+    "title": "UFC Fight Night 269: Emmett vs. Vallejos",
+    "slug": "UFC-Fight-Night-269-Emmett-vs-Vallejos",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1604/UFC-Fight-Night-269-Emmett-vs-Vallejos"
+  },
+  {
+    "event_id": "1602",
+    "title": "UFC 326: Holloway vs. Oliveira 2",
+    "slug": "UFC-326-Holloway-vs-Oliveira-2",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1602/UFC-326-Holloway-vs-Oliveira-2"
+  },
+  {
+    "event_id": "1601",
+    "title": "UFC Fight Night 268: Moreno vs. Kavanagh",
+    "slug": "UFC-Fight-Night-268-Moreno-vs-Kavanagh",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1601/UFC-Fight-Night-268-Moreno-vs-Kavanagh"
+  },
+  {
+    "event_id": "1600",
+    "title": "UFC Fight Night 267: Strickland vs. Hernandez",
+    "slug": "UFC-Fight-Night-267-Strickland-vs-Hernandez",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1600/UFC-Fight-Night-267-Strickland-vs-Hernandez"
+  },
+  {
+    "event_id": "1596",
+    "title": "UFC Fight Night 266: Bautista vs. Oliveira",
+    "slug": "UFC-Fight-Night-266-Bautista-vs-Oliveira",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1596/UFC-Fight-Night-266-Bautista-vs-Oliveira"
+  },
+  {
+    "event_id": "1595",
+    "title": "UFC 325: Volkanovski vs. Lopes 2",
+    "slug": "UFC-325-Volkanovski-vs-Lopes-2",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1595/UFC-325-Volkanovski-vs-Lopes-2"
+  },
+  {
+    "event_id": "1594",
+    "title": "UFC 324: Gaethje vs. Pimblett",
+    "slug": "UFC-324-Gaethje-vs-Pimblett",
+    "year": "2026",
+    "url": "https://mmadecisions.com/event/1594/UFC-324-Gaethje-vs-Pimblett"
+  },
+  {
+    "event_id": "1592",
+    "title": "UFC on ESPN 73: Royval vs. Kape",
+    "slug": "UFC-on-ESPN-73-Royval-vs-Kape",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1592/UFC-on-ESPN-73-Royval-vs-Kape"
+  },
+  {
+    "event_id": "1591",
+    "title": "UFC 323: Dvalishvili vs. Yan 2",
+    "slug": "UFC-323-Dvalishvili-vs-Yan-2",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1591/UFC-323-Dvalishvili-vs-Yan-2"
+  },
+  {
+    "event_id": "1588",
+    "title": "UFC Fight Night 265: Tsarukyan vs. Hooker",
+    "slug": "UFC-Fight-Night-265-Tsarukyan-vs-Hooker",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1588/UFC-Fight-Night-265-Tsarukyan-vs-Hooker"
+  },
+  {
+    "event_id": "1585",
+    "title": "UFC 322: Della Maddalena vs. Makhachev",
+    "slug": "UFC-322-Della-Maddalena-vs-Makhachev",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1585/UFC-322-Della-Maddalena-vs-Makhachev"
+  },
+  {
+    "event_id": "1584",
+    "title": "UFC on ESPN+ 122: Bonfim vs. Brown",
+    "slug": "UFC-on-ESPN+-122-Bonfim-vs-Brown",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1584/UFC-on-ESPN+-122-Bonfim-vs-Brown"
+  },
+  {
+    "event_id": "1583",
+    "title": "UFC on ESPN+ 121: Garcia vs. Onama",
+    "slug": "UFC-on-ESPN+-121-Garcia-vs-Onama",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1583/UFC-on-ESPN+-121-Garcia-vs-Onama"
+  },
+  {
+    "event_id": "1582",
+    "title": "UFC 321: Aspinall vs. Gane",
+    "slug": "UFC-321-Aspinall-vs-Gane",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1582/UFC-321-Aspinall-vs-Gane"
+  },
+  {
+    "event_id": "1581",
+    "title": "UFC on ESPN+ 120: de Ridder vs. Allen",
+    "slug": "UFC-on-ESPN+-120-de-Ridder-vs-Allen",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1581/UFC-on-ESPN+-120-de-Ridder-vs-Allen"
+  },
+  {
+    "event_id": "1580",
+    "title": "UFC on ESPN+ 119: Oliveira vs. Gamrot",
+    "slug": "UFC-on-ESPN+-119-Oliveira-vs-Gamrot",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1580/UFC-on-ESPN+-119-Oliveira-vs-Gamrot"
+  },
+  {
+    "event_id": "1579",
+    "title": "UFC 320: Ankalaev vs. Pereira 2",
+    "slug": "UFC-320-Ankalaev-vs-Pereira-2",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1579/UFC-320-Ankalaev-vs-Pereira-2"
+  },
+  {
+    "event_id": "1576",
+    "title": "UFC on ESPN+ 118: Ulberg vs. Reyes",
+    "slug": "UFC-on-ESPN+-118-Ulberg-vs-Reyes",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1576/UFC-on-ESPN+-118-Ulberg-vs-Reyes"
+  },
+  {
+    "event_id": "1573",
+    "title": "Noche UFC 3: Lopes vs. Silva",
+    "slug": "Noche-UFC-3-Lopes-vs-Silva",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1573/Noche-UFC-3-Lopes-vs-Silva"
+  },
+  {
+    "event_id": "1572",
+    "title": "UFC on ESPN+ 116: Imavov vs. Borralho",
+    "slug": "UFC-on-ESPN+-116-Imavov-vs-Borralho",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1572/UFC-on-ESPN+-116-Imavov-vs-Borralho"
+  },
+  {
+    "event_id": "1571",
+    "title": "UFC on ESPN+ 115: Walker vs. Zhang",
+    "slug": "UFC-on-ESPN+-115-Walker-vs-Zhang",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1571/UFC-on-ESPN+-115-Walker-vs-Zhang"
+  },
+  {
+    "event_id": "1569",
+    "title": "UFC 319: du Plessis vs. Chimaev",
+    "slug": "UFC-319-du-Plessis-vs-Chimaev",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1569/UFC-319-du-Plessis-vs-Chimaev"
+  },
+  {
+    "event_id": "1567",
+    "title": "UFC on ESPN 72: Dolidze vs. Hernandez",
+    "slug": "UFC-on-ESPN-72-Dolidze-vs-Hernandez",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1567/UFC-on-ESPN-72-Dolidze-vs-Hernandez"
+  },
+  {
+    "event_id": "1566",
+    "title": "UFC on ESPN 71: Taira vs. Park",
+    "slug": "UFC-on-ESPN-71-Taira-vs-Park",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1566/UFC-on-ESPN-71-Taira-vs-Park"
+  },
+  {
+    "event_id": "1564",
+    "title": "UFC on ABC 9: Whittaker vs. de Ridder",
+    "slug": "UFC-on-ABC-9-Whittaker-vs-de-Ridder",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1564/UFC-on-ABC-9-Whittaker-vs-de-Ridder"
+  },
+  {
+    "event_id": "1563",
+    "title": "UFC 318: Holloway vs. Poirier 3",
+    "slug": "UFC-318-Holloway-vs-Poirier-3",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1563/UFC-318-Holloway-vs-Poirier-3"
+  },
+  {
+    "event_id": "1560",
+    "title": "UFC on ESPN 70: Lewis vs. Teixeira",
+    "slug": "UFC-on-ESPN-70-Lewis-vs-Teixeira",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1560/UFC-on-ESPN-70-Lewis-vs-Teixeira"
+  },
+  {
+    "event_id": "1559",
+    "title": "UFC 317: Topuria vs. Oliveira",
+    "slug": "UFC-317-Topuria-vs-Oliveira",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1559/UFC-317-Topuria-vs-Oliveira"
+  },
+  {
+    "event_id": "1554",
+    "title": "UFC on ABC 8: Hill vs. Rountree Jr.",
+    "slug": "UFC-on-ABC-8-Hill-vs-Rountree-Jr",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1554/UFC-on-ABC-8-Hill-vs-Rountree-Jr"
+  },
+  {
+    "event_id": "1551",
+    "title": "UFC on ESPN 69: Usman vs. Buckley",
+    "slug": "UFC-on-ESPN-69-Usman-vs-Buckley",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1551/UFC-on-ESPN-69-Usman-vs-Buckley"
+  },
+  {
+    "event_id": "1550",
+    "title": "UFC 316: Dvalishvili vs. O'Malley 2",
+    "slug": "UFC-316-Dvalishvili-vs-O-Malley-2",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1550/UFC-316-Dvalishvili-vs-O-Malley-2"
+  },
+  {
+    "event_id": "1549",
+    "title": "UFC on ESPN 68: Blanchfield vs. Barber",
+    "slug": "UFC-on-ESPN-68-Blanchfield-vs-Barber",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1549/UFC-on-ESPN-68-Blanchfield-vs-Barber"
+  },
+  {
+    "event_id": "1547",
+    "title": "UFC on ESPN+ 114: Burns vs. Morales",
+    "slug": "UFC-on-ESPN+-114-Burns-vs-Morales",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1547/UFC-on-ESPN+-114-Burns-vs-Morales"
+  },
+  {
+    "event_id": "1546",
+    "title": "UFC 315: Muhammad vs. Della Maddalena",
+    "slug": "UFC-315-Muhammad-vs-Della-Maddalena",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1546/UFC-315-Muhammad-vs-Della-Maddalena"
+  },
+  {
+    "event_id": "1545",
+    "title": "UFC on ESPN 67: Sandhagen vs. Figueiredo",
+    "slug": "UFC-on-ESPN-67-Sandhagen-vs-Figueiredo",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1545/UFC-on-ESPN-67-Sandhagen-vs-Figueiredo"
+  },
+  {
+    "event_id": "1543",
+    "title": "UFC on ESPN 66: Machado Garry vs. Prates",
+    "slug": "UFC-on-ESPN-66-Machado-Garry-vs-Prates",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1543/UFC-on-ESPN-66-Machado-Garry-vs-Prates"
+  },
+  {
+    "event_id": "1538",
+    "title": "UFC 314: Volkanovski vs. Lopes",
+    "slug": "UFC-314-Volkanovski-vs-Lopes",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1538/UFC-314-Volkanovski-vs-Lopes"
+  },
+  {
+    "event_id": "1536",
+    "title": "UFC on ESPN 65: Emmett vs. Murphy",
+    "slug": "UFC-on-ESPN-65-Emmett-vs-Murphy",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1536/UFC-on-ESPN-65-Emmett-vs-Murphy"
+  },
+  {
+    "event_id": "1535",
+    "title": "UFC on ESPN 64: Moreno vs. Erceg",
+    "slug": "UFC-on-ESPN-64-Moreno-vs-Erceg",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1535/UFC-on-ESPN-64-Moreno-vs-Erceg"
+  },
+  {
+    "event_id": "1534",
+    "title": "UFC on ESPN+ 113: Edwards vs. Brady",
+    "slug": "UFC-on-ESPN+-113-Edwards-vs-Brady",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1534/UFC-on-ESPN+-113-Edwards-vs-Brady"
+  },
+  {
+    "event_id": "1530",
+    "title": "UFC on ESPN+ 112: Vettori vs. Dolidze 2",
+    "slug": "UFC-on-ESPN+-112-Vettori-vs-Dolidze-2",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1530/UFC-on-ESPN+-112-Vettori-vs-Dolidze-2"
+  },
+  {
+    "event_id": "1529",
+    "title": "UFC 313: Pereira vs. Ankalaev",
+    "slug": "UFC-313-Pereira-vs-Ankalaev",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1529/UFC-313-Pereira-vs-Ankalaev"
+  },
+  {
+    "event_id": "1527",
+    "title": "UFC on ESPN+ 111: Kape vs. Almabayev",
+    "slug": "UFC-on-ESPN+-111-Kape-vs-Almabayev",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1527/UFC-on-ESPN+-111-Kape-vs-Almabayev"
+  },
+  {
+    "event_id": "1526",
+    "title": "UFC on ESPN+ 110: Cejudo vs. Song",
+    "slug": "UFC-on-ESPN+-110-Cejudo-vs-Song",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1526/UFC-on-ESPN+-110-Cejudo-vs-Song"
+  },
+  {
+    "event_id": "1525",
+    "title": "UFC on ESPN+ 109: Cannonier vs. Rodrigues",
+    "slug": "UFC-on-ESPN+-109-Cannonier-vs-Rodrigues",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1525/UFC-on-ESPN+-109-Cannonier-vs-Rodrigues"
+  },
+  {
+    "event_id": "1524",
+    "title": "UFC 312: du Plessis vs. Strickland 2",
+    "slug": "UFC-312-du-Plessis-vs-Strickland-2",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1524/UFC-312-du-Plessis-vs-Strickland-2"
+  },
+  {
+    "event_id": "1523",
+    "title": "UFC on ESPN+ 108: Adesanya vs. Imavov",
+    "slug": "UFC-on-ESPN+-108-Adesanya-vs-Imavov",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1523/UFC-on-ESPN+-108-Adesanya-vs-Imavov"
+  },
+  {
+    "event_id": "1520",
+    "title": "UFC 311: Makhachev vs. Moicano",
+    "slug": "UFC-311-Makhachev-vs-Moicano",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1520/UFC-311-Makhachev-vs-Moicano"
+  },
+  {
+    "event_id": "1519",
+    "title": "UFC on ESPN+ 107: Dern vs. Ribas 2",
+    "slug": "UFC-on-ESPN+-107-Dern-vs-Ribas-2",
+    "year": "2025",
+    "url": "https://mmadecisions.com/event/1519/UFC-on-ESPN+-107-Dern-vs-Ribas-2"
   }
 ]

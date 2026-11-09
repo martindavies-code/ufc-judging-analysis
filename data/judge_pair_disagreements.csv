@@ -42,33 +42,33 @@ Glenn Trowbridge & Tony Weeks,Glenn Trowbridge,Tony Weeks,38,6,19,15.78947368421
 Adalaide Byrd & Derek Cleary,Adalaide Byrd,Derek Cleary,51,8,21,15.686274509803921,41.17647058823529
 Dave Tirelli & Sal D'Amato,Dave Tirelli,Sal D'Amato,45,7,20,15.555555555555555,44.44444444444444
 Derek Cleary & Michael Bell,Derek Cleary,Michael Bell,136,21,51,15.441176470588236,37.5
-Eric Colón & Michael Bell,Eric Colón,Michael Bell,72,11,36,15.277777777777779,50.0
 Anders Ohlsson & Ben Cartlidge,Anders Ohlsson,Ben Cartlidge,33,5,14,15.151515151515152,42.42424242424242
 Douglas Crosby & Sal D'Amato,Douglas Crosby,Sal D'Amato,53,8,26,15.09433962264151,49.056603773584904
+Eric Colón & Michael Bell,Eric Colón,Michael Bell,73,11,36,15.068493150684931,49.31506849315068
 Junichiro Kamijo & Tony Weeks,Junichiro Kamijo,Tony Weeks,73,11,30,15.068493150684931,41.0958904109589
 Chris Lee & Junichiro Kamijo,Chris Lee,Junichiro Kamijo,74,11,31,14.864864864864865,41.891891891891895
 Glenn Trowbridge & Patricia Morse Jarman,Glenn Trowbridge,Patricia Morse Jarman,27,4,10,14.814814814814813,37.03703703703704
 Patricia Morse Jarman & Tony Weeks,Patricia Morse Jarman,Tony Weeks,27,4,9,14.814814814814813,33.33333333333333
-Eric Colón & Ron McCarthy,Eric Colón,Ron McCarthy,41,6,17,14.634146341463413,41.46341463414634
 Glenn Trowbridge & Marcos Rosales,Glenn Trowbridge,Marcos Rosales,41,6,19,14.634146341463413,46.34146341463415
 Derek Cleary & Ron McCarthy,Derek Cleary,Ron McCarthy,69,10,26,14.492753623188406,37.68115942028986
-Ron McCarthy & Sal D'Amato,Ron McCarthy,Sal D'Amato,84,12,32,14.285714285714285,38.095238095238095
+Eric Colón & Ron McCarthy,Eric Colón,Ron McCarthy,42,6,17,14.285714285714285,40.476190476190474
 Anders Ohlsson & Clemens Werner,Anders Ohlsson,Clemens Werner,28,4,10,14.285714285714285,35.714285714285715
 Dave Hagen & Junichiro Kamijo,Dave Hagen,Junichiro Kamijo,21,3,10,14.285714285714285,47.61904761904761
 Derek Cleary & Rick Winter,Derek Cleary,Rick Winter,21,3,11,14.285714285714285,52.38095238095239
+Ron McCarthy & Sal D'Amato,Ron McCarthy,Sal D'Amato,85,12,32,14.117647058823529,37.64705882352941
 Chris Lee & Michael Bell,Chris Lee,Michael Bell,66,9,29,13.636363636363635,43.93939393939394
 Junichiro Kamijo & Patricia Morse Jarman,Junichiro Kamijo,Patricia Morse Jarman,22,3,9,13.636363636363635,40.909090909090914
 Eric Colón & Junichiro Kamijo,Eric Colón,Junichiro Kamijo,52,7,15,13.461538461538462,28.846153846153843
 Sal D'Amato & Tony Weeks,Sal D'Amato,Tony Weeks,90,12,37,13.333333333333334,41.11111111111111
 David Lethaby & Mark Collett,David Lethaby,Mark Collett,30,4,17,13.333333333333334,56.666666666666664
-Michael Bell & Sal D'Amato,Michael Bell,Sal D'Amato,203,27,82,13.30049261083744,40.39408866995074
+Michael Bell & Sal D'Amato,Michael Bell,Sal D'Amato,205,27,82,13.170731707317074,40.0
 Clemens Werner & David Lethaby,Clemens Werner,David Lethaby,38,5,12,13.157894736842104,31.57894736842105
 Brian Puccillo & Sal D'Amato,Brian Puccillo,Sal D'Amato,23,3,8,13.043478260869565,34.78260869565217
 Derek Cleary & Junichiro Kamijo,Derek Cleary,Junichiro Kamijo,95,12,32,12.631578947368421,33.68421052631579
 Adalaide Byrd & Junichiro Kamijo,Adalaide Byrd,Junichiro Kamijo,64,8,19,12.5,29.6875
 Derek Cleary & Sal D'Amato,Derek Cleary,Sal D'Amato,259,32,99,12.355212355212355,38.22393822393823
-Chris Lee & Eric Colón,Chris Lee,Eric Colón,73,9,31,12.32876712328767,42.465753424657535
-Michael Bell & Ron McCarthy,Michael Bell,Ron McCarthy,83,10,28,12.048192771084338,33.734939759036145
+Chris Lee & Eric Colón,Chris Lee,Eric Colón,74,9,31,12.162162162162163,41.891891891891895
+Michael Bell & Ron McCarthy,Michael Bell,Ron McCarthy,84,10,28,11.904761904761903,33.33333333333333
 Derek Cleary & Tony Weeks,Derek Cleary,Tony Weeks,43,5,16,11.627906976744185,37.2093023255814
 Chris Lee & Marcos Rosales,Chris Lee,Marcos Rosales,26,3,10,11.538461538461538,38.46153846153847
 Chris Lee & Richard Bertrand,Chris Lee,Richard Bertrand,26,3,13,11.538461538461538,50.0
@@ -91,9 +91,9 @@ Ben Cartlidge & Sal D'Amato,Ben Cartlidge,Sal D'Amato,23,2,7,8.695652173913043,3
 Douglas Crosby & Tony Weeks,Douglas Crosby,Tony Weeks,23,2,9,8.695652173913043,39.130434782608695
 Adalaide Byrd & Patricia Morse Jarman,Adalaide Byrd,Patricia Morse Jarman,24,2,11,8.333333333333332,45.83333333333333
 Bryan Miner & Sal D'Amato,Bryan Miner,Sal D'Amato,27,2,7,7.4074074074074066,25.925925925925924
-Chris Lee & Ron McCarthy,Chris Lee,Ron McCarthy,43,3,15,6.976744186046512,34.883720930232556
+Chris Lee & Ron McCarthy,Chris Lee,Ron McCarthy,44,3,15,6.8181818181818175,34.090909090909086
 Ben Cartlidge & David Lethaby,Ben Cartlidge,David Lethaby,59,4,22,6.779661016949152,37.28813559322034
-Eric Colón & Sal D'Amato,Eric Colón,Sal D'Amato,119,8,45,6.722689075630252,37.81512605042017
+Eric Colón & Sal D'Amato,Eric Colón,Sal D'Amato,120,8,45,6.666666666666667,37.5
 Glenn Trowbridge & Junichiro Kamijo,Glenn Trowbridge,Junichiro Kamijo,20,1,9,5.0,45.0
 Dave Tirelli & Derek Cleary,Dave Tirelli,Derek Cleary,21,1,7,4.761904761904762,33.33333333333333
 Ben Cartlidge & Mark Collett,Ben Cartlidge,Mark Collett,23,1,7,4.3478260869565215,30.434782608695656
