@@ -21,6 +21,7 @@ Derek Cleary & Wade Vierra,Derek Cleary,Wade Vierra,58,13,22.413793103448278
 Ben Cartlidge & Eric Colón,Ben Cartlidge,Eric Colón,45,10,22.22222222222222
 Sal D'Amato & Troy Wincapaw,Sal D'Amato,Troy Wincapaw,32,7,21.875
 Cardo Urso & Marcos Rosales,Cardo Urso,Marcos Rosales,46,10,21.73913043478261
+Anders Ohlsson & Darryl Ransom,Anders Ohlsson,Darryl Ransom,42,9,21.428571428571427
 Anthony Maness & Derek Cleary,Anthony Maness,Derek Cleary,42,9,21.428571428571427
 Derek Cleary & Patricia Morse Jarman,Derek Cleary,Patricia Morse Jarman,33,7,21.21212121212121
 Guilherme Bravo & Joseph Terrell,Guilherme Bravo,Joseph Terrell,33,7,21.21212121212121
@@ -32,21 +33,21 @@ Ben Cartlidge & Evan Field,Ben Cartlidge,Evan Field,45,9,20.0
 Anders Ohlsson & Clemens Werner,Anders Ohlsson,Clemens Werner,86,17,19.767441860465116
 Junichiro Kamijo & Patricia Morse Jarman,Junichiro Kamijo,Patricia Morse Jarman,56,11,19.642857142857142
 Barry Foley & Evan Field,Barry Foley,Evan Field,36,7,19.444444444444446
+Ben Cartlidge & Sal D'Amato,Ben Cartlidge,Sal D'Amato,83,16,19.27710843373494
 David Lethaby & Michael Bell,David Lethaby,Michael Bell,52,10,19.230769230769234
 Eric Colón & Michael Bell,Eric Colón,Michael Bell,242,46,19.00826446280992
 Derek Cleary & Jeff Mullen,Derek Cleary,Jeff Mullen,79,15,18.9873417721519
 Anthony Maness & Sal D'Amato,Anthony Maness,Sal D'Amato,54,10,18.51851851851852
 Marcos Rosales & Wade Vierra,Marcos Rosales,Wade Vierra,38,7,18.421052631578945
-Anders Ohlsson & Darryl Ransom,Anders Ohlsson,Darryl Ransom,33,6,18.181818181818183
 Dave Tirelli & Douglas Crosby,Dave Tirelli,Douglas Crosby,33,6,18.181818181818183
 Junichiro Kamijo & Mark Smith,Junichiro Kamijo,Mark Smith,33,6,18.181818181818183
 Derek Cleary & Eric Colón,Derek Cleary,Eric Colón,261,47,18.007662835249043
 Junichiro Kamijo & Lester Griffin,Junichiro Kamijo,Lester Griffin,39,7,17.94871794871795
 Derek Cleary & Rick Winter,Derek Cleary,Rick Winter,57,10,17.543859649122805
-Ben Cartlidge & Sal D'Amato,Ben Cartlidge,Sal D'Amato,80,14,17.5
 Chris Lee & Douglas Crosby,Chris Lee,Douglas Crosby,75,13,17.333333333333336
 Glenn Trowbridge & Sal D'Amato,Glenn Trowbridge,Sal D'Amato,139,24,17.26618705035971
 Glenn Trowbridge & Marcos Rosales,Glenn Trowbridge,Marcos Rosales,93,16,17.20430107526882
+David Lethaby & Vito Paolillo,David Lethaby,Vito Paolillo,70,12,17.142857142857142
 Ben Cartlidge & Junichiro Kamijo,Ben Cartlidge,Junichiro Kamijo,35,6,17.142857142857142
 Andy Roberts & Mark Collett,Andy Roberts,Mark Collett,41,7,17.073170731707318
 Patricia Morse Jarman & Sal D'Amato,Patricia Morse Jarman,Sal D'Amato,41,7,17.073170731707318
@@ -60,12 +61,10 @@ Junichiro Kamijo & Rick Winter,Junichiro Kamijo,Rick Winter,48,8,16.666666666666
 Chris Lee & Dave Hagen,Chris Lee,Dave Hagen,91,15,16.483516483516482
 Dave Hagen & Derek Cleary,Dave Hagen,Derek Cleary,91,15,16.483516483516482
 Dave Tirelli & Sal D'Amato,Dave Tirelli,Sal D'Amato,140,23,16.428571428571427
-David Lethaby & Vito Paolillo,David Lethaby,Vito Paolillo,67,11,16.417910447761194
 Derek Cleary & Glenn Trowbridge,Derek Cleary,Glenn Trowbridge,92,15,16.304347826086957
 Clemens Werner & Michael Bell,Clemens Werner,Michael Bell,43,7,16.27906976744186
 Ben Cartlidge & Chris Lee,Ben Cartlidge,Chris Lee,37,6,16.216216216216218
 Dave Tirelli & Eric Colón,Dave Tirelli,Eric Colón,105,17,16.19047619047619
-Ben Cartlidge & Vito Paolillo,Ben Cartlidge,Vito Paolillo,87,14,16.091954022988507
 Clemens Werner & Mark Collett,Clemens Werner,Mark Collett,44,7,15.909090909090908
 Rick Winter & Sal D'Amato,Rick Winter,Sal D'Amato,107,17,15.887850467289718
 Adalaide Byrd & Tony Weeks,Adalaide Byrd,Tony Weeks,63,10,15.873015873015872
@@ -76,6 +75,7 @@ David Lethaby & Mark Collett,David Lethaby,Mark Collett,98,15,15.306122448979592
 Anders Ohlsson & Vito Paolillo,Anders Ohlsson,Vito Paolillo,59,9,15.254237288135593
 Marcos Rosales & Tony Weeks,Marcos Rosales,Tony Weeks,59,9,15.254237288135593
 Chris Lee & Junichiro Kamijo,Chris Lee,Junichiro Kamijo,231,35,15.151515151515152
+Ben Cartlidge & Vito Paolillo,Ben Cartlidge,Vito Paolillo,93,14,15.053763440860216
 Ben Cartlidge & David Lethaby,Ben Cartlidge,David Lethaby,200,30,15.0
 Howard Hughes & Mark Collett,Howard Hughes,Mark Collett,120,18,15.0
 Adalaide Byrd & Sal D'Amato,Adalaide Byrd,Sal D'Amato,216,32,14.814814814814813
@@ -126,30 +126,30 @@ Derek Cleary & Michael Bell,Derek Cleary,Michael Bell,459,58,12.636165577342048
 Chris Lee & Tony Weeks,Chris Lee,Tony Weeks,151,19,12.582781456953644
 Eric Colón & Junichiro Kamijo,Eric Colón,Junichiro Kamijo,159,20,12.578616352201259
 Eric Colón & Ron McCarthy,Eric Colón,Ron McCarthy,136,17,12.5
+Ben Cartlidge & Darryl Ransom,Ben Cartlidge,Darryl Ransom,48,6,12.5
 Derek Cleary & Sal D'Amato,Derek Cleary,Sal D'Amato,925,115,12.432432432432433
 Sal D'Amato & Tony Weeks,Sal D'Amato,Tony Weeks,242,30,12.396694214876034
 Adalaide Byrd & Chris Lee,Adalaide Byrd,Chris Lee,90,11,12.222222222222221
 Brian Puccillo & Derek Cleary,Brian Puccillo,Derek Cleary,33,4,12.121212121212121
 Cardo Urso & Dave Tirelli,Cardo Urso,Dave Tirelli,33,4,12.121212121212121
 Mark Collett & Pawel Harasim,Mark Collett,Pawel Harasim,33,4,12.121212121212121
-Ben Cartlidge & Clemens Werner,Ben Cartlidge,Clemens Werner,149,18,12.080536912751679
 Richard Bertrand & Sal D'Amato,Richard Bertrand,Sal D'Amato,75,9,12.0
 Chris Lee & Sal D'Amato,Chris Lee,Sal D'Amato,742,89,11.994609164420485
 Douglas Crosby & Sal D'Amato,Douglas Crosby,Sal D'Amato,142,17,11.971830985915492
 Michael Bell & Ron McCarthy,Michael Bell,Ron McCarthy,260,31,11.923076923076923
+Ben Cartlidge & Clemens Werner,Ben Cartlidge,Clemens Werner,161,19,11.801242236024844
 Eric Colón & Sal D'Amato,Eric Colón,Sal D'Amato,399,47,11.779448621553884
 Adalaide Byrd & Glenn Trowbridge,Adalaide Byrd,Glenn Trowbridge,51,6,11.76470588235294
-Clemens Werner & Vito Paolillo,Clemens Werner,Vito Paolillo,69,8,11.594202898550725
 Brian Puccillo & Chris Lee,Brian Puccillo,Chris Lee,52,6,11.538461538461538
 Jeff Mullen & Sal D'Amato,Jeff Mullen,Sal D'Amato,62,7,11.29032258064516
 Adalaide Byrd & Ron McCarthy,Adalaide Byrd,Ron McCarthy,108,12,11.11111111111111
 Cardo Urso & Douglas Crosby,Cardo Urso,Douglas Crosby,54,6,11.11111111111111
-Ben Cartlidge & Darryl Ransom,Ben Cartlidge,Darryl Ransom,45,5,11.11111111111111
 Andy Roberts & Howard Hughes,Andy Roberts,Howard Hughes,36,4,11.11111111111111
 Junichiro Kamijo & Sal D'Amato,Junichiro Kamijo,Sal D'Amato,514,56,10.894941634241246
 Michael Bell & Sal D'Amato,Michael Bell,Sal D'Amato,693,75,10.822510822510822
 Chris Lee & Glenn Trowbridge,Chris Lee,Glenn Trowbridge,65,7,10.76923076923077
 Adalaide Byrd & Derek Cleary,Adalaide Byrd,Derek Cleary,150,16,10.666666666666668
+Clemens Werner & Vito Paolillo,Clemens Werner,Vito Paolillo,75,8,10.666666666666668
 Ben Cartlidge & Howard Hughes,Ben Cartlidge,Howard Hughes,47,5,10.638297872340425
 Fabio Alves & Sal D'Amato,Fabio Alves,Sal D'Amato,57,6,10.526315789473683
 Glenn Trowbridge & Junichiro Kamijo,Glenn Trowbridge,Junichiro Kamijo,57,6,10.526315789473683
@@ -160,14 +160,16 @@ David Lethaby & Eric Colón,David Lethaby,Eric Colón,49,5,10.204081632653061
 Glenn Trowbridge & Patricia Morse Jarman,Glenn Trowbridge,Patricia Morse Jarman,49,5,10.204081632653061
 Michael Bell & Rick Winter,Michael Bell,Rick Winter,69,7,10.144927536231885
 Derek Cleary & Junichiro Kamijo,Derek Cleary,Junichiro Kamijo,330,33,10.0
+Anders Ohlsson & David Lethaby,Anders Ohlsson,David Lethaby,80,8,10.0
 Bryan Miner & Ron McCarthy,Bryan Miner,Ron McCarthy,30,3,10.0
 Clemens Werner & David Lethaby,Clemens Werner,David Lethaby,123,12,9.75609756097561
 Dave Tirelli & Fabio Alves,Dave Tirelli,Fabio Alves,31,3,9.67741935483871
 Eric Colón & Guilherme Bravo,Eric Colón,Guilherme Bravo,31,3,9.67741935483871
+Darryl Ransom & David Lethaby,Darryl Ransom,David Lethaby,83,8,9.63855421686747
 Anthony Dimitriou & Kon Papaioannou,Anthony Dimitriou,Kon Papaioannou,32,3,9.375
 Cardo Urso & Derek Cleary,Cardo Urso,Derek Cleary,32,3,9.375
+Clemens Werner & Darryl Ransom,Clemens Werner,Darryl Ransom,75,7,9.333333333333334
 Guilherme Bravo & Marco Aurelio Borges,Guilherme Bravo,Marco Aurelio Borges,43,4,9.30232558139535
-Darryl Ransom & David Lethaby,Darryl Ransom,David Lethaby,77,7,9.090909090909092
 Brian Puccillo & Sal D'Amato,Brian Puccillo,Sal D'Amato,66,6,9.090909090909092
 Adalaide Byrd & Patricia Morse Jarman,Adalaide Byrd,Patricia Morse Jarman,33,3,9.090909090909092
 Rick Winter & Tony Weeks,Rick Winter,Tony Weeks,33,3,9.090909090909092
@@ -175,20 +177,18 @@ Douglas Crosby & Tony Weeks,Douglas Crosby,Tony Weeks,45,4,8.88888888888889
 Ben Cartlidge & Mark Collett,Ben Cartlidge,Mark Collett,69,6,8.695652173913043
 Dave Hagen & Marcos Rosales,Dave Hagen,Marcos Rosales,35,3,8.571428571428571
 Michael Bell & Tony Weeks,Michael Bell,Tony Weeks,120,10,8.333333333333332
-Clemens Werner & Darryl Ransom,Clemens Werner,Darryl Ransom,72,6,8.333333333333332
 Ben Cartlidge & Maciej Motylewski,Ben Cartlidge,Maciej Motylewski,36,3,8.333333333333332
-Anders Ohlsson & David Lethaby,Anders Ohlsson,David Lethaby,74,6,8.108108108108109
-David Lethaby & Sal D'Amato,David Lethaby,Sal D'Amato,62,5,8.064516129032258
 Bryan Miner & Sal D'Amato,Bryan Miner,Sal D'Amato,75,6,8.0
 Adalaide Byrd & Marcos Rosales,Adalaide Byrd,Marcos Rosales,38,3,7.894736842105263
 Dave Hagen & Ron McCarthy,Dave Hagen,Ron McCarthy,38,3,7.894736842105263
+David Lethaby & Sal D'Amato,David Lethaby,Sal D'Amato,65,5,7.6923076923076925
 Douglas Crosby & Eric Colón,Douglas Crosby,Eric Colón,40,3,7.5
 Douglas Crosby & Junichiro Kamijo,Douglas Crosby,Junichiro Kamijo,54,4,7.4074074074074066
+Clemens Werner & Sal D'Amato,Clemens Werner,Sal D'Amato,68,5,7.352941176470589
 Dave Hagen & Eric Colón,Dave Hagen,Eric Colón,42,3,7.142857142857142
 Patricia Morse Jarman & Tony Weeks,Patricia Morse Jarman,Tony Weeks,42,3,7.142857142857142
 Glenn Trowbridge & Mark Smith,Glenn Trowbridge,Mark Smith,30,2,6.666666666666667
 Dave Tirelli & Derek Cleary,Dave Tirelli,Derek Cleary,62,4,6.451612903225806
-Clemens Werner & Sal D'Amato,Clemens Werner,Sal D'Amato,65,4,6.153846153846154
 Lester Griffin & Marcos Rosales,Lester Griffin,Marcos Rosales,39,2,5.128205128205128
 Chris Watts & Howard Hughes,Chris Watts,Howard Hughes,44,2,4.545454545454546
 Ben Cartlidge & Charlie Keech,Ben Cartlidge,Charlie Keech,33,1,3.0303030303030303
